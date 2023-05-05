@@ -84,13 +84,13 @@ jobs:
         with:
           threshold: 1s
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
 
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
@@ -99,13 +99,21 @@ jobs:
           draft: false
           prerelease: false
 
-      - name: Upload Release Asset dotnet-dump-monitor-without-framework
-        id: upload-release-asset-dotnet-dump-monitor-without-framework
+      - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./windows-x64.zip
-          asset_name: windows-x64.zip
-          asset_content_type: application/zip 
+          upload_url: ${{ steps.create_release.outputs.upload_url }}          
+        asset_path: |
+          ./windows-x64.zip
+          ./macOS-x64.zip
+          ./macOS-arm64.zip
+        asset_name: |
+          windows-x64.zip
+          macOS-x64.zip
+          macOS-arm64.zip
+        asset_content_type: |
+          application/zip
+          application/zip
+          application/zip
