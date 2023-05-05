@@ -95,7 +95,7 @@ jobs:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
           body: |
-            Automated Release by GitHub Action CI
+            $(git log --format=%B ${GITHUB_SHA}^..${GITHUB_SHA})
           draft: false
           prerelease: false
 
