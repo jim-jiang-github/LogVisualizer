@@ -13,7 +13,6 @@ env:
 jobs:
   build:
 
-    # windows-latest is required due to some resource stuff.
     runs-on: windows-latest
 
     steps:
@@ -54,7 +53,7 @@ jobs:
       - name: Zip osx-x64 build
         uses: vimtor/action-zip@v1
         with:
-          files: src/LogVisualizer/bin/Release/osx.12-x64/publish/
+          files: src/LogVisualizer/bin/Release/net7.0/osx.12-x64/publish/
           dest: LogVisualizer-macOS-x64.zip
 
       - name: Collect osx-x64 artifacts
@@ -69,7 +68,7 @@ jobs:
       - name: Zip osx-arm64 build
         uses: vimtor/action-zip@v1
         with:
-          files: src/LogVisualizer/bin/Release/osx.12-arm64/publish/
+          files: src/LogVisualizer/bin/Release/net7.0/osx.12-arm64/publish/
           dest: LogVisualizer-macOS-arm64.zip
 
       - name: Collect osx-arm64 artifacts
