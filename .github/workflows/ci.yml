@@ -53,7 +53,7 @@ jobs:
           path: ${{ env.BUILD_DIR }}
 
       - name: Build osx-x64
-        run: dotnet publish ${{env.CSPROJ_DIR}}\LogVisualizer.csproj -r osx.12-x64 -p:Configuration=Release -p:PublishSingleFile=true -p:PublishReadyToRun=true -p:IncludeNativeLibrariesForSelfExtract=true -p:IncludeAllContentForSelfExtract=true --self-contained true -property:Version='${{ env.MAJOR }}.${{ env.MINOR }}.${{ env.PATCH }}.${{ env.NUMBER_OF_COMMITS }}'
+        run: dotnet publish ${{env.CSPROJ_DIR}}\LogVisualizer.csproj -r osx-x64 -p:Configuration=Release -p:PublishReadyToRun=true -p:IncludeNativeLibrariesForSelfExtract=true -p:IncludeAllContentForSelfExtract=true --self-contained true -property:Version='${{ env.MAJOR }}.${{ env.MINOR }}.${{ env.PATCH }}.${{ env.NUMBER_OF_COMMITS }}'
 
       - name: Zip osx-x64 build
         shell: powershell
@@ -66,7 +66,7 @@ jobs:
           path: ${{ env.BUILD_DIR }}
 
       - name: Build osx-arm64
-        run: dotnet publish ${{env.CSPROJ_DIR}}\LogVisualizer.csproj -r osx.12-arm64 -p:Configuration=Release -p:PublishSingleFile=true -p:PublishReadyToRun=true -p:IncludeNativeLibrariesForSelfExtract=true -p:IncludeAllContentForSelfExtract=true --self-contained true -property:Version='${{ env.MAJOR }}.${{ env.MINOR }}.${{ env.PATCH }}.${{ env.NUMBER_OF_COMMITS }}'
+        run: dotnet publish ${{env.CSPROJ_DIR}}\LogVisualizer.csproj -r osx-arm64 -p:Configuration=Release -p:PublishReadyToRun=true -p:IncludeNativeLibrariesForSelfExtract=true -p:IncludeAllContentForSelfExtract=true --self-contained true -property:Version='${{ env.MAJOR }}.${{ env.MINOR }}.${{ env.PATCH }}.${{ env.NUMBER_OF_COMMITS }}'
 
       - name: Zip osx-arm64 build
         shell: powershell
