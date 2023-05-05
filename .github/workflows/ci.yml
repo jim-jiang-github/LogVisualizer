@@ -87,14 +87,25 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create Release
-        uses: softprops/action-gh-release@v1
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          draft: true
-          tag_name: v'${{ env.MAJOR }}.${{ env.MINOR }}.${{ env.PATCH }}.${{ env.NUMBER_OF_COMMITS }}'
-          generate_release_notes: true
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
           body: |
             Automated Release by GitHub Action CI
-          files: |
-            .\windows-x64.zip
-            .\macOS-x64.zip
-            .\macOS-arm64.zip
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset dotnet-dump-monitor-without-framework
+        id: upload-release-asset-dotnet-dump-monitor-without-framework
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./windows-x64.zip
+          asset_name: windows-x64.zip
+          asset_content_type: application/zip 
