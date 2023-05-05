@@ -95,6 +95,6 @@ jobs:
           body: |
             Automated Release by GitHub Action CI
           files: |
-            .\LogVisualizer-windows-x64.zip
-            .\LogVisualizer-macOS-x64.zip
-            .\LogVisualizer-macOS-arm64.zip
+            .\windows-x64.zip
+            .\macOS-x64.zip
+            .\macOS-arm64.zip
