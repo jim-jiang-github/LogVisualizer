@@ -105,15 +105,26 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: |
-            ./windows-x64.zip
-            ./macOS-x64.zip
-            ./macOS-arm64.zip
-          asset_name: |
-            windows-x64.zip
-            macOS-x64.zip
-            macOS-arm64.zip
-          asset_content_type: |
-            application/zip
-            application/zip
-            application/zip
+          asset_path: ./windows-x64.zip
+          asset_name: windows-x64.zip
+          asset_content_type: application/zip
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./macOS-x64.zip
+          asset_name: macOS-x64.zip
+          asset_content_type: application/zip
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./macOS-arm64.zip
+          asset_name: macOS-arm64.zip
+          asset_content_type: application/zip
