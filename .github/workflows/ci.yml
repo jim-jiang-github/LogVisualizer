@@ -86,45 +86,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
 
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+      - uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          body: |
-            $(git log --format=%B ${GITHUB_SHA}^..${GITHUB_SHA})
-          draft: false
+          repo_token: "${{ secrets.TOKEN }}"
           prerelease: false
-
-      - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./windows-x64.zip
-          asset_name: windows-x64.zip
-          asset_content_type: application/zip
-
-      - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./macOS-x64.zip
-          asset_name: macOS-x64.zip
-          asset_content_type: application/zip
-
-      - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./macOS-arm64.zip
-          asset_name: macOS-arm64.zip
-          asset_content_type: application/zip
+          draft: false
+          title: Release ${{ github.ref_name }}
+          files: |
+            ./windows-x64.zip
+            ./macOS-x64.zip
+            ./macOS-arm64.zip
