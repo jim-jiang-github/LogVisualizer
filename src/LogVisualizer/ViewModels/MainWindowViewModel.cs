@@ -1,82 +1,54 @@
-﻿using System;
+﻿using Avalonia.Controls;
+using DataVirtualization;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
 
 namespace LogVisualizer.ViewModels
 {
+    public class Item
+    {
+        public string Name { get; set; }
+        public int Age { get; set; }
+    }
     public class MainWindowViewModel : ViewModelBase
     {
-        private readonly ItemList _items;
-        public ItemList Items => _items ?? new ItemList();
+        public VirtualizingCollection<Item> Items { get; }
         public string Greeting => "Welcome to Avalonia!";
         public MainWindowViewModel()
         {
+            var customerProvider = new CustomerProvider();
+            var customerList = new VirtualizingCollection<Item>(customerProvider, 30, 3000);
+            Items = customerList;
         }
 
-        
+
     }
-    public class ItemList : IList
+    public class CustomerProvider : IItemsProvider<Item>
     {
-        public object this[int index]
+        private Item[] _items = new Item[30];
+
+        public int FetchCount()
         {
-            get
+            return 30;
+        }
+
+        public IList<Item> FetchRange(int startIndex, int pageCount, out int overallCount)
+        {
+            overallCount = 3000;
+            for (int i = 0; i < pageCount; i++)
             {
-                return $"xxxxxxxxxxxxxxxxxxxxxxxxxxx{index}";
+                _items[i] = new Item()
+                {
+                    Age = startIndex,
+                    Name = $"xxxxxxx{startIndex}"
+                };
             }
-            set => throw new NotImplementedException();
-        }
-
-        public bool IsFixedSize => true;
-
-        public bool IsReadOnly => true;
-
-        public int Count => int.MaxValue;
-
-        public bool IsSynchronized => true;
-
-        public object SyncRoot => this;
-
-        public int Add(object value)
-        {
-            return -1;
-        }
-
-        public void Clear()
-        {
-
-        }
-
-        public bool Contains(object value)
-        {
-            return false;
-        }
-
-        public void CopyTo(Array array, int index)
-        {
-        }
-
-        public IEnumerator GetEnumerator()
-        {
-            yield return -1;
-        }
-
-        public int IndexOf(object value)
-        {
-            return -1;
-        }
-
-        public void Insert(int index, object value)
-        {
-        }
-
-        public void Remove(object value)
-        {
-        }
-
-        public void RemoveAt(int index)
-        {
+            return _items;
         }
     }
-
 }

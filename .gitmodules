@@ -1,4 +1,0 @@
-[submodule "3rd"]
-	path = 3rd/DataVirtualization
-	url = https://github.com/jim-jiang-github/DataVirtualization.git
-	branch = master
