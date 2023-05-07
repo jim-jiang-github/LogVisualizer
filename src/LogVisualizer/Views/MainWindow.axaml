@@ -103,8 +103,9 @@
           <GridSplitter Grid.Column="1"
                         Width="2"/>
           <DataGrid Grid.Column="2"
+                    
                                    Background="#262626"
-                                   Items="{Binding Items}">
+                                   Items="{Binding Items.Content}">
             <DataGrid.Columns>
               <DataGridTemplateColumn Header="#"
                                        Width="Auto">
@@ -115,7 +116,7 @@
                                FontSize="10"
                                HorizontalAlignment="Right"
                                Classes="code_text"
-                               Text="{Binding Data.Name}" />
+                               Text="{Binding [0]}" />
                   </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
               </DataGridTemplateColumn>
@@ -128,7 +129,7 @@
                                FontSize="10"
                                HorizontalAlignment="Right"
                                Classes="code_text"
-                               Text="{Binding Data.Age}" />
+                               Text="{Binding [1]}" />
                   </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
               </DataGridTemplateColumn>

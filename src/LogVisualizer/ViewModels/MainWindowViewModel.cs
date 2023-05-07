@@ -10,45 +10,45 @@ using System.Threading.Tasks;
 
 namespace LogVisualizer.ViewModels
 {
-    public class Item
+    public struct Item
     {
         public string Name { get; set; }
         public int Age { get; set; }
     }
     public class MainWindowViewModel : ViewModelBase
     {
-        public VirtualizingCollection<Item> Items { get; }
+        public ItemCollection Items { get; }
         public string Greeting => "Welcome to Avalonia!";
         public MainWindowViewModel()
         {
-            var customerProvider = new CustomerProvider();
-            var customerList = new VirtualizingCollection<Item>(customerProvider, 30, 3000);
-            Items = customerList;
+            ItemCollection itemCollection = new ItemCollection();
+            //var items = new Item[999999];
+            //for (int i = 0; i < items.Length; i++)
+            //{
+            //    items[i].Name = $"xxxxxxxxxxxxxxxxxxxxxxxx{i}";
+            //    items[i].Age = i;
+            //}
+            Items = itemCollection;
         }
-
-
     }
-    public class CustomerProvider : IItemsProvider<Item>
+    public class ItemCollection
     {
-        private Item[] _items = new Item[30];
+        public string[] Headers { get; } = new string[] { "Name", "Age", "Detail", "Msg" };
+        public string[][] Content { get; }
 
-        public int FetchCount()
+        public ItemCollection()
         {
-            return 30;
-        }
-
-        public IList<Item> FetchRange(int startIndex, int pageCount, out int overallCount)
-        {
-            overallCount = 3000;
-            for (int i = 0; i < pageCount; i++)
+            Content = new string[9999999][];
+            for (int i = 0; i < Content.Length; i++)
             {
-                _items[i] = new Item()
+                Content[i] = new string[]
                 {
-                    Age = startIndex,
-                    Name = $"xxxxxxx{startIndex}"
+                    $"Name{i}",
+                    i.ToString(),
+                    $"Detail{i}",
+                    $"Ms{i}",
                 };
             }
-            return _items;
         }
     }
 }
