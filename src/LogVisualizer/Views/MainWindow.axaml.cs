@@ -21,16 +21,5 @@ namespace LogVisualizer.Views
                 windowsTitleBar.IsVisible = true;
             }
         }
-
-      
-
-        private void Xx_LoadingRow(object? sender, DataGridRowEventArgs e)
-        {
-            //if (xx.SelectedItems.Contains(e.Row))
-            //{
-            //    e.Row.Background = Brushes.Yellow;
-            //    e.Row.Foreground = Brushes.Blue;
-            //}
-        }
     }
 }
