@@ -8,6 +8,7 @@
         x:Class="LogVisualizer.Views.MainWindow"
         Icon="/Assets/logo.ico"
         Title="LogVisualizer">
+
   <Design.DataContext>
     <!-- This only sets the DataContext for the previewer in an IDE,
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
@@ -41,38 +42,6 @@
       </NativeMenuItem>
     </NativeMenu>
   </NativeMenu.Menu>
-  <!--<ListBox Items="{Binding Items}" 
-             SelectionMode="Multiple" >
-      <ListBox.Styles>
-        -->
-  <!--<Style Selector="ListBoxItem:pointerover /template/ ContentPresenter">
-          <Setter Property="Background" Value="Green"/>
-          <Setter Property="Height" Value="44"/>
-          <Setter Property="ContentTemplate" >
-            <DataTemplate>
-              <TextBlock Margin="0" Height="44" FontSize="21" Text="{Binding Data.Name}" />
-            </DataTemplate>
-          </Setter>
-        </Style>-->
-  <!--
-        <Style Selector="ListBoxItem">
-          <Setter Property="Height" Value="14"/>
-          <Setter Property="HorizontalAlignment" Value="Left"/>
-          <Setter Property="VerticalAlignment" Value="Center"/>
-          <Setter Property="Padding" Value="1,0,0,1"/>
-          <Setter Property="Background" Value="Green"/>
-        </Style>
-        <Style Selector="ListBoxItem:selected">
-          <Setter Property="Background" Value="Green"/>
-        </Style>
-      </ListBox.Styles>
-      <ListBox.ItemTemplate>
-        <DataTemplate>
-
-          <TextBlock Margin="0" Height="14" FontSize="11" Text="{Binding Data.Name}" />
-        </DataTemplate>
-      </ListBox.ItemTemplate>
-    </ListBox>-->
 
   <DockPanel HorizontalAlignment="Stretch"
              VerticalAlignment="Stretch"

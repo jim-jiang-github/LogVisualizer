@@ -1,6 +1,4 @@
 using Avalonia.Controls;
-using Avalonia.Data;
-using Avalonia.Media;
 using LogVisualizer.Platforms.Windows;
 using System.Runtime.InteropServices;
 

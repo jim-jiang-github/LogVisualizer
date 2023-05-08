@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogVisualizer", "LogVisualizer\LogVisualizer.csproj", "{6B70B12A-9C3E-461A-87DC-630918701938}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataVirtualization", "DataVirtualization\DataVirtualization.csproj", "{FDC922BA-9689-4B34-9936-BF5A26A2DC95}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogVisualizer", "LogVisualizer\LogVisualizer.csproj", "{9C70F5D0-3FF0-4C0C-B9D9-84EA2B776AB6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6B70B12A-9C3E-461A-87DC-630918701938}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6B70B12A-9C3E-461A-87DC-630918701938}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6B70B12A-9C3E-461A-87DC-630918701938}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6B70B12A-9C3E-461A-87DC-630918701938}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FDC922BA-9689-4B34-9936-BF5A26A2DC95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FDC922BA-9689-4B34-9936-BF5A26A2DC95}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FDC922BA-9689-4B34-9936-BF5A26A2DC95}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FDC922BA-9689-4B34-9936-BF5A26A2DC95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C70F5D0-3FF0-4C0C-B9D9-84EA2B776AB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C70F5D0-3FF0-4C0C-B9D9-84EA2B776AB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C70F5D0-3FF0-4C0C-B9D9-84EA2B776AB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C70F5D0-3FF0-4C0C-B9D9-84EA2B776AB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
