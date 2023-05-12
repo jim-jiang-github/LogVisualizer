@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-    DOTNETVERSION: 6.0.x
+    DOTNETVERSION: 7.0.x
     SLN_DIR: src\
     CSPROJ_DIR: src\LogVisualizer\
     BUILD_DIR: src\LogVisualizer\bin\Release\net6.0\win-x64\publish\
