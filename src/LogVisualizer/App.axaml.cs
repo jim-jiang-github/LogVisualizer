@@ -11,7 +11,6 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Xml;
 using LogVisualizer.Services;
-using Metalama.Framework.Services;
 
 namespace LogVisualizer
 {
@@ -19,7 +18,7 @@ namespace LogVisualizer
     {
         public IServiceProvider? _serviceProvider;
 
-        [Log]
+        [LogInfo]
         public override void Initialize()
         {
             AvaloniaXamlLoader.Load(this);
@@ -31,7 +30,7 @@ namespace LogVisualizer
                 .BuildServiceProvider();
         }
 
-        [Log]
+        [LogInfo]
         public override void OnFrameworkInitializationCompleted()
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop && _serviceProvider != null)
