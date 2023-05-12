@@ -1,0 +1,67 @@
+<UserControl
+    x:Class="LogVisualizer.Views.SideBar"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fa="http://schemas.fontawesome.io/icons/"
+    xmlns:icon="clr-namespace:Projektanker.Icons.Avalonia;assembly=Projektanker.Icons.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:LogVisualizer.ViewModels"
+    d:DesignHeight="450"
+    d:DesignWidth="50"
+    mc:Ignorable="d">
+    <Design.DataContext>
+        <vm:SideBarViewModel />
+    </Design.DataContext>
+
+    <ListBox Items="{Binding SideBarItems}">
+        <ListBox.ItemTemplate>
+            <DataTemplate>
+                <Grid ToolTip.Tip="{Binding Tip}">
+                    <Viewbox Width="30" Height="30">
+                        <icon:Icon Foreground="AliceBlue" Value="fa-regular fa-file-lines" />
+                    </Viewbox>
+                    <StackPanel Margin="25,-6,0,0">
+                        <Border
+                            Width="16"
+                            Height="16"
+                            Background="White"
+                            CornerRadius="8"
+                            IsVisible="True">
+                            <Border
+                                Width="14"
+                                Height="14"
+                                Background="Red"
+                                CornerRadius="7">
+                                <TextBlock
+                                    FontSize="12"
+                                    FontWeight="ExtraBold"
+                                    Foreground="White"
+                                    Text="!"
+                                    TextAlignment="Center" />
+                            </Border>
+                        </Border>
+                        <Border
+                            Width="16"
+                            Height="16"
+                            Background="White"
+                            CornerRadius="8">
+                            <Border
+                                Width="14"
+                                Height="14"
+                                Background="#0967FF"
+                                CornerRadius="7">
+                                <TextBlock
+                                    Margin="0,1,0,0"
+                                    FontSize="10"
+                                    Foreground="White"
+                                    Text="99"
+                                    TextAlignment="Center" />
+                            </Border>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+    </ListBox>
+</UserControl>

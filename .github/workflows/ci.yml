@@ -12,6 +12,7 @@ env:
     SLN_DIR: src\
     CSPROJ_DIR: src\LogVisualizer\
     BUILD_DIR: src\LogVisualizer\bin\Release\net6.0\win-x64\publish\
+    UPGRADE_INFO_PATH: upgradeInfo.json
 
 jobs:
   build:
@@ -78,6 +79,13 @@ jobs:
           name: macOS-arm64
           path: ${{ env.BUILD_DIR }}
 
+      # upgradeInfo
+      - name: Collect upgradeInfo artifacts
+        uses: actions/upload-artifact@v2.3.1
+        with:
+          name: upgradeInfo
+          path: ${{ env.UPGRADE_INFO_PATH }}
+
       # Release Management
       - name: Delete release drafts
         uses: hugo19941994/delete-draft-releases@v1.0.0
@@ -96,3 +104,4 @@ jobs:
             ./windows-x64.zip
             ./macOS-x64.zip
             ./macOS-arm64.zip
+            ./upgradeInfo.json

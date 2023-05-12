@@ -1,0 +1,3 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <FontFamily x:Key="AwesomeRegular">avares://Assets/fontawesome/otfs/Font Awesome 6 Brands-Regular-400.otf</FontFamily>
+</ResourceDictionary>

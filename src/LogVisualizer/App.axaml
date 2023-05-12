@@ -1,13 +1,26 @@
-<Application xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="using:LogVisualizer"
-             x:Class="LogVisualizer.App">
-  <Application.DataTemplates>
-    <local:ViewLocator/>
-  </Application.DataTemplates>
+<Application
+    x:Class="LogVisualizer.App"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LogVisualizer">
+    <Application.DataTemplates>
+        <local:ViewLocator />
+    </Application.DataTemplates>
 
-  <Application.Styles>
-    <FluentTheme Mode="Dark"/>
-    <StyleInclude Source="/Styles/DataGrid.axaml" />
-  </Application.Styles>
+    <Application.Styles>
+        <FluentTheme Mode="Dark" />
+        <StyleInclude Source="/Styles/DataGrid.axaml" />
+        <StyleInclude Source="/Styles/TreeDataGrid.axaml" />
+        <StyleInclude Source="/Styles/MenuItem.axaml" />
+    </Application.Styles>
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="/Assets/Fonts.axaml" />
+                <ResourceInclude Source="/Assets/Images.axaml" />
+                <ResourceInclude Source="/Converters/Converters.axaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
 </Application>

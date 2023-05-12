@@ -1,0 +1,3 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--<SvgImage x:Key="book" Source="/Assets/fontawesome/svgs/regular/address-book.svg" />-->
+</ResourceDictionary>

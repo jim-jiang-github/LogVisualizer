@@ -1,0 +1,15 @@
+{
+  "Mandatorys": [
+    {
+      "Mode": "Force",
+      "MinVersion": "0.0.0.0"
+    },
+    {
+      "Mode": "Tip",
+      "MinVersion": "1.0.0.0"
+    }
+  ],
+  "Url": "https://github.com/jim-jiang-github/LogVisualizer/releases/latest",
+  "Executable": "LogVisualizer.exe",
+  "ExecuteArgs": ""
+}

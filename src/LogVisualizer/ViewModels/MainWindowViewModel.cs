@@ -1,44 +1,100 @@
-﻿namespace LogVisualizer.ViewModels
+﻿using Avalonia.Controls;
+using Avalonia.Controls.Models.TreeDataGrid;
+using Avalonia.Controls.Selection;
+using Avalonia.Input;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System;
+using System.Linq;
+using Avalonia;
+using System.Collections;
+using LogVisualizer.Services;
+
+namespace LogVisualizer.ViewModels
 {
     public struct Item
     {
+        public int Index { get; set; }
         public string Name { get; set; }
         public int Age { get; set; }
     }
-    public class MainWindowViewModel : ViewModelBase
-    {
-        public ItemCollection Items { get; }
-        public string Greeting => "Welcome to Avalonia!";
-        public MainWindowViewModel()
-        {
-            ItemCollection itemCollection = new ItemCollection();
-            //var items = new Item[999999];
-            //for (int i = 0; i < items.Length; i++)
-            //{
-            //    items[i].Name = $"xxxxxxxxxxxxxxxxxxxxxxxx{i}";
-            //    items[i].Age = i;
-            //}
-            Items = itemCollection;
-        }
-    }
-    public class ItemCollection
-    {
-        public string[] Headers { get; } = new string[] { "Name", "Age", "Detail", "Msg" };
-        public string[][] Content { get; }
 
-        public ItemCollection()
+    public class ItemCollection : IList
+    {
+        public object? this[int index]
         {
-            Content = new string[9999999][];
-            for (int i = 0; i < Content.Length; i++)
+            get
             {
-                Content[i] = new string[]
+                return new Item()
                 {
-                    $"Name{i}",
-                    i.ToString(),
-                    $"Detail{i}",
-                    $"Ms{i}",
+                    Index = index,
+                    Name = $"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx{index}",
+                    Age = index
                 };
             }
+            set => throw new NotImplementedException();
+        }
+
+        public bool IsFixedSize => true;
+
+        public bool IsReadOnly => true;
+
+        public int Count => 333;
+
+        public bool IsSynchronized => true;
+
+        public object SyncRoot => this;
+
+        public int Add(object? value)
+        {
+            return -1;
+        }
+
+        public void Clear()
+        {
+        }
+
+        public bool Contains(object? value)
+        {
+            return false;
+        }
+
+        public void CopyTo(Array array, int index)
+        {
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            yield return -1;
+        }
+
+        public int IndexOf(object? value)
+        {
+            return -1;
+        }
+
+        public void Insert(int index, object? value)
+        {
+        }
+
+        public void Remove(object? value)
+        {
+        }
+
+        public void RemoveAt(int index)
+        {
         }
     }
+
+    public class MainWindowViewModel : ViewModelBase
+    {
+        public SideBarViewModel SideBar { get; }
+        public ItemCollection Items { get; }
+        public MainWindowViewModel(SideBarViewModel sideBarViewModel)
+        {
+            SideBar = sideBarViewModel;
+            Items = new ItemCollection();
+        }
+    }
+
 }

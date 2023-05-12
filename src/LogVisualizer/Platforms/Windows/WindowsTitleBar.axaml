@@ -16,18 +16,20 @@
                     DockPanel.Dock="Left"
                     Spacing="0">
           <Image Source="/Assets/logo.ico"
-                 Height="20"
-                 Width="20"
+                 Height="25"
+                 Width="25"
                  VerticalAlignment="Center"
-                 Margin="5,0,3,0"
+                 Margin="3,0,3,0"
                  Name="WindowIcon"></Image>
           <NativeMenuBar DockPanel.Dock="Top"
-                         Width="100"
+                         Width="300"
+                         Background="AliceBlue"
+                         Height="28"
                          HorizontalAlignment="Left"
                          Name="SeamlessMenuBar"></NativeMenuBar>
           <TextBlock Text="Custom TitleBar Demo"
                      FontSize="12"
-                     Foreground="Black"
+                     Foreground="White"
                      VerticalAlignment="Center"
                      IsHitTestVisible="False"
                      Name="SystemChromeTitle"></TextBlock>
@@ -36,7 +38,7 @@
                     Orientation="Horizontal"
                     Spacing="0">
           <Button Width="46"
-                  Height="30"
+                  Height="28"
                   HorizontalContentAlignment="Center"
                   BorderThickness="0"
                   Name="MinimizeButton"
@@ -52,7 +54,7 @@
                 <Setter Property="Background" Value="Transparent"/>
               </Style>
             </Button.Styles>
-            <Path Margin="10,0,10,0"
+            <Path Margin="10,10,10,0"
                   Stretch="Uniform"
                   Fill="{DynamicResource SystemControlForegroundBaseHighBrush}"
                   Data="M2048 1229v-205h-2048v205h2048z"></Path>
@@ -78,7 +80,7 @@
                 <Setter Property="Background" Value="Transparent"/>
               </Style>
             </Button.Styles>
-            <Path Margin="10,0,10,0"
+            <Path Margin="10,4,10,0"
                   Stretch="Uniform"
                   Fill="{DynamicResource SystemControlForegroundBaseHighBrush}"
                   Name="MaximizeIcon"
@@ -107,7 +109,7 @@
                 <Setter Property="Fill" Value="{DynamicResource SystemControlForegroundBaseHighBrush}"/>
               </Style>
             </Button.Styles>
-            <Path Margin="10,0,10,0"
+            <Path Margin="10,4,10,0"
                   Stretch="Uniform"
                   Data="M1169 1024l879 -879l-145 -145l-879 879l-879 -879l-145 145l879 879l-879 879l145 145l879 -879l879 879l145 -145z"></Path>
           </Button>
