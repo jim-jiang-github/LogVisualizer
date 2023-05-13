@@ -53,31 +53,31 @@ jobs:
           name: windows-x64
           path: ${{ env.BUILD_DIR }}
 
-      - name: Build osx-x64
-        run: dotnet publish ${{env.CSPROJ_DIR}}\LogVisualizer.csproj -r osx-x64 -p:Configuration=Release -p:PublishReadyToRun=true -p:IncludeNativeLibrariesForSelfExtract=true -p:IncludeAllContentForSelfExtract=true --self-contained true -property:Version='${{ env.MAJOR }}.${{ env.MINOR }}.${{ env.PATCH }}.${{ env.NUMBER_OF_COMMITS }}'
+      #- name: Build osx-x64
+      #  run: dotnet publish ${{env.CSPROJ_DIR}}\LogVisualizer.csproj -r osx-x64 -p:Configuration=Release -p:PublishReadyToRun=true -p:IncludeNativeLibrariesForSelfExtract=true -p:IncludeAllContentForSelfExtract=true --self-contained true -property:Version='${{ env.MAJOR }}.${{ env.MINOR }}.${{ env.PATCH }}.${{ env.NUMBER_OF_COMMITS }}'
 
-      - name: Zip osx-x64 build
-        shell: powershell
-        run: Compress-7Zip ${{ env.BUILD_DIR }} -ArchiveFileName macOS-x64.zip -Format Zip
+      #- name: Zip osx-x64 build
+      #  shell: powershell
+      #  run: Compress-7Zip ${{ env.BUILD_DIR }} -ArchiveFileName macOS-x64.zip -Format Zip
 
-      - name: Collect osx-x64 artifacts
-        uses: actions/upload-artifact@v2.3.1
-        with:
-          name: macOS-x64
-          path: ${{ env.BUILD_DIR }}
+      #- name: Collect osx-x64 artifacts
+      #  uses: actions/upload-artifact@v2.3.1
+      #  with:
+      #    name: macOS-x64
+      #    path: ${{ env.BUILD_DIR }}
 
-      - name: Build osx-arm64
-        run: dotnet publish ${{env.CSPROJ_DIR}}\LogVisualizer.csproj -r osx-arm64 -p:Configuration=Release -p:PublishReadyToRun=true -p:IncludeNativeLibrariesForSelfExtract=true -p:IncludeAllContentForSelfExtract=true --self-contained true -property:Version='${{ env.MAJOR }}.${{ env.MINOR }}.${{ env.PATCH }}.${{ env.NUMBER_OF_COMMITS }}'
+      #- name: Build osx-arm64
+      #  run: dotnet publish ${{env.CSPROJ_DIR}}\LogVisualizer.csproj -r osx-arm64 -p:Configuration=Release -p:PublishReadyToRun=true -p:IncludeNativeLibrariesForSelfExtract=true -p:IncludeAllContentForSelfExtract=true --self-contained true -property:Version='${{ env.MAJOR }}.${{ env.MINOR }}.${{ env.PATCH }}.${{ env.NUMBER_OF_COMMITS }}'
 
-      - name: Zip osx-arm64 build
-        shell: powershell
-        run: Compress-7Zip ${{ env.BUILD_DIR }} -ArchiveFileName macOS-arm64.zip -Format Zip
+      #- name: Zip osx-arm64 build
+      #  shell: powershell
+      #  run: Compress-7Zip ${{ env.BUILD_DIR }} -ArchiveFileName macOS-arm64.zip -Format Zip
 
-      - name: Collect osx-arm64 artifacts
-        uses: actions/upload-artifact@v2.3.1
-        with:
-          name: macOS-arm64
-          path: ${{ env.BUILD_DIR }}
+      #- name: Collect osx-arm64 artifacts
+      #  uses: actions/upload-artifact@v2.3.1
+      #  with:
+      #    name: macOS-arm64
+      #    path: ${{ env.BUILD_DIR }}
 
       # upgradeInfo
       - name: Collect upgradeInfo artifacts
@@ -102,6 +102,4 @@ jobs:
           title: Release ${{ github.ref_name }}
           files: |
             ./windows-x64.zip
-            ./macOS-x64.zip
-            ./macOS-arm64.zip
             ./upgradeInfo.json
