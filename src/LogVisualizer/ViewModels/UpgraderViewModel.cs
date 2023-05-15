@@ -25,17 +25,11 @@ namespace LogVisualizer.ViewModels
 
         public UpgraderViewModel(UpgradeService upgradeService)
         {
-            //upgradeService.UpgradeNotify += (sender, currentVersion, newtVersion, releaseLogMarkDown) =>
-            //{
-            //    //UpgradeChangedLog = releaseLogMarkDown;
-            //    //IsVisible = true;
-            //    Notify.NotifyCustom(this);
-            //};
-            Task.Run(async () => 
+            upgradeService.UpgradeNotify += (sender, currentVersion, newtVersion, releaseLogMarkDown) =>
             {
-                await Task.Delay(3000);
-                Notify.NotifyCustom(this);
-            });
+                UpgradeChangedLog = releaseLogMarkDown;
+                IsVisible = true;
+            };
         }
     }
 }
