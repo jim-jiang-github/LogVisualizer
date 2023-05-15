@@ -20,7 +20,7 @@ namespace LogVisualizer.Views
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) == true)
             {
                 ExtendClientAreaToDecorationsHint = true;
-                ExtendClientAreaChromeHints = Avalonia.Platform.ExtendClientAreaChromeHints.NoChrome;
+                ExtendClientAreaChromeHints = Avalonia.Platform.ExtendClientAreaChromeHints.PreferSystemChrome;
                 ExtendClientAreaTitleBarHeightHint = -1;
                 windowsTitleBar.IsVisible = true;
             }
