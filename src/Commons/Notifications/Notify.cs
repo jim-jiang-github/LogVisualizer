@@ -1,4 +1,5 @@
 ﻿using Avalonia.Controls.Notifications;
+using Avalonia.Threading;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,10 @@ namespace Commons.Notifications
 
         public static void NotifyError(string title, string content)
         {
-            NotificationManager?.Show(new Notification(title, content, NotificationType.Error));
+            Dispatcher.UIThread.InvokeAsync(() =>
+            {
+                NotificationManager?.Show(new Notification(title, content, NotificationType.Error));
+            });
         }
     }
 }
