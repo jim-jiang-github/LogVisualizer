@@ -66,23 +66,18 @@
             </NativeMenuItem>
         </NativeMenu>
     </NativeMenu.Menu>
-  <Window.DataTemplates>
-    <DataTemplate DataType="vm:UpgraderViewModel">
-      <views:UpgraderTip />
-    </DataTemplate>
-  </Window.DataTemplates>
+    <Window.DataTemplates>
+        <DataTemplate DataType="vm:UpgraderViewModel">
+            <views:UpgraderTip />
+        </DataTemplate>
+    </Window.DataTemplates>
     <Grid>
         <DockPanel
             Name="ContentWrapper"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch">
-            <titlebars:WindowsTitleBar
-                Name="WindowsTitleBar"
-                DockPanel.Dock="Top"/>
-            <Border
-                Height="15"
-                Background="Red"
-                DockPanel.Dock="Bottom" />
+            <titlebars:WindowsTitleBar Name="WindowsTitleBar" DockPanel.Dock="Top" />
+            <views:BottomBar DockPanel.Dock="Bottom" />
             <Grid ColumnDefinitions="50,*">
                 <views:SideBar
                     Grid.Column="0"
@@ -135,8 +130,6 @@
                 </Grid>
             </Grid>
         </DockPanel>
-        <views:Upgrader
-            DataContext="{Binding Upgrader}"
-            IsVisible="{Binding IsVisible}" />
+        <views:Upgrader DataContext="{Binding Upgrader}" IsVisible="{Binding IsVisible}" />
     </Grid>
 </Window>
