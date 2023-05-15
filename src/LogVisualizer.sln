@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{61
 		..\upgradeInfo.json = ..\upgradeInfo.json
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GithubReleaseUpgrader", "..\3rd\GithubReleaseUpgrader\src\GithubReleaseUpgrader\GithubReleaseUpgrader.csproj", "{C4E00BA4-3057-4426-9CBD-C5AACB741FB9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B1962770-FC41-4266-AF1E-716E64338894}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1962770-FC41-4266-AF1E-716E64338894}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1962770-FC41-4266-AF1E-716E64338894}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4E00BA4-3057-4426-9CBD-C5AACB741FB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4E00BA4-3057-4426-9CBD-C5AACB741FB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4E00BA4-3057-4426-9CBD-C5AACB741FB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4E00BA4-3057-4426-9CBD-C5AACB741FB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
