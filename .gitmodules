@@ -1,0 +1,4 @@
+[submodule "3rd/GithubReleaseUpgrader"]
+	path = 3rd/GithubReleaseUpgrader
+	url = https://github.com/jim-jiang-github/GithubReleaseUpgrader.git
+	branch = dev
