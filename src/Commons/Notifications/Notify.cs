@@ -20,5 +20,12 @@ namespace Commons.Notifications
                 NotificationManager?.Show(new Notification(title, content, NotificationType.Error));
             });
         }
+        public static void NotifyCustom(object viewModel)
+        {
+            Dispatcher.UIThread.InvokeAsync(() =>
+            {
+                NotificationManager?.Show(viewModel);
+            });
+        }
     }
 }

@@ -16,33 +16,20 @@ namespace LogVisualizer
 {
     public partial class App : Application
     {
-        public IServiceProvider? _serviceProvider;
-
         [LogInfo]
         public override void Initialize()
         {
             AvaloniaXamlLoader.Load(this);
-            _serviceProvider = new ServiceCollection()
-                .AddScoped<SideBarService>()
-                .AddScoped<MenuBarService>()
-                .AddScoped<MainWindowViewModel>()
-                .AddScoped<SideBarViewModel>()
-                .BuildServiceProvider();
         }
 
         [LogInfo]
         public override void OnFrameworkInitializationCompleted()
         {
-            if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop && _serviceProvider != null)
+            if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
                 desktop.MainWindow = new MainWindow
                 {
-                    DataContext = ActivatorUtilities.CreateInstance<MainWindowViewModel>(_serviceProvider)
-                };
-                Notify.NotificationManager = new Avalonia.Controls.Notifications.WindowNotificationManager(desktop.MainWindow)
-                {
-                    Position = Avalonia.Controls.Notifications.NotificationPosition.BottomRight,
-                    MaxItems = 6
+                    DataContext = DependencyInjectionProvider.GetService<MainWindowViewModel>()
                 };
             }
 

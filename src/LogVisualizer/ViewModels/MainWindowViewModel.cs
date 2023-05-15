@@ -89,10 +89,20 @@ namespace LogVisualizer.ViewModels
     public class MainWindowViewModel : ViewModelBase
     {
         public SideBarViewModel SideBar { get; }
+        public UpgraderViewModel Upgrader { get; }
         public ItemCollection Items { get; }
-        public MainWindowViewModel(SideBarViewModel sideBarViewModel)
+
+#if DEBUG
+        public MainWindowViewModel()
+        {
+
+        }
+#endif
+
+        public MainWindowViewModel(SideBarViewModel sideBarViewModel, UpgraderViewModel upgraderViewModel)
         {
             SideBar = sideBarViewModel;
+            Upgrader = upgraderViewModel;
             Items = new ItemCollection();
         }
     }
