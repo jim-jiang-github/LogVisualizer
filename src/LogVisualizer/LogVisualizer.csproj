@@ -40,6 +40,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\3rd\GithubReleaseUpgrader\src\GithubReleaseUpgrader\GithubReleaseUpgrader.csproj" />
     <ProjectReference Include="..\Commons\Commons.csproj" />
+    <ProjectReference Include="..\LogVisualizer.I18N\LogVisualizer.I18N.csproj" />
   </ItemGroup>
 
   <ItemGroup>
