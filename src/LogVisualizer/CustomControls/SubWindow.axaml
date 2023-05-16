@@ -1,0 +1,60 @@
+<UserControl
+    x:Class="LogVisualizer.CustomControls.SubWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="760"
+    d:DesignWidth="1280"
+    mc:Ignorable="d">
+    <UserControl.Template>
+        <ControlTemplate TargetType="UserControl">
+            <Border Classes.isModalDialog="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsModalDialog}" Classes.notModalDialog="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=!IsModalDialog}">
+                <Border.Styles>
+                    <Style Selector="Border.isModalDialog">
+                        <Style.Setters>
+                            <Setter Property="Background" Value="#88000000" />
+                        </Style.Setters>
+                    </Style>
+                    <Style Selector="Border.notModalDialog">
+                        <Style.Setters>
+                            <Setter Property="Background" Value="Transparent" />
+                        </Style.Setters>
+                    </Style>
+                </Border.Styles>
+                <DockPanel
+                    x:Name="SubWindowContainer"
+                    Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=WindowWidth}"
+                    Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=WindowHeight}">
+                    <Border
+                        Height="30"
+                        Background="#eff6f9"
+                        BorderBrush="#3f3f3f"
+                        BorderThickness="1,1,1,0"
+                        CornerRadius="8,8,0,0"
+                        DockPanel.Dock="Top">
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Foreground="Black"
+                            Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Title}"
+                            TextAlignment="Center" />
+                    </Border>
+                    <Border
+                        Height="30"
+                        Background="#1f1f1f"
+                        BorderBrush="#3f3f3f"
+                        BorderThickness="1,0,1,1"
+                        CornerRadius="0,0,8,8"
+                        DockPanel.Dock="Bottom" />
+                    <Border
+                        Background="#2e2e2e"
+                        BorderBrush="#3f3f3f"
+                        BorderThickness="1,0,1,0">
+                        <ContentPresenter Content="{TemplateBinding Content}" />
+                    </Border>
+                </DockPanel>
+            </Border>
+        </ControlTemplate>
+    </UserControl.Template>
+</UserControl>

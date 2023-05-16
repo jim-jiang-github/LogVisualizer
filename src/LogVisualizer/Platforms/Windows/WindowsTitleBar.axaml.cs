@@ -28,6 +28,10 @@ namespace LogVisualizer.Platforms.Windows
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) == true)
             {
                 var rootWindow = VisualRoot as Window;
+                if (rootWindow == null)
+                {
+                    return;
+                }
                 rootWindow.ExtendClientAreaToDecorationsHint = true;
                 rootWindow.ExtendClientAreaChromeHints = Avalonia.Platform.ExtendClientAreaChromeHints.PreferSystemChrome;
                 rootWindow.ExtendClientAreaTitleBarHeightHint = -1;

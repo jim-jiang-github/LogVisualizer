@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="CustomControls\" />
     <Folder Include="Models\" />
     <AvaloniaResource Include="Assets\**" />
     <AvaloniaResource Remove="Assets\Fonts.axaml" />

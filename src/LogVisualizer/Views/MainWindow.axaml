@@ -2,14 +2,15 @@
     x:Class="LogVisualizer.Views.MainWindow"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:customControls="clr-namespace:LogVisualizer.CustomControls;assembly=LogVisualizer"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:titlebars="clr-namespace:LogVisualizer.Platforms.Windows;assembly=LogVisualizer"
     xmlns:views="clr-namespace:LogVisualizer.Views"
     xmlns:vm="using:LogVisualizer.ViewModels"
     Title="LogVisualizer"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    d:DesignHeight="1080"
+    d:DesignWidth="1920"
     Icon="/Assets/logo.ico"
     mc:Ignorable="d">
 
@@ -130,6 +131,14 @@
                 </Grid>
             </Grid>
         </DockPanel>
-        <views:Upgrader DataContext="{Binding Upgrader}" IsVisible="{Binding IsVisible}" />
+        <customControls:SubWindow
+            Title="Upgrader"
+            DataContext="{Binding Upgrader}"
+            IsModalDialog="True"
+            IsVisible="{Binding IsVisible}"
+            WindowHeight="600"
+            WindowWidth="500">
+            <views:Upgrader />
+        </customControls:SubWindow>
     </Grid>
 </Window>
