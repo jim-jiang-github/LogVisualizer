@@ -15,7 +15,7 @@ namespace Commons.Extensions
 {
     public static class NotifyExtensions
     {
-        public static T UseNotify<T>(this T builder) where T : AppBuilderBase<T>, new()
+        public static AppBuilder UseNotify(this AppBuilder builder)
         {
           
             return builder;

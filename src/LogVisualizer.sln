@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{61
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GithubReleaseUpgrader", "..\3rd\GithubReleaseUpgrader\src\GithubReleaseUpgrader\GithubReleaseUpgrader.csproj", "{C4E00BA4-3057-4426-9CBD-C5AACB741FB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogVisualizer.I18N", "LogVisualizer.I18N\LogVisualizer.I18N.csproj", "{09518BA5-1761-4A3E-9025-06D31310E692}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogVisualizer.I18N", "LogVisualizer.I18N\LogVisualizer.I18N.csproj", "{09518BA5-1761-4A3E-9025-06D31310E692}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3rd", "3rd", "{173C1E68-20D6-4BCC-9213-AA70D6604BCF}"
 EndProject

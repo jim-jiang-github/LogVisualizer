@@ -2,15 +2,11 @@
     x:Class="LogVisualizer.App"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:LogVisualizer">
-    <Application.DataTemplates>
-        <local:ViewLocator />
-    </Application.DataTemplates>
+    xmlns:local="using:LogVisualizer"
+    RequestedThemeVariant="Dark">
 
     <Application.Styles>
-        <FluentTheme Mode="Dark" />
-        <StyleInclude Source="/Styles/DataGrid.axaml" />
-        <StyleInclude Source="/Styles/TreeDataGrid.axaml" />
+        <FluentTheme />
         <StyleInclude Source="/Styles/MenuItem.axaml" />
     </Application.Styles>
 

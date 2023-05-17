@@ -1,4 +1,5 @@
-﻿using Avalonia.Controls;
+﻿using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Logging;
 using Commons.Notifications;
 using Serilog;
@@ -24,7 +25,7 @@ namespace Commons.Extensions
                 }
             }
         }
-        public static T UseSerilog<T>(this T builder) where T : AppBuilderBase<T>, new()
+        public static AppBuilder UseSerilog(this AppBuilder builder)
         {
             Log.Logger = new LoggerConfiguration()
 #if DEBUG

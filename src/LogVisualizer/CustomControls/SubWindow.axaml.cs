@@ -64,7 +64,7 @@ namespace LogVisualizer.CustomControls
 
         private void SubWindowContainer_PointerPressed(object? sender, PointerPressedEventArgs e)
         {
-            IVisual? visual = sender as IVisual;
+            Visual? visual = sender as Visual;
             if (visual == null)
             {
                 return;
@@ -79,7 +79,7 @@ namespace LogVisualizer.CustomControls
 
         private void SubWindowContainer_PointerReleased(object? sender, PointerReleasedEventArgs e)
         {
-            IVisual? visual = sender as IVisual;
+            Visual? visual = sender as Visual;
             if (visual == null)
             {
                 return;
@@ -93,14 +93,14 @@ namespace LogVisualizer.CustomControls
 
         private void SubWindowContainer_PointerMoved(object? sender, PointerEventArgs e)
         {
-            IVisual? visual = sender as IVisual;
+            Visual? visual = sender as Visual;
             if (visual == null)
             {
                 return;
             }
             if (isDragging)
             {
-                var parent = visual.GetVisualParent<IVisual>();
+                var parent = visual.GetVisualParent<Visual>();
                 var endPoint = e.GetPosition(parent);
 
                 double offsetX = endPoint.X - startPoint.X;

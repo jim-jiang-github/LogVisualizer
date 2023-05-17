@@ -14,7 +14,7 @@
         <vm:SideBarViewModel />
     </Design.DataContext>
 
-    <ListBox Items="{Binding SideBarItems}">
+    <ListBox ItemsSource="{Binding SideBarItems}">
         <ListBox.ItemTemplate>
             <DataTemplate>
                 <Grid ToolTip.Tip="{Binding Tip}">
