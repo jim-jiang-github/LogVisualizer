@@ -20,6 +20,7 @@ namespace LogVisualizer
                 .AddSingleton<UpgraderViewModel>()
                 .AddScoped<SideBarService>()
                 .AddScoped<MenuBarService>()
+                .AddScoped<MenuBarViewModel>()
                 .AddScoped<MainWindowViewModel>()
                 .AddScoped<SideBarViewModel>()
                 .BuildServiceProvider();

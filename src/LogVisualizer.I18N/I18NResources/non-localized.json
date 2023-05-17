@@ -28,37 +28,5 @@
         "Value": "There are {l_participant_number} participants"
       }
     ]
-  },
-  {
-    "Key": "MainWindowTitle",
-    "Value": "Ringcentral"
-  },
-  {
-    "Key": "SimulationEnvironment",
-    "Value": "Environment"
-  },
-  {
-    "Key": "SimulationLog",
-    "Value": "Log"
-  },
-  {
-    "Key": "SimulationInfo",
-    "Value": "Info"
-  },
-  {
-    "Key": "SimulationMeeting",
-    "Value": "Meeting"
-  },
-  {
-    "Key": "SimulationMeetingId",
-    "Value": "MeetingId"
-  },
-  {
-    "Key": "SimulationSetting",
-    "Value": "Setting"
-  },
-  {
-    "Key": "RingCentralShareUrl",
-    "Value": "https://v.ringcentral.com/share"
   }
 ]

@@ -23,6 +23,5 @@ namespace LogVisualizer.Services
                 SubItems = subItems;
             }
         }
-
     }
 }

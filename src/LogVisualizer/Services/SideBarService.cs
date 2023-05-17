@@ -8,7 +8,6 @@ namespace LogVisualizer.Services
 {
     public class SideBarService
     {
-       
 
     }
 }

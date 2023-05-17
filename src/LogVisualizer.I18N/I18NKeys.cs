@@ -26,44 +26,24 @@
         /// </para>
         /// </remarks>
         TestPluralsString,
-        /// <summary>[Non-Localized] Ringcentral</summary>
-        MainWindowTitle,
-        /// <summary>[Non-Localized] Environment</summary>
-        SimulationEnvironment,
-        /// <summary>[Non-Localized] Log</summary>
-        SimulationLog,
-        /// <summary>[Non-Localized] Info</summary>
-        SimulationInfo,
-        /// <summary>[Non-Localized] Meeting</summary>
-        SimulationMeeting,
-        /// <summary>[Non-Localized] MeetingId</summary>
-        SimulationMeetingId,
-        /// <summary>[Non-Localized] Setting</summary>
-        SimulationSetting,
-        /// <summary>[Non-Localized] https://v.ringcentral.com/share</summary>
-        RingCentralShareUrl,
-        /// <summary>title</summary>
-        Title,
-        /// <summary>name</summary>
-        Name,
-        /// <summary>12</summary>
-        Age,
-        /// <summary>MessageBox</summary>
-        MessageBox,
-        /// <summary>Show New Window</summary>
-        ShowNewWindow,
-        /// <summary>newWindowTitle</summary>
-        NewWindowTitle,
-        /// <summary>Success</summary>
-        Success,
-        /// <summary>this is string start</summary>
-        String1,
-        /// <summary>this is string end</summary>
-        String2,
-        /// <summary>is Speaking</summary>
-        SpeakingIndicatorSpeaking,
-        /// <summary>is Reconnecting</summary>
-        SpeakingIndicatorReconnecting,
+        /// <summary>File</summary>
+        Menu_File,
+        /// <summary>Open</summary>
+        Menu_Open,
+        /// <summary>Exit</summary>
+        Menu_Exit,
+        /// <summary>View</summary>
+        Menu_View,
+        /// <summary>Show only filtered line</summary>
+        Menu_Show_Only_Filtered,
+        /// <summary>Filter</summary>
+        Menu_Filter,
+        /// <summary>Add new filter</summary>
+        Menu_Add_Filter,
+        /// <summary>Help</summary>
+        Menu_Help,
+        /// <summary>About</summary>
+        Menu_About,
         /// <summary>This is a {l_old device} and will switch to {l_new device} .</summary>
         FormatString,
         /// <summary>Version ({l_version number}).</summary>

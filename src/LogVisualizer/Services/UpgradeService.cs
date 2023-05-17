@@ -1,4 +1,5 @@
-﻿using GithubReleaseUpgrader;
+﻿using Commons;
+using GithubReleaseUpgrader;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -18,15 +19,15 @@ namespace LogVisualizer.Services
         {
             private readonly UpgradeService _upgradeService;
 
-            public override string UpgradeTempFolder { get; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LogVisualizerUpgraderTemp");
+            public override string UpgradeTempFolder { get; } = Path.Combine(Global.CurrentAppDataDirectory, "UpgraderTemp");
 
-            public override string GithubUrl { get; } = "https://github.com/jim-jiang-github/LogVisualizer";
+            public override string GithubUrl { get; } = Global.GITHUB_URL;
 
             public override string UpgradeResourceName { get; } = "windows-x64.zip";
 
             public override string UpgradeInfoName { get; } = "upgradeInfo.json";
 
-            public override string ExecutableName { get; } = "LogVisualizer.exe";
+            public override string ExecutableName { get; } = $"{Global.APP_NAME}.exe";
 
             public override void Force(Version currentVersion, Version newtVersion, string? releaseLogMarkDown)
             {

@@ -87,6 +87,7 @@ namespace LogVisualizer.ViewModels
 
     public class MainWindowViewModel : ViewModelBase
     {
+        public MenuBarViewModel MenuBar { get; }
         public SideBarViewModel SideBar { get; }
         public UpgraderViewModel Upgrader { get; }
         public ItemCollection Items { get; }
@@ -98,8 +99,9 @@ namespace LogVisualizer.ViewModels
         }
 #endif
 
-        public MainWindowViewModel(SideBarViewModel sideBarViewModel, UpgraderViewModel upgraderViewModel)
+        public MainWindowViewModel(MenuBarViewModel menuBarViewModel, SideBarViewModel sideBarViewModel, UpgraderViewModel upgraderViewModel)
         {
+            MenuBar = menuBarViewModel;
             SideBar = sideBarViewModel;
             Upgrader = upgraderViewModel;
             Items = new ItemCollection();

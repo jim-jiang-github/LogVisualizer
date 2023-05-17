@@ -1,47 +1,39 @@
 [
   {
-    "Key": "Title",
-    "Value": "title"
+    "Key": "Menu_File",
+    "Value": "File"
   },
   {
-    "Key": "Name",
-    "Value": "name"
+    "Key": "Menu_Open",
+    "Value": "Open"
   },
   {
-    "Key": "Age",
-    "Value": "12"
+    "Key": "Menu_Exit",
+    "Value": "Exit"
   },
   {
-    "Key": "MessageBox",
-    "Value": "MessageBox"
+    "Key": "Menu_View",
+    "Value": "View"
   },
   {
-    "Key": "ShowNewWindow",
-    "Value": "Show New Window"
+    "Key": "Menu_Show_Only_Filtered",
+    "Value": "Show only filtered line"
   },
   {
-    "Key": "NewWindowTitle",
-    "Value": "newWindowTitle"
+    "Key": "Menu_Filter",
+    "Value": "Filter"
   },
   {
-    "Key": "Success",
-    "Value": "Success"
+    "Key": "Menu_Add_Filter",
+    "Value": "Add new filter"
   },
   {
-    "Key": "String1",
-    "Value": "this is string start"
+    "Key": "Menu_Help",
+    "Value": "Help"
   },
   {
-    "Key": "String2",
-    "Value": "this is string end"
-  },
-  {
-    "Key": "SpeakingIndicatorSpeaking",
-    "Value": "is Speaking"
-  },
-  {
-    "Key": "SpeakingIndicatorReconnecting",
-    "Value": "is Reconnecting"
+    "Key": "Menu_About",
+    "Value": "About"
   },
   {
     "Key": "FormatString",
