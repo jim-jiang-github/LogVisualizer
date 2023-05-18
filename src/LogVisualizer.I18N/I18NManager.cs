@@ -14,26 +14,8 @@ namespace LogVisualizer.I18N
 {
     public static class I18NManager
     {
-        private static List<WeakReference<EventHandler<CultureInfo>>> eventHandlers;
-
-        public static event EventHandler<CultureInfo> CultureChanged
-        {
-            add
-            {
-                eventHandlers.Add(new WeakReference<EventHandler<CultureInfo>>(value));
-            }
-            remove
-            {
-                eventHandlers.RemoveAll(wr =>
-                {
-                    if (wr.TryGetTarget(out EventHandler<CultureInfo> targetHandler))
-                    {
-                        return targetHandler == value;
-                    }
-                    return false;
-                });
-            }
-        }
+        /// TODO event 'CultureChangedReceiverAbstract' use this event will cause menory leak, But I haven't found a good solution to this problem yet.
+        public static event EventHandler<CultureInfo> CultureChanged;
 
         private static bool enablePseudo = false;
         private static CultureInfo currentCulture = null;
@@ -101,7 +83,6 @@ namespace LogVisualizer.I18N
 
         static I18NManager()
         {
-            eventHandlers = new List<WeakReference<EventHandler<CultureInfo>>>();
             Trace.WriteLine($"I18NManager support cultures {string.Join("\r\n", SupportCultureList.Select(x => x.Name))}");
             Trace.WriteLine($"I18NManager init {CultureInfo.CurrentCulture.Name}");
             CurrentCulture = CultureInfo.CurrentCulture;
@@ -181,13 +162,7 @@ namespace LogVisualizer.I18N
 
         private static void OnCultureChanged()
         {
-            foreach (WeakReference<EventHandler<CultureInfo>> wr in eventHandlers)
-            {
-                if (wr.TryGetTarget(out EventHandler<CultureInfo> targetHandler))
-                {
-                    targetHandler.Invoke(targetHandler.Target, currentCulture);
-                }
-            }
+            CultureChanged?.Invoke(null, currentCulture);
         }
     }
 }

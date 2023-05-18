@@ -8,60 +8,95 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="using:LogVisualizer.ViewModels"
     d:DesignHeight="450"
-    d:DesignWidth="50"
+    d:DesignWidth="250"
     mc:Ignorable="d">
-    <Design.DataContext>
-        <vm:SideBarViewModel />
-    </Design.DataContext>
 
-    <ListBox ItemsSource="{Binding SideBarItems}">
-        <ListBox.ItemTemplate>
-            <DataTemplate>
-                <Grid ToolTip.Tip="{Binding Tip}">
-                    <Viewbox Width="30" Height="30">
-                        <icon:Icon Foreground="AliceBlue" Value="fa-regular fa-file-lines" />
-                    </Viewbox>
-                    <StackPanel Margin="25,-6,0,0">
-                        <Border
-                            Width="16"
-                            Height="16"
-                            Background="White"
-                            CornerRadius="8"
-                            IsVisible="True">
-                            <Border
-                                Width="14"
-                                Height="14"
-                                Background="Red"
-                                CornerRadius="7">
-                                <TextBlock
-                                    FontSize="12"
-                                    FontWeight="ExtraBold"
-                                    Foreground="White"
-                                    Text="!"
-                                    TextAlignment="Center" />
-                            </Border>
-                        </Border>
-                        <Border
-                            Width="16"
-                            Height="16"
-                            Background="White"
-                            CornerRadius="8">
-                            <Border
-                                Width="14"
-                                Height="14"
-                                Background="#0967FF"
-                                CornerRadius="7">
-                                <TextBlock
-                                    Margin="0,1,0,0"
-                                    FontSize="10"
-                                    Foreground="White"
-                                    Text="99"
-                                    TextAlignment="Center" />
-                            </Border>
-                        </Border>
-                    </StackPanel>
-                </Grid>
-            </DataTemplate>
-        </ListBox.ItemTemplate>
-    </ListBox>
+    <TabControl Classes="sidebar">
+        <TabItem
+            icon:Attached.Icon="fa-regular fa-file-lines"
+            Classes="sidebar"
+            Header="Item1">
+            <Border Background="Red" />
+        </TabItem>
+        <TabItem Classes="sidebar" Header="Item2">
+            <Border Background="Blue" />
+        </TabItem>
+        <TabControl.Styles>
+            <Style Selector="TabControl.sidebar">
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="TabStripPlacement" Value="Left" />
+                <Setter Property="Template">
+                    <ControlTemplate>
+                        <DockPanel>
+                            <ScrollViewer>
+                                <ItemsPresenter
+                                    Name="PART_ItemsPresenter"
+                                    DockPanel.Dock="{TemplateBinding TabStripPlacement}"
+                                    ItemsPanel="{TemplateBinding ItemsPanel}" />
+                            </ScrollViewer>
+                            <ContentPresenter
+                                Name="PART_SelectedContentHost"
+                                Margin="{TemplateBinding Padding}"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{TemplateBinding SelectedContent}"
+                                ContentTemplate="{TemplateBinding SelectedContentTemplate}" />
+                        </DockPanel>
+                    </ControlTemplate>
+                </Setter>
+            </Style>
+            <Style Selector="TabItem.sidebar">
+                <Setter Property="Width" Value="50" />
+                <Setter Property="Padding" Value="2,0,0,0" />
+                <Setter Property="HeaderTemplate">
+                    <DataTemplate>
+                        <Grid Margin="0,0,15,0" ToolTip.Tip="{Binding Tip}">
+                            <Viewbox Width="30" Height="30">
+                                <icon:Icon Foreground="White" Value="fa-regular fa-file-lines" />
+                            </Viewbox>
+                            <StackPanel Margin="20,-6,0,0">
+                                <Border
+                                    Width="16"
+                                    Height="16"
+                                    Background="White"
+                                    CornerRadius="8"
+                                    IsVisible="True">
+                                    <Border
+                                        Width="14"
+                                        Height="14"
+                                        Background="Red"
+                                        CornerRadius="7">
+                                        <TextBlock
+                                            FontSize="12"
+                                            FontWeight="ExtraBold"
+                                            Foreground="White"
+                                            Text="!"
+                                            TextAlignment="Center" />
+                                    </Border>
+                                </Border>
+                                <Border
+                                    Width="16"
+                                    Height="16"
+                                    Background="White"
+                                    CornerRadius="8">
+                                    <Border
+                                        Width="14"
+                                        Height="14"
+                                        Background="#0967FF"
+                                        CornerRadius="7">
+                                        <TextBlock
+                                            Margin="0,1,0,0"
+                                            FontSize="10"
+                                            Foreground="White"
+                                            Text="99"
+                                            TextAlignment="Center" />
+                                    </Border>
+                                </Border>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </Setter>
+            </Style>
+        </TabControl.Styles>
+    </TabControl>
 </UserControl>

@@ -1,4 +1,7 @@
-﻿using Commons;
+﻿using Avalonia;
+using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Threading;
+using Commons;
 using GithubReleaseUpgrader;
 using Serilog;
 using System;
@@ -12,7 +15,8 @@ namespace LogVisualizer.Services
 {
     public class UpgradeService
     {
-        public event EventHandler<Version, Version, string?> UpgradeNotify;
+        public event EventHandlerAsync<Version, string?, UpgradeProgress.ForceUpgradeHandle>? UpgradeForce;
+        public event EventHandlerAsync<Version, string?, UpgradeProgress.NotifyUpgradeHandle>? UpgradeNotify;
 
         //TODO only support on windows
         public class UpgradeProgressImpl : UpgradeProgress
@@ -29,19 +33,35 @@ namespace LogVisualizer.Services
 
             public override string ExecutableName { get; } = $"{Global.APP_NAME}.exe";
 
-            public override void Force(Version currentVersion, Version newtVersion, string? releaseLogMarkDown)
+            public override async Task Force(Version currentVersion, Version newtVersion, string? releaseLogMarkDown, ForceUpgradeHandle forceUpgradeHandle)
             {
-                _upgradeService.UpgradeNotify?.Invoke(this, currentVersion, newtVersion, releaseLogMarkDown);
+                if (_upgradeService.UpgradeForce == null)
+                {
+                    return;
+                }
+                await _upgradeService.UpgradeForce.Invoke(this, newtVersion, releaseLogMarkDown, forceUpgradeHandle);
             }
 
-            public override UpgradeOption Notify(Version currentVersion, Version newtVersion, string? releaseLogMarkDown)
+            public override async Task Notify(Version currentVersion, Version newtVersion, string? releaseLogMarkDown, NotifyUpgradeHandle notifyUpgradeHandle)
             {
-
-                return UpgradeOption.Cancel;
+                if (_upgradeService.UpgradeNotify == null)
+                {
+                    return;
+                }
+                await _upgradeService.UpgradeNotify.Invoke(this, newtVersion, releaseLogMarkDown, notifyUpgradeHandle);
             }
 
             public override void Tip(Version currentVersion, Version newtVersion, string? releaseLogMarkDown)
             {
+            }
+
+            public override void Shutdown()
+            {
+                Dispatcher.UIThread.Invoke(() =>
+                {
+                    var lifetime = Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime;
+                    lifetime?.Shutdown();
+                });
             }
 
             public UpgradeProgressImpl(UpgradeService upgradeService)
@@ -50,9 +70,9 @@ namespace LogVisualizer.Services
             }
         }
 
-        public bool CheckForUpgrade()
+        public bool CheckForUpgrade(bool forceCheck = false)
         {
-            var isNeedUpgrade = Upgrader.CheckForUpgrade(new UpgradeProgressImpl(this));
+            var isNeedUpgrade = Upgrader.CheckForUpgrade(new UpgradeProgressImpl(this), forceCheck);
             return isNeedUpgrade;
         }
 

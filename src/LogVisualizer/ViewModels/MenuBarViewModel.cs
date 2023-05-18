@@ -2,6 +2,7 @@
 using Commons;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using LogVisualizer.I18N;
 using LogVisualizer.Services;
 using System;
 using System.Collections.Generic;
@@ -15,14 +16,30 @@ namespace LogVisualizer.ViewModels
 {
     public partial class MenuBarViewModel : ViewModelBase
     {
+        private UpgradeService _upgradeService;
+
+        public MenuBarViewModel(UpgradeService upgradeService)
+        {
+            _upgradeService = upgradeService;
+        }
+
         [RelayCommand]
         public void Open()
         {
         }
-
+        private bool flag;
         [RelayCommand]
         public void Exit()
         {
+            if (flag)
+            {
+                I18NManager.CurrentCulture = System.Globalization.CultureInfo.GetCultureInfo("en-US");
+            }
+            else
+            {
+                I18NManager.CurrentCulture = System.Globalization.CultureInfo.GetCultureInfo("zh-CN");
+            }
+            flag = !flag;
         }
 
         [RelayCommand]
@@ -33,6 +50,12 @@ namespace LogVisualizer.ViewModels
         [RelayCommand]
         public void AddNewFilter()
         {
+        }
+
+        [RelayCommand]
+        public void CheckForUpgrade()
+        {
+            _upgradeService?.CheckForUpgrade(true);
         }
 
         [RelayCommand]

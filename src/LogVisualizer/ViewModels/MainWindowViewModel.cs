@@ -87,6 +87,7 @@ namespace LogVisualizer.ViewModels
 
     public class MainWindowViewModel : ViewModelBase
     {
+        public string V { get; } = "xxxxxa";
         public MenuBarViewModel MenuBar { get; }
         public SideBarViewModel SideBar { get; }
         public UpgraderViewModel Upgrader { get; }

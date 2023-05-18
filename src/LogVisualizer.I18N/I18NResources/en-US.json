@@ -32,8 +32,32 @@
     "Value": "Help"
   },
   {
+    "Key": "Menu_Check_Upgrade",
+    "Value": "Check for upgrade"
+  },
+  {
     "Key": "Menu_About",
-    "Value": "About"
+    "Value": "About ({l_version number})"
+  },
+  {
+    "Key": "Upgrader_Upgrade",
+    "Value": "Upgrade now"
+  },
+  {
+    "Key": "Upgrader_Upgrade_Next_Startup",
+    "Value": "Upgraded on next startup"
+  },
+  {
+    "Key": "Upgrader_Ignore_This_Version",
+    "Value": "Ignore this version"
+  },
+  {
+    "Key": "Upgrader_Cancel",
+    "Value": "Cancel"
+  },
+  {
+    "Key": "Upgrader_Upgrade_Version_Title",
+    "Value": "New version found: {l_version}"
   },
   {
     "Key": "FormatString",

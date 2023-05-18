@@ -14,6 +14,7 @@ namespace LogVisualizer.I18N
     {
         abstract class BindingArgument
         {
+            public BindingData BindingData { get; set; }
             public class ValueArgument : BindingArgument
             {
                 public override object Value { get; }
@@ -24,17 +25,61 @@ namespace LogVisualizer.I18N
                 }
             }
 
-            //public class MarkupArgument : BindingArgument
-            //{
-            //    private MarkupReader markupReader;
+            public class InstancedBindingArgument : BindingArgument
+            {
+                private class ObservableImpl : IObserver<object>
+                {
+                    private InstancedBindingArgument _owner;
+                    public ObservableImpl(InstancedBindingArgument owner)
+                    {
+                        _owner = owner;
+                    }
 
-            //    public override object Value => markupReader.Value;
+                    public void OnCompleted()
+                    {
+                    }
 
-            //    public MarkupArgument(AvaloniaObject avaloniaObject, MarkupExtension markup)
-            //    {
-            //        markupReader = new MarkupReader(avaloniaObject, markup);
-            //    }
-            //}
+                    public void OnError(Exception error)
+                    {
+                    }
+
+                    public void OnNext(object value)
+                    {
+                        if (value is not BindingNotification bindingNotification)
+                        {
+                            _owner._value = value;
+                            _owner.BindingData?.OnCultureChanged();
+                        }
+                    }
+                }
+
+                private ObservableImpl _observableImpl;
+                private InstancedBinding _instancedBinding;
+                private object _value;
+
+                public override object Value
+                {
+                    get
+                    {
+                        return _value;
+                    }
+                }
+
+                public InstancedBindingArgument(InstancedBinding instancedBinding)
+                {
+                    _instancedBinding = instancedBinding;
+                    _observableImpl = new ObservableImpl(this);
+                    if (_instancedBinding?.Observable is { } observable)
+                    {
+                        observable.Subscribe(_observableImpl);
+                    }
+                }
+
+                ~InstancedBindingArgument()
+                {
+
+                }
+            }
 
             public abstract object Value { get; }
 
@@ -52,6 +97,10 @@ namespace LogVisualizer.I18N
             {
                 this.key = key;
                 this.bindingArgs = bindingArgs;
+                foreach (var bindingArg in bindingArgs)
+                {
+                    bindingArg.BindingData = this;
+                }
                 if (avaloniaObject != null)
                 {
                     //Binding.AddTargetUpdatedHandler(avaloniaObject, (s, e) =>
@@ -117,13 +166,19 @@ namespace LogVisualizer.I18N
             AvaloniaObject avaloniaObject = null;
             List<BindingArgument> bindingArgs = new List<BindingArgument>();
             if (serviceProvider.GetService(typeof(IProvideValueTarget)) is IProvideValueTarget provideValueTarget &&
-                provideValueTarget.TargetObject is AvaloniaObject targetObject)
+                provideValueTarget.TargetObject is AvaloniaObject targetObject &&
+                provideValueTarget.TargetProperty is AvaloniaProperty targetProperty)
             {
                 avaloniaObject = targetObject;
                 foreach (var arg in args)
                 {
                     if (arg is Binding b)
                     {
+                        var instancedBinding = b.Initiate(targetObject, targetProperty);
+                        if (instancedBinding != null)
+                        {
+                            bindingArgs.Add(new BindingArgument.InstancedBindingArgument(instancedBinding));
+                        }
                         //b.NotifyOnTargetUpdated = true;
                         //bindingArgs.Add(new BindingArgument.MarkupArgument(avaloniaObject, b));
                     }

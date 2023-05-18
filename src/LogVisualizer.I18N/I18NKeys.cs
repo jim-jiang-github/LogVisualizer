@@ -42,8 +42,20 @@
         Menu_Add_Filter,
         /// <summary>Help</summary>
         Menu_Help,
-        /// <summary>About</summary>
+        /// <summary>Check for upgrade</summary>
+        Menu_Check_Upgrade,
+        /// <summary>About ({l_version number})</summary>
         Menu_About,
+        /// <summary>Upgrade now</summary>
+        Upgrader_Upgrade,
+        /// <summary>Upgraded on next startup</summary>
+        Upgrader_Upgrade_Next_Startup,
+        /// <summary>Ignore this version</summary>
+        Upgrader_Ignore_This_Version,
+        /// <summary>Cancel</summary>
+        Upgrader_Cancel,
+        /// <summary>New version found: {l_version}</summary>
+        Upgrader_Upgrade_Version_Title,
         /// <summary>This is a {l_old device} and will switch to {l_new device} .</summary>
         FormatString,
         /// <summary>Version ({l_version number}).</summary>

@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Commons.Attributes;
 using Commons.Notifications;
@@ -7,6 +8,8 @@ using LogVisualizer.Platforms.Windows;
 using Serilog;
 using System;
 using System.Runtime.InteropServices;
+using Avalonia.VisualTree;
+using LogVisualizer.CustomControls;
 
 namespace LogVisualizer.Views
 {
@@ -17,10 +20,9 @@ namespace LogVisualizer.Views
             InitializeComponent();
         }
 
-        protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
+        protected override void OnLoaded()
         {
-            base.OnAttachedToVisualTree(e);
-
+            base.OnLoaded();
             Notify.NotificationManager = new Avalonia.Controls.Notifications.WindowNotificationManager(this)
             {
                 MaxItems = 6

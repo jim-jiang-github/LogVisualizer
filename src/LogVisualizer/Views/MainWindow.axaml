@@ -15,10 +15,6 @@
     Icon="/Assets/logo.ico"
     mc:Ignorable="d">
 
-    <Design.DataContext>
-        <vm:MainWindowViewModel />
-    </Design.DataContext>
-
     <NativeMenu.Menu>
         <NativeMenu>
             <NativeMenuItem Header="{i18n:I18NKeyBinding Key=Menu_File}">
@@ -46,7 +42,8 @@
             <NativeMenuItem Header="{i18n:I18NKeyBinding Key=Menu_Help}">
                 <NativeMenuItem.Menu>
                     <NativeMenu>
-                        <NativeMenuItem Command="{Binding MenuBar.AboutCommand}" Header="{i18n:I18NKeyBinding Key=Menu_About}" />
+                      <NativeMenuItem Command="{Binding MenuBar.CheckForUpgradeCommand}" Header="{i18n:I18NKeyBinding Key=Menu_Check_Upgrade}" />
+                      <NativeMenuItem Command="{Binding MenuBar.AboutCommand}" Header="{i18n:I18NKeyBinding {Binding V}, Key=Menu_About}" />
                     </NativeMenu>
                 </NativeMenuItem.Menu>
             </NativeMenuItem>
@@ -61,12 +58,13 @@
         <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <titlebars:WindowsTitleBar Name="WindowsTitleBar" DockPanel.Dock="Top" />
             <views:BottomBar DockPanel.Dock="Bottom" />
-            <Grid ColumnDefinitions="250,*">
-                <views:SideBar
-                    Grid.Column="0"
-                    Width="250"
-                    DataContext="{Binding SideBar}" />
-                <Grid Grid.Column="1" RowDefinitions="*,Auto,100">
+            <Grid ColumnDefinitions="250,Auto,*">
+                <views:SideBar Grid.Column="0" DataContext="{Binding SideBar}" />
+                <GridSplitter
+                    Grid.Column="1"
+                    Width="2"
+                    Background="Green" />
+                <Grid Grid.Column="2" RowDefinitions="*,Auto,100">
                     <ListBox Grid.Row="0" ItemsSource="{Binding Items}">
                         <ListBox.Styles>
                             <Style Selector="ListBoxItem">
@@ -109,7 +107,7 @@
             IsModalDialog="True"
             IsVisible="{Binding IsVisible}"
             WindowHeight="600"
-            WindowWidth="500">
+            WindowWidth="800">
             <views:Upgrader />
         </customControls:SubWindow>
     </Grid>

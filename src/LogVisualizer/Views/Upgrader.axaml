@@ -3,11 +3,12 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i18n="clr-namespace:LogVisualizer.I18N;assembly=LogVisualizer.I18N"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:md="clr-namespace:Markdown.Avalonia;assembly=Markdown.Avalonia"
     xmlns:vm="using:LogVisualizer.ViewModels"
-    d:DesignHeight="1080"
-    d:DesignWidth="1920"
+    d:DesignHeight="600"
+    d:DesignWidth="800"
     Background="#88000000"
     mc:Ignorable="d">
 
@@ -15,23 +16,32 @@
         <vm:SideBarViewModel />
     </Design.DataContext>-->
 
-    <DockPanel Margin="30">
+    <DockPanel Margin="20">
         <TextBlock
             Margin="0,0,0,15"
             DockPanel.Dock="Top"
             FontSize="20"
             FontWeight="Bold"
-            Foreground="Black"
-            Text="New version found: v1.0.0 " />
+            Foreground="White"
+            Text="{i18n:I18NKeyBinding {Binding Version},
+                                       Key=Upgrader_Upgrade_Version_Title}" />
         <StackPanel
-            Height="50"
+            Height="45"
             HorizontalAlignment="Right"
             DockPanel.Dock="Bottom"
             Orientation="Horizontal">
-            <Button Margin="10" Content="aaa1" />
-            <Button Margin="10" Content="aaa" />
-            <Button Margin="10" Content="aaa1" />
-            <Button Margin="10" Content="aaa1" />
+            <Button
+                Margin="10,10,0,0"
+                Command="{Binding IgnoreThisVersionCommand}"
+                Content="{i18n:I18NKeyBinding Key=Upgrader_Ignore_This_Version}" />
+            <Button
+                Margin="10,10,0,0"
+                Command="{Binding UpgradeNextStartupCommand}"
+                Content="{i18n:I18NKeyBinding Key=Upgrader_Upgrade_Next_Startup}" />
+            <Button
+                Margin="10,10,0,0"
+                Command="{Binding UpgradeNowCommand}"
+                Content="{i18n:I18NKeyBinding Key=Upgrader_Upgrade}" />
         </StackPanel>
         <Border Background="#444444">
             <md:MarkdownScrollViewer
