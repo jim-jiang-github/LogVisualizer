@@ -16,6 +16,7 @@ namespace LogVisualizer
         [STAThread]
         public static void Main(string[] args)
         {
+            Configuration.CreateInstance();
             DependencyInjectionProvider.Init();
             var upgradeService = DependencyInjectionProvider.GetService<UpgradeService>();
             var isNeedUpgrade = upgradeService?.CheckForUpgrade() ?? false;
