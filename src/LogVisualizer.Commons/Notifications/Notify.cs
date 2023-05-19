@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Commons.Notifications
+namespace LogVisualizer.Commons.Notifications
 {
     public static class Notify
     {

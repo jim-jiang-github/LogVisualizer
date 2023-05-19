@@ -1,15 +1,7 @@
-using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
 using Avalonia.Input;
-using Commons.Attributes;
-using Commons.Notifications;
-using LogVisualizer.Platforms.Windows;
-using Serilog;
-using System;
-using System.Runtime.InteropServices;
-using Avalonia.VisualTree;
-using LogVisualizer.CustomControls;
+using LogVisualizer.Commons.Notifications;
+using LogVisualizer.ViewModels;
 
 namespace LogVisualizer.Views
 {
@@ -25,14 +17,15 @@ namespace LogVisualizer.Views
             base.OnLoaded();
             Notify.NotificationManager = new Avalonia.Controls.Notifications.WindowNotificationManager(this)
             {
-                MaxItems = 6
+                MaxItems = 6,
+                Position = Avalonia.Controls.Notifications.NotificationPosition.BottomRight
             };
         }
 
         protected override void OnKeyDown(KeyEventArgs e)
         {
             base.OnKeyDown(e);
-            Notify.NotifyError("", "");
+            Notify.NotifyCustom(DependencyInjectionProvider.GetService<UpgraderViewModel>());
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Logging;
-using Commons.Notifications;
+using LogVisualizer.Commons.Notifications;
 using Serilog;
 using Serilog.Core;
 using Serilog.Events;

@@ -1,22 +1,23 @@
 ﻿using CliWrap;
+using LogVisualizer.Commons;
 using Serilog;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Security.Permissions;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 
-namespace Commons
+namespace LogVisualizer.Services
 {
-    public static class GitRunner
+    public class GitService
     {
         private const string BRANCH_NAME_HEAD = "refs/heads/";
         private const string GIT_TEMP_FOLDER = "GitTemp";
 
-        public static async Task<bool> CloneTo(string gitRepo, string branch, CancellationToken cancellationToken = default)
+        public async Task<bool> CloneTo(string gitRepo, string branch, CancellationToken cancellationToken = default)
         {
             var gitTempDirectory = Path.Combine(Global.CurrentAppDataDirectory, GIT_TEMP_FOLDER);
             if (!FileOperationsHelper.SafeResetDirectory(gitTempDirectory))
@@ -24,7 +25,7 @@ namespace Commons
                 return false;
             }
             StringBuilder stringBuilder = new StringBuilder();
-            //try
+            try
             {
                 var cmd = await Cli.Wrap("git")
                      .WithWorkingDirectory(gitTempDirectory)
@@ -39,7 +40,7 @@ namespace Commons
                      {
                          stringBuilder.AppendLine(msg);
                      }))
-                    //.WithValidation(CommandResultValidation.None)
+                    .WithValidation(CommandResultValidation.None)
                     .ExecuteAsync(cancellationToken);
                 Log.Information("Execute result: {StartTime} {RunTime} {ExitTime} {ExitCode}",
                     cmd.StartTime,
@@ -56,24 +57,23 @@ namespace Commons
                     Log.Information("Branch: {branch} cloned!", branch);
                 }
             }
-            //catch (Exception ex)
-            //{
-            //    if (cancellationToken.IsCancellationRequested)
-            //    {
-            //        Log.Information("User canceled!");
-            //    }
-            //    else
-            //    {
-            //        stringBuilder.AppendLine(ex.Message);
-            //        var errorMsg = stringBuilder.ToString();
-            //        Notification.Error(errorMsg);
-            //        Log.Error(errorMsg);
-            //    }
-            //}
+            catch (Exception ex)
+            {
+                if (cancellationToken.IsCancellationRequested)
+                {
+                    Log.Information("User canceled!");
+                }
+                else
+                {
+                    stringBuilder.AppendLine(ex.Message);
+                    var errorMsg = stringBuilder.ToString();
+                    Log.Error(errorMsg);
+                }
+            }
             return true;
         }
 
-        public static async Task<IEnumerable<string>> GetAllOriginBranches(string gitRepo, bool isSimplify = true, CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<string>> GetAllOriginBranches(string gitRepo, bool isSimplify = true, CancellationToken cancellationToken = default)
         {
             List<string> branches = new List<string>();
             StringBuilder stringBuilder = new StringBuilder();
@@ -137,6 +137,59 @@ namespace Commons
                 }
             }
             return branches;
+        }
+
+        public async Task<string?> GetCurrentBranchName(string gitRepo, CancellationToken cancellationToken = default)
+        {
+            string? branchName = null;
+            StringBuilder stringBuilder = new StringBuilder();
+            try
+            {
+                var cmd = await Cli.Wrap("git")
+                    .WithArguments(args => args
+                    .Add("branch")
+                    .Add("--show-current")
+                    .Add(gitRepo))
+                    .WithStandardOutputPipe(PipeTarget.ToDelegate((branch) =>
+                    {
+                        branchName = branch;
+                    }))
+                    .WithStandardErrorPipe(PipeTarget.ToDelegate((err) =>
+                    {
+                        stringBuilder.AppendLine(err);
+                    }))
+                    .WithValidation(CommandResultValidation.None)
+                    .ExecuteAsync(cancellationToken);
+                Log.Information("Execute result: {StartTime} {RunTime} {ExitTime} {ExitCode}",
+                    cmd.StartTime,
+                    cmd.RunTime,
+                    cmd.ExitTime,
+                    cmd.ExitCode);
+                if (cmd.ExitCode != 0)
+                {
+                    var errorMsg = stringBuilder.ToString();
+                    Log.Error(errorMsg);
+                }
+                else
+                {
+                    Log.Information(string.Join("\r\n", branchName));
+                }
+            }
+            catch (Exception ex)
+            {
+                if (cancellationToken.IsCancellationRequested)
+                {
+                    Log.Information("User canceled!");
+                }
+                else
+                {
+                    stringBuilder.AppendLine(ex.Message);
+                    var errorMsg = stringBuilder.ToString();
+                    Log.Error(errorMsg);
+                }
+            }
+            return branchName;
+
         }
     }
 }

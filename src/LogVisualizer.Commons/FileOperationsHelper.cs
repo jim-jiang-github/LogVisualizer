@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Commons
+namespace LogVisualizer.Commons
 {
     public class FileOperationsHelper
     {

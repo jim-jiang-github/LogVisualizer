@@ -1,10 +1,9 @@
 ﻿using Avalonia;
 using System;
-using Commons.Extensions;
 using Projektanker.Icons.Avalonia;
 using Projektanker.Icons.Avalonia.FontAwesome;
-using GithubReleaseUpgrader;
 using LogVisualizer.Services;
+using LogVisualizer.Commons.Extensions;
 
 namespace LogVisualizer
 {

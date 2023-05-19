@@ -1,7 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Threading;
-using Commons;
+using LogVisualizer.Commons;
 using GithubReleaseUpgrader;
 using Serilog;
 using System;

@@ -1,7 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Logging;
-using Commons.Notifications;
+using LogVisualizer.Commons.Notifications;
 using Serilog;
 using Serilog.Core;
 using Serilog.Events;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Commons.Extensions
+namespace LogVisualizer.Commons.Extensions
 {
     public static class NotifyExtensions
     {
