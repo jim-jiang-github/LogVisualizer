@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Commons
 {
-    public class DirectoryHelper
+    public class FileOperationsHelper
     {
-        public static bool ResetDirectory(string directory)
+        public static bool SafeResetDirectory(string directory)
         {
             try
             {
@@ -48,6 +48,60 @@ namespace Commons
                 return false;
             }
             return true;
+        }
+
+        public static void SafeCreateDirectory(string path)
+        {
+            try
+            {
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+            }
+            catch (IOException ioEx)
+            {
+                Log.Error("Directory not found, or path is a file:{ex}", ioEx.Message);
+            }
+            catch (UnauthorizedAccessException uaEx)
+            {
+                Log.Error("Permission error:{ex}", uaEx.Message);
+            }
+        }
+
+        public static void SafeDeleteFile(string path)
+        {
+            try
+            {
+                if (File.Exists(path))
+                {
+                    File.Delete(path);
+                }
+            }
+            catch (IOException ioEx)
+            {
+                Log.Error("file is in use:{ex}", ioEx.Message);
+            }
+            catch (UnauthorizedAccessException uaEx)
+            {
+                Log.Error("Permission error:{ex}", uaEx.Message);
+            }
+        }
+
+        public static void SafeCreateFile(string path, string content)
+        {
+            try
+            {
+                File.WriteAllText(path, content);
+            }
+            catch (IOException ioEx)
+            {
+                Log.Error("file is in use or disk is full:{ex}", ioEx.Message);
+            }
+            catch (UnauthorizedAccessException uaEx)
+            {
+                Log.Error("Permission error:{ex}", uaEx.Message);
+            }
         }
     }
 }

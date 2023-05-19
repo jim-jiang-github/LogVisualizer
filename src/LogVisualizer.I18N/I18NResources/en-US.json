@@ -37,7 +37,7 @@
   },
   {
     "Key": "Menu_About",
-    "Value": "About ({l_version number})"
+    "Value": "About"
   },
   {
     "Key": "Upgrader_Upgrade",

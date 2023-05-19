@@ -19,7 +19,7 @@ namespace Commons
         public static async Task<bool> CloneTo(string gitRepo, string branch, CancellationToken cancellationToken = default)
         {
             var gitTempDirectory = Path.Combine(Global.CurrentAppDataDirectory, GIT_TEMP_FOLDER);
-            if (!DirectoryHelper.ResetDirectory(gitTempDirectory))
+            if (!FileOperationsHelper.SafeResetDirectory(gitTempDirectory))
             {
                 return false;
             }
