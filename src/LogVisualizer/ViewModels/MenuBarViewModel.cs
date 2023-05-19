@@ -1,4 +1,5 @@
 ﻿using Avalonia.Controls;
+using Avalonia.Platform.Storage;
 using Commons;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -24,8 +25,29 @@ namespace LogVisualizer.ViewModels
         }
 
         [RelayCommand]
-        public void Open()
+        public async Task Open()
         {
+
+            List<FilePickerFileType>? GetFileTypes()
+            {
+                return new List<FilePickerFileType>
+                            {
+                                FilePickerFileTypes.All,
+                                FilePickerFileTypes.TextPlain,
+                                new("Binary Log")
+                                {
+                                    Patterns = new[] { "*.binlog", "*.buildlog" },
+                                    MimeTypes = new[] { "application/binlog", "application/buildlog" },
+                                    AppleUniformTypeIdentifiers = new []{ "public.data" }
+                                }
+                            };
+            }
+            var r = await GlobalStorageProvider.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions()
+            {
+                Title = "Open file",
+                FileTypeFilter = GetFileTypes(),
+                AllowMultiple = true
+            });
         }
         private bool flag;
         [RelayCommand]

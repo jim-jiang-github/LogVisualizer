@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Xml;
 using LogVisualizer.Services;
+using Commons;
 
 namespace LogVisualizer
 {
@@ -31,6 +32,7 @@ namespace LogVisualizer
                 {
                     DataContext = DependencyInjectionProvider.GetService<MainWindowViewModel>()
                 };
+                GlobalStorageProvider.StorageProvider = desktop.MainWindow.StorageProvider;
             }
 
             base.OnFrameworkInitializationCompleted();
