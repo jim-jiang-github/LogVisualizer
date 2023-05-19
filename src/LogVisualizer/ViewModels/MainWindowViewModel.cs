@@ -8,6 +8,7 @@ using System.Linq;
 using Avalonia;
 using System.Collections;
 using LogVisualizer.Services;
+using LogVisualizer.Views;
 
 namespace LogVisualizer.ViewModels
 {
@@ -90,6 +91,7 @@ namespace LogVisualizer.ViewModels
         public string V { get; } = "xxxxxa";
         public MenuBarViewModel MenuBar { get; }
         public SideBarViewModel SideBar { get; }
+        public BottomBarViewModel BottomBar { get; }
         public UpgraderViewModel Upgrader { get; }
         public ItemCollection Items { get; }
 
@@ -100,10 +102,15 @@ namespace LogVisualizer.ViewModels
         }
 #endif
 
-        public MainWindowViewModel(MenuBarViewModel menuBarViewModel, SideBarViewModel sideBarViewModel, UpgraderViewModel upgraderViewModel)
+        public MainWindowViewModel(
+            MenuBarViewModel menuBarViewModel,
+            SideBarViewModel sideBarViewModel,
+            BottomBarViewModel bottomBarViewModel,
+            UpgraderViewModel upgraderViewModel)
         {
             MenuBar = menuBarViewModel;
             SideBar = sideBarViewModel;
+            BottomBar = bottomBarViewModel;
             Upgrader = upgraderViewModel;
             Items = new ItemCollection();
         }

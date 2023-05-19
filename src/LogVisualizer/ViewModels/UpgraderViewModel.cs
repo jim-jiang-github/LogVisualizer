@@ -30,6 +30,8 @@ namespace LogVisualizer.ViewModels
         private string? _version;
         [ObservableProperty]
         private bool _isVisible = false;
+        [ObservableProperty]
+        private bool _canIgnore = false;
 
         private TaskCompletionSource<UpgradeMode> _taskUpgradeModeCompletionSource = new TaskCompletionSource<UpgradeMode>();
 
@@ -46,6 +48,7 @@ namespace LogVisualizer.ViewModels
             {
                 Version = $"v{newtVersion}";
                 UpgradeChangedLog = releaseLogMarkDown;
+                CanIgnore = false;
                 IsVisible = true;
                 var upgradeMode = await _taskUpgradeModeCompletionSource.Task;
                 if (upgradeMode == UpgradeMode.UpgradeNow)
@@ -65,6 +68,7 @@ namespace LogVisualizer.ViewModels
             {
                 Version = $"v{newtVersion}";
                 UpgradeChangedLog = releaseLogMarkDown;
+                CanIgnore = true;
                 IsVisible = true;
                 var upgradeMode = await _taskUpgradeModeCompletionSource.Task;
                 switch (upgradeMode)

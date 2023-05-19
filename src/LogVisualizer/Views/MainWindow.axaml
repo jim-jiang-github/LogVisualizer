@@ -5,6 +5,7 @@
     xmlns:customControls="clr-namespace:LogVisualizer.CustomControls;assembly=LogVisualizer"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:i18n="clr-namespace:LogVisualizer.I18N;assembly=LogVisualizer.I18N"
+    xmlns:icon="clr-namespace:Projektanker.Icons.Avalonia;assembly=Projektanker.Icons.Avalonia"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:titlebars="clr-namespace:LogVisualizer.Platforms.Windows;assembly=LogVisualizer"
     xmlns:views="clr-namespace:LogVisualizer.Views"
@@ -42,8 +43,8 @@
             <NativeMenuItem Header="{i18n:I18NKeyBinding Key=Menu_Help}">
                 <NativeMenuItem.Menu>
                     <NativeMenu>
-                      <NativeMenuItem Command="{Binding MenuBar.CheckForUpgradeCommand}" Header="{i18n:I18NKeyBinding Key=Menu_Check_Upgrade}" />
-                      <NativeMenuItem Command="{Binding MenuBar.AboutCommand}" Header="{i18n:I18NKeyBinding {Binding V}, Key=Menu_About}" />
+                        <NativeMenuItem Command="{Binding MenuBar.CheckForUpgradeCommand}" Header="{i18n:I18NKeyBinding Key=Menu_Check_Upgrade}" />
+                        <NativeMenuItem Command="{Binding MenuBar.AboutCommand}" Header="{i18n:I18NKeyBinding Key=Menu_About}" />
                     </NativeMenu>
                 </NativeMenuItem.Menu>
             </NativeMenuItem>
@@ -57,7 +58,7 @@
     <Grid>
         <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <titlebars:WindowsTitleBar Name="WindowsTitleBar" DockPanel.Dock="Top" />
-            <views:BottomBar DockPanel.Dock="Bottom" />
+            <views:BottomBar DataContext="{Binding BottomBar}" DockPanel.Dock="Bottom" />
             <Grid ColumnDefinitions="250,Auto,*">
                 <views:SideBar Grid.Column="0" DataContext="{Binding SideBar}" />
                 <GridSplitter

@@ -33,7 +33,8 @@
             <Button
                 Margin="10,10,0,0"
                 Command="{Binding IgnoreThisVersionCommand}"
-                Content="{i18n:I18NKeyBinding Key=Upgrader_Ignore_This_Version}" />
+                Content="{i18n:I18NKeyBinding Key=Upgrader_Ignore_This_Version}"
+                IsVisible="{Binding CanIgnore}" />
             <Button
                 Margin="10,10,0,0"
                 Command="{Binding UpgradeNextStartupCommand}"
