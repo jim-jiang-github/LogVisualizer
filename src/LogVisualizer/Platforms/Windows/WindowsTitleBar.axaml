@@ -11,9 +11,9 @@
     <DockPanel Height="30">
         <Image
             Name="WindowIcon"
-            Width="28"
-            Height="28"
-            Margin="11,1,11,1"
+            Width="20"
+            Height="20"
+            Margin="15,6,15,4"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             DockPanel.Dock="Left"

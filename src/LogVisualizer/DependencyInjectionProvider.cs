@@ -18,11 +18,12 @@ namespace LogVisualizer
             _serviceProvider = new ServiceCollection()
                 .AddSingleton<UpgradeService>()
                 .AddSingleton<UpgraderViewModel>()
-                .AddScoped<SideBarService>()
-                .AddScoped<MenuBarService>()
+                .AddSingleton<GitService>()
                 .AddScoped<MenuBarViewModel>()
                 .AddScoped<MainWindowViewModel>()
                 .AddScoped<SideBarViewModel>()
+                .AddScoped<BottomBarViewModel>()
+                .AddScoped<SchemaConfigViewModel>()
                 .BuildServiceProvider();
         }
 
