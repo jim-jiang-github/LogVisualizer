@@ -2,6 +2,7 @@
 using System;
 using Projektanker.Icons.Avalonia;
 using Projektanker.Icons.Avalonia.FontAwesome;
+using Projektanker.Icons.Avalonia.MaterialDesign;
 using LogVisualizer.Services;
 using LogVisualizer.Commons.Extensions;
 
@@ -33,6 +34,8 @@ namespace LogVisualizer
             => AppBuilder.Configure<App>()
             .UsePlatformDetect()
             .UseSerilog()
-            .WithIcons(container => container.Register<FontAwesomeIconProvider>());
+            .WithIcons(container => container
+            .Register<FontAwesomeIconProvider>()
+            .Register<MaterialDesignIconProvider>());
     }
 }
