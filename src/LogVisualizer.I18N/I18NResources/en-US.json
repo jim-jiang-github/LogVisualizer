@@ -1,5 +1,13 @@
 [
   {
+    "Key": "Common_Cancel",
+    "Value": "Cancel"
+  },
+  {
+    "Key": "Common_Confirm",
+    "Value": "Confirm"
+  },
+  {
     "Key": "Menu_File",
     "Value": "File"
   },
@@ -40,6 +48,10 @@
     "Value": "About"
   },
   {
+    "Key": "Upgrader_Title",
+    "Value": "Upgrader"
+  },
+  {
     "Key": "Upgrader_Upgrade",
     "Value": "Upgrade now"
   },
@@ -52,16 +64,32 @@
     "Value": "Ignore this version"
   },
   {
-    "Key": "Upgrader_Cancel",
-    "Value": "Cancel"
-  },
-  {
     "Key": "Upgrader_Upgrade_Version_Title",
     "Value": "New version found: {l_version}"
   },
   {
-    "Key": "FormatString",
-    "Value": "This is a {l_old device} and will switch to {l_new device} ."
+    "Key": "Schema_No_Source",
+    "Value": "No schema source"
+  },
+  {
+    "Key": "Schema_Filter_Branches",
+    "Value": "Filter branches"
+  },
+  {
+    "Key": "Schema_Creator",
+    "Value": "Create a new schema"
+  },
+  {
+    "Key": "Schema_Creator_Schema_Name",
+    "Value": "Schema name:"
+  },
+  {
+    "Key": "Schema_Creator_Schema_Repo",
+    "Value": "Schema repository:"
+  },
+  {
+    "Key": "Schema_Creator_Schema_Branch",
+    "Value": "Schema branch:"
   },
   {
     "Key": "Version",

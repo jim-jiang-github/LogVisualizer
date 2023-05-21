@@ -17,9 +17,9 @@ namespace LogVisualizer.Services
         private const string BRANCH_NAME_HEAD = "refs/heads/";
         private const string GIT_TEMP_FOLDER = "GitTemp";
 
-        public async Task<bool> CloneTo(string gitRepo, string branch, CancellationToken cancellationToken = default)
+        public async Task<bool> CloneTo(string gitRepo, string branch, string floderName, CancellationToken cancellationToken = default)
         {
-            var gitTempDirectory = Path.Combine(Global.CurrentAppDataDirectory, GIT_TEMP_FOLDER);
+            var gitTempDirectory = Path.Combine(Global.CurrentAppDataDirectory, GIT_TEMP_FOLDER, floderName);
             if (!FileOperationsHelper.SafeResetDirectory(gitTempDirectory))
             {
                 return false;

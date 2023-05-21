@@ -1,0 +1,65 @@
+<UserControl
+    x:Class="LogVisualizer.Views.SchemaConfigPanel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i18n="clr-namespace:LogVisualizer.I18N;assembly=LogVisualizer.I18N"
+    xmlns:icon="clr-namespace:Projektanker.Icons.Avalonia;assembly=Projektanker.Icons.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="clr-namespace:LogVisualizer.Views"
+    mc:Ignorable="d">
+    <DockPanel
+        Width="400"
+        Height="500"
+        FlowDirection="LeftToRight">
+        <DockPanel DockPanel.Dock="Top">
+            <Button
+                Width="30"
+                Height="30"
+                Margin="5,0,0,0"
+                Classes="schemaMore"
+                DockPanel.Dock="Right">
+                <Button.Styles>
+                    <Style Selector="Button.schemaMore">
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="Background" Value="Transparent" />
+                    </Style>
+                    <Style Selector="Button.schemaMore:pointerover">
+                        <Setter Property="BorderThickness" Value="1" />
+                        <Setter Property="Background" Value="#33FFFFFF" />
+                    </Style>
+                    <Style Selector="Button.schemaMore">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <Border
+                                        Background="{TemplateBinding Background}"
+                                        BorderBrush="White"
+                                        CornerRadius="0">
+                                        <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
+                                            <icon:Icon Margin="8,0,0,0" Value="mdi dots-vertical" />
+                                        </StackPanel>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Styles>
+                <Button.Flyout>
+                    <Flyout>
+                        <views:SchemaCreatePanel DataContext="{Binding}" />
+                    </Flyout>
+                </Button.Flyout>
+            </Button>
+            <Border Height="30" Background="AliceBlue">
+                <AutoCompleteBox
+                    Height="30"
+                    CornerRadius="0"
+                    FilterMode="Contains"
+                    ItemsSource="{Binding Branches}"
+                    Watermark="{i18n:I18NKeyBinding Key=Schema_Filter_Branches}" />
+            </Border>
+        </DockPanel>
+        <Border Background="Green" />
+    </DockPanel>
+</UserControl>

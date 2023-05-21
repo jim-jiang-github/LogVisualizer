@@ -23,7 +23,7 @@ namespace LogVisualizer
                 .AddScoped<MainWindowViewModel>()
                 .AddScoped<SideBarViewModel>()
                 .AddScoped<BottomBarViewModel>()
-                .AddScoped<SchemaConfigViewModel>()
+                .AddSingleton<SchemaConfigViewModel>()
                 .BuildServiceProvider();
         }
 

@@ -1,5 +1,9 @@
 ﻿[
   {
+    "Key": "Common_Cancel",
+    "Value": "取消"
+  },
+  {
     "Key": "Menu_File",
     "Value": "文件"
   },
@@ -13,34 +17,58 @@
   },
   {
     "Key": "Menu_View",
-    "Value": "视图"
+    "Value": "查看"
   },
   {
     "Key": "Menu_Show_Only_Filtered",
-    "Value": "只显示已过滤的行"
+    "Value": "仅显示筛选行"
   },
   {
     "Key": "Menu_Filter",
-    "Value": "过滤器"
+    "Value": "筛选"
   },
   {
     "Key": "Menu_Add_Filter",
-    "Value": "添加新的过滤器"
+    "Value": "添加新筛选器"
   },
   {
     "Key": "Menu_Help",
     "Value": "帮助"
   },
   {
-    "Key": "Menu_About",
-    "Value": "关于 ({l_version number})."
+    "Key": "Menu_Check_Upgrade",
+    "Value": "检查更新"
   },
   {
-    "Key": "FormatString",
-    "Value": "This is a {l_old device} and will switch to {l_new device} ."
+    "Key": "Menu_About",
+    "Value": "关于"
+  },
+  {
+    "Key": "Upgrader_Title",
+    "Value": "升级器"
+  },
+  {
+    "Key": "Upgrader_Upgrade",
+    "Value": "立即升级"
+  },
+  {
+    "Key": "Upgrader_Upgrade_Next_Startup",
+    "Value": "下次启动时升级"
+  },
+  {
+    "Key": "Upgrader_Ignore_This_Version",
+    "Value": "忽略此版本"
+  },
+  {
+    "Key": "Upgrader_Upgrade_Version_Title",
+    "Value": "发现新版本：{l_version}"
+  },
+  {
+    "Key": "Schema_No_Source",
+    "Value": "没有结构描述源"
   },
   {
     "Key": "Version",
-    "Value": "Version ({l_version number})."
+    "Value": "版本（{l_version number}）。"
   }
 ]

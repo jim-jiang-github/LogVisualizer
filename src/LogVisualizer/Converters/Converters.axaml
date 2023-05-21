@@ -2,5 +2,6 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:converters="using:LogVisualizer.Converters">
-    <converters:NameToResourceConverter x:Key="NameToResourceConverter" />
+  <converters:NameToResourceConverter x:Key="NameToResourceConverter" />
+  <converters:ObjectToStringConverter x:Key="ObjectToStringConverter" />
 </ResourceDictionary>

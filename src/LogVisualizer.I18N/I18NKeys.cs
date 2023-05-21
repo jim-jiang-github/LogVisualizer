@@ -26,6 +26,10 @@
         /// </para>
         /// </remarks>
         TestPluralsString,
+        /// <summary>Cancel</summary>
+        Common_Cancel,
+        /// <summary>Confirm</summary>
+        Common_Confirm,
         /// <summary>File</summary>
         Menu_File,
         /// <summary>Open</summary>
@@ -44,20 +48,30 @@
         Menu_Help,
         /// <summary>Check for upgrade</summary>
         Menu_Check_Upgrade,
-        /// <summary>About ({l_version number})</summary>
+        /// <summary>About</summary>
         Menu_About,
+        /// <summary>Upgrader</summary>
+        Upgrader_Title,
         /// <summary>Upgrade now</summary>
         Upgrader_Upgrade,
         /// <summary>Upgraded on next startup</summary>
         Upgrader_Upgrade_Next_Startup,
         /// <summary>Ignore this version</summary>
         Upgrader_Ignore_This_Version,
-        /// <summary>Cancel</summary>
-        Upgrader_Cancel,
         /// <summary>New version found: {l_version}</summary>
         Upgrader_Upgrade_Version_Title,
-        /// <summary>This is a {l_old device} and will switch to {l_new device} .</summary>
-        FormatString,
+        /// <summary>No schema source</summary>
+        Schema_No_Source,
+        /// <summary>Filter branches</summary>
+        Schema_Filter_Branches,
+        /// <summary>Create a new schema</summary>
+        Schema_Creator,
+        /// <summary>Schema name:</summary>
+        Schema_Creator_Schema_Name,
+        /// <summary>Schema repository:</summary>
+        Schema_Creator_Schema_Repo,
+        /// <summary>Schema branch:</summary>
+        Schema_Creator_Schema_Branch,
         /// <summary>Version ({l_version number}).</summary>
         Version,
     }

@@ -51,4 +51,13 @@
       <SubType>Designer</SubType>
     </AvaloniaXaml>
   </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\LoadingMask.axaml.cs">
+      <DependentUpon>LoadingMask.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\SchemaConfigPanel.axaml.cs">
+      <DependentUpon>SchemaConfigPanel.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>

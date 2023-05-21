@@ -12,6 +12,12 @@ namespace LogVisualizer
 {
     public class Configuration
     {
+        public class SchemaConfiguration
+        {
+            public string? SchemaName { get; set; }
+            public string? SchemaRepo { get; set; }
+        }
+
         private const string CONFIG_FILE_NAME = "configuration.json";
 
         private static Configuration _instance;
@@ -50,7 +56,7 @@ namespace LogVisualizer
             }
         }
 
-        public string? SchemaConfigRepo { get; set; }
+        public SchemaConfiguration? Schema { get; set; }
 
         public void Save()
         {

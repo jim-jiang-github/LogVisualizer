@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:i18n="clr-namespace:LogVisualizer.I18N;assembly=LogVisualizer.I18N"
     xmlns:icon="clr-namespace:Projektanker.Icons.Avalonia;assembly=Projektanker.Icons.Avalonia"
+    xmlns:local="using:LogVisualizer"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:titlebars="clr-namespace:LogVisualizer.Platforms.Windows;assembly=LogVisualizer"
     xmlns:views="clr-namespace:LogVisualizer.Views"
@@ -103,7 +104,7 @@
             </Grid>
         </DockPanel>
         <customControls:SubWindow
-            Title="Upgrader"
+            Title="{i18n:I18NKeyBinding Key=Upgrader_Title}"
             DataContext="{Binding Upgrader}"
             IsModalDialog="True"
             IsVisible="{Binding IsVisible}"
@@ -111,5 +112,6 @@
             WindowWidth="800">
             <views:Upgrader />
         </customControls:SubWindow>
+        <views:LoadingMask />
     </Grid>
 </Window>

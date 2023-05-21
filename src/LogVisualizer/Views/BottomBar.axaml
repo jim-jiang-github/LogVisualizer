@@ -35,15 +35,18 @@
                 </Style>
             </Button.Styles>
         </Button>
-        <Button Margin="10,0,0,2" Content="{Binding SchemaConfig.CurrentName}">
+        <Button
+            Margin="10,0,0,2"
+            Classes="schema"
+            Content="{Binding SchemaConfig.CurrentName}">
             <Button.Styles>
-                <Style Selector="Button">
+                <Style Selector="Button.schema">
                     <Setter Property="Background" Value="Transparent" />
                 </Style>
-                <Style Selector="Button:pointerover">
+                <Style Selector="Button.schema:pointerover">
                     <Setter Property="Background" Value="#10FFFFFF" />
                 </Style>
-                <Style Selector="Button">
+                <Style Selector="Button.schema">
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate>
@@ -80,7 +83,7 @@
             </Button.Styles>
             <Button.Flyout>
                 <Flyout Placement="Top">
-                    <views:SchemaConfig DataContext="{Binding SchemaConfig}" />
+                    <views:SchemaConfigPanel DataContext="{Binding SchemaConfig}" />
                 </Flyout>
             </Button.Flyout>
         </Button>
