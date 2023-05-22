@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogVisualizer.I18N", "LogVi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3rd", "3rd", "{173C1E68-20D6-4BCC-9213-AA70D6604BCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogVisualizer.Commons", "LogVisualizer.Commons\LogVisualizer.Commons.csproj", "{C80CA781-4FBC-4E61-B57B-06F71B37D0CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogVisualizer.Commons", "LogVisualizer.Commons\LogVisualizer.Commons.csproj", "{C80CA781-4FBC-4E61-B57B-06F71B37D0CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogVisualizer.Test", "LogVisualizer.Test\LogVisualizer.Test.csproj", "{4C86462E-1D56-4FDE-8A27-F9324CF343C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{C80CA781-4FBC-4E61-B57B-06F71B37D0CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C80CA781-4FBC-4E61-B57B-06F71B37D0CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C80CA781-4FBC-4E61-B57B-06F71B37D0CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C86462E-1D56-4FDE-8A27-F9324CF343C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C86462E-1D56-4FDE-8A27-F9324CF343C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C86462E-1D56-4FDE-8A27-F9324CF343C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C86462E-1D56-4FDE-8A27-F9324CF343C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
