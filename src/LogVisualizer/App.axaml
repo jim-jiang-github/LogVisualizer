@@ -8,6 +8,7 @@
     <Application.Styles>
         <FluentTheme />
         <StyleInclude Source="/Styles/MenuItem.axaml" />
+        <StyleInclude Source="/Styles/FlyoutStyles.axaml" />
     </Application.Styles>
 
     <Application.Resources>

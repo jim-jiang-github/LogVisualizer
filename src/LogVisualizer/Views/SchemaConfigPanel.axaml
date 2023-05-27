@@ -3,63 +3,244 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
     xmlns:i18n="clr-namespace:LogVisualizer.I18N;assembly=LogVisualizer.I18N"
+    xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
     xmlns:icon="clr-namespace:Projektanker.Icons.Avalonia;assembly=Projektanker.Icons.Avalonia"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="clr-namespace:LogVisualizer.Views"
     mc:Ignorable="d">
-    <DockPanel
-        Width="400"
-        Height="500"
-        FlowDirection="LeftToRight">
+    <UserControl.Styles>
+        <Style Selector="TextBox">
+            <Setter Property="Background" Value="#11FFFFFF" />
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+        <Style Selector="AutoCompleteBox">
+            <Setter Property="Background" Value="#11FFFFFF" />
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+        <Style Selector="DataValidationErrors">
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <DockPanel>
+                        <ContentControl
+                            Content="{Binding (DataValidationErrors.Errors)}"
+                            ContentTemplate="{TemplateBinding ErrorTemplate}"
+                            DataContext="{TemplateBinding Owner}"
+                            DockPanel.Dock="Right"
+                            IsVisible="{Binding (DataValidationErrors.HasErrors)}" />
+                        <ContentPresenter
+                            Name="PART_ContentPresenter"
+                            Padding="{TemplateBinding Padding}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            CornerRadius="{TemplateBinding CornerRadius}" />
+                    </DockPanel>
+                </ControlTemplate>
+            </Setter>
+            <Setter Property="ErrorTemplate">
+                <DataTemplate>
+                    <Border
+                        Width="18"
+                        Height="18"
+                        Margin="10,0,1,0"
+                        Background="#01000000"
+                        BorderBrush="Red"
+                        BorderThickness="1"
+                        CornerRadius="9">
+                        <icon:Icon
+                            FontSize="12"
+                            Foreground="Red"
+                            Value="fa-duotone fa-exclamation" />
+                        <Border.Styles>
+                            <Style Selector="ToolTip">
+                                <Setter Property="Background" Value="RosyBrown" />
+                                <Setter Property="BorderBrush" Value="Red" />
+                            </Style>
+                        </Border.Styles>
+                        <ToolTip.Tip>
+                            <ItemsControl ItemsSource="{Binding}" />
+                        </ToolTip.Tip>
+                    </Border>
+                </DataTemplate>
+            </Setter>
+        </Style>
+    </UserControl.Styles>
+    <DockPanel FlowDirection="LeftToRight">
         <DockPanel DockPanel.Dock="Top">
-            <Button
-                Width="30"
-                Height="30"
-                Margin="5,0,0,0"
-                Classes="schemaMore"
-                DockPanel.Dock="Right">
-                <Button.Styles>
-                    <Style Selector="Button.schemaMore">
-                        <Setter Property="BorderThickness" Value="0" />
-                        <Setter Property="Background" Value="Transparent" />
+            <Expander
+                Name="ExpanderSchema"
+                Width="500"
+                Padding="0"
+                Background="Transparent"
+                CornerRadius="0"
+                ExpandDirection="Up"
+                IsExpanded="{Binding !SchemaConfigs.Count}">
+                <Expander.Styles>
+                    <Style Selector="Expander:expanded /template/ ToggleButton#ExpanderHeader /template/ Border#ExpandCollapseChevronBorder">
+                        <Style.Animations>
+                            <Animation FillMode="Both" Duration="0:0:0.0625">
+                                <KeyFrame Cue="100%">
+                                    <Setter Property="RotateTransform.Angle" Value="45" />
+                                </KeyFrame>
+                            </Animation>
+                        </Style.Animations>
                     </Style>
-                    <Style Selector="Button.schemaMore:pointerover">
-                        <Setter Property="BorderThickness" Value="1" />
-                        <Setter Property="Background" Value="#33FFFFFF" />
+                    <Style Selector="Expander:not(:expanded) /template/ ToggleButton#ExpanderHeader /template/ Border#ExpandCollapseChevronBorder">
+                        <Style.Animations>
+                            <Animation FillMode="Both" Duration="0:0:0.0625">
+                                <KeyFrame Cue="0%">
+                                    <Setter Property="RotateTransform.Angle" Value="45" />
+                                </KeyFrame>
+                                <KeyFrame Cue="100%">
+                                    <Setter Property="RotateTransform.Angle" Value="0" />
+                                </KeyFrame>
+                            </Animation>
+                        </Style.Animations>
                     </Style>
-                    <Style Selector="Button.schemaMore">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate>
-                                    <Border
-                                        Background="{TemplateBinding Background}"
-                                        BorderBrush="White"
-                                        CornerRadius="0">
-                                        <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
-                                            <icon:Icon Margin="8,0,0,0" Value="mdi dots-vertical" />
-                                        </StackPanel>
-                                    </Border>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
+                    <Style Selector="Expander:up /template/ ToggleButton#ExpanderHeader /template/ Path#ExpandCollapseChevron">
+                        <Setter Property="Data" Value="M 11.429688 3.4375 C 11.429688 2.675781 10.789062 2.0625 10 2.0625 C 9.210938 2.0625 8.570312 2.675781 8.570312 3.4375 L 8.570312 9.625 L 2.144531 9.625 C 1.351562 9.625 0.714844 10.238281 0.714844 11 C 0.714844 11.761719 1.351562 12.375 2.144531 12.375 L 8.570312 12.375 L 8.570312 18.5625 C 8.570312 19.324219 9.210938 19.9375 10 19.9375 C 10.789062 19.9375 11.429688 19.324219 11.429688 18.5625 L 11.429688 12.375 L 17.855469 12.375 C 18.648438 12.375 19.285156 11.761719 19.285156 11 C 19.285156 10.238281 18.648438 9.625 17.855469 9.625 L 11.429688 9.625 Z M 11.429688 3.4375" />
                     </Style>
-                </Button.Styles>
-                <Button.Flyout>
-                    <Flyout>
-                        <views:SchemaCreatePanel DataContext="{Binding}" />
-                    </Flyout>
-                </Button.Flyout>
-            </Button>
-            <Border Height="30" Background="AliceBlue">
-                <AutoCompleteBox
-                    Height="30"
-                    CornerRadius="0"
-                    FilterMode="Contains"
-                    ItemsSource="{Binding Branches}"
-                    Watermark="{i18n:I18NKeyBinding Key=Schema_Filter_Branches}" />
-            </Border>
+                </Expander.Styles>
+                <Expander.Header>
+                    <AutoCompleteBox
+                        Height="30"
+                        CornerRadius="0"
+                        FilterMode="Contains"
+                        IsEnabled="{Binding SelectedSchemaConfig, Converter={x:Static ObjectConverters.IsNotNull}}"
+                        IsVisible="{Binding ElementName=ExpanderSchema, Path=!IsExpanded}"
+                        ItemsSource="{Binding Branches}"
+                        Watermark="{i18n:I18NKeyBinding Key=Schema_Filter_Branches}" />
+                </Expander.Header>
+                <Grid
+                    Margin="10,10,10,10"
+                    VerticalAlignment="Top"
+                    RowDefinitions="*,*,*,*">
+                    <DockPanel Grid.Row="0" Height="30">
+                        <TextBlock
+                            Width="120"
+                            VerticalAlignment="Center"
+                            DockPanel.Dock="Left"
+                            Text="{i18n:I18NKeyBinding Key=Schema_Creator_Schema_Name}" />
+                        <TextBox
+                            Name="SchemaName"
+                            Margin="10,0,0,0"
+                            Text="{Binding Creator.SchemaName}"
+                            Watermark="{i18n:I18NKeyBinding Key=Schema_Creator_Schema_Name_Watermark}" />
+                    </DockPanel>
+                    <DockPanel
+                        Grid.Row="1"
+                        Height="30"
+                        Margin="0,10,0,0">
+                        <TextBlock
+                            Width="120"
+                            VerticalAlignment="Center"
+                            DockPanel.Dock="Left"
+                            Text="{i18n:I18NKeyBinding Key=Schema_Creator_Schema_Repo}" />
+                        <StackPanel>
+                            <TextBox
+                                Name="SchemaRepo"
+                                Margin="10,0,0,0"
+                                Text="{Binding Creator.SchemaRepo}"
+                                Watermark="{i18n:I18NKeyBinding Key=Schema_Creator_Schema_Repo_Watermark}">
+                                <i:Interaction.Behaviors>
+                                    <ia:EventTriggerBehavior EventName="TextChanged" SourceObject="SchemaRepo">
+                                        <ia:InvokeCommandAction Command="{Binding Creator.FetchBranchesCommand}" />
+                                    </ia:EventTriggerBehavior>
+                                </i:Interaction.Behaviors>
+                            </TextBox>
+                            <ProgressBar
+                                Margin="10,0,0,0"
+                                IsIndeterminate="True"
+                                IsVisible="{Binding Creator.IsLoading}" />
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel
+                        Grid.Row="2"
+                        Height="30"
+                        Margin="0,10,0,0">
+                        <TextBlock
+                            Width="120"
+                            VerticalAlignment="Center"
+                            DockPanel.Dock="Left"
+                            Text="{i18n:I18NKeyBinding Key=Schema_Creator_Schema_Branch}" />
+                        <AutoCompleteBox
+                            Name="SchemaBranch"
+                            Margin="10,0,0,0"
+                            FilterMode="Contains"
+                            IsEnabled="{Binding !!Creator.AllBranches.Count}"
+                            ItemsSource="{Binding Creator.AllBranches}"
+                            Text="{Binding Creator.SchemaBranch}"
+                            Watermark="{i18n:I18NKeyBinding Key=Schema_Creator_Schema_Branch_Watermark}" />
+                    </DockPanel>
+                    <StackPanel
+                        Grid.Row="3"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal">
+                        <Button
+                            Margin="0,10,0,0"
+                            Command="{Binding Creator.CreateSchemaCancelCommand}"
+                            Content="{i18n:I18NKeyBinding Key=Common_Cancel}"
+                            IsVisible="{Binding !Enabled}" />
+                        <Button
+                            Margin="10,10,0,0"
+                            Command="{Binding Creator.CreateSchemaCommand}"
+                            Content="{i18n:I18NKeyBinding Key=Common_Confirm}" />
+                    </StackPanel>
+                </Grid>
+            </Expander>
         </DockPanel>
-        <Border Background="Green" />
+        <ListBox
+            MaxHeight="400"
+            IsVisible="{Binding ElementName=ExpanderSchema, Path=!IsExpanded}"
+            ItemsSource="{Binding SchemaConfigs}"
+            SelectedItem="{Binding SelectedSchemaConfig}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel>
+                        <Grid ColumnDefinitions="*,30">
+                            <Grid Grid.Column="0" RowDefinitions="*,*">
+                                <TextBlock Grid.Row="0" Text="{Binding SchemaName}" />
+                                <TextBlock Grid.Row="1" Text="{Binding SchemaBranch}" />
+                            </Grid>
+                            <Button
+                                Grid.Column="1"
+                                Width="30"
+                                Height="30">
+                                <Button.Styles>
+                                    <Style Selector="Button">
+                                        <Setter Property="Background" Value="Transparent" />
+                                    </Style>
+                                    <Style Selector="Button:pointerover">
+                                        <Setter Property="Background" Value="#10FFFFFF" />
+                                    </Style>
+                                    <Style Selector="Button[IsEnabled=false]">
+                                        <Setter Property="Background" Value="#20FFFFFF" />
+                                    </Style>
+                                    <Style Selector="Button">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate>
+                                                    <Border Background="{TemplateBinding Background}" CornerRadius="2">
+                                                        <icon:Icon
+                                                            FontSize="20"
+                                                            Foreground="White"
+                                                            Value="fa-solid fa-trash" />
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </Button.Styles>
+                            </Button>
+                        </Grid>
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <DockPanel.Styles />
     </DockPanel>
 </UserControl>

@@ -50,6 +50,41 @@ namespace LogVisualizer.Commons
             return true;
         }
 
+        public static bool SafeDeleteDirectory(string directory)
+        {
+            try
+            {
+                if (Directory.Exists(directory))
+                {
+                    Directory.Delete(directory, true);
+                }
+            }
+            catch (UnauthorizedAccessException uae)
+            {
+                Log.Warning("Directory {directory} delete fail: {uae}", directory, uae);
+                try
+                {
+                    var files = Directory.GetFiles(directory, "*", SearchOption.AllDirectories);
+                    foreach (var file in files)
+                    {
+                        File.SetAttributes(file, FileAttributes.Normal);
+                    }
+                    Directory.Delete(directory, true);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error("Directory {directory} delete fail: {uae}", directory, ex);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Directory {directory} delete fail: {ex}", directory, ex);
+                return false;
+            }
+            return true;
+        }
+
         public static void SafeCreateDirectory(string path)
         {
             try

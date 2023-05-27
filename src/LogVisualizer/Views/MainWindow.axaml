@@ -23,6 +23,7 @@
                 <NativeMenuItem.Menu>
                     <NativeMenu>
                         <NativeMenuItem Command="{Binding MenuBar.OpenCommand}" Header="{i18n:I18NKeyBinding Key=Menu_Open}" />
+                        <NativeMenuItem Command="{Binding MenuBar.FromUrlCommand}" Header="{i18n:I18NKeyBinding Key=Menu_From_Url}" />
                         <NativeMenuItem Command="{Binding MenuBar.ExitCommand}" Header="{i18n:I18NKeyBinding Key=Menu_Exit}" />
                     </NativeMenu>
                 </NativeMenuItem.Menu>
@@ -51,11 +52,11 @@
             </NativeMenuItem>
         </NativeMenu>
     </NativeMenu.Menu>
-    <Window.DataTemplates>
+    <!--<Window.DataTemplates>
         <DataTemplate DataType="vm:UpgraderViewModel">
             <views:UpgraderTip />
         </DataTemplate>
-    </Window.DataTemplates>
+    </Window.DataTemplates>-->
     <Grid>
         <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <titlebars:WindowsTitleBar Name="WindowsTitleBar" DockPanel.Dock="Top" />
@@ -103,15 +104,6 @@
                 </Grid>
             </Grid>
         </DockPanel>
-        <customControls:SubWindow
-            Title="{i18n:I18NKeyBinding Key=Upgrader_Title}"
-            DataContext="{Binding Upgrader}"
-            IsModalDialog="True"
-            IsVisible="{Binding IsVisible}"
-            WindowHeight="600"
-            WindowWidth="800">
-            <views:Upgrader />
-        </customControls:SubWindow>
         <views:LoadingMask />
     </Grid>
 </Window>

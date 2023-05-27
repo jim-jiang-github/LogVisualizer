@@ -5,10 +5,10 @@
     <Nullable>enable</Nullable>
     <IsPackable>False</IsPackable>
     <Platforms>AnyCPU;x64</Platforms>
+    <Version>0.0.4</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
     <AvaloniaResource Include="Assets\*" />
     <AvaloniaResource Remove="Assets\Fonts.axaml" />
     <AvaloniaResource Remove="Assets\Images.axaml" />
@@ -27,7 +27,6 @@
     <PackageReference Include="Avalonia.Xaml.Interactions" Version="11.0.0-preview8" />
     <PackageReference Include="Avalonia.Xaml.Interactivity" Version="11.0.0-preview8" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
-    <PackageReference Include="Markdown.Avalonia" Version="11.0.0-c1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Projektanker.Icons.Avalonia.FontAwesome" Version="6.6.0-preview6" />
     <PackageReference Include="Projektanker.Icons.Avalonia.MaterialDesign" Version="6.6.0-preview6" />

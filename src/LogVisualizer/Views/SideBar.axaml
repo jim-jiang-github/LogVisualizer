@@ -63,7 +63,7 @@
                                     BorderBrush="White"
                                     BorderThickness="1"
                                     CornerRadius="8"
-                                    IsVisible="{Binding SchemaConfig.NeedsAttention}">
+                                    IsVisible="{Binding SchemaConfig.HasSomeError}">
                                     <icon:Icon
                                         FontSize="10"
                                         Foreground="White"
@@ -76,7 +76,7 @@
                                     BorderBrush="White"
                                     BorderThickness="1"
                                     CornerRadius="8"
-                                    IsVisible="{Binding SchemaConfig.NeedsAttention}">
+                                    IsVisible="{Binding SchemaConfig.HasSomeError}">
                                     <TextBlock
                                         Margin="0,1,0,0"
                                         FontSize="10"

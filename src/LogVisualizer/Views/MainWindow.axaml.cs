@@ -1,8 +1,11 @@
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
+using Avalonia.Controls.Documents;
 using Avalonia.Input;
 using Avalonia.Threading;
 using LogVisualizer.Commons.Notifications;
 using LogVisualizer.ViewModels;
+using MessageBox.Avalonia.DTO;
+using MessageBox.Avalonia.Models;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -16,19 +19,20 @@ namespace LogVisualizer.Views
             InitializeComponent();
         }
 
-        protected override void OnLoaded()
+        protected async override void OnLoaded()
         {
             base.OnLoaded();
-            Notify.NotificationManager = new Avalonia.Controls.Notifications.WindowNotificationManager(this)
-            {
-                MaxItems = 6,
-                Position = Avalonia.Controls.Notifications.NotificationPosition.BottomRight
-            };
+            Notify.Init(this);
         }
         private bool flag = false;
-        protected override void OnKeyDown(KeyEventArgs e)
+        protected async override void OnKeyDown(KeyEventArgs e)
         {
             base.OnKeyDown(e);
+            Task.Run(async () =>
+            {
+                await Notify.ShowMessageBox("xxxx","asdasd");
+            });
+            return;
             if (flag)
             {
                 I18N.I18NManager.CurrentCulture = CultureInfo.GetCultureInfo("zh-CN");
@@ -38,7 +42,6 @@ namespace LogVisualizer.Views
                 I18N.I18NManager.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             }
             flag = !flag;
-            Notify.NotifyCustom(DependencyInjectionProvider.GetService<UpgraderViewModel>());
         }
     }
 }

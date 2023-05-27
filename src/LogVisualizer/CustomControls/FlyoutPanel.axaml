@@ -1,0 +1,29 @@
+<UserControl
+    x:Class="LogVisualizer.CustomControls.FlyoutPanel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <UserControl.Template>
+        <ControlTemplate TargetType="UserControl">
+            <DockPanel Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PanelWidth}">
+                <Border
+                    Height="30"
+                    Background="#0f0f0f"
+                    DockPanel.Dock="Top">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Foreground="White"
+                        Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Title}"
+                        TextAlignment="Center" />
+                </Border>
+                <Border Height="5" Background="#4f4f4f" DockPanel.Dock="Bottom" />
+                <Border>
+                    <ContentPresenter Content="{TemplateBinding Content}" />
+                </Border>
+            </DockPanel>
+        </ControlTemplate>
+    </UserControl.Template>
+</UserControl>

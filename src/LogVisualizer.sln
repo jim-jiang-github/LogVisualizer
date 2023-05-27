@@ -19,12 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3rd", "3rd", "{173C1E68-20D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogVisualizer.Commons", "LogVisualizer.Commons\LogVisualizer.Commons.csproj", "{C80CA781-4FBC-4E61-B57B-06F71B37D0CC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{65B620C7-AE39-4E81-8993-F286B9CCA7C1}"
-	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogVisualizer.Test", "LogVisualizer.Test\LogVisualizer.Test.csproj", "{D948825D-D8CD-4C9B-AA75-D0961111BCBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogVisualizer.Test", "LogVisualizer.Test\LogVisualizer.Test.csproj", "{D948825D-D8CD-4C9B-AA75-D0961111BCBC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -92,7 +92,6 @@ namespace LogVisualizer.ViewModels
         public MenuBarViewModel MenuBar { get; }
         public SideBarViewModel SideBar { get; }
         public BottomBarViewModel BottomBar { get; }
-        public UpgraderViewModel Upgrader { get; }
         public ItemCollection Items { get; }
 
 #if DEBUG
@@ -105,13 +104,11 @@ namespace LogVisualizer.ViewModels
         public MainWindowViewModel(
             MenuBarViewModel menuBarViewModel,
             SideBarViewModel sideBarViewModel,
-            BottomBarViewModel bottomBarViewModel,
-            UpgraderViewModel upgraderViewModel)
+            BottomBarViewModel bottomBarViewModel)
         {
             MenuBar = menuBarViewModel;
             SideBar = sideBarViewModel;
             BottomBar = bottomBarViewModel;
-            Upgrader = upgraderViewModel;
             Items = new ItemCollection();
         }
     }

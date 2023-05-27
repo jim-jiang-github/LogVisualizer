@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Serilog;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -36,6 +37,7 @@ namespace LogVisualizer.I18N
             { CultureInfo.GetCultureInfo("ko"), CultureInfo.GetCultureInfo("ko-KR") },
         };
         internal static Dictionary<I18NKeys, I18NValue> nonLocalizedMap = new Dictionary<I18NKeys, I18NValue>();
+        internal static Dictionary<I18NKeys, I18NValue> i18nMapDefault = new Dictionary<I18NKeys, I18NValue>();
         internal static Dictionary<I18NKeys, I18NValue> i18nMap = new Dictionary<I18NKeys, I18NValue>();
 
         public static bool EnablePseudo
@@ -52,21 +54,24 @@ namespace LogVisualizer.I18N
             get => currentCulture;
             set
             {
-                Trace.WriteLine($"Set current culture {value.Name}");
+                Log.Information($"Set current culture {value.Name}");
                 value = FixCultureInfo(value);
-                Trace.WriteLine($"Set fixed culture {value.Name}");
+                Log.Information($"Set fixed culture {value.Name}");
                 if (currentCulture?.Name == value?.Name)
                 {
                     return;
                 }
                 currentCulture = value;
                 using Stream nonLocalizedJsonStream = GetStreamByCultureName("non-localized");
+                using Stream defaultCultureJsonStream = I18NManager.GetStreamByCultureName("en-US");
                 using Stream cultureJsonStream = GetStreamByCultureName(value.Name);
                 using StreamReader nonLocalizedJsonStreamReader = new StreamReader(nonLocalizedJsonStream, Encoding.UTF8);
+                using StreamReader defaultCultureJsonStreamReader = new StreamReader(defaultCultureJsonStream, Encoding.UTF8);
                 using StreamReader cultureJsonStreamReader = new StreamReader(cultureJsonStream, Encoding.UTF8);
                 string nonLocalizedJson = nonLocalizedJsonStreamReader.ReadToEnd();
+                string defaultCultureJson = defaultCultureJsonStreamReader.ReadToEnd();
                 string cultureJson = cultureJsonStreamReader.ReadToEnd();
-                LoadFromJson(nonLocalizedJson, cultureJson);
+                LoadFromJson(nonLocalizedJson, defaultCultureJson, cultureJson);
             }
         }
 
@@ -83,8 +88,8 @@ namespace LogVisualizer.I18N
 
         static I18NManager()
         {
-            Trace.WriteLine($"I18NManager support cultures {string.Join("\r\n", SupportCultureList.Select(x => x.Name))}");
-            Trace.WriteLine($"I18NManager init {CultureInfo.CurrentCulture.Name}");
+            Log.Information($"I18NManager support cultures {string.Join("\r\n", SupportCultureList.Select(x => x.Name))}");
+            Log.Information($"I18NManager init {CultureInfo.CurrentCulture.Name}");
             CurrentCulture = CultureInfo.CurrentCulture;
         }
 
@@ -104,7 +109,7 @@ namespace LogVisualizer.I18N
             using Stream cultureJsonStream = GetStreamByCultureName(culture.Name);
             if (cultureJsonStream == null)
             {
-                Trace.WriteLine($"Fix culture {culture.Name}");
+                Log.Information($"Fix culture {culture.Name}");
                 if (defaultCultureMap.TryGetValue(culture, out CultureInfo sameCultureInfo))
                 {
                     return FixCultureInfo(sameCultureInfo);
@@ -124,34 +129,41 @@ namespace LogVisualizer.I18N
             }
         }
 
-        private static bool LoadFromJson(string nonLocalizedJson, string cultureJson)
+        private static bool LoadFromJson(string nonLocalizedJson, string defaultCultureJson, string cultureJson)
         {
             try
             {
-                Dictionary<I18NKeys, I18NValue> nonLocalizedMap = new Dictionary<I18NKeys, I18NValue>();
-                Dictionary<I18NKeys, I18NValue> i18nMap = new Dictionary<I18NKeys, I18NValue>();
+                nonLocalizedMap.Clear();
+                i18nMapDefault.Clear();
+                i18nMap.Clear();
                 var nonLocalizedJsonDictionary = JsonSerializer.Deserialize<Dictionary<string, object>[]>(nonLocalizedJson);
+                var defaultCultureJsonDictionary = JsonSerializer.Deserialize<Dictionary<string, object>[]>(defaultCultureJson);
                 var cultureJsonDictionary = JsonSerializer.Deserialize<Dictionary<string, object>[]>(cultureJson);
-                Trace.WriteLine($"Load from json culture [nonLocalized:{nonLocalizedJsonDictionary.Count()}|culture:{cultureJsonDictionary.Count()}]");
+                Log.Information($"Load from json culture [nonLocalized:{nonLocalizedJsonDictionary.Count()}|defaultCulture:{defaultCultureJsonDictionary.Count()}|culture:{cultureJsonDictionary.Count()}]");
                 foreach (var property in nonLocalizedJsonDictionary)
                 {
                     var key = property["Key"].ToString();
-                    if (I18NValue.CreateI18NValue(property) is I18NValue value)
+                    if (Enum.TryParse(key, out I18NKeys i18NKey) && I18NValue.CreateI18NValue(property) is I18NValue value)
                     {
-                        nonLocalizedMap.Add(Enum.Parse<I18NKeys>(key), value);
+                        nonLocalizedMap.Add(i18NKey, value);
                     }
                 }
-                I18NManager.nonLocalizedMap = nonLocalizedMap;
+                foreach (var property in defaultCultureJsonDictionary)
+                {
+                    var key = property["Key"].ToString();
+                    if (Enum.TryParse(key, out I18NKeys i18NKey) && I18NValue.CreateI18NValue(property) is I18NValue value)
+                    {
+                        i18nMapDefault.Add(i18NKey, value);
+                    }
+                }
                 foreach (var property in cultureJsonDictionary)
                 {
                     var key = property["Key"].ToString();
-                    if (I18NValue.CreateI18NValue(property) is I18NValue value)
+                    if (Enum.TryParse(key, out I18NKeys i18NKey) && I18NValue.CreateI18NValue(property) is I18NValue value)
                     {
-                        i18nMap.Add(Enum.Parse<I18NKeys>(key), value);
+                        i18nMap.Add(i18NKey, value);
                     }
                 }
-                I18NManager.i18nMap = i18nMap;
-                OnCultureChanged();
                 return true;
             }
             catch (Exception)

@@ -1,4 +1,5 @@
-﻿using CliWrap;
+﻿using Avalonia.Controls;
+using CliWrap;
 using LogVisualizer.Commons;
 using Serilog;
 using System;
@@ -15,26 +16,26 @@ namespace LogVisualizer.Services
     public class GitService
     {
         private const string BRANCH_NAME_HEAD = "refs/heads/";
-        private const string GIT_TEMP_FOLDER = "GitTemp";
 
-        public async Task<bool> CloneTo(string gitRepo, string branch, string floderName, CancellationToken cancellationToken = default)
+        public async Task<bool> CloneTo(string gitRepo, string branch, string folder, CancellationToken cancellationToken = default)
         {
-            var gitTempDirectory = Path.Combine(Global.CurrentAppDataDirectory, GIT_TEMP_FOLDER, floderName);
-            if (!FileOperationsHelper.SafeResetDirectory(gitTempDirectory))
+            if (!FileOperationsHelper.SafeResetDirectory(folder))
             {
+                FileOperationsHelper.SafeDeleteDirectory(folder);
                 return false;
             }
             StringBuilder stringBuilder = new StringBuilder();
             try
             {
                 var cmd = await Cli.Wrap("git")
-                     .WithWorkingDirectory(gitTempDirectory)
+                     .WithWorkingDirectory(folder)
                      .WithArguments(args => args
                      .Add("clone")
                      .Add(gitRepo)
                      .Add("--depth=1")
                      .Add("-b")
                      .Add(branch)
+                     .Add(folder)
                      )
                      .WithStandardErrorPipe(PipeTarget.ToDelegate((msg) =>
                      {
@@ -50,7 +51,8 @@ namespace LogVisualizer.Services
                 if (cmd.ExitCode != 0)
                 {
                     var errorMsg = stringBuilder.ToString();
-                    Log.Error(errorMsg);
+                    Log.Warning(errorMsg);
+                    FileOperationsHelper.SafeDeleteDirectory(folder);
                 }
                 else
                 {
@@ -67,8 +69,9 @@ namespace LogVisualizer.Services
                 {
                     stringBuilder.AppendLine(ex.Message);
                     var errorMsg = stringBuilder.ToString();
-                    Log.Error(errorMsg);
+                    Log.Warning(errorMsg);
                 }
+                FileOperationsHelper.SafeDeleteDirectory(folder);
             }
             return true;
         }
@@ -76,6 +79,11 @@ namespace LogVisualizer.Services
         public async Task<IEnumerable<string>> GetAllOriginBranches(string gitRepo, bool isSimplify = true, CancellationToken cancellationToken = default)
         {
             List<string> branches = new List<string>();
+            if (gitRepo == null)
+            {
+                Log.Information("gitRepo: {StartTime} is null.");
+                return branches;
+            }
             StringBuilder stringBuilder = new StringBuilder();
             try
             {
@@ -116,7 +124,7 @@ namespace LogVisualizer.Services
                 if (cmd.ExitCode != 0)
                 {
                     var errorMsg = stringBuilder.ToString();
-                    Log.Error(errorMsg);
+                    Log.Warning(errorMsg);
                 }
                 else
                 {
@@ -133,23 +141,35 @@ namespace LogVisualizer.Services
                 {
                     stringBuilder.AppendLine(ex.Message);
                     var errorMsg = stringBuilder.ToString();
-                    Log.Error(errorMsg);
+                    Log.Warning(errorMsg);
                 }
             }
             return branches;
         }
 
-        public async Task<string?> GetCurrentBranchName(string gitRepo, CancellationToken cancellationToken = default)
+        public Task<string?> GetLocalBranchName(string folder, TimeSpan timeout)
         {
+            var cancellationTokenSource = new CancellationTokenSource();
+            cancellationTokenSource.CancelAfter((int)timeout.TotalMilliseconds);
+            return GetLocalBranchName(folder, cancellationTokenSource.Token);
+        }
+
+        public async Task<string?> GetLocalBranchName(string folder, CancellationToken cancellationToken = default)
+        {
+            if (folder == null)
+            {
+                Log.Information("gitRepo: {StartTime} is null.");
+                return null;
+            }
             string? branchName = null;
             StringBuilder stringBuilder = new StringBuilder();
             try
             {
                 var cmd = await Cli.Wrap("git")
+                    .WithWorkingDirectory(folder)
                     .WithArguments(args => args
                     .Add("branch")
-                    .Add("--show-current")
-                    .Add(gitRepo))
+                    .Add("--show-current"))
                     .WithStandardOutputPipe(PipeTarget.ToDelegate((branch) =>
                     {
                         branchName = branch;
@@ -168,7 +188,7 @@ namespace LogVisualizer.Services
                 if (cmd.ExitCode != 0)
                 {
                     var errorMsg = stringBuilder.ToString();
-                    Log.Error(errorMsg);
+                    Log.Warning(errorMsg);
                 }
                 else
                 {
@@ -185,10 +205,75 @@ namespace LogVisualizer.Services
                 {
                     stringBuilder.AppendLine(ex.Message);
                     var errorMsg = stringBuilder.ToString();
-                    Log.Error(errorMsg);
+                    Log.Warning(errorMsg);
                 }
             }
             return branchName;
+
+        }
+
+        public async Task<bool> HasGitRepo(string folder, CancellationToken cancellationToken = default)
+        {
+            if (folder == null)
+            {
+                Log.Information("gitRepo: {StartTime} is null.");
+                return false;
+            }
+            bool hasGitRepo = false;
+            StringBuilder stringBuilder = new StringBuilder();
+            try
+            {
+                var cmd = await Cli.Wrap("git")
+                    .WithWorkingDirectory(folder)
+                    .WithArguments(args => args
+                    .Add("rev-parse")
+                    .Add("--is-inside-work-tree"))
+                    .WithStandardOutputPipe(PipeTarget.ToDelegate((branch) =>
+                    {
+                        if (bool.TryParse(branch, out bool result))
+                        {
+                            hasGitRepo = result;
+                        }
+                        else
+                        {
+                            hasGitRepo = false;
+                        }
+                    }))
+                    .WithStandardErrorPipe(PipeTarget.ToDelegate((err) =>
+                    {
+                        stringBuilder.AppendLine(err);
+                    }))
+                    .WithValidation(CommandResultValidation.None)
+                    .ExecuteAsync(cancellationToken);
+                Log.Information("Execute result: {StartTime} {RunTime} {ExitTime} {ExitCode}",
+                    cmd.StartTime,
+                    cmd.RunTime,
+                    cmd.ExitTime,
+                    cmd.ExitCode);
+                if (cmd.ExitCode != 0)
+                {
+                    var errorMsg = stringBuilder.ToString();
+                    Log.Warning(errorMsg);
+                }
+                else
+                {
+                    Log.Information("result:{result}", hasGitRepo);
+                }
+            }
+            catch (Exception ex)
+            {
+                if (cancellationToken.IsCancellationRequested)
+                {
+                    Log.Information("User canceled!");
+                }
+                else
+                {
+                    stringBuilder.AppendLine(ex.Message);
+                    var errorMsg = stringBuilder.ToString();
+                    Log.Warning(errorMsg);
+                }
+            }
+            return hasGitRepo;
 
         }
     }

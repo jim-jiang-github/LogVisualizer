@@ -16,6 +16,10 @@
     "Value": "Open"
   },
   {
+    "Key": "Menu_From_Url",
+    "Value": "From Url"
+  },
+  {
     "Key": "Menu_Exit",
     "Value": "Exit"
   },
@@ -48,16 +52,16 @@
     "Value": "About"
   },
   {
-    "Key": "Upgrader_Title",
-    "Value": "Upgrader"
+    "Key": "Upgrader_Download_Now",
+    "Value": "Download now"
   },
   {
-    "Key": "Upgrader_Upgrade",
-    "Value": "Upgrade now"
+    "Key": "Upgrader_Upgrade_Now",
+    "Value": "Exit and upgrade now"
   },
   {
     "Key": "Upgrader_Upgrade_Next_Startup",
-    "Value": "Upgraded on next startup"
+    "Value": "Upgrade on next startup"
   },
   {
     "Key": "Upgrader_Ignore_This_Version",
@@ -65,7 +69,7 @@
   },
   {
     "Key": "Upgrader_Upgrade_Version_Title",
-    "Value": "New version found: {l_version}"
+    "Value": "Upgrade is available: {l_version}"
   },
   {
     "Key": "Schema_No_Source",
@@ -76,20 +80,64 @@
     "Value": "Filter branches"
   },
   {
-    "Key": "Schema_Creator",
-    "Value": "Create a new schema"
+    "Key": "Schema_Panel_Title",
+    "Value": "Schema setting"
   },
   {
     "Key": "Schema_Creator_Schema_Name",
     "Value": "Schema name:"
   },
   {
+    "Key": "Schema_Creator_Create",
+    "Value": "Create a schema"
+  },
+  {
+    "Key": "Schema_Creator_Schema_Name_Watermark",
+    "Value": "Enter schema name"
+  },
+  {
     "Key": "Schema_Creator_Schema_Repo",
     "Value": "Schema repository:"
   },
   {
+    "Key": "Schema_Creator_Schema_Repo_Watermark",
+    "Value": "Enter schema repository"
+  },
+  {
     "Key": "Schema_Creator_Schema_Branch",
     "Value": "Schema branch:"
+  },
+  {
+    "Key": "Schema_Creator_Schema_Branch_Watermark",
+    "Value": "Enter schema branch"
+  },
+  {
+    "Key": "Schema_Creator_Schema_Name_Valid",
+    "Value": "Schema name cannot be null or while space."
+  },
+  {
+    "Key": "Schema_Creator_Schema_Repo_Valid",
+    "Value": "Schema repository cannot be null or while space."
+  },
+  {
+    "Key": "Schema_Creator_Schema_Branch_Valid",
+    "Value": "Schema branch cannot be null or while space."
+  },
+  {
+    "Key": "Schema_Creator_Schema_Name_Exist",
+    "Value": "There is already an existing schema config."
+  },
+  {
+    "Key": "Schema_Creator_Schema_Name_Error",
+    "Value": "A schema config can't contain any of the following characters:/\\:*?\"<>|"
+  },
+  {
+    "Key": "Schema_Updating",
+    "Value": "Updating\u2026"
+  },
+  {
+    "Key": "Schema_",
+    "Value": "Updating\u2026"
   },
   {
     "Key": "Version",

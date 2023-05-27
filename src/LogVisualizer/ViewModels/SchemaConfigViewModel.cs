@@ -12,25 +12,45 @@ using CommunityToolkit.Mvvm.Input;
 using System.Threading;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using LogVisualizer.Commons;
+using Avalonia.Controls.Shapes;
+using System.IO;
+using CommunityToolkit.Mvvm.Messaging;
+using Avalonia.Controls;
+using System.Collections;
+using LogVisualizer.Models;
 
 namespace LogVisualizer.ViewModels
 {
     public partial class SchemaConfigViewModel : ViewModelBase
     {
-        public partial class SchemaCreate : ViewModelValidator
+        public partial class SchemaCreator : ObservableValidator
         {
-            public class ValidationAttributeImpl : ValidationAttribute 
+            public class SchemaConfigsFolderExistValidation : ValidationAttribute
             {
-                protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
+                public override bool IsValid(object? value)
                 {
-                    return base.IsValid(value, validationContext);
+                    var gitService = DependencyInjectionProvider.GetService<GitService>();
+                    if (value is string folderName)
+                    {
+                        string folder = System.IO.Path.Combine(Global.SchemaConfigFolderRoot, folderName);
+                        if (!Directory.Exists(folder))
+                        {
+                            return true;
+                        }
+                    }
+                    return false;
                 }
             }
-            private SchemaConfigViewModel _owner;
 
-            [RegularExpression(@"^[a-zA-Z0-9_\-\.]+$")]
+            private readonly SchemaConfigViewModel _owner;
+            private readonly GitService _gitService;
+            private readonly DebounceDispatcher _debounceDispatcher;
+            private CancellationTokenSource? _checkRepoCancellationTokenSource;
+
+            [RegularExpression(@"^[a-zA-Z0-9_\-\.]+$", ErrorMessageResourceType = typeof(I18NResource), ErrorMessageResourceName = I18NResource.Schema_Creator_Schema_Name_Error)]
             [NotifyCanExecuteChangedFor(nameof(CreateSchemaCommand))]
-            [ValidationAttributeImpl]
+            [SchemaConfigsFolderExistValidation(ErrorMessageResourceType = typeof(I18NResource), ErrorMessageResourceName = I18NResource.Schema_Creator_Schema_Name_Exist)]
             [Required(ErrorMessageResourceType = typeof(I18NResource), ErrorMessageResourceName = I18NResource.Schema_Creator_Schema_Name_Valid)]
             [ObservableProperty]
             private string? _schemaName = string.Empty;
@@ -45,93 +65,107 @@ namespace LogVisualizer.ViewModels
             [ObservableProperty]
             private string? _schemaBranch = string.Empty;
 
-            public SchemaCreate(SchemaConfigViewModel owner)
+            [ObservableProperty]
+            private bool _isLoading = false;
+
+            [ObservableProperty]
+            private ObservableCollection<string> _allBranches;
+
+            public SchemaCreator(SchemaConfigViewModel owner, GitService gitService)
             {
                 _owner = owner;
+                _gitService = gitService;
+                _allBranches = new ObservableCollection<string>();
+                _debounceDispatcher = new DebounceDispatcher();
             }
 
-            [RelayCommand(CanExecute = nameof(CanCreateSchema))]
-            private async Task CreateSchema(object schemaNameAndRepo)
+            [RelayCommand(IncludeCancelCommand = true, CanExecute = nameof(CanCreateSchema))]
+            private async Task CreateSchema(CancellationToken token = default)
             {
                 if (!HasErrors)
                 {
-                    _owner.IsUpdating = true;
-                    await Task.Delay(5555);
-                    _owner.IsUpdating = false;
+                    _owner.Enabled = true;
+                    string folder = System.IO.Path.Combine(Global.SchemaConfigFolderRoot, SchemaName);
+                    var result = await _gitService.CloneTo(SchemaRepo, SchemaBranch, folder, token);
+                    if (!result)
+                    {
+                        FileOperationsHelper.SafeDeleteDirectory(folder);
+                    }
+                    _owner.Enabled = false;
                 }
-                //ValidateAllProperties();
-                //if (HasErrors)
-                //{
-                //    return;
-                //}
-                //int a = 1;
-                //return;
-                //try
-                //{
-                //    if (schemaNameAndRepo is not ReadOnlyCollection<object> x)
-                //    {
-                //        return;
-                //    }
-                //    string schemaName = (string)x[0];
-                //    string schemaRepo = (string)x[1];
-                //    string schemaBranch = (string)x[2];
-                //    var result = await _gitService.CloneTo(schemaRepo, schemaBranch, schemaName);
-                //}
-                //catch (OperationCanceledException)
-                //{
-                //}
             }
-            private bool CanCreateSchema(object schemaNameAndRepo)
+            private bool CanCreateSchema()
             {
                 ValidateAllProperties();
                 return !HasErrors;
-                return false;
-                if (schemaNameAndRepo is not ReadOnlyCollection<object> x)
+            }
+
+            [RelayCommand]
+            private void FetchBranches()
+            {
+                if (string.IsNullOrWhiteSpace(SchemaRepo))
                 {
-                    return false;
+                    return;
                 }
-                if (x.Count != 3)
+                _checkRepoCancellationTokenSource?.Cancel();
+                _checkRepoCancellationTokenSource = new CancellationTokenSource();
+
+                _debounceDispatcher.Debounce(800, async (x) =>
                 {
-                    return false;
-                }
-                if (x[0] is not string schemaName || x[1] is not string schemaRepo || x[2] is not string schemaBranch)
-                {
-                    return false;
-                }
-                if (string.IsNullOrEmpty(schemaName) || string.IsNullOrEmpty(schemaRepo) || string.IsNullOrEmpty(schemaBranch))
-                {
-                    return false;
-                }
-                return true;
+                    IsLoading = true;
+                    var allBranches = await _gitService.GetAllOriginBranches(SchemaRepo, true, _checkRepoCancellationTokenSource.Token);
+                    AllBranches = new ObservableCollection<string>(allBranches);
+                    IsLoading = false;
+                });
             }
         }
 
         private GitService _gitService;
 
         [ObservableProperty]
-        private bool _isUpdating = false;
+        private bool _enabled = true;
         [ObservableProperty]
         private string? _currentName;
         [ObservableProperty]
-        private bool _needsAttention = false;
+        private bool _hasSomeError = false;
         [ObservableProperty]
         private ObservableCollection<string> _branches;
         [ObservableProperty]
-        private SchemaCreate _create;
+        private ObservableCollection<SchemaConfig> _schemaConfigs;
+        [ObservableProperty]
+        private SchemaConfig? _selectedSchemaConfig;
+        [ObservableProperty]
+        private SchemaCreator _creator;
 
         public SchemaConfigViewModel(GitService gitService)
         {
-            Create = new SchemaCreate(this);
+            Creator = new SchemaCreator(this, gitService);
             _gitService = gitService;
             _branches = new ObservableCollection<string>();
-            NeedsAttention = true;
-            I18NKeys.Schema_No_Source.BindingExpression(this, x => x.CurrentName);
+            _schemaConfigs = new ObservableCollection<SchemaConfig>();
 
-            IsUpdating = true;
-            _ = Task.Run(async () =>
+            LoadSchemaConfigs();
+        }
+
+        private void LoadSchemaConfigs()
+        {
+            var schemaConfigFolders = Directory.GetDirectories(Global.SchemaConfigFolderRoot);
+            foreach (var schemaConfigFolder in schemaConfigFolders)
             {
-                IsUpdating = false;
-            });
+                SchemaConfig schemaConfig = new()
+                {
+                    SchemaName = System.IO.Path.GetFileNameWithoutExtension(schemaConfigFolder)
+                };
+                SchemaConfigs.Add(schemaConfig);
+            }
+            foreach (var schemaConfig in SchemaConfigs)
+            {
+                var schemaConfigFolder = System.IO.Path.Combine(Global.SchemaConfigFolderRoot, schemaConfig.SchemaName);
+                _gitService.GetLocalBranchName(schemaConfigFolder, TimeSpan.FromSeconds(10)).ContinueWith(c =>
+                {
+                    schemaConfig.SchemaBranch = c.Result;
+                });
+            }
         }
     }
 }

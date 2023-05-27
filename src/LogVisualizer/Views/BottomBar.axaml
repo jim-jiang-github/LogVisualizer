@@ -2,7 +2,9 @@
     x:Class="LogVisualizer.Views.BottomBar"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:customControls="clr-namespace:LogVisualizer.CustomControls;assembly=LogVisualizer"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i18n="clr-namespace:LogVisualizer.I18N;assembly=LogVisualizer.I18N"
     xmlns:icon="clr-namespace:Projektanker.Icons.Avalonia;assembly=Projektanker.Icons.Avalonia"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="clr-namespace:LogVisualizer.Views"
@@ -36,6 +38,7 @@
             </Button.Styles>
         </Button>
         <Button
+            Name="ButtonSchema"
             Margin="10,0,0,2"
             Classes="schema"
             Content="{Binding SchemaConfig.CurrentName}">
@@ -46,34 +49,71 @@
                 <Style Selector="Button.schema:pointerover">
                     <Setter Property="Background" Value="#10FFFFFF" />
                 </Style>
+                <Style Selector="Button.schema[IsEnabled=false]">
+                    <Setter Property="Background" Value="#20FFFFFF" />
+                </Style>
                 <Style Selector="Button.schema">
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate>
                                 <Border Background="{TemplateBinding Background}" CornerRadius="2">
                                     <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
-                                        <Grid Margin="10,4,10,4">
-                                            <icon:Icon Value="fa-light fa-cloud-arrow-down" />
+                                        <Grid Margin="10,2,10,4">
+                                            <icon:Icon
+                                                Margin="-8,0,0,0"
+                                                FontSize="18"
+                                                Value="fa-light fa-cloud-arrow-down" />
                                             <Border
-                                                Width="12"
-                                                Height="12"
-                                                Margin="12,0,0,10"
+                                                Width="14"
+                                                Height="14"
+                                                Margin="14,0,0,10"
+                                                Background="#0080FF"
+                                                BorderBrush="White"
+                                                BorderThickness="1"
+                                                CornerRadius="7">
+                                                <TextBlock
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    FontSize="9"
+                                                    Text="{Binding SchemaConfig.SchemaConfigs.Count}"
+                                                    TextAlignment="Center" />
+                                            </Border>
+                                            <Border
+                                                Width="14"
+                                                Height="14"
+                                                Margin="14,0,0,10"
                                                 Background="Red"
                                                 BorderBrush="White"
                                                 BorderThickness="1"
-                                                CornerRadius="6"
-                                                IsVisible="{Binding SchemaConfig.NeedsAttention}">
+                                                CornerRadius="7">
+                                                <Border.IsVisible>
+                                                    <MultiBinding Converter="{x:Static BoolConverters.Or}">
+                                                        <Binding Path="!DataContext.SchemaConfig.SchemaConfigs.Count" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                        <Binding Path="DataContext.SchemaConfig.HasSomeError" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                    </MultiBinding>
+                                                </Border.IsVisible>
                                                 <icon:Icon
-                                                    FontSize="8"
+                                                    FontSize="10"
                                                     Foreground="White"
                                                     Value="fa-duotone fa-exclamation" />
                                             </Border>
+                                            <Border
+                                                Width="14"
+                                                Height="14"
+                                                Margin="14,0,0,10"
+                                                Background="#1f1f1f"
+                                                BorderBrush="White"
+                                                BorderThickness="1"
+                                                CornerRadius="7"
+                                                IsVisible="{Binding !SchemaConfig.Enabled}">
+                                                <icon:Icon
+                                                    Animation="Spin"
+                                                    FontSize="10"
+                                                    Foreground="White"
+                                                    Value="fa-solid fa-spinner" />
+                                            </Border>
+
                                         </Grid>
-                                        <TextBlock
-                                            Margin="0,0,10,0"
-                                            VerticalAlignment="Center"
-                                            Text="{TemplateBinding Content}"
-                                            TextAlignment="Center" />
                                     </StackPanel>
                                 </Border>
                             </ControlTemplate>
@@ -83,7 +123,9 @@
             </Button.Styles>
             <Button.Flyout>
                 <Flyout Placement="Top">
-                    <views:SchemaConfigPanel DataContext="{Binding SchemaConfig}" />
+                    <customControls:FlyoutPanel Title="{i18n:I18NKeyBinding Key=Schema_Panel_Title}">
+                        <views:SchemaConfigPanel DataContext="{Binding SchemaConfig}" />
+                    </customControls:FlyoutPanel>
                 </Flyout>
             </Button.Flyout>
         </Button>

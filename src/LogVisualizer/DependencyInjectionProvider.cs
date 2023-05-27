@@ -17,7 +17,6 @@ namespace LogVisualizer
         {
             _serviceProvider = new ServiceCollection()
                 .AddSingleton<UpgradeService>()
-                .AddSingleton<UpgraderViewModel>()
                 .AddSingleton<GitService>()
                 .AddScoped<MenuBarViewModel>()
                 .AddScoped<MainWindowViewModel>()

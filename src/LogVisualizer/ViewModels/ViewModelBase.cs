@@ -2,7 +2,8 @@
 
 namespace LogVisualizer.ViewModels
 {
-    public class ViewModelBase : ObservableObject
+    [ObservableObject]
+    public partial class ViewModelBase
     {
     }
 }

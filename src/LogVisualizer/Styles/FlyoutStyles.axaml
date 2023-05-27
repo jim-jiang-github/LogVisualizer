@@ -1,0 +1,12 @@
+<Styles xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style Selector="FlyoutPresenter">
+        <Setter Property="MaxWidth" Value="600" />
+        <Setter Property="Background" Value="#2E2E2E" />
+        <Setter Property="BorderBrush" Value="#424242" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="0" />
+        <Setter Property="Padding" Value="0" />
+    </Style>
+
+</Styles>

@@ -49,6 +49,11 @@ namespace LogVisualizer.ViewModels
                 AllowMultiple = true
             });
         }
+
+        [RelayCommand]
+        public async Task FromUrl()
+        {
+        }
         private bool flag;
         [RelayCommand]
         public void Exit()

@@ -4,6 +4,10 @@
     "Value": "取消"
   },
   {
+    "Key": "Common_Confirm",
+    "Value": "确认"
+  },
+  {
     "Key": "Menu_File",
     "Value": "文件"
   },
@@ -21,15 +25,15 @@
   },
   {
     "Key": "Menu_Show_Only_Filtered",
-    "Value": "仅显示筛选行"
+    "Value": "仅显示过滤后的行"
   },
   {
     "Key": "Menu_Filter",
-    "Value": "筛选"
+    "Value": "过滤"
   },
   {
     "Key": "Menu_Add_Filter",
-    "Value": "添加新筛选器"
+    "Value": "添加新过滤器"
   },
   {
     "Key": "Menu_Help",
@@ -61,14 +65,50 @@
   },
   {
     "Key": "Upgrader_Upgrade_Version_Title",
-    "Value": "发现新版本：{l_version}"
+    "Value": "升级可用：{l_version}"
   },
   {
     "Key": "Schema_No_Source",
-    "Value": "没有结构描述源"
+    "Value": "没有模式源"
+  },
+  {
+    "Key": "Schema_Filter_Branches",
+    "Value": "过滤分支"
+  },
+  {
+    "Key": "Schema_Panel_Title",
+    "Value": "模式设置"
+  },
+  {
+    "Key": "Schema_Creator_Schema_Name",
+    "Value": "模式名称："
+  },
+  {
+    "Key": "Schema_Creator_Schema_Name_Watermark",
+    "Value": "输入模式名称"
+  },
+  {
+    "Key": "Schema_Creator_Schema_Repo",
+    "Value": "模式仓库："
+  },
+  {
+    "Key": "Schema_Creator_Schema_Repo_Watermark",
+    "Value": "输入模式仓库"
+  },
+  {
+    "Key": "Schema_Creator_Schema_Branch",
+    "Value": "模式分支："
+  },
+  {
+    "Key": "Schema_Creator_Schema_Branch_Watermark",
+    "Value": "输入模式分支"
+  },
+  {
+    "Key": "Schema_Updating",
+    "Value": "正在更新..."
   },
   {
     "Key": "Version",
-    "Value": "版本（{l_version number}）。"
+    "Value": "版本（{l_version number}）."
   }
 ]

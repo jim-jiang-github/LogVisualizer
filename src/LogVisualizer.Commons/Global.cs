@@ -12,6 +12,10 @@ namespace LogVisualizer.Commons
 
         public const string GITHUB_URL = "https://github.com/jim-jiang-github/LogVisualizer";
 
-        public static string CurrentAppDataDirectory => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), APP_NAME);
+        public static string CurrentAppDataDirectory { get; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), APP_NAME);
+
+        public static string UpgradeResourcesFolder { get; } = Path.Combine(CurrentAppDataDirectory, "UpgraderResources");
+
+        public static string SchemaConfigFolderRoot { get; } = Path.Combine(CurrentAppDataDirectory, "SchemaConfigs");
     }
 }

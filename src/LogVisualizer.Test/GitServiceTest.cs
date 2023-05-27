@@ -13,7 +13,7 @@ namespace LogVisualizer.Test
         }
 
         [Theory]
-        [InlineData(null, null)]
+        [InlineData(null, new string[0])]
         [InlineData("", new string[0])]
         [InlineData("xxxx", new string[0])]
         [InlineData(Global.GITHUB_URL, new string[] { "dev" })]
