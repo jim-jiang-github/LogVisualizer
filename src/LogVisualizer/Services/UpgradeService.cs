@@ -67,26 +67,26 @@ namespace LogVisualizer.Services
 
                 if (result == buttonIgnore)
                 {
-                    notifyUpgradeHandle.NeedRestart = false;
+                    notifyUpgradeHandle.Donwload = false;
                     notifyUpgradeHandle.Ignore = true;
                     notifyUpgradeHandle.Cancel = false;
                     return;
                 }
                 if (result == buttonNext)
                 {
-                    notifyUpgradeHandle.NeedRestart = false;
+                    notifyUpgradeHandle.Donwload = false;
                     notifyUpgradeHandle.Ignore = false;
                     notifyUpgradeHandle.Cancel = false;
                     return;
                 }
                 if (result == buttonDownload)
                 {
-                    notifyUpgradeHandle.NeedRestart = true;
+                    notifyUpgradeHandle.Donwload = true;
                     notifyUpgradeHandle.Ignore = false;
                     notifyUpgradeHandle.Cancel = false;
                     return;
                 }
-                notifyUpgradeHandle.NeedRestart = false;
+                notifyUpgradeHandle.Donwload = false;
                 notifyUpgradeHandle.Ignore = false;
                 notifyUpgradeHandle.Cancel = true;
             }
