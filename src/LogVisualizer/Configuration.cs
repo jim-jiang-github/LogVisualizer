@@ -35,7 +35,7 @@ namespace LogVisualizer
             {
                 return;
             }
-            var configPath = Path.Combine(Global.CurrentAppDataDirectory, CONFIG_FILE_NAME);
+            var configPath = Path.Combine(Global.AppDataDirectory, CONFIG_FILE_NAME);
             if (!File.Exists(configPath))
             {
                 _instance = new Configuration();
@@ -60,7 +60,7 @@ namespace LogVisualizer
 
         public void Save()
         {
-            var configPath = Path.Combine(Global.CurrentAppDataDirectory, CONFIG_FILE_NAME);
+            var configPath = Path.Combine(Global.AppDataDirectory, CONFIG_FILE_NAME);
             string json = JsonSerializer.Serialize(this, new JsonSerializerOptions
             {
                 WriteIndented = true

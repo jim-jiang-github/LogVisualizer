@@ -3,12 +3,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace LogVisualizer.Commons
 {
     public class FileOperationsHelper
     {
+        public static bool IsValidFileName(string name)
+        {
+            string validPathPattern = @"^[^<>:""/\\|?*\x00-\x1F\x7F]+(\.[^<>:""/\\|?*\x00-\x1F\x7F]+)*$";
+            return Regex.IsMatch(name, validPathPattern);
+        }
+
         public static bool SafeResetDirectory(string directory)
         {
             try
