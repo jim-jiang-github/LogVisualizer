@@ -1,6 +1,7 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Controls.Notifications;
 using Avalonia.Threading;
+using LogVisualizer.I18N;
 using MessageBox.Avalonia.DTO;
 using MessageBox.Avalonia.Models;
 using Serilog;
@@ -58,6 +59,22 @@ namespace LogVisualizer.Commons.Notifications
         public static Task<string?> ShowMessageBox(string? content, params MessageBoxButton[] buttons)
         {
             return ShowMessageBox("", content, buttons);
+        }
+
+        public async static Task<bool> ShowComfirmMessageBox(string? content)
+        {
+            var cancel = I18NKeys.Common_Cancel.GetLocalizationRawValue();
+            var confirm = I18NKeys.Common_Confirm.GetLocalizationRawValue();
+            var result = await ShowMessageBox("", content, new[]
+            {
+                new MessageBoxButton(cancel,true),
+                new MessageBoxButton(confirm,true)
+            });
+            if (result == confirm)
+            {
+                return true;
+            }
+            return false;
         }
 
         public static Task<string?> ShowMessageBox(string? title, string? content, params MessageBoxButton[] buttons)

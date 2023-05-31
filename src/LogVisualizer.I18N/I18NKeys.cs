@@ -30,6 +30,8 @@
         Common_Cancel,
         /// <summary>Confirm</summary>
         Common_Confirm,
+        /// <summary>Are you sure you want to delete the '{l_name}'? This action cannot be undone!</summary>
+        Common_Confirm_Delete,
         /// <summary>File</summary>
         Menu_File,
         /// <summary>Open</summary>
@@ -50,6 +52,8 @@
         Menu_Help,
         /// <summary>Check for upgrade</summary>
         Menu_Check_Upgrade,
+        /// <summary>Open App data folder</summary>
+        Menu_Open_App_Data_Folder,
         /// <summary>About</summary>
         Menu_About,
         /// <summary>Download now</summary>
@@ -143,6 +147,15 @@
                 return I18NKeys.Common_Confirm.GetLocalizationRawValue();
             }
         }
+        /// <summary>Are you sure you want to delete the '{l_name}'? This action cannot be undone!</summary>
+        public const string Common_Confirm_Delete = "Common_Confirm_DeleteSource";
+        public static string Common_Confirm_DeleteSource
+        {
+            get
+            {
+                return I18NKeys.Common_Confirm_Delete.GetLocalizationRawValue();
+            }
+        }
         /// <summary>File</summary>
         public const string Menu_File = "Menu_FileSource";
         public static string Menu_FileSource
@@ -231,6 +244,15 @@
             get
             {
                 return I18NKeys.Menu_Check_Upgrade.GetLocalizationRawValue();
+            }
+        }
+        /// <summary>Open App data folder</summary>
+        public const string Menu_Open_App_Data_Folder = "Menu_Open_App_Data_FolderSource";
+        public static string Menu_Open_App_Data_FolderSource
+        {
+            get
+            {
+                return I18NKeys.Menu_Open_App_Data_Folder.GetLocalizationRawValue();
             }
         }
         /// <summary>About</summary>

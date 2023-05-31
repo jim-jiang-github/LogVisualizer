@@ -19,6 +19,8 @@ using CommunityToolkit.Mvvm.Messaging;
 using Avalonia.Controls;
 using System.Collections;
 using LogVisualizer.Models;
+using LogVisualizer.Commons.Notifications;
+using Avalonia.Threading;
 
 namespace LogVisualizer.ViewModels
 {
@@ -48,7 +50,7 @@ namespace LogVisualizer.ViewModels
             private readonly DebounceDispatcher _debounceDispatcher;
             private CancellationTokenSource? _checkRepoCancellationTokenSource;
 
-            [RegularExpression(@"^[a-zA-Z0-9_\-\.]+$", ErrorMessageResourceType = typeof(I18NResource), ErrorMessageResourceName = I18NResource.Schema_Creator_Schema_Name_Error)]
+            [RegularExpression(@"^[^<>:""/\\|?*\x00-\x1F\x7F]+(\.[^<>:""/\\|?*\x00-\x1F\x7F]+)*$", ErrorMessageResourceType = typeof(I18NResource), ErrorMessageResourceName = I18NResource.Schema_Creator_Schema_Name_Error)]
             [NotifyCanExecuteChangedFor(nameof(CreateSchemaCommand))]
             [SchemaConfigsFolderExistValidation(ErrorMessageResourceType = typeof(I18NResource), ErrorMessageResourceName = I18NResource.Schema_Creator_Schema_Name_Exist)]
             [Required(ErrorMessageResourceType = typeof(I18NResource), ErrorMessageResourceName = I18NResource.Schema_Creator_Schema_Name_Valid)]
@@ -86,7 +88,7 @@ namespace LogVisualizer.ViewModels
                 {
                     _owner.Enabled = true;
                     string folder = System.IO.Path.Combine(Global.SchemaConfigFolderRoot, SchemaName);
-                    var result = await _gitService.CloneTo(SchemaRepo, SchemaBranch, folder, token);
+                    var result = await _gitService.Clone(SchemaRepo, SchemaBranch, folder, token);
                     if (!result)
                     {
                         FileOperationsHelper.SafeDeleteDirectory(folder);
@@ -113,7 +115,7 @@ namespace LogVisualizer.ViewModels
                 _debounceDispatcher.Debounce(800, async (x) =>
                 {
                     IsLoading = true;
-                    var allBranches = await _gitService.GetAllOriginBranches(SchemaRepo, true, _checkRepoCancellationTokenSource.Token);
+                    var allBranches = await _gitService.GetAllOriginBranches(SchemaRepo, _checkRepoCancellationTokenSource.Token);
                     AllBranches = new ObservableCollection<string>(allBranches);
                     IsLoading = false;
                 });
@@ -121,6 +123,8 @@ namespace LogVisualizer.ViewModels
         }
 
         private GitService _gitService;
+        private CancellationTokenSource? _filterBranchesCancellationTokenSource;
+        private readonly DebounceDispatcher _debounceDispatcher;
 
         [ObservableProperty]
         private bool _enabled = true;
@@ -129,7 +133,7 @@ namespace LogVisualizer.ViewModels
         [ObservableProperty]
         private bool _hasSomeError = false;
         [ObservableProperty]
-        private ObservableCollection<string> _branches;
+        private ObservableCollection<string> _filterBranches;
         [ObservableProperty]
         private ObservableCollection<SchemaConfig> _schemaConfigs;
         [ObservableProperty]
@@ -141,10 +145,23 @@ namespace LogVisualizer.ViewModels
         {
             Creator = new SchemaCreator(this, gitService);
             _gitService = gitService;
-            _branches = new ObservableCollection<string>();
+            _filterBranches = new ObservableCollection<string>();
             _schemaConfigs = new ObservableCollection<SchemaConfig>();
+            _debounceDispatcher = new DebounceDispatcher();
 
             LoadSchemaConfigs();
+        }
+
+        private void StartCheckForSchemaUpdate()
+        {
+            DispatcherTimer dispatcherTimer = new DispatcherTimer(TimeSpan.FromSeconds(10), DispatcherPriority.ApplicationIdle, async (s, e) =>
+            {
+                foreach (var schemaConfig in SchemaConfigs)
+                {
+                    schemaConfig.HasUpdate = await _gitService.HasUpdate(schemaConfig.SchemaConfigFolder);
+                }
+            });
+            dispatcherTimer.Start();
         }
 
         private void LoadSchemaConfigs()
@@ -158,13 +175,34 @@ namespace LogVisualizer.ViewModels
                 };
                 SchemaConfigs.Add(schemaConfig);
             }
-            foreach (var schemaConfig in SchemaConfigs)
+            Task.Run(async () =>
             {
-                var schemaConfigFolder = System.IO.Path.Combine(Global.SchemaConfigFolderRoot, schemaConfig.SchemaName);
-                _gitService.GetLocalBranchName(schemaConfigFolder, TimeSpan.FromSeconds(10)).ContinueWith(c =>
+                foreach (var schemaConfig in SchemaConfigs)
                 {
-                    schemaConfig.SchemaBranch = c.Result;
-                });
+                    schemaConfig.SchemaBranch = await _gitService.GetLocalBranchName(schemaConfig.SchemaConfigFolder, TimeSpan.FromSeconds(5));
+                    schemaConfig.SchemaRepo = await _gitService.GetFolderGitRepo(schemaConfig.SchemaConfigFolder, TimeSpan.FromSeconds(5));
+                    if (schemaConfig.SchemaRepo == null)
+                    {
+                        return;
+                    }
+                    var branches = await _gitService.GetAllOriginBranches(schemaConfig.SchemaRepo, TimeSpan.FromSeconds(60));
+                    schemaConfig.FilterBranches = new ObservableCollection<string>(branches);
+                }
+                StartCheckForSchemaUpdate();
+            });
+        }
+
+        [RelayCommand]
+        private async Task DeleteSchemaConfig(SchemaConfig schemaConfig)
+        {
+            var content = I18NKeys.Common_Confirm_Delete.GetLocalizationString(schemaConfig.SchemaName);
+            if (await Notify.ShowComfirmMessageBox(content))
+            {
+                string folder = System.IO.Path.Combine(Global.SchemaConfigFolderRoot, schemaConfig.SchemaName);
+                if (FileOperationsHelper.SafeDeleteDirectory(folder))
+                {
+                    SchemaConfigs.Remove(schemaConfig);
+                }
             }
         }
     }

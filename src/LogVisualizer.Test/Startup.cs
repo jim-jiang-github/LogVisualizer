@@ -16,7 +16,6 @@ namespace LogVisualizer.Test
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<UpgradeService>();
-            services.AddSingleton<UpgraderViewModel>();
             services.AddSingleton<GitService>();
             services.AddScoped<MenuBarViewModel>();
             services.AddScoped<MainWindowViewModel>();

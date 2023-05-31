@@ -106,14 +106,17 @@
                     </Style>
                 </Expander.Styles>
                 <Expander.Header>
-                    <AutoCompleteBox
-                        Height="30"
-                        CornerRadius="0"
-                        FilterMode="Contains"
-                        IsEnabled="{Binding SelectedSchemaConfig, Converter={x:Static ObjectConverters.IsNotNull}}"
-                        IsVisible="{Binding ElementName=ExpanderSchema, Path=!IsExpanded}"
-                        ItemsSource="{Binding Branches}"
-                        Watermark="{i18n:I18NKeyBinding Key=Schema_Filter_Branches}" />
+                    <ComboBox Height="30" ItemsSource="{Binding SelectedSchemaConfig.FilterBranches}">
+                        <ComboBox.IsVisible>
+                            <MultiBinding Converter="{x:Static BoolConverters.And}">
+                                <Binding ElementName="ExpanderSchema" Path="!IsExpanded" />
+                                <Binding
+                                    Converter="{x:Static ObjectConverters.IsNotNull}"
+                                    Path="DataContext.SelectedSchemaConfig"
+                                    RelativeSource="{RelativeSource TemplatedParent}" />
+                            </MultiBinding>
+                        </ComboBox.IsVisible>
+                    </ComboBox>
                 </Expander.Header>
                 <Grid
                     Margin="10,10,10,10"
@@ -200,8 +203,14 @@
             SelectedItem="{Binding SelectedSchemaConfig}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <DockPanel>
-                        <Grid ColumnDefinitions="*,30">
+                    <DockPanel IsEnabled="{Binding !!DataContext.FilterBranches.Count, RelativeSource={RelativeSource FindAncestor, AncestorType=ListBoxItem}}">
+                        <ProgressBar
+                            Height="4"
+                            Margin="0,0,0,-10"
+                            DockPanel.Dock="Bottom"
+                            IsIndeterminate="True"
+                            IsVisible="{Binding !DataContext.FilterBranches.Count, RelativeSource={RelativeSource FindAncestor, AncestorType=ListBoxItem}}" />
+                        <Grid ColumnDefinitions="*,30,30">
                             <Grid Grid.Column="0" RowDefinitions="*,*">
                                 <TextBlock Grid.Row="0" Text="{Binding SchemaName}" />
                                 <TextBlock Grid.Row="1" Text="{Binding SchemaBranch}" />
@@ -209,25 +218,64 @@
                             <Button
                                 Grid.Column="1"
                                 Width="30"
-                                Height="30">
+                                Height="30"
+                                Command="{Binding DataContext.DeleteSchemaConfigCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                CommandParameter="{Binding}">
                                 <Button.Styles>
                                     <Style Selector="Button">
                                         <Setter Property="Background" Value="Transparent" />
+                                        <Setter Property="Foreground" Value="White" />
                                     </Style>
                                     <Style Selector="Button:pointerover">
-                                        <Setter Property="Background" Value="#10FFFFFF" />
-                                    </Style>
-                                    <Style Selector="Button[IsEnabled=false]">
-                                        <Setter Property="Background" Value="#20FFFFFF" />
+                                        <Setter Property="Background" Value="#88FFFFFF" />
+                                        <Setter Property="Foreground" Value="#88FF0000" />
                                     </Style>
                                     <Style Selector="Button">
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate>
-                                                    <Border Background="{TemplateBinding Background}" CornerRadius="2">
+                                                    <Border
+                                                        Padding="4"
+                                                        Background="{TemplateBinding Background}"
+                                                        CornerRadius="2">
+                                                        <icon:Icon
+                                                            Animation="Spin"
+                                                            FontSize="20"
+                                                            Foreground="{TemplateBinding Foreground}"
+                                                            Value="fa-solid fa-arrows-rotate" />
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </Button.Styles>
+                            </Button>
+                            <Button
+                                Grid.Column="2"
+                                Width="30"
+                                Height="30"
+                                Command="{Binding DataContext.DeleteSchemaConfigCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                CommandParameter="{Binding}">
+                                <Button.Styles>
+                                    <Style Selector="Button">
+                                        <Setter Property="Background" Value="Transparent" />
+                                        <Setter Property="Foreground" Value="White" />
+                                    </Style>
+                                    <Style Selector="Button:pointerover">
+                                        <Setter Property="Background" Value="#88FFFFFF" />
+                                        <Setter Property="Foreground" Value="#88FF0000" />
+                                    </Style>
+                                    <Style Selector="Button">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate>
+                                                    <Border
+                                                        Padding="4"
+                                                        Background="{TemplateBinding Background}"
+                                                        CornerRadius="2">
                                                         <icon:Icon
                                                             FontSize="20"
-                                                            Foreground="White"
+                                                            Foreground="{TemplateBinding Foreground}"
                                                             Value="fa-solid fa-trash" />
                                                     </Border>
                                                 </ControlTemplate>
@@ -236,6 +284,17 @@
                                     </Style>
                                 </Button.Styles>
                             </Button>
+                            <Border
+                                Width="14"
+                                Height="14"
+                                Background="Red"
+                                CornerRadius="7"
+                                IsVisible="{Binding HasUpdate}">
+                                <icon:Icon
+                                    FontSize="20"
+                                    Foreground="White"
+                                    Value="fa-solid fa-circle-up" />
+                            </Border>
                         </Grid>
                     </DockPanel>
                 </DataTemplate>

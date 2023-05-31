@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using static LogVisualizer.Commons.Extensions.SerializeExtension;
 
 namespace LogVisualizer
 {
-    public class Configuration
+    public class Configuration : IJsonSerializable
     {
         public class SchemaConfiguration
         {
@@ -36,24 +37,8 @@ namespace LogVisualizer
                 return;
             }
             var configPath = Path.Combine(Global.AppDataDirectory, CONFIG_FILE_NAME);
-            if (!File.Exists(configPath))
-            {
-                _instance = new Configuration();
-                return;
-            }
-            try
-            {
-                var json = File.ReadAllText(configPath);
-                var configuration = JsonSerializer.Deserialize<Configuration>(json);
-                _instance = configuration ?? new Configuration();
-                return;
-            }
-            catch (Exception ex)
-            {
-                Log.Error("Configuration load from json error hanppened:{ex} raw json:{json}", ex, configPath);
-                _instance = new Configuration();
-                return;
-            }
+            var configuration = IJsonSerializable.LoadFromJsonFile<Configuration>(configPath);
+            _instance = configuration ?? new Configuration();
         }
 
         public SchemaConfiguration? Schema { get; set; }
@@ -61,11 +46,7 @@ namespace LogVisualizer
         public void Save()
         {
             var configPath = Path.Combine(Global.AppDataDirectory, CONFIG_FILE_NAME);
-            string json = JsonSerializer.Serialize(this, new JsonSerializerOptions
-            {
-                WriteIndented = true
-            });
-            File.WriteAllText(configPath, json);
+            this.SaveAsJson(configPath);
         }
     }
 }

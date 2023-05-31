@@ -8,6 +8,10 @@
     "Value": "Confirm"
   },
   {
+    "Key": "Common_Confirm_Delete",
+    "Value": "Are you sure you want to delete the '{l_name}'? This action cannot be undone!"
+  },
+  {
     "Key": "Menu_File",
     "Value": "File"
   },
@@ -46,6 +50,10 @@
   {
     "Key": "Menu_Check_Upgrade",
     "Value": "Check for upgrade"
+  },
+  {
+    "Key": "Menu_Open_App_Data_Folder",
+    "Value": "Open App data folder"
   },
   {
     "Key": "Menu_About",

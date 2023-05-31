@@ -45,6 +45,7 @@
             <NativeMenuItem Header="{i18n:I18NKeyBinding Key=Menu_Help}">
                 <NativeMenuItem.Menu>
                     <NativeMenu>
+                        <NativeMenuItem Command="{Binding MenuBar.OpenAppDataFolderCommand}" Header="{i18n:I18NKeyBinding Key=Menu_Open_App_Data_Folder}" />
                         <NativeMenuItem Command="{Binding MenuBar.CheckForUpgradeCommand}" Header="{i18n:I18NKeyBinding Key=Menu_Check_Upgrade}" />
                         <NativeMenuItem Command="{Binding MenuBar.AboutCommand}" Header="{i18n:I18NKeyBinding Key=Menu_About}" />
                     </NativeMenu>

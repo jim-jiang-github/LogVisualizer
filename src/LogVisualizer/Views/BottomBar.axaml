@@ -20,7 +20,10 @@
                     <Setter Property="Background" Value="Transparent" />
                 </Style>
                 <Style Selector="Button:pointerover">
-                    <Setter Property="Background" Value="#33FFFFFF" />
+                    <Setter Property="Background" Value="#10FFFFFF" />
+                </Style>
+                <Style Selector="Button[IsEnabled=false]">
+                    <Setter Property="Background" Value="#20FFFFFF" />
                 </Style>
                 <Style Selector="Button">
                     <Setter Property="Template">
@@ -28,7 +31,39 @@
                             <ControlTemplate>
                                 <Border Background="{TemplateBinding Background}" CornerRadius="2">
                                     <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
-                                        <icon:Icon Margin="10,4,10,4" Value="fa-light fa-bell" />
+                                        <Grid Margin="10,2,10,4">
+                                            <icon:Icon Margin="-8,0,0,0" Value="fa-light fa-bell" />
+                                            <Border
+                                                Width="12"
+                                                Height="12"
+                                                Margin="10,-4,0,10"
+                                                Background="#0080FF"
+                                                BorderBrush="White"
+                                                BorderThickness="1"
+                                                CornerRadius="6">
+                                                <TextBlock
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    FontSize="9"
+                                                    Text="3"
+                                                    TextAlignment="Center" />
+                                            </Border>
+                                            <Border
+                                                Width="12"
+                                                Height="12"
+                                                Margin="10,18,0,10"
+                                                Background="Red"
+                                                BorderBrush="White"
+                                                BorderThickness="1"
+                                                CornerRadius="6">
+                                                <TextBlock
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    FontSize="9"
+                                                    Text="1"
+                                                    TextAlignment="Center" />
+                                            </Border>
+                                        </Grid>
                                     </StackPanel>
                                 </Border>
                             </ControlTemplate>
@@ -38,7 +73,6 @@
             </Button.Styles>
         </Button>
         <Button
-            Name="ButtonSchema"
             Margin="10,0,0,2"
             Classes="schema"
             Content="{Binding SchemaConfig.CurrentName}">
@@ -112,7 +146,6 @@
                                                     Foreground="White"
                                                     Value="fa-solid fa-spinner" />
                                             </Border>
-
                                         </Grid>
                                     </StackPanel>
                                 </Border>

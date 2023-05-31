@@ -80,6 +80,18 @@ namespace LogVisualizer.ViewModels
         }
 
         [RelayCommand]
+        public void OpenAppDataFolder()
+        {
+            Process process = new Process();
+            process.StartInfo = new ProcessStartInfo
+            {
+                FileName = Global.AppDataDirectory,
+                UseShellExecute = true
+            };
+            process.Start();
+        }
+
+        [RelayCommand]
         public void CheckForUpgrade()
         {
             _upgradeService?.CheckForUpgrade(true);
