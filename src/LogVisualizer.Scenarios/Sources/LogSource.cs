@@ -7,13 +7,12 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using LogVisualizer.Scenarios.Convertors;
 using LogVisualizer.Scenarios.Schemas.Logs;
 
 namespace LogVisualizer.Scenarios.Sources
 {
     internal abstract class LogSource<TBlockSchema, TColumnHeadSchema, TCellSchema> :
-        IBlockCellFinder,
+        ICellFinder,
         ILogSource
         where TBlockSchema : SchemaLog<TBlockSchema, TColumnHeadSchema, TCellSchema>.SchemaBlock, new()
         where TColumnHeadSchema : SchemaLog<TBlockSchema, TColumnHeadSchema, TCellSchema>.SchemaColumnHead, new()
@@ -39,7 +38,7 @@ namespace LogVisualizer.Scenarios.Sources
             _stream = stream;
             _schemaLog = schemaLog;
             _encoding = Encoding.GetEncoding(schemaLog.EncodingName);
-            _convertorProvider = new CellConvertorProvider(schemaLog.Convertors);
+            _convertorProvider = new CellConvertorProvider(this, schemaLog.Convertors);
             Filter = new LogFilter();
         }
         protected void Init()
@@ -51,14 +50,13 @@ namespace LogVisualizer.Scenarios.Sources
             }
             _totalCount = GetTotalCount(this);
             _logContent = CreateContentSource(this);
-            _convertorProvider.Init(this);
         }
         protected abstract BlockSource CreateBlockSource(
             TBlockSchema block);
         protected abstract int GetTotalCount(
-            IBlockCellFinder blockCellFinder);
+            ICellFinder cellFinder);
         protected abstract ContentSource CreateContentSource(
-            IBlockCellFinder blockCellFinder);
+            ICellFinder cellFinder);
         protected void HandleContentCellValue(SchemaLog<TBlockSchema, TColumnHeadSchema, TCellSchema>.SchemaColumn schemaColumn, object cell)
         {
             //if (schemaColumn.Enumeratable)
@@ -67,8 +65,8 @@ namespace LogVisualizer.Scenarios.Sources
             //    _wordsCollection.AppendFromString(cellValue);
             //}
         }
-        #region IBlockCellFinder
-        public object? GetBlockCellValue(string recursivePath)
+        #region ICellFinder
+        public object? GetCellValue(string recursivePath)
         {
             var paths = recursivePath.Split(".");
             return GetBlockCellValue(paths);

@@ -30,4 +30,16 @@
     <ProjectReference Include="..\LogVisualizer\LogVisualizer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Samples\**">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Samples\1\Scenarios\schema_log.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

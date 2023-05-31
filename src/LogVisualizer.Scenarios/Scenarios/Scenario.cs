@@ -16,9 +16,6 @@ namespace LogVisualizer.Scenarios.Scenarios
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        private const string SCENARIOS_FOLDER = "Scenarios";
-        private static readonly string _scenarioDirectory = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? string.Empty, SCENARIOS_FOLDER);
-
         private LogLoader? _streamLoader;
         private string? _schemaLogPath;
 
@@ -35,23 +32,23 @@ namespace LogVisualizer.Scenarios.Scenarios
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        public bool Init()
+        public bool Init(string scenariosFolder)
         {
-            if (!Directory.Exists(_scenarioDirectory))
+            if (!Directory.Exists(scenariosFolder))
             {
                 return false;
             }
-            var files = Directory.GetFiles(_scenarioDirectory);
+            var files = Directory.GetFiles(scenariosFolder);
             var schemaTypeMap = files.ToDictionary(f => Schema.GetSchemaTypeFromJsonFile(f), f => f);
             var schemaScenarioCount = schemaTypeMap.Count(x => x.Key == SchemaType.Scenario);
             if (schemaScenarioCount == 0)
             {
-                Log.Warning("Can not found schemaScenario in {scenarioDirectory}", _scenarioDirectory);
+                Log.Warning("Can not found schemaScenario in {scenarioDirectory}", scenariosFolder);
                 return false;
             }
             if (schemaScenarioCount > 1)
             {
-                Log.Warning("Found multiple schemaScenario in {scenarioDirectory}", _scenarioDirectory);
+                Log.Warning("Found multiple schemaScenario in {scenarioDirectory}", scenariosFolder);
                 return false;
             }
             var schemaScenarioPath = schemaTypeMap.FirstOrDefault(x => x.Key == SchemaType.Scenario).Value;
@@ -66,7 +63,7 @@ namespace LogVisualizer.Scenarios.Scenarios
                 Log.Warning("Schema scenario do not have schema log name");
                 return false;
             }
-            var schemaLogPath = Path.Combine(_scenarioDirectory, schemaScenario.SchemaLogName);
+            var schemaLogPath = Path.Combine(scenariosFolder, schemaScenario.SchemaLogName);
             var schemaLogContent = IJsonSerializable.LoadContentFromJsonFile(schemaLogPath);
             if (schemaLogContent == null)
             {
@@ -80,7 +77,7 @@ namespace LogVisualizer.Scenarios.Scenarios
                 return false;
             }
             var logFileLoaderType = SchemaLog.GetLogFileLoaderTypeFromJsonContent(schemaLogContent);
-            var streamLoader = LogLoader.GetLoader(logFileLoaderType);
+            var streamLoader = LogLoaderProvider.GetLoader(logFileLoaderType);
             if (streamLoader == null)
             {
                 Log.Warning("Can not load stream from json file by {loader} in {schemaLogContent}", streamLoader, schemaLogContent);

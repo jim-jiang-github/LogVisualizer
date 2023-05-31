@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace LogVisualizer.Scenarios.Sources
 {
-    internal interface IBlockCellFinder
+    internal interface ICellFinder
     {
-        object? GetBlockCellValue(string recursivePath);
+        object? GetCellValue(string recursivePath);
     }
 }

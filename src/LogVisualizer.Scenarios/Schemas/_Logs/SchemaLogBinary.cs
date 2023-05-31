@@ -62,18 +62,18 @@ namespace LogVisualizer.Scenarios.Schemas.Logs
             var timeConvertor = new SchemaConvertor()
             {
                 Name = "Time",
-                Type = SchemaConvertorType.Math,
+                Type = ConvertorType.Math,
                 Expression = "(long){Summary.StartTime}*1000+{Summary.StartTimeMS}+{CellValue}",
                 ContinueWith = new SchemaConvertor()
                 {
-                    Type = SchemaConvertorType.Long2Time,
+                    Type = ConvertorType.Long2Time,
                     Expression = "yyyy-MM-dd HH:mm:ss,fff"
                 }
             };
             var levelConvertor = new SchemaConvertor()
             {
                 Name = "Level",
-                Type = SchemaConvertorType.Enum,
+                Type = ConvertorType.Enum,
                 Expression = "0:DEBUG,1:INFO,2:WARNING,3:ERROR"
             };
             Convertors.Add(timeConvertor);

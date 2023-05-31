@@ -34,7 +34,7 @@ namespace LogVisualizer.Scenarios.Sources
                 Log.Error("SchemaLog {AvailableExtensions} not available", string.Join(",", schemaLog.SupportedExtensions));
                 return null;
             }
-            var streamLoader = LogLoader.GetLoader(schemaLog.LoaderType);
+            var streamLoader = LogLoaderProvider.GetLoader(schemaLog.LoaderType);
             if (streamLoader == null)
             {
                 Log.Error("{File} can not find stream loader {Type}", logFilePath, schemaLog.LoaderType);

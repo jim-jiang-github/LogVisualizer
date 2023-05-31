@@ -9,17 +9,15 @@ namespace LogVisualizer.Test
     public class ScenarioTest
     {
         [Theory]
-        [InlineData("C:\\Users\\Jim.Jiang\\Downloads\\RoomsHost-20230529_102210777_pid-14704\\RoomsHost-20230529_102210777_pid-14704.log", "C:\\Users\\Jim.Jiang\\AppData\\Roaming\\Microsoft\\Windows\\Templates\\LogVisualizer\\TestFolder\\Schemas\\schema_log.json", true)]
+        [InlineData(@"Samples\1\1.log", @"Samples\1\Scenarios", 12)]
         //[InlineData("xxxx", false)]
-        public async Task Pull(string logFilePath, string schemaLogPath, bool expected)
+        public async Task Pull(string logFilePath, string scenariosFolder, int rowCount)
         {
-            //SchemaScenario schemaScenario = new SchemaScenario();
-            //schemaScenario.SaveAsDefault();
             Scenario scenario = new Scenario();
-            scenario.Init();
-            var asd = scenario.LoadLogSource(logFilePath);
-
-            //Assert.Equal(expected, result);
+            scenario.Init(scenariosFolder);
+            var result = scenario.LoadLogSource(logFilePath);
+            Assert.True(result);
+            Assert.Equal(scenario.LogSource?.TotalRowsCount, rowCount);
         }
     }
 }

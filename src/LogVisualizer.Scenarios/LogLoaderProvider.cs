@@ -2,29 +2,19 @@
 
 namespace LogVisualizer.Scenarios
 {
-    internal abstract class LogLoader
+    internal class LogLoaderProvider
     {
+        #region InnerClass
         internal enum LogLoaderType
         {
             Unknow,
             Txt,
             MemoryMapped,
         }
-
-        public static LogLoader? GetLoader(LogLoaderType loaderType)
+        internal abstract class LogLoader
         {
-            switch (loaderType)
-            {
-                case LogLoaderType.Txt:
-                    return new StreamLoaderText();
-                case LogLoaderType.MemoryMapped:
-                    return new StreamLoaderMemoryMapped();
-                default:
-                    return null;
-            }
+            public abstract Stream Load(string filePath);
         }
-
-        #region InnerClass
         private class StreamLoaderMemoryMapped : LogLoader
         {
             public override Stream Load(string filePath)
@@ -43,7 +33,17 @@ namespace LogVisualizer.Scenarios
             }
         }
         #endregion
-
-        public abstract Stream Load(string filePath);
+        public static LogLoader? GetLoader(LogLoaderType loaderType)
+        {
+            switch (loaderType)
+            {
+                case LogLoaderType.Txt:
+                    return new StreamLoaderText();
+                case LogLoaderType.MemoryMapped:
+                    return new StreamLoaderMemoryMapped();
+                default:
+                    return null;
+            }
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace LogVisualizer.Scenarios.Schemas.Logs
     {
         public string Name { get; set; } = string.Empty;
         [JsonConverter(typeof(StringEnumConverter))]
-        public SchemaConvertorType Type { get; set; }
+        public ConvertorType Type { get; set; }
         public string? Expression { get; set; }
         public SchemaConvertor? ContinueWith { get; set; }
     }

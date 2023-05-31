@@ -10,7 +10,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using LogVisualizer.Scenarios.Commons;
-using LogVisualizer.Scenarios.Convertors;
 using LogVisualizer.Scenarios.Schemas.Logs;
 
 namespace LogVisualizer.Scenarios.Sources
@@ -66,7 +65,7 @@ namespace LogVisualizer.Scenarios.Sources
             return new BlockSource(block.Name, blockCells);
         }
 
-        protected override int GetTotalCount(IBlockCellFinder blockCellFinder)
+        protected override int GetTotalCount(ICellFinder cellFinder)
         {
             if (_readLinesIterator == null)
             {
@@ -98,7 +97,7 @@ namespace LogVisualizer.Scenarios.Sources
         }
 
         protected override ContentSource CreateContentSource(
-            IBlockCellFinder blockCellFinder)
+            ICellFinder cellFinder)
         {
             if (_lines == null)
             {

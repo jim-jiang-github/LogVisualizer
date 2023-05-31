@@ -44,7 +44,7 @@ namespace LogVisualizer.Scenarios.Schemas.Logs
             var timeConvertor = new SchemaConvertor()
             {
                 Name = "Time",
-                Type = SchemaConvertorType.Time2Time,
+                Type = ConvertorType.Time2Time,
                 Expression = "[MM/dd/yy HH:mm:ss.fff][yyyy-MM-dd HH:mm:ss,fff]"
             };
             Convertors.Add(timeConvertor);

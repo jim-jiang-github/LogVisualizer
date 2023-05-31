@@ -6,7 +6,6 @@ using System.Linq;
 using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
-using LogVisualizer.Scenarios.Convertors;
 
 namespace LogVisualizer.Scenarios.Sources
 {

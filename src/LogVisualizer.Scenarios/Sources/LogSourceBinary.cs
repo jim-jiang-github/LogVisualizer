@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using LogVisualizer.Scenarios.Convertors;
 using LogVisualizer.Scenarios.Schemas.Logs;
 using static LogVisualizer.Scenarios.Schemas.Logs.SchemaLogBinary;
 
@@ -45,7 +44,7 @@ namespace LogVisualizer.Scenarios.Sources
             return new BlockSource(block.Name, blockCells);
         }
 
-        protected override int GetTotalCount(IBlockCellFinder blockCellFinder)
+        protected override int GetTotalCount(ICellFinder cellFinder)
         {
             if (_binaryReader == null)
             {
@@ -60,7 +59,7 @@ namespace LogVisualizer.Scenarios.Sources
             }
             else
             {
-                var cellValue = blockCellFinder.GetBlockCellValue(rowCountParser);
+                var cellValue = cellFinder.GetCellValue(rowCountParser);
                 if (cellValue != null && int.TryParse(cellValue.ToString(), out int rowCountFromPath))
                 {
                     rowCount = rowCountFromPath;
@@ -69,7 +68,7 @@ namespace LogVisualizer.Scenarios.Sources
             return rowCount;
         }
 
-        protected override ContentSource CreateContentSource(IBlockCellFinder blockCellFinder)
+        protected override ContentSource CreateContentSource(ICellFinder cellFinder)
         {
             if (_binaryReader == null)
             {
