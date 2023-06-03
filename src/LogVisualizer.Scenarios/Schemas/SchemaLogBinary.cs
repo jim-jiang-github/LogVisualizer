@@ -7,7 +7,7 @@ using System.IO;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json;
 
-namespace LogVisualizer.Scenarios.Schemas.Logs
+namespace LogVisualizer.Scenarios.Schemas
 {
     internal class SchemaLogBinary :
         SchemaLog<SchemaLogBinary.SchemaBlockBinary,

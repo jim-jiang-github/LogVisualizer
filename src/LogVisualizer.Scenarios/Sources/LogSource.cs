@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using LogVisualizer.Scenarios.Schemas.Logs;
+using LogVisualizer.Scenarios.Schemas;
 
 namespace LogVisualizer.Scenarios.Sources
 {
@@ -25,9 +26,9 @@ namespace LogVisualizer.Scenarios.Sources
         protected readonly CellConvertorProvider _convertorProvider;
 
         private readonly List<BlockSource> _blockSources = new();
-        private int _totalCount = 0;
         private ContentSource? _logContent;
         private readonly WordsCollection _wordsCollection = new();
+        private ReadonlyItemCollection _readonlyItemCollection;
         ~LogSource()
         {
 
@@ -48,13 +49,11 @@ namespace LogVisualizer.Scenarios.Sources
                 var blockSource = CreateBlockSource(block);
                 _blockSources.Add(blockSource);
             }
-            _totalCount = GetTotalCount(this);
             _logContent = CreateContentSource(this);
+            _readonlyItemCollection = new(_logContent);
         }
         protected abstract BlockSource CreateBlockSource(
             TBlockSchema block);
-        protected abstract int GetTotalCount(
-            ICellFinder cellFinder);
         protected abstract ContentSource CreateContentSource(
             ICellFinder cellFinder);
         protected void HandleContentCellValue(SchemaLog<TBlockSchema, TColumnHeadSchema, TCellSchema>.SchemaColumn schemaColumn, object cell)
@@ -109,10 +108,10 @@ namespace LogVisualizer.Scenarios.Sources
         }
         #endregion
         #region ILogSource
-        public int TotalRowsCount => _totalCount;
         public string[] ColumnNames => _logContent?.ColumnHeadTemplate ?? Array.Empty<string>();
         public IEnumerable<string> EnumerateWords => _wordsCollection.Words;
         public LogFilter Filter { get; }
+        public int RowsCount => _logContent?.RowCount ?? 0;
         public IEnumerable<LogRow> GetRows(int start, int length)
         {
             if (_logContent == null)
@@ -123,6 +122,10 @@ namespace LogVisualizer.Scenarios.Sources
             {
                 yield return row;
             }
+        }
+        public IList GetRows()
+        {
+            return _readonlyItemCollection;
         }
         #endregion
         #region IDisposable

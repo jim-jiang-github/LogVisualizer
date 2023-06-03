@@ -12,105 +12,23 @@ using LogVisualizer.Views;
 
 namespace LogVisualizer.ViewModels
 {
-    public struct Item
-    {
-        public int Index { get; set; }
-        public string Name { get; set; }
-        public int Age { get; set; }
-    }
-
-    public class ItemCollection : IList
-    {
-        public object? this[int index]
-        {
-            get
-            {
-                return new Item()
-                {
-                    Index = index,
-                    Name = $"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx{index}",
-                    Age = index
-                };
-            }
-            set => throw new NotImplementedException();
-        }
-
-        public bool IsFixedSize => true;
-
-        public bool IsReadOnly => true;
-
-        public int Count => 333;
-
-        public bool IsSynchronized => true;
-
-        public object SyncRoot => this;
-
-        public int Add(object? value)
-        {
-            return -1;
-        }
-
-        public void Clear()
-        {
-        }
-
-        public bool Contains(object? value)
-        {
-            return false;
-        }
-
-        public void CopyTo(Array array, int index)
-        {
-        }
-
-        public IEnumerator GetEnumerator()
-        {
-            yield return -1;
-        }
-
-        public int IndexOf(object? value)
-        {
-            return -1;
-        }
-
-        public void Insert(int index, object? value)
-        {
-        }
-
-        public void Remove(object? value)
-        {
-        }
-
-        public void RemoveAt(int index)
-        {
-        }
-    }
-
     public class MainWindowViewModel : ViewModelBase
     {
-        public string V { get; } = "xxxxxa";
         public MenuBarViewModel MenuBar { get; }
         public SideBarViewModel SideBar { get; }
         public BottomBarViewModel BottomBar { get; }
-        public ItemCollection Items { get; }
-
-#if DEBUG
-        public MainWindowViewModel()
-        {
-
-        }
-#endif
+        public LogDisplayViewModel CurrentLog { get; }
 
         public MainWindowViewModel(
             MenuBarViewModel menuBarViewModel,
             SideBarViewModel sideBarViewModel,
-            BottomBarViewModel bottomBarViewModel)
+            BottomBarViewModel bottomBarViewModel,
+            LogDisplayViewModel logDisplayViewModel)
         {
             MenuBar = menuBarViewModel;
             SideBar = sideBarViewModel;
             BottomBar = bottomBarViewModel;
-            Items = new ItemCollection();
+            CurrentLog = logDisplayViewModel;
         }
     }
-
 }

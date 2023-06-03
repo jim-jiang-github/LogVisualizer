@@ -38,6 +38,7 @@
     <ProjectReference Include="..\..\3rd\GithubReleaseUpgrader\src\GithubReleaseUpgrader\GithubReleaseUpgrader.csproj" />
     <ProjectReference Include="..\LogVisualizer.Commons\LogVisualizer.Commons.csproj" />
     <ProjectReference Include="..\LogVisualizer.I18N\LogVisualizer.I18N.csproj" />
+    <ProjectReference Include="..\LogVisualizer.Scenarios\LogVisualizer.Scenarios.csproj" />
   </ItemGroup>
 
   <ItemGroup>

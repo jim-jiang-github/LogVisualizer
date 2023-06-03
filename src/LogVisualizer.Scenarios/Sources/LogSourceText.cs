@@ -9,43 +9,37 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using LogVisualizer.Scenarios.Commons;
-using LogVisualizer.Scenarios.Schemas.Logs;
+using LogVisualizer.Scenarios.Schemas;
+using System.Reflection.PortableExecutable;
 
 namespace LogVisualizer.Scenarios.Sources
 {
     internal class LogSourceText : LogSource<SchemaLogText.SchemaBlockText, SchemaLogText.SchemaColumnHeadText, SchemaLogText.SchemaCellText>
     {
-        private ReadLinesIterator? _readLinesIterator;
-        private string[]? _lines;
+        private readonly StreamReader _streamReader;
 
         private LogSourceText(Stream stream, SchemaLog<SchemaLogText.SchemaBlockText, SchemaLogText.SchemaColumnHeadText, SchemaLogText.SchemaCellText> schemaLog) : base(stream, schemaLog)
         {
-            var streamReader = new StreamReader(stream, _encoding);
-            _readLinesIterator = new ReadLinesIterator(streamReader);
+            _streamReader = new StreamReader(stream, _encoding);
         }
 
         protected override BlockSource CreateBlockSource(SchemaLogText.SchemaBlockText block)
         {
-            if (_readLinesIterator == null)
-            {
-                throw new ArgumentException("_readLinesIterator is null.");
-            }
-            string? line = _readLinesIterator.ReadNext();
+            string? line = _streamReader.ReadLine();
             while (line != null && !Regex.IsMatch(line, block.RegexStart, RegexOptions.Singleline))
             {
-                line = _readLinesIterator.ReadNext();
+                line = _streamReader.ReadLine();
             }
             if (line == null)
             {
                 throw new ArgumentException("block format error.");
             }
             var stringBuilder = new StringBuilder(line);
-            line = _readLinesIterator.ReadNext();
+            line = _streamReader.ReadLine();
             while (line != null && !Regex.IsMatch(line, block.RegexEnd, RegexOptions.Singleline))
             {
                 stringBuilder.AppendLine(line);
-                line = _readLinesIterator.ReadNext();
+                line = _streamReader.ReadLine();
             }
             stringBuilder.AppendLine(line);
             var itemContent = stringBuilder.ToString();
@@ -65,44 +59,36 @@ namespace LogVisualizer.Scenarios.Sources
             return new BlockSource(block.Name, blockCells);
         }
 
-        protected override int GetTotalCount(ICellFinder cellFinder)
+        private IEnumerable<string> LogLines()
         {
-            if (_readLinesIterator == null)
+            string previousLine = string.Empty;
+            string? currentLine;
+
+            while ((currentLine = _streamReader.ReadLine()) != null)
             {
-                throw new ArgumentException("_readLinesIterator is null.");
+                if (Regex.IsMatch(currentLine, _schemaLog.ColumnHeadTemplate.RegexStart))
+                {
+                    if (!string.IsNullOrEmpty(previousLine))
+                    {
+                        yield return previousLine;
+                    }
+                    previousLine = currentLine;
+                }
+                else
+                {
+                    previousLine += Environment.NewLine + currentLine;
+                }
             }
-            int index = 0;
-            _lines = _readLinesIterator
-             .AsParallel()
-             .AsOrdered()
-             .Select(l =>
-             {
-                 return (Regex.IsMatch(l, _schemaLog.ColumnHeadTemplate.RegexStart), l);
-             })
-             .AsSequential()
-             .Select(x =>
-             {
-                 if (x.Item1)
-                 {
-                     index++;
-                 }
-                 return (index, x.l);
-             })
-             .ToLookup(x => x.index, x => x.l)
-             .AsParallel()
-             .AsOrdered()
-             .Select(x => string.Join(Environment.NewLine, x))
-             .ToArray();
-            return _lines.Length;
+
+            if (!string.IsNullOrEmpty(previousLine))
+            {
+                yield return previousLine;
+            }
         }
 
         protected override ContentSource CreateContentSource(
             ICellFinder cellFinder)
         {
-            if (_lines == null)
-            {
-                throw new ArgumentException("_lines is null.");
-            }
 
             var cellConvertors = new CellConvertor?[_schemaLog.ColumnHeadTemplate.Columns.Length];
             for (int i = 0; i < _schemaLog.ColumnHeadTemplate.Columns.Length; i++)
@@ -110,7 +96,7 @@ namespace LogVisualizer.Scenarios.Sources
                 cellConvertors[i] = _convertorProvider.GetConvertor(_schemaLog.ColumnHeadTemplate.Columns[i].Cell.ConvertorName);
             }
 
-            var rowSources = _lines
+            var rowSources = LogLines()
                 .AsParallel()
                 .AsOrdered()
                 .Select((l, i) =>
@@ -129,17 +115,15 @@ namespace LogVisualizer.Scenarios.Sources
                         }
                     });
                     return new LogRow(i, cells.ToArray());
-                })
-                .ToArray();
+                }).ToArray();
 
-            return new ContentSource(_schemaLog.ColumnHeadTemplate.Columns.Select(t => t.Cell.Name).ToArray(), rowSources);
+            return new ContentSource(_schemaLog.ColumnHeadTemplate.Columns.Select(t => t.Cell.Name).ToArray(), rowSources, rowSources.Length);
         }
 
         public override void Dispose()
         {
             base.Dispose();
-            _readLinesIterator?.Dispose();
-            _lines = null;
+            _streamReader?.Dispose();
         }
     }
 }

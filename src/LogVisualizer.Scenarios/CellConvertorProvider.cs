@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using LogVisualizer.Scenarios.Schemas.Logs;
+using LogVisualizer.Scenarios.Schemas;
 using LogVisualizer.Scenarios.Sources;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Microsoft.CodeAnalysis.Scripting;

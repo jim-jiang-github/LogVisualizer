@@ -12,17 +12,32 @@ namespace LogVisualizer.Scenarios.Sources
     internal class ContentSource
     {
         public string[] ColumnHeadTemplate { get; }
-        public IEnumerable<LogRow> Rows { get; }
-        public ContentSource(string[] columnHeadTemplate, IEnumerable<LogRow> rows)
+        public LogRow[] Rows { get; }
+        public int RowCount { get; }
+        public ContentSource(string[] columnHeadTemplate, LogRow[] rows, int rowCount)
         {
             ColumnHeadTemplate = columnHeadTemplate;
             Rows = rows;
+            RowCount = rowCount;
         }
 
         public IEnumerable<LogRow> GetRows(int start, int length)
         {
             var rows = Rows.Skip(start).Take(length);
             return rows;
+        }
+
+        public LogRow? GetRow(int index)
+        {
+            if (index < 0)
+            {
+                return null;
+            }
+            if (index >= RowCount)
+            {
+                return null;
+            }
+            return Rows[index];
         }
     }
 }

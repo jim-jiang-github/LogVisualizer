@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogVisualizer.Scenarios.Schemas.Logs
+namespace LogVisualizer.Scenarios.Schemas
 {
     internal abstract class SchemaLog : Schema
     {

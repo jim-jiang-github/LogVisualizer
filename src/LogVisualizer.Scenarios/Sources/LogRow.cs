@@ -24,5 +24,10 @@ namespace LogVisualizer.Scenarios.Sources
             Index = index;
             Cells = cells;
         }
+
+        public override string ToString()
+        {
+            return string.Join(" ", Cells);
+        }
     }
 }

@@ -6,11 +6,9 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using LogVisualizer.Scenarios.Schemas;
-using LogVisualizer.Scenarios.Schemas.Logs;
-using LogVisualizer.Scenarios.Schemas.Scenarios;
 using LogVisualizer.Scenarios.Sources;
 
-namespace LogVisualizer.Scenarios.Scenarios
+namespace LogVisualizer.Scenarios
 {
     public class Scenario : INotifyPropertyChanged, IDisposable
     {
@@ -70,14 +68,14 @@ namespace LogVisualizer.Scenarios.Scenarios
                 Log.Warning("Can not load schema log content from json file in {schemaLogPath}", schemaLogPath);
                 return false;
             }
-            var supportExtensions = SchemaLog.GetSupportedExtensionsFromJsonContent(schemaLogContent);
+            var supportExtensions = GetSupportedExtensionsFromJsonContent(schemaLogContent);
             if (supportExtensions.Length <= 0)
             {
                 Log.Warning("Can not support any extensions from json file in {schemaLogPath}", schemaLogPath);
                 return false;
             }
-            var logFileLoaderType = SchemaLog.GetLogFileLoaderTypeFromJsonContent(schemaLogContent);
-            var streamLoader = LogLoaderProvider.GetLoader(logFileLoaderType);
+            var logFileLoaderType = GetLogFileLoaderTypeFromJsonContent(schemaLogContent);
+            var streamLoader = GetLoader(logFileLoaderType);
             if (streamLoader == null)
             {
                 Log.Warning("Can not load stream from json file by {loader} in {schemaLogContent}", streamLoader, schemaLogContent);

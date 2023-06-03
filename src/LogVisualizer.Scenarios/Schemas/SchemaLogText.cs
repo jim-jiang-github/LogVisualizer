@@ -7,7 +7,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace LogVisualizer.Scenarios.Schemas.Logs
+namespace LogVisualizer.Scenarios.Schemas
 {
     internal class SchemaLogText :
         SchemaLog<SchemaLogText.SchemaBlockText,

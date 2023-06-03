@@ -1,0 +1,65 @@
+{
+  "Type": "LogText",
+  "Blocks": [],
+  "ColumnHeadTemplate": {
+    "RegexStart": "^(\\d{2}\\/\\d{2}\\/\\d{2} \\d{2}:\\d{2}:\\d{2}.\\d{3})",
+    "RegexContent": "^(\\d{2}\\/\\d{2}\\/\\d{2} \\d{2}:\\d{2}:\\d{2}.\\d{3}) \\<(.*?)\\> \\[(.*?)\\] (.*?) (.*)",
+    "Columns": [
+      {
+        "Cell": {
+          "Index": 1,
+          "Name": "Time",
+          "ConvertorName": "Time"
+        },
+        "Enumeratable": false,
+        "Filterable": false
+      },
+      {
+        "Cell": {
+          "Index": 2,
+          "Name": "Module"
+        },
+        "Enumeratable": false,
+        "Filterable": true
+      },
+      {
+        "Cell": {
+          "Index": 3,
+          "Name": "Thread"
+        },
+        "Enumeratable": false,
+        "Filterable": true
+      },
+      {
+        "Cell": {
+          "Index": 4,
+          "Name": "Level"
+        },
+        "Enumeratable": false,
+        "Filterable": true
+      },
+      {
+        "Cell": {
+          "Index": 5,
+          "Name": "Msg"
+        },
+        "Enumeratable": true,
+        "Filterable": false
+      }
+    ]
+  },
+  "Name": "schema_log",
+  "EncodingName": "utf-8",
+  "LogFileLoaderType": "Txt",
+  "SupportedExtensions": [
+    ".txt",
+    ".log"
+  ],
+  "Convertors": [
+    {
+      "Name": "Time",
+      "Type": "Time2Time",
+      "Expression": "[MM/dd/yy HH:mm:ss.fff][yyyy-MM-dd HH:mm:ss,fff]"
+    }
+  ]
+}

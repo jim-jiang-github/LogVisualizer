@@ -10,6 +10,46 @@ namespace LogVisualizer.Commons
 {
     public class FileOperationsHelper
     {
+        public interface IAutoDelete : IDisposable
+        {
+            string RandomFile { get; }
+        }
+
+        private class AutoDeleteImpl : IAutoDelete
+        {
+            private readonly string _floder;
+            private readonly string _extension;
+
+            public string RandomFile
+            {
+                get
+                {
+                    var randomFileName = Path.GetRandomFileName();
+                    var file = Path.Combine(_floder, randomFileName + _extension);
+                    return file;
+                }
+            }
+
+            public AutoDeleteImpl(string extension)
+            {
+                _extension = extension;
+                var randomFolder = Path.GetRandomFileName();
+                _floder = Path.Combine(Global.AppTempDirectory, randomFolder);
+                SafeResetDirectory(_floder);
+            }
+
+            public void Dispose()
+            {
+                SafeDeleteDirectory(_floder);
+            }
+        }
+
+        public static IAutoDelete CreateAutoDelete(string extension)
+        {
+            AutoDeleteImpl autoDeleteImpl = new AutoDeleteImpl(extension);
+            return autoDeleteImpl;
+        }
+
         public static bool IsValidFileName(string name)
         {
             string validPathPattern = @"^[^<>:""/\\|?*\x00-\x1F\x7F]+(\.[^<>:""/\\|?*\x00-\x1F\x7F]+)*$";

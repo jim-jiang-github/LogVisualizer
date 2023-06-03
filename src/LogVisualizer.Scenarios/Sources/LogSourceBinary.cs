@@ -4,8 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using LogVisualizer.Scenarios.Schemas.Logs;
-using static LogVisualizer.Scenarios.Schemas.Logs.SchemaLogBinary;
+using LogVisualizer.Scenarios.Schemas;
+using static LogVisualizer.Scenarios.Schemas.SchemaLogBinary;
 
 namespace LogVisualizer.Scenarios.Sources
 {
@@ -44,7 +44,7 @@ namespace LogVisualizer.Scenarios.Sources
             return new BlockSource(block.Name, blockCells);
         }
 
-        protected override int GetTotalCount(ICellFinder cellFinder)
+        protected override ContentSource CreateContentSource(ICellFinder cellFinder)
         {
             if (_binaryReader == null)
             {
@@ -65,28 +65,18 @@ namespace LogVisualizer.Scenarios.Sources
                     rowCount = rowCountFromPath;
                 }
             }
-            return rowCount;
-        }
-
-        protected override ContentSource CreateContentSource(ICellFinder cellFinder)
-        {
-            if (_binaryReader == null)
-            {
-                throw new ArgumentException("_binaryReader is null.");
-            }
-            var columnHeadTemplate = _schemaLog.ColumnHeadTemplate;
             var cellConvertors = new CellConvertor?[columnHeadTemplate.Columns.Length];
             for (int i = 0; i < columnHeadTemplate.Columns.Length; i++)
             {
                 cellConvertors[i] = _convertorProvider.GetConvertor(columnHeadTemplate.Columns[i].Cell.ConvertorName);
             }
-            var rows = Enumerable.Range(0, TotalRowsCount).Select(i =>
+            var rows = Enumerable.Range(0, rowCount).Select(i =>
             {
                 var cells = _schemaLog.ColumnHeadTemplate.Columns.Select((c, ci) => cellConvertors[ci].Convert(CreateCellBinary(c.Cell, _binaryReader, _encoding)));
                 var row = new LogRow(i, cells.ToArray());
                 return row;
-            });
-            return new ContentSource(columnHeadTemplate.Columns.Select(t => t.Cell.Name).ToArray(), rows);
+            }).ToArray();
+            return new ContentSource(columnHeadTemplate.Columns.Select(t => t.Cell.Name).ToArray(), rows, rowCount);
         }
         private object CreateCellBinary(SchemaLogBinary.SchemaCellBinary cell, BinaryReader binaryReader, Encoding encoding)
         {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using LogVisualizer.Scenarios.Schemas;
 using System.Reflection;
-using LogVisualizer.Scenarios.Schemas.Logs;
+using System.Collections;
 
 namespace LogVisualizer.Scenarios.Sources
 {
@@ -60,10 +60,11 @@ namespace LogVisualizer.Scenarios.Sources
 
         #endregion
 
-        int TotalRowsCount { get; }
         string[] ColumnNames { get; }
         IEnumerable<string> EnumerateWords { get; }
         LogFilter Filter { get; }
+        int RowsCount { get; }
         IEnumerable<LogRow> GetRows(int start, int length);
+        IList GetRows();
     }
 }
