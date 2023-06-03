@@ -36,6 +36,7 @@ namespace LogVisualizer
             .UseSerilog()
             .WithIcons(container => container
             .Register<FontAwesomeIconProvider>()
-            .Register<MaterialDesignIconProvider>());
+            .Register<MaterialDesignIconProvider>()
+            .Register<CustomIconProvider>());
     }
 }

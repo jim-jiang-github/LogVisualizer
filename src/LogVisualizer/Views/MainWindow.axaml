@@ -15,6 +15,7 @@
     d:DesignHeight="1080"
     d:DesignWidth="1920"
     Icon="/Assets/logo.ico"
+    WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
     <NativeMenu.Menu>
