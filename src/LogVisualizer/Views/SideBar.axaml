@@ -22,31 +22,12 @@
             <Border Background="Blue" />
         </TabItem>
         <TabItem Classes="sidebar" Header="mdi google-analytics">
-            <Border Background="Blue" />
+            <Border Background="Green" />
         </TabItem>
         <TabControl.Styles>
             <Style Selector="TabControl.sidebar">
                 <Setter Property="Padding" Value="0" />
                 <Setter Property="TabStripPlacement" Value="Left" />
-                <Setter Property="Template">
-                    <ControlTemplate>
-                        <DockPanel>
-                            <ScrollViewer>
-                                <ItemsPresenter
-                                    Name="PART_ItemsPresenter"
-                                    DockPanel.Dock="{TemplateBinding TabStripPlacement}"
-                                    ItemsPanel="{TemplateBinding ItemsPanel}" />
-                            </ScrollViewer>
-                            <ContentPresenter
-                                Name="PART_SelectedContentHost"
-                                Margin="{TemplateBinding Padding}"
-                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                Content="{TemplateBinding SelectedContent}"
-                                ContentTemplate="{TemplateBinding SelectedContentTemplate}" />
-                        </DockPanel>
-                    </ControlTemplate>
-                </Setter>
             </Style>
             <Style Selector="TabItem.sidebar">
                 <Setter Property="Width" Value="50" />

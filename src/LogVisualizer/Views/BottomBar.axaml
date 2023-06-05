@@ -32,7 +32,10 @@
                                 <Border Background="{TemplateBinding Background}" CornerRadius="2">
                                     <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
                                         <Grid Margin="10,2,10,4">
-                                            <icon:Icon Margin="-8,0,0,0" Value="fa-light fa-bell" />
+                                            <icon:Icon
+                                                Margin="-8,0,0,0"
+                                                Foreground="White"
+                                                Value="fa-light fa-bell" />
                                             <Border
                                                 Width="12"
                                                 Height="12"
@@ -96,6 +99,7 @@
                                             <icon:Icon
                                                 Margin="-8,0,0,0"
                                                 FontSize="18"
+                                                Foreground="White"
                                                 Value="fa-light fa-cloud-arrow-down" />
                                             <Border
                                                 Width="14"
