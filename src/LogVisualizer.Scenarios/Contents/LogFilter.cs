@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogVisualizer.Scenarios.Sources
+namespace LogVisualizer.Scenarios.Contents
 {
     public class LogFilter
     {

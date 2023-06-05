@@ -1,4 +1,4 @@
-﻿using LogVisualizer.Scenarios.Sources;
+﻿using LogVisualizer.Scenarios.Contents;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,17 +10,17 @@ namespace LogVisualizer.Scenarios
 {
     internal class ReadonlyItemCollection : IList
     {
-        private ContentSource _contentSource;
-        public ReadonlyItemCollection(ContentSource contentSource)
+        private ILogContent _logContent;
+        public ReadonlyItemCollection(ILogContent logContent)
         {
-            _contentSource = contentSource;
+            _logContent = logContent;
         }
 
         public object? this[int index]
         {
             get
             {
-                return _contentSource.GetRow(index);
+                return _logContent.Rows[index];
             }
             set { }
         }
@@ -29,7 +29,7 @@ namespace LogVisualizer.Scenarios
 
         public bool IsReadOnly => true;
 
-        public int Count => _contentSource.RowCount;
+        public int Count => _logContent.RowsCount;
 
         public bool IsSynchronized => true;
 

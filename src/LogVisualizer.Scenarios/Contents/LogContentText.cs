@@ -12,18 +12,18 @@ using System.Threading.Tasks;
 using LogVisualizer.Scenarios.Schemas;
 using System.Reflection.PortableExecutable;
 
-namespace LogVisualizer.Scenarios.Sources
+namespace LogVisualizer.Scenarios.Contents
 {
-    internal class LogSourceText : LogSource<SchemaLogText.SchemaBlockText, SchemaLogText.SchemaColumnHeadText, SchemaLogText.SchemaCellText>
+    internal class LogContentText : LogContent<SchemaLogText.SchemaBlockText, SchemaLogText.SchemaColumnHeadText, SchemaLogText.SchemaCellText>
     {
         private readonly StreamReader _streamReader;
 
-        private LogSourceText(Stream stream, SchemaLog<SchemaLogText.SchemaBlockText, SchemaLogText.SchemaColumnHeadText, SchemaLogText.SchemaCellText> schemaLog) : base(stream, schemaLog)
+        private LogContentText(Stream stream, SchemaLog<SchemaLogText.SchemaBlockText, SchemaLogText.SchemaColumnHeadText, SchemaLogText.SchemaCellText> schemaLog) : base(stream, schemaLog)
         {
             _streamReader = new StreamReader(stream, _encoding);
         }
 
-        protected override BlockSource CreateBlockSource(SchemaLogText.SchemaBlockText block)
+        protected override LogHead CreateBlockSource(SchemaLogText.SchemaBlockText block)
         {
             string? line = _streamReader.ReadLine();
             while (line != null && !Regex.IsMatch(line, block.RegexStart, RegexOptions.Singleline))
@@ -48,15 +48,15 @@ namespace LogVisualizer.Scenarios.Sources
             {
                 throw new ArgumentException("block cell format error.");
             }
-            var blockCells = new BlockCellSource[block.Cells.Length];
+            var blockCells = new LogHeadCell[block.Cells.Length];
             for (int i = 0; i < block.Cells.Length; i++)
             {
                 var cell = block.Cells[i];
                 var cellConvertor = _convertorProvider.GetConvertor(cell.ConvertorName);
                 var captureCell = match.Groups[cell.Index].Value;
-                blockCells[i] = new BlockCellSource(cell.Name, cellConvertor?.Convert(captureCell) ?? "");
+                blockCells[i] = new LogHeadCell(cell.Name, cellConvertor?.Convert(captureCell) ?? "");
             }
-            return new BlockSource(block.Name, blockCells);
+            return new LogHead(block.Name, blockCells);
         }
 
         private IEnumerable<string> LogLines()
@@ -86,7 +86,7 @@ namespace LogVisualizer.Scenarios.Sources
             }
         }
 
-        protected override ContentSource CreateContentSource(
+        protected override void InitContentSource(
             ICellFinder cellFinder)
         {
 
@@ -96,7 +96,7 @@ namespace LogVisualizer.Scenarios.Sources
                 cellConvertors[i] = _convertorProvider.GetConvertor(_schemaLog.ColumnHeadTemplate.Columns[i].Cell.ConvertorName);
             }
 
-            var rowSources = LogLines()
+            var rows = LogLines()
                 .AsParallel()
                 .AsOrdered()
                 .Select((l, i) =>
@@ -116,8 +116,9 @@ namespace LogVisualizer.Scenarios.Sources
                     });
                     return new LogRow(i, cells.ToArray());
                 }).ToArray();
-
-            return new ContentSource(_schemaLog.ColumnHeadTemplate.Columns.Select(t => t.Cell.Name).ToArray(), rowSources, rowSources.Length);
+            ColumnNames = _schemaLog.ColumnHeadTemplate.Columns.Select(t => t.Cell.Name).ToArray();
+            Rows = rows;
+            RowsCount = rows.Length;
         }
 
         public override void Dispose()

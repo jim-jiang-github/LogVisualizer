@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogVisualizer.Scenarios.Sources
+namespace LogVisualizer.Scenarios.Contents
 {
-    internal struct BlockCellSource
+    internal struct LogHeadCell
     {
         public string Name { get; set; }
         public object Cell { get; set; }
-        internal BlockCellSource(string name, object cell)
+        internal LogHeadCell(string name, object cell)
         {
             Name = name;
             Cell = cell;

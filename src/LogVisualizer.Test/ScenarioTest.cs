@@ -19,9 +19,9 @@ namespace LogVisualizer.Test
         {
             Scenario scenario = new Scenario();
             scenario.Init(scenariosFolder);
-            var result = scenario.LoadLogSource(logFilePath);
+            var result = scenario.LoadLogContent(logFilePath);
             Assert.True(result);
-            Assert.Equal(scenario.LogSource.RowsCount, rowCount);
+            Assert.Equal(scenario.LogContent.RowsCount, rowCount);
         }
         [Theory]
         [InlineData(@"Samples\2\1.log", @"Samples\2\Scenarios", 999999)]
@@ -39,9 +39,9 @@ namespace LogVisualizer.Test
             streamWriter.Dispose();
             Scenario scenario = new Scenario();
             scenario.Init(scenariosFolder);
-            var result = scenario.LoadLogSource(randomFile);
+            var result = scenario.LoadLogContent(randomFile);
             Assert.True(result);
-            Assert.Equal(scenario.LogSource?.RowsCount, rowCount);
+            Assert.Equal(scenario.LogContent?.RowsCount, rowCount);
         }
     }
 }

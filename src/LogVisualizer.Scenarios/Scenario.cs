@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using LogVisualizer.Scenarios.Schemas;
-using LogVisualizer.Scenarios.Sources;
+using LogVisualizer.Scenarios.Contents;
 
 namespace LogVisualizer.Scenarios
 {
@@ -19,9 +19,9 @@ namespace LogVisualizer.Scenarios
 
         public string[] SupportedExtensions { get; private set; } = Array.Empty<string>();
         public string[] LoadedLogFiles { get; private set; } = Array.Empty<string>();
-        public ILogSource? LogSource { get; private set; }
+        public ILogContent? LogContent { get; private set; }
         public bool Initialized => SupportedExtensions.Length > 0;
-        public bool LogSourceLoaded => LogSource != null;
+        public bool LogContentLoaded => LogContent != null;
         public Scenario()
         {
 
@@ -85,14 +85,14 @@ namespace LogVisualizer.Scenarios
             _streamLoader = streamLoader;
             SupportedExtensions = supportExtensions;
             Log.Information("Scenario inited");
-            //LoadLogSource(@"C:\Users\Jim.Jiang\Downloads\WRoomsFeedBack_HostLog_75a6889c-ce51-4840-ace1-3ef098034520_20220615-104915\RoomsHost-20220614_132503-pid_3220.log");
+            //LoadLogContent(@"C:\Users\Jim.Jiang\Downloads\WRoomsFeedBack_HostLog_75a6889c-ce51-4840-ace1-3ef098034520_20220615-104915\RoomsHost-20220614_132503-pid_3220.log");
             return true;
         }
 
         public void Dispose()
         {
-            LogSource?.Dispose();
-            LogSource = null;
+            LogContent?.Dispose();
+            LogContent = null;
             _schemaLogPath = null;
             _streamLoader = null;
             SupportedExtensions = Array.Empty<string>();
@@ -104,10 +104,10 @@ namespace LogVisualizer.Scenarios
                 return;
             }
             LoadedLogFiles = logFiles;
-            LoadLogSource(logFiles[0]);
+            LoadLogContent(logFiles[0]);
             OnPropertyChanged(nameof(LoadedLogFiles));
         }
-        public bool LoadLogSource(string logFilePath)
+        public bool LoadLogContent(string logFilePath)
         {
             if (!Initialized)
             {
@@ -118,18 +118,18 @@ namespace LogVisualizer.Scenarios
             {
                 return false;
             }
-            if (LogSourceLoaded)
+            if (LogContentLoaded)
             {
-                Log.Information("Reset LogSource");
-                LogSource?.Dispose();
-                LogSource = null;
+                Log.Information("Reset LogContent");
+                LogContent?.Dispose();
+                LogContent = null;
                 GC.Collect();
-                OnPropertyChanged(nameof(LogSource));
+                OnPropertyChanged(nameof(LogContent));
             }
-            Log.Information("Load LogSource from {logFilePath}", logFilePath);
+            Log.Information("Load LogContent from {logFilePath}", logFilePath);
             var stream = _streamLoader.Load(logFilePath);
-            LogSource = ILogSource.LoadLogSource(stream, _schemaLogPath);
-            OnPropertyChanged(nameof(LogSource));
+            LogContent = ILogContent.LoadLogContent(stream, _schemaLogPath);
+            OnPropertyChanged(nameof(LogContent));
             return true;
         }
     }

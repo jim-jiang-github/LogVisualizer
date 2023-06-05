@@ -7,24 +7,24 @@ using System.Threading.Tasks;
 using LogVisualizer.Scenarios.Schemas;
 using static LogVisualizer.Scenarios.Schemas.SchemaLogBinary;
 
-namespace LogVisualizer.Scenarios.Sources
+namespace LogVisualizer.Scenarios.Contents
 {
-    internal class LogSourceBinary : LogSource<SchemaLogBinary.SchemaBlockBinary, SchemaLogBinary.SchemaColumnHeadBinary, SchemaLogBinary.SchemaCellBinary>
+    internal class LogContentBinary : LogContent<SchemaLogBinary.SchemaBlockBinary, SchemaLogBinary.SchemaColumnHeadBinary, SchemaLogBinary.SchemaCellBinary>
     {
         private BinaryReader? _binaryReader = null;
 
-        private LogSourceBinary(Stream stream, SchemaLog<SchemaLogBinary.SchemaBlockBinary, SchemaLogBinary.SchemaColumnHeadBinary, SchemaLogBinary.SchemaCellBinary> schemaLog) : base(stream, schemaLog)
+        private LogContentBinary(Stream stream, SchemaLog<SchemaLogBinary.SchemaBlockBinary, SchemaLogBinary.SchemaColumnHeadBinary, SchemaLogBinary.SchemaCellBinary> schemaLog) : base(stream, schemaLog)
         {
             _binaryReader = new BinaryReader(stream, _encoding);
         }
 
-        protected override BlockSource CreateBlockSource(SchemaLogBinary.SchemaBlockBinary block)
+        protected override LogHead CreateBlockSource(SchemaLogBinary.SchemaBlockBinary block)
         {
             if (_binaryReader == null)
             {
                 throw new ArgumentException("_binaryReader is null.");
             }
-            var blockCells = new BlockCellSource[block.Cells.Count(c => c.Type != SchemaLogBinaryType.Skip)];
+            var blockCells = new LogHeadCell[block.Cells.Count(c => c.Type != SchemaLogBinaryType.Skip)];
             int cellIndex = 0;
             foreach (var blockCell in block.Cells)
             {
@@ -38,13 +38,13 @@ namespace LogVisualizer.Scenarios.Sources
                 }
                 var cell = CreateCellBinary(blockCell, _binaryReader, _encoding);
                 var cellConvertor = _convertorProvider.GetConvertor(blockCell.ConvertorName);
-                blockCells[cellIndex] = new BlockCellSource(blockCell.Name, cellConvertor?.Convert(cell) ?? "");
+                blockCells[cellIndex] = new LogHeadCell(blockCell.Name, cellConvertor?.Convert(cell) ?? "");
                 cellIndex++;
             }
-            return new BlockSource(block.Name, blockCells);
+            return new LogHead(block.Name, blockCells);
         }
 
-        protected override ContentSource CreateContentSource(ICellFinder cellFinder)
+        protected override void InitContentSource(ICellFinder cellFinder)
         {
             if (_binaryReader == null)
             {
@@ -76,7 +76,9 @@ namespace LogVisualizer.Scenarios.Sources
                 var row = new LogRow(i, cells.ToArray());
                 return row;
             }).ToArray();
-            return new ContentSource(columnHeadTemplate.Columns.Select(t => t.Cell.Name).ToArray(), rows, rowCount);
+            ColumnNames = columnHeadTemplate.Columns.Select(t => t.Cell.Name).ToArray();
+            Rows = rows;
+            RowsCount = rowCount;
         }
         private object CreateCellBinary(SchemaLogBinary.SchemaCellBinary cell, BinaryReader binaryReader, Encoding encoding)
         {

@@ -10,11 +10,11 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using LogVisualizer.Scenarios.Schemas;
 
-namespace LogVisualizer.Scenarios.Sources
+namespace LogVisualizer.Scenarios.Contents
 {
-    internal abstract class LogSource<TBlockSchema, TColumnHeadSchema, TCellSchema> :
+    internal abstract class LogContent<TBlockSchema, TColumnHeadSchema, TCellSchema> :
         ICellFinder,
-        ILogSource
+        ILogContent
         where TBlockSchema : SchemaLog<TBlockSchema, TColumnHeadSchema, TCellSchema>.SchemaBlock, new()
         where TColumnHeadSchema : SchemaLog<TBlockSchema, TColumnHeadSchema, TCellSchema>.SchemaColumnHead, new()
         where TCellSchema : SchemaLog<TBlockSchema, TColumnHeadSchema, TCellSchema>.SchemaCell, new()
@@ -25,16 +25,14 @@ namespace LogVisualizer.Scenarios.Sources
         protected readonly Encoding _encoding;
         protected readonly CellConvertorProvider _convertorProvider;
 
-        private readonly List<BlockSource> _blockSources = new();
-        private ContentSource? _logContent;
+        private readonly List<LogHead> _blockSources = new();
         private readonly WordsCollection _wordsCollection = new();
-        private ReadonlyItemCollection _readonlyItemCollection;
-        ~LogSource()
+        ~LogContent()
         {
 
         }
 
-        protected LogSource(Stream stream, SchemaLog<TBlockSchema, TColumnHeadSchema, TCellSchema> schemaLog)
+        protected LogContent(Stream stream, SchemaLog<TBlockSchema, TColumnHeadSchema, TCellSchema> schemaLog)
         {
             _stream = stream;
             _schemaLog = schemaLog;
@@ -49,18 +47,17 @@ namespace LogVisualizer.Scenarios.Sources
                 var blockSource = CreateBlockSource(block);
                 _blockSources.Add(blockSource);
             }
-            _logContent = CreateContentSource(this);
-            _readonlyItemCollection = new(_logContent);
+            InitContentSource(this);
         }
-        protected abstract BlockSource CreateBlockSource(
+        protected abstract LogHead CreateBlockSource(
             TBlockSchema block);
-        protected abstract ContentSource CreateContentSource(
+        protected abstract void InitContentSource(
             ICellFinder cellFinder);
         protected void HandleContentCellValue(SchemaLog<TBlockSchema, TColumnHeadSchema, TCellSchema>.SchemaColumn schemaColumn, object cell)
         {
             //if (schemaColumn.Enumeratable)
             //{
-            //    var cellValue = logSourceReader.GetValue(cellSource, cellIndex);
+            //    var cellValue = logContentReader.GetValue(cellSource, cellIndex);
             //    _wordsCollection.AppendFromString(cellValue);
             //}
         }
@@ -107,26 +104,12 @@ namespace LogVisualizer.Scenarios.Sources
             }
         }
         #endregion
-        #region ILogSource
-        public string[] ColumnNames => _logContent?.ColumnHeadTemplate ?? Array.Empty<string>();
+        #region ILogContent
+        public string[] ColumnNames { get; protected set; }
+        public LogRow[] Rows { get; protected set; }
+        public int RowsCount { get; protected set; }
         public IEnumerable<string> EnumerateWords => _wordsCollection.Words;
         public LogFilter Filter { get; }
-        public int RowsCount => _logContent?.RowCount ?? 0;
-        public IEnumerable<LogRow> GetRows(int start, int length)
-        {
-            if (_logContent == null)
-            {
-                yield break;
-            }
-            foreach (var row in _logContent.GetRows(start, length))
-            {
-                yield return row;
-            }
-        }
-        public IList GetRows()
-        {
-            return _readonlyItemCollection;
-        }
         #endregion
         #region IDisposable
         public virtual void Dispose()
