@@ -11,9 +11,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogVisualizer.Commons.Extensions
+namespace LogVisualizer
 {
-    public static class LoggingExtensions
+    public static class LogConfiguration
     {
         private class LogEventSink : ILogEventSink
         {
@@ -25,7 +25,7 @@ namespace LogVisualizer.Commons.Extensions
                 }
             }
         }
-        public static AppBuilder UseSerilog(this AppBuilder builder)
+        public static void Init()
         {
             Log.Logger = new LoggerConfiguration()
 #if DEBUG
@@ -39,7 +39,7 @@ namespace LogVisualizer.Commons.Extensions
                        rollOnFileSizeLimit: true)
                        .WriteTo.Sink(new LogEventSink())
                        .CreateLogger();
-            return builder;
+            Log.Information("Serilog is inited");
         }
     }
 }

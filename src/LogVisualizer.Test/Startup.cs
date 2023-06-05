@@ -15,13 +15,17 @@ namespace LogVisualizer.Test
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<UpgradeService>();
-            services.AddSingleton<GitService>();
-            services.AddScoped<MenuBarViewModel>();
-            services.AddScoped<MainWindowViewModel>();
-            services.AddScoped<SideBarViewModel>();
-            services.AddScoped<BottomBarViewModel>();
-            services.AddSingleton<SchemaConfigViewModel>();
+            services
+                .AddSingleton<ScenarioService>()
+                .AddSingleton<UpgradeService>()
+                .AddSingleton<GitService>()
+                .AddScoped<MenuBarViewModel>()
+                .AddScoped<MainWindowViewModel>()
+                .AddScoped<LogDisplayViewModel>()
+                .AddScoped<SideBarViewModel>()
+                .AddScoped<BottomBarViewModel>()
+                .AddSingleton<SchemaConfigViewModel>()
+                .AddSingleton<SplashWindowViewModel>();
         }
 
         public Startup() 

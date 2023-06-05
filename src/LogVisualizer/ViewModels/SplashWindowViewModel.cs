@@ -11,6 +11,8 @@ using LogVisualizer.Services;
 using LogVisualizer.Views;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
+using System.Globalization;
+using LogVisualizer.Commons;
 
 namespace LogVisualizer.ViewModels
 {
@@ -19,15 +21,16 @@ namespace LogVisualizer.ViewModels
         [ObservableProperty]
         private string _message;
 
-        public SplashWindowViewModel()
+        private ScenarioService _scenarioService;
+
+        public SplashWindowViewModel(ScenarioService scenarioService)
         {
+            _scenarioService = scenarioService;
         }
 
         public async Task Execute()
         {
-            Message = "1111111111111111111";
-            await Task.Delay(1000);
-            Message = "2222222222222222222";
+            await _scenarioService.LoadFromFolder(Global.SchemaConfigFolderRoot);
             await Task.Delay(1000);
         }
     }

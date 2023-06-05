@@ -4,7 +4,11 @@ using Projektanker.Icons.Avalonia;
 using Projektanker.Icons.Avalonia.FontAwesome;
 using Projektanker.Icons.Avalonia.MaterialDesign;
 using LogVisualizer.Services;
-using LogVisualizer.Commons.Extensions;
+using LogVisualizer.Commons.Notifications;
+using Serilog.Core;
+using Serilog.Events;
+using Serilog;
+using LogVisualizer.Commons;
 
 namespace LogVisualizer
 {
@@ -16,6 +20,8 @@ namespace LogVisualizer
         [STAThread]
         public static void Main(string[] args)
         {
+            LogConfiguration.Init();
+            Log.Information("Program Main start!");
             Configuration.CreateInstance();
             DependencyInjectionProvider.Init();
             var upgradeService = DependencyInjectionProvider.GetService<UpgradeService>();
@@ -26,6 +32,7 @@ namespace LogVisualizer
                     .StartWithClassicDesktopLifetime(args);
             }
 
+            Log.Information("Program Main end!");
             upgradeService?.PerformUpgradeIfNeeded();
         }
 
@@ -33,7 +40,6 @@ namespace LogVisualizer
         public static AppBuilder BuildAvaloniaApp()
             => AppBuilder.Configure<App>()
             .UsePlatformDetect()
-            .UseSerilog()
             .WithIcons(container => container
             .Register<FontAwesomeIconProvider>()
             .Register<MaterialDesignIconProvider>()

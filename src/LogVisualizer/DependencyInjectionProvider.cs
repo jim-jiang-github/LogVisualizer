@@ -1,6 +1,7 @@
 ﻿using LogVisualizer.Services;
 using LogVisualizer.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace LogVisualizer
         public static void Init()
         {
             _serviceProvider = new ServiceCollection()
+                .AddSingleton<ScenarioService>()
                 .AddSingleton<UpgradeService>()
                 .AddSingleton<GitService>()
                 .AddScoped<MenuBarViewModel>()
@@ -26,6 +28,7 @@ namespace LogVisualizer
                 .AddSingleton<SchemaConfigViewModel>()
                 .AddSingleton<SplashWindowViewModel>()
                 .BuildServiceProvider();
+            Log.Information("DependencyInjectionProvider inited!");
         }
 
         public static T? GetService<T>()
