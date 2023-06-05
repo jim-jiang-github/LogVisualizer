@@ -97,7 +97,7 @@ namespace LogVisualizer.Services
 
             public override void Shutdown()
             {
-                Dispatcher.UIThread.Invoke(() =>
+                Dispatcher.UIThread.InvokeAsync(() =>
                 {
                     var lifetime = Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime;
                     lifetime?.Shutdown();

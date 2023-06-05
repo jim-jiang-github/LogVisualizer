@@ -62,7 +62,7 @@
                             </Style>
                         </Border.Styles>
                         <ToolTip.Tip>
-                            <ItemsControl ItemsSource="{Binding}" />
+                            <ItemsControl Items="{Binding}" />
                         </ToolTip.Tip>
                     </Border>
                 </DataTemplate>
@@ -106,7 +106,7 @@
                     </Style>
                 </Expander.Styles>
                 <Expander.Header>
-                    <ComboBox Height="30" ItemsSource="{Binding SelectedSchemaConfig.FilterBranches}">
+                    <ComboBox Height="30" Items="{Binding SelectedSchemaConfig.FilterBranches}">
                         <ComboBox.IsVisible>
                             <MultiBinding Converter="{x:Static BoolConverters.And}">
                                 <Binding ElementName="ExpanderSchema" Path="!IsExpanded" />
@@ -175,7 +175,7 @@
                             Margin="10,0,0,0"
                             FilterMode="Contains"
                             IsEnabled="{Binding !!Creator.AllBranches.Count}"
-                            ItemsSource="{Binding Creator.AllBranches}"
+                            Items="{Binding Creator.AllBranches}"
                             Text="{Binding Creator.SchemaBranch}"
                             Watermark="{i18n:I18NKeyBinding Key=Schema_Creator_Schema_Branch_Watermark}" />
                     </DockPanel>
@@ -199,7 +199,7 @@
         <ListBox
             MaxHeight="400"
             IsVisible="{Binding ElementName=ExpanderSchema, Path=!IsExpanded}"
-            ItemsSource="{Binding SchemaConfigs}"
+            Items="{Binding SchemaConfigs}"
             SelectedItem="{Binding SelectedSchemaConfig}">
             <ListBox.ItemTemplate>
                 <DataTemplate>

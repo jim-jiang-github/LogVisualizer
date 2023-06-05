@@ -8,9 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="11.0.0-preview8" />
+    <PackageReference Include="Avalonia" Version="11.0.0-preview4" />
     <PackageReference Include="CliWrap" Version="3.6.1" />
-    <PackageReference Include="MessageBox.Avalonia" Version="2.3.1-prev7.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Serilog" Version="2.12.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
@@ -18,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\3rd\MessageBox.Avalonia\src\MessageBox.Avalonia\MessageBox.Avalonia.csproj" />
     <ProjectReference Include="..\LogVisualizer.I18N\LogVisualizer.I18N.csproj" />
   </ItemGroup>
 

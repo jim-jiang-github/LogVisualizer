@@ -10,6 +10,7 @@ using System.Collections;
 using LogVisualizer.Services;
 using LogVisualizer.Views;
 using LogVisualizer.Scenarios;
+using System.Collections.ObjectModel;
 
 namespace LogVisualizer.ViewModels
 {
@@ -88,8 +89,7 @@ namespace LogVisualizer.ViewModels
             {
             }
         }
-        public IList? Items { get; }
-
+        public IList Items { get; }
         public LogDisplayViewModel()
         {
             Items = new ItemCollection();

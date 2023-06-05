@@ -2,3 +2,6 @@
 	path = 3rd/GithubReleaseUpgrader
 	url = https://github.com/jim-jiang-github/GithubReleaseUpgrader.git
 	branch = dev
+[submodule "3rd/MessageBox.Avalonia"]
+	path = 3rd/MessageBox.Avalonia
+	url = https://github.com/jim-jiang-github/MessageBox.Avalonia.git

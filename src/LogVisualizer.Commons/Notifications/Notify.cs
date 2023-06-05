@@ -40,17 +40,17 @@ namespace LogVisualizer.Commons.Notifications
             };
         }
 
-        public static void NotifyError(string title, string content)
+        public static Task NotifyError(string title, string content)
         {
-            Dispatcher.UIThread.Invoke(() =>
+            return Dispatcher.UIThread.InvokeAsync(() =>
             {
                 NotificationManager?.Show(new Notification(title, content, NotificationType.Error));
             });
         }
 
-        public static void NotifyCustom(object viewModel)
+        public static Task NotifyCustom(object viewModel)
         {
-            Dispatcher.UIThread.Invoke(() =>
+            return Dispatcher.UIThread.InvokeAsync(() =>
             {
                 NotificationManager?.Show(viewModel);
             });
@@ -79,7 +79,7 @@ namespace LogVisualizer.Commons.Notifications
 
         public static Task<string?> ShowMessageBox(string? title, string? content, params MessageBoxButton[] buttons)
         {
-            return Dispatcher.UIThread.Invoke(() =>
+            return Dispatcher.UIThread.InvokeAsync(() =>
             {
                 var messageBoxMarkdownWindow = MessageBox.Avalonia.MessageBoxManager
                 .GetMessageBoxCustomWindow(new MessageBoxCustomParams()
