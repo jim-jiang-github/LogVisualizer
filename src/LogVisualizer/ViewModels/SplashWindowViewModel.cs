@@ -21,7 +21,7 @@ namespace LogVisualizer.ViewModels
         [ObservableProperty]
         private string _message;
 
-        private ScenarioService _scenarioService;
+        private readonly ScenarioService _scenarioService;
 
         public SplashWindowViewModel(ScenarioService scenarioService)
         {
@@ -30,7 +30,6 @@ namespace LogVisualizer.ViewModels
 
         public async Task Execute()
         {
-            await _scenarioService.LoadFromFolder(Global.SchemaConfigFolderRoot);
             await Task.Delay(1000);
         }
     }

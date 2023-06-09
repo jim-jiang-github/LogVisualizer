@@ -11,45 +11,17 @@ namespace LogVisualizer.Scenarios.Schemas
 {
     internal abstract class SchemaLog : Schema
     {
-        public string Name { get; set; } = string.Empty;
+        public enum SchemaLogType
+        {
+            Unknow,
+            LogBinary,
+            LogText
+        }
         public string EncodingName { get; set; } = "utf-8";
         [JsonConverter(typeof(StringEnumConverter))]
-        public LogLoaderType LoaderType { get; set; } = LogLoaderType.Unknow;
-        public string[] SupportedExtensions { get; set; } = Array.Empty<string>();
-        public List<SchemaConvertor> Convertors { get; } = new List<SchemaConvertor>();
-
-        public static string[] GetSupportedExtensionsFromJsonContent(string jsonContent)
-        {
-            var anonymousType = new { SupportedExtensions = Array.Empty<string>() };
-            var result = GetAnonymousTypeFromJsonContent(anonymousType, (c) =>
-            {
-                var x = JsonConvert.DeserializeAnonymousType(c, anonymousType);
-                if (x == null)
-                {
-                    return Array.Empty<string>();
-                }
-                return x.SupportedExtensions;
-            }, jsonContent);
-            if (result == null)
-            {
-                return Array.Empty<string>();
-            }
-            return result;
-        }
-        public static LogLoaderType GetLogFileLoaderTypeFromJsonContent(string jsonContent)
-        {
-            var anonymousType = new { LogFileLoaderType = LogLoaderType.Unknow };
-            var result = GetAnonymousTypeFromJsonContent(anonymousType, (c) =>
-            {
-                var x = JsonConvert.DeserializeAnonymousType(c, anonymousType);
-                if (x == null)
-                {
-                    return LogLoaderType.Unknow;
-                }
-                return x.LogFileLoaderType;
-            }, jsonContent);
-            return result;
-        }
+        public abstract SchemaLogType Type { get; }
+        public SchemaConvertor[] Convertors { get; set; } = Array.Empty<SchemaConvertor>();
+        public SchemalogReader Loader { get; set; } = new SchemalogReader();
     }
     /// <summary>
     /// SchemaLog|

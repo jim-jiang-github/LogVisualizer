@@ -1,7 +1,6 @@
 ﻿using LogVisualizer.Services;
 using LogVisualizer.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
-using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +20,7 @@ namespace LogVisualizer
                 .AddSingleton<UpgradeService>()
                 .AddSingleton<GitService>()
                 .AddScoped<MenuBarViewModel>()
+                .AddScoped<LogSelectorViewModel>()
                 .AddScoped<MainWindowViewModel>()
                 .AddScoped<LogDisplayViewModel>()
                 .AddScoped<SideBarViewModel>()

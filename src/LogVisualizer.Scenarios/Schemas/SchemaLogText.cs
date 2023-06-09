@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using static LogVisualizer.Scenarios.Schemas.SchemalogReader;
 
 namespace LogVisualizer.Scenarios.Schemas
 {
@@ -31,23 +32,33 @@ namespace LogVisualizer.Scenarios.Schemas
             public int Index { get; set; }
         }
         #endregion
-        public override SchemaType Type => SchemaType.LogText;
+        public override SchemaLogType Type => SchemaLogType.LogText;
         public SchemaLogText()
         {
         }
-        public void SaveAsDefault_22_2_20()
+        public void Default_22_2_20()
         {
-            Name = "schema_log_text_rcv_windows_22.2.20";
-            EncodingName = "utf-8";
-            LoaderType = LogLoaderType.Txt;
-            SupportedExtensions = new string[] { "txt", "log" };
             var timeConvertor = new SchemaConvertor()
             {
                 Name = "Time",
                 Type = ConvertorType.Time2Time,
                 Expression = "[MM/dd/yy HH:mm:ss.fff][yyyy-MM-dd HH:mm:ss,fff]"
             };
-            Convertors.Add(timeConvertor);
+            Convertors = new[] {
+                timeConvertor
+            };
+            Loader = new SchemalogReader()
+            {
+                LoadSteps = new[]
+                {
+                    new SchemaLogLoadStep()
+                    {
+                        SupportedExtension = "log",
+                        FileNameValidateRegexs = new[]{ @"RoomsHost-\d+_\d+_pid-\d+(\.\S+|)$" },
+                        ReaderType = LogReaderType.Text
+                    },
+                }
+            };
             ColumnHeadTemplate = new SchemaColumnHeadText
             {
                 RegexStart = @"^(\d{2}\/\d{2}\/\d{2} \d{2}:\d{2}:\d{2}.\d{3})",
@@ -80,15 +91,10 @@ namespace LogVisualizer.Scenarios.Schemas
                     }
                 }
             };
-
             this.SaveAsJson($"schema_log.json");
         }
-        public void SaveAsDefault_21_4_30()
+        public void Default_21_4_30()
         {
-            Name = "schema_log_text_rcv_android_21.4.30";
-            EncodingName = "utf-8";
-            LoaderType = LogLoaderType.Txt;
-            SupportedExtensions = new string[] { "txt", "log" };
             var header = new SchemaBlockText()
             {
                 Name = "Header",
@@ -105,6 +111,18 @@ namespace LogVisualizer.Scenarios.Schemas
                 }
             };
             Blocks.Add(header);
+            Loader = new SchemalogReader()
+            {
+                LoadSteps = new[]
+                {
+                    new SchemaLogLoadStep()
+                    {
+                        SupportedExtension = "log",
+                        FileNameValidateRegexs = new[]{ @"RoomsHost-\d+_\d+_pid-\d+(\.\S+|)$" },
+                        ReaderType = LogReaderType.Text
+                    },
+                }
+            };
 
             ColumnHeadTemplate = new SchemaColumnHeadText
             {
@@ -138,7 +156,6 @@ namespace LogVisualizer.Scenarios.Schemas
                     }
                 }
             };
-
             this.SaveAsJson($"schema_log.json");
         }
     }

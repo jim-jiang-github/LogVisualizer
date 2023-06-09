@@ -12,38 +12,70 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static LogVisualizer.ViewModels.LogDisplayViewModel;
+using LogVisualizer.Decompress;
 
 namespace LogVisualizer.ViewModels
 {
     public partial class MenuBarViewModel : ViewModelBase
     {
-        private UpgradeService _upgradeService;
+        private readonly UpgradeService _upgradeService;
+        private readonly ScenarioService _scenarioService;
 
-        public MenuBarViewModel(UpgradeService upgradeService)
+        private IReadOnlyList<FilePickerFileType>? SupportedFileType
+        {
+            get
+            {
+                return new FilePickerFileType[]
+                {
+                    new(I18NKeys.Menu_Open_Pick_Log_Dialog_Supported_Logs.GetLocalizationRawValue())
+                    {
+                        Patterns = _scenarioService.SupportedLogExtension
+                    }
+                };
+            }
+        }
+
+        public MenuBarViewModel(UpgradeService upgradeService, ScenarioService scenarioService)
         {
             _upgradeService = upgradeService;
+            _scenarioService = scenarioService;
         }
 
         [RelayCommand]
         public async Task Open()
         {
-
-            List<FilePickerFileType>? GetFileTypes()
+            var storageFiles = await GlobalStorageProvider.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions()
             {
-                return new List<FilePickerFileType>
-                            {
-                                new("Binary Log")
-                                {
-                                    Patterns = new[] { "*.binlog", "*.buildlog" },
-                                }
-                            };
-            }
-            var r = await GlobalStorageProvider.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions()
-            {
-                Title = "Open file",
-                FileTypeFilter = GetFileTypes(),
+                Title = I18NKeys.Menu_Open_Pick_Log_Dialog.GetLocalizationRawValue(),
+                FileTypeFilter = SupportedFileType,
                 AllowMultiple = true
             });
+            await Task.Run(async () =>
+            {
+                var paths = storageFiles
+                    .Where(x => x.CanBookmark).Select(async x => await x.SaveBookmarkAsync())
+                    .Select(x => x.Result)
+                    .Where(x => !string.IsNullOrEmpty(x))
+                    .Cast<string>()
+                    .SelectMany(x =>
+                    {
+                        if (CompressedPackageLoader.IsSupportedCompressedPackage(x))
+                        {
+                            return CompressedPackageLoader.GetEntryPaths(x);
+                        }
+                        else
+                        {
+                            return new[] { x };
+                        }
+                    })
+                    .ToArray();
+                if (paths.Length == 0)
+                {
+                    return;
+                }
+                await _scenarioService.OpenLogSource(paths);
+            }).WithLoadingMask();
         }
 
         [RelayCommand]

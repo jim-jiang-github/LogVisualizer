@@ -7,45 +7,13 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using LogVisualizer.ViewModels;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using static LogVisualizer.Commons.Loading;
+using LogVisualizer.Commons;
 
 namespace LogVisualizer.Views
 {
     public class LoadingMaskBindingExtension : MarkupExtension
     {
-        public class LoadingMaskSource : INotifyPropertyChanged
-        {
-            private static LoadingMaskSource _instance;
-            public static LoadingMaskSource Instance
-            {
-                get
-                {
-                    if (_instance == null)
-                    {
-                        _instance = new LoadingMaskSource();
-                    }
-                    return _instance;
-                }
-            }
-
-            public event PropertyChangedEventHandler? PropertyChanged;
-
-            private bool _showLoading = false;
-
-            public bool ShowLoading
-            {
-                get => _showLoading;
-                set
-                {
-                    _showLoading = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ShowLoading)));
-                }
-            }
-
-            private LoadingMaskSource()
-            {
-
-            }
-        }
         public LoadingMaskBindingExtension()
         {
 
@@ -53,9 +21,9 @@ namespace LogVisualizer.Views
 
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
-            var binding = new ReflectionBindingExtension(nameof(LoadingMaskSource.ShowLoading))
+            var binding = new ReflectionBindingExtension(nameof(LoadingBindingSource.ShowLoading))
             {
-                Source = LoadingMaskSource.Instance,
+                Source = Loading.BindingSource,
                 Mode = BindingMode.OneWay
             };
             return binding.ProvideValue(serviceProvider);

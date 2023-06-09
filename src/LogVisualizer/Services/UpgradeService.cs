@@ -3,7 +3,6 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Threading;
 using LogVisualizer.Commons;
 using GithubReleaseUpgrader;
-using Serilog;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,8 +13,7 @@ using LogVisualizer.I18N;
 using MessageBox.Avalonia.DTO;
 using Avalonia.Controls;
 using MessageBox.Avalonia.Models;
-using LogVisualizer.Commons.Notifications;
-using static LogVisualizer.Commons.Notifications.Notify;
+using static LogVisualizer.Commons.Notify;
 using static GithubReleaseUpgrader.UpgradeProgress;
 
 namespace LogVisualizer.Services
@@ -43,7 +41,7 @@ namespace LogVisualizer.Services
                 var content = releaseLogMarkDown;
                 var buttonNext = I18NKeys.Upgrader_Upgrade_Next_Startup.GetLocalizationRawValue();
                 var buttonUpgrade = I18NKeys.Upgrader_Upgrade_Now.GetLocalizationRawValue();
-                var result = await LogVisualizer.Commons.Notifications.Notify.ShowMessageBox(title, content, new MessageBoxButton(buttonNext), new MessageBoxButton(buttonUpgrade, true));
+                var result = await Commons.Notify.ShowMessageBox(title, content, new MessageBoxButton(buttonNext), new MessageBoxButton(buttonUpgrade, true));
 
                 if (result == buttonUpgrade)
                 {
@@ -63,7 +61,7 @@ namespace LogVisualizer.Services
                 var buttonNext = I18NKeys.Upgrader_Upgrade_Next_Startup.GetLocalizationRawValue();
                 var buttonDownload = I18NKeys.Upgrader_Download_Now.GetLocalizationRawValue();
 
-                var result = await LogVisualizer.Commons.Notifications.Notify.ShowMessageBox(title, content, new MessageBoxButton(buttonIgnore), new MessageBoxButton(buttonNext), new MessageBoxButton(buttonDownload, true));
+                var result = await Commons.Notify.ShowMessageBox(title, content, new MessageBoxButton(buttonIgnore), new MessageBoxButton(buttonNext), new MessageBoxButton(buttonDownload, true));
 
                 if (result == buttonIgnore)
                 {

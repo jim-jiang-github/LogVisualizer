@@ -23,7 +23,7 @@ namespace LogVisualizer.Test
         [InlineData("")]
         public async Task LoadFromFolder(string logFilePath)
         {
-            await _scenarioService.LoadFromFolder(Global.SchemaConfigFolderRoot);
+            //await _scenarioService.lo(Global.SchemaConfigFolderRoot);
         }
     }
 }

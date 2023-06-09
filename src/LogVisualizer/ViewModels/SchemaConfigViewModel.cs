@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using LogVisualizer.Services;
-using LogVisualizer.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,7 +18,6 @@ using CommunityToolkit.Mvvm.Messaging;
 using Avalonia.Controls;
 using System.Collections;
 using LogVisualizer.Models;
-using LogVisualizer.Commons.Notifications;
 using Avalonia.Threading;
 
 namespace LogVisualizer.ViewModels

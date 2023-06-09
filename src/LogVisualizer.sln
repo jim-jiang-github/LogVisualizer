@@ -27,6 +27,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogVisualizer.Console", "Lo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessageBox.Avalonia", "..\3rd\MessageBox.Avalonia\src\MessageBox.Avalonia\MessageBox.Avalonia.csproj", "{0349E5D5-ECA0-4450-8740-E03DE06B622B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogVisualizer.Decompress", "LogVisualizer.Decompress\LogVisualizer.Decompress.csproj", "{0E3F4E82-3A6B-43B0-B5FD-38D9790FA150}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,14 @@ Global
 		{0349E5D5-ECA0-4450-8740-E03DE06B622B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0349E5D5-ECA0-4450-8740-E03DE06B622B}.Release|x64.ActiveCfg = Release|Any CPU
 		{0349E5D5-ECA0-4450-8740-E03DE06B622B}.Release|x64.Build.0 = Release|Any CPU
+		{0E3F4E82-3A6B-43B0-B5FD-38D9790FA150}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E3F4E82-3A6B-43B0-B5FD-38D9790FA150}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E3F4E82-3A6B-43B0-B5FD-38D9790FA150}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0E3F4E82-3A6B-43B0-B5FD-38D9790FA150}.Debug|x64.Build.0 = Debug|Any CPU
+		{0E3F4E82-3A6B-43B0-B5FD-38D9790FA150}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E3F4E82-3A6B-43B0-B5FD-38D9790FA150}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E3F4E82-3A6B-43B0-B5FD-38D9790FA150}.Release|x64.ActiveCfg = Release|Any CPU
+		{0E3F4E82-3A6B-43B0-B5FD-38D9790FA150}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

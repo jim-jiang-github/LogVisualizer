@@ -4,10 +4,8 @@ using Projektanker.Icons.Avalonia;
 using Projektanker.Icons.Avalonia.FontAwesome;
 using Projektanker.Icons.Avalonia.MaterialDesign;
 using LogVisualizer.Services;
-using LogVisualizer.Commons.Notifications;
 using Serilog.Core;
 using Serilog.Events;
-using Serilog;
 using LogVisualizer.Commons;
 
 namespace LogVisualizer

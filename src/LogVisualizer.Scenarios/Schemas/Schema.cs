@@ -9,41 +9,18 @@ using System.Threading.Tasks;
 
 namespace LogVisualizer.Scenarios.Schemas
 {
-    public abstract class Schema : IJsonSerializable
+    internal abstract class Schema : IJsonSerializable
     {
-        [JsonConverter(typeof(StringEnumConverter))]
-        public abstract SchemaType Type { get; }
-        protected static T? GetAnonymousTypeFromJsonContent<T>(dynamic anonymousType, Func<string, T> deserializeAnonymousTypeCallback, string jsonContent)
+        public static SchemaLogType GetSchemaTypeFromJsonFile(string jsonFilePath)
         {
-            try
+            var schemaLogContent = IJsonSerializable.LoadContentFromJsonFile(jsonFilePath);
+            if (schemaLogContent == null)
             {
-                return deserializeAnonymousTypeCallback.Invoke(jsonContent);
+                return SchemaLogType.Unknow;
             }
-            catch (Exception ex)
-            {
-                Log.Warning("Load error {error message}.", ex);
-                return default(T);
-            }
-        }
-        protected static T? GetAnonymousTypeFromJsonFile<T>(dynamic anonymousType, Func<string, T> deserializeAnonymousTypeCallback, string jsonFilePath)
-        {
-            var jsonContent = IJsonSerializable.LoadContentFromJsonFile(jsonFilePath);
-            var result = GetAnonymousTypeFromJsonContent(anonymousType, deserializeAnonymousTypeCallback, jsonContent);
-            return result;
-        }
-        public static SchemaType GetSchemaTypeFromJsonFile(string jsonFilePath)
-        {
-            var anonymousType = new { Type = SchemaType.Unknow };
-            var result = GetAnonymousTypeFromJsonFile(anonymousType, (c) =>
-            {
-                var x = JsonConvert.DeserializeAnonymousType(c, anonymousType);
-                if (x == null)
-                {
-                    return SchemaType.Unknow;
-                }
-                return x.Type;
-            }, jsonFilePath);
-            return result;
+            var anonymousType = new { Type = SchemaLogType.Unknow };
+            var type = JsonConvert.DeserializeAnonymousType(schemaLogContent, anonymousType)?.Type ?? SchemaLogType.Unknow;
+            return type;
         }
     }
 }

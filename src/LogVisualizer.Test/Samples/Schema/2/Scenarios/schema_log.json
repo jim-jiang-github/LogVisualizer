@@ -2,14 +2,13 @@
   "Type": "LogText",
   "Blocks": [],
   "ColumnHeadTemplate": {
-    "RegexStart": "^(\\d{2}\\/\\d{2}\\/\\d{2} \\d{2}:\\d{2}:\\d{2}.\\d{3})",
+    "RegexStart": "^\\d{2}\\/\\d{2}\\/\\d{2} \\d{2}:\\d{2}:\\d{2}.\\d{3}",
     "RegexContent": "^(\\d{2}\\/\\d{2}\\/\\d{2} \\d{2}:\\d{2}:\\d{2}.\\d{3}) \\<(.*?)\\> \\[(.*?)\\] (.*?) (.*)",
     "Columns": [
       {
         "Cell": {
           "Index": 1,
-          "Name": "Time",
-          "ConvertorName": "Time"
+          "Name": "Time"
         },
         "Enumeratable": false,
         "Filterable": false

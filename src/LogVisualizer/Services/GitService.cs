@@ -2,7 +2,6 @@
 using CliWrap;
 using LogVisualizer.Commons;
 using ReverseMarkdown.Converters;
-using Serilog;
 using System;
 using System.Collections.Generic;
 using System.IO;

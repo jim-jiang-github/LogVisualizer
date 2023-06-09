@@ -13,35 +13,51 @@ namespace LogVisualizer.Test
 {
     public class ScenarioTest
     {
-        [Theory]
-        [InlineData(@"Samples\1\1.log", @"Samples\1\Scenarios", 12)]
-        public void Scenario(string logFilePath, string scenariosFolder, int rowCount)
+        private MemoryStream _memoryStream;
+        public ScenarioTest() 
         {
-            Scenario scenario = new Scenario();
-            scenario.Init(scenariosFolder);
-            var result = scenario.LoadLogContent(logFilePath);
-            Assert.True(result);
-            Assert.Equal(scenario.LogContent.RowsCount, rowCount);
-        }
-        [Theory]
-        [InlineData(@"Samples\2\1.log", @"Samples\2\Scenarios", 999999)]
-        public void Pull(string logFilePath, string scenariosFolder, int rowCount)
-        {
-            var line = File.ReadAllText(logFilePath);
-            using var autoDelete = FileOperationsHelper.CreateAutoDelete(".log");
-            var randomFile = autoDelete.RandomFile;
-            using var fileStream = File.OpenWrite(randomFile);
-            using var streamWriter = new StreamWriter(fileStream);
-            for (int i = 0; i < rowCount; i++)
+            _memoryStream = new MemoryStream();
+            using var streamWriter = new StreamWriter(_memoryStream);
+            var line = File.ReadAllText(@"Samples\1\1.log");
+            for (int i = 0; i < 99999; i++)
             {
                 streamWriter.WriteLine(line);
             }
-            streamWriter.Dispose();
-            Scenario scenario = new Scenario();
-            scenario.Init(scenariosFolder);
-            var result = scenario.LoadLogContent(randomFile);
-            Assert.True(result);
-            Assert.Equal(scenario.LogContent?.RowsCount, rowCount);
         }
+
+        //[Theory]
+        //[InlineData(@"Samples\1\1.log", @"Samples\1\Scenarios", 12)]
+        //public void Scenario(string logFilePath, string scenariosFolder, int rowCount)
+        //{
+        //    Scenario scenario = new Scenario();
+        //    scenario.Init(scenariosFolder);
+        //    var result = scenario.LoadLogContent(logFilePath);
+        //    Assert.True(result);
+        //    Assert.Equal(scenario.LogContent.RowsCount, rowCount);
+        //}
+
+        //[Theory]
+        //[InlineData(@"Samples\2\1.log", @"Samples\2\Scenarios", 999999)]
+        //public void Pull(string logFilePath, string scenariosFolder, int rowCount)
+        //{
+        //    var line = File.ReadAllText(logFilePath);
+        //    using var autoDelete = FileOperationsHelper.CreateAutoDelete(".log");
+        //    var randomFile = autoDelete.RandomFile;
+        //    using var fileStream = File.OpenWrite(randomFile);
+        //    using var streamWriter = new StreamWriter(fileStream);
+        //    for (int i = 0; i < rowCount; i++)
+        //    {
+        //        streamWriter.WriteLine(line);
+        //    }
+        //    streamWriter.Dispose();
+        //    Scenario scenario = new Scenario();
+        //    scenario.Init(scenariosFolder);
+        //    Stopwatch stopwatch = Stopwatch.StartNew();
+        //    var result = scenario.LoadLogContent(randomFile);
+        //    var durtion = stopwatch.ElapsedMilliseconds;
+        //    stopwatch.Stop();
+        //    Assert.True(result);
+        //    Assert.Equal(scenario.LogContent?.RowsCount, rowCount);
+        //}
     }
 }

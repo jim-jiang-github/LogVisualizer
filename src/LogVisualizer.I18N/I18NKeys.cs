@@ -36,6 +36,10 @@
         Menu_File,
         /// <summary>Open</summary>
         Menu_Open,
+        /// <summary>Pick logs</summary>
+        Menu_Open_Pick_Log_Dialog,
+        /// <summary>Supported Logs</summary>
+        Menu_Open_Pick_Log_Dialog_Supported_Logs,
         /// <summary>From Url</summary>
         Menu_From_Url,
         /// <summary>Exit</summary>
@@ -172,6 +176,24 @@
             get
             {
                 return I18NKeys.Menu_Open.GetLocalizationRawValue();
+            }
+        }
+        /// <summary>Pick logs</summary>
+        public const string Menu_Open_Pick_Log_Dialog = "Menu_Open_Pick_Log_DialogSource";
+        public static string Menu_Open_Pick_Log_DialogSource
+        {
+            get
+            {
+                return I18NKeys.Menu_Open_Pick_Log_Dialog.GetLocalizationRawValue();
+            }
+        }
+        /// <summary>Supported Logs</summary>
+        public const string Menu_Open_Pick_Log_Dialog_Supported_Logs = "Menu_Open_Pick_Log_Dialog_Supported_LogsSource";
+        public static string Menu_Open_Pick_Log_Dialog_Supported_LogsSource
+        {
+            get
+            {
+                return I18NKeys.Menu_Open_Pick_Log_Dialog_Supported_Logs.GetLocalizationRawValue();
             }
         }
         /// <summary>From Url</summary>

@@ -6,6 +6,7 @@
     xmlns:fa="http://schemas.fontawesome.io/icons/"
     xmlns:icon="clr-namespace:Projektanker.Icons.Avalonia;assembly=Projektanker.Icons.Avalonia"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="using:LogVisualizer.Views"
     xmlns:vm="using:LogVisualizer.ViewModels"
     d:DesignHeight="450"
     d:DesignWidth="250"
@@ -16,18 +17,55 @@
             Classes="sidebar"
             Header="mdi text-box-outline"
             ToolTip.Tip="xxxxxxxxxxxxxx">
-            <Border Background="Red" />
+            <views:LogSelector DataContext="{Binding LogSelector}" />
         </TabItem>
-        <TabItem Classes="sidebar" Header="mdi text-box-edit-outline">
+        <!--<TabItem Classes="sidebar" Header="mdi text-box-edit-outline">
             <Border Background="Blue" />
         </TabItem>
         <TabItem Classes="sidebar" Header="mdi google-analytics">
             <Border Background="Green" />
-        </TabItem>
+        </TabItem>-->
+        <TabControl.ContentTemplate>
+            <DataTemplate>
+                <StackPanel Orientation="Vertical" Spacing="8">
+                    <TextBlock />
+                </StackPanel>
+            </DataTemplate>
+        </TabControl.ContentTemplate>
         <TabControl.Styles>
             <Style Selector="TabControl.sidebar">
                 <Setter Property="Padding" Value="0" />
                 <Setter Property="TabStripPlacement" Value="Left" />
+                <Setter Property="Template">
+                    <ControlTemplate>
+                        <Border
+                            HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}">
+                            <DockPanel>
+                                <Border BorderBrush="#525252" BorderThickness="0,0,1,0">
+                                    <ItemsPresenter
+                                        Name="PART_ItemsPresenter"
+                                        DockPanel.Dock="{TemplateBinding TabStripPlacement}"
+                                        ItemTemplate="{TemplateBinding ItemTemplate}"
+                                        Items="{TemplateBinding Items}"
+                                        ItemsPanel="{TemplateBinding ItemsPanel}" />
+                                </Border>
+                                <ContentPresenter
+                                    Name="PART_SelectedContentHost"
+                                    Margin="{TemplateBinding Padding}"
+                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Background="#1f1f1f"
+                                    Content="{TemplateBinding SelectedContent}"
+                                    ContentTemplate="{TemplateBinding SelectedContentTemplate}" />
+                            </DockPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Setter>
             </Style>
             <Style Selector="TabItem.sidebar">
                 <Setter Property="Width" Value="50" />

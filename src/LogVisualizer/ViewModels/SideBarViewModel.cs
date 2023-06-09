@@ -13,8 +13,10 @@ namespace LogVisualizer.ViewModels
 {
     public partial class SideBarViewModel : ViewModelBase
     {
-        public SideBarViewModel()
+        public LogSelectorViewModel LogSelector { get; }
+        public SideBarViewModel(LogSelectorViewModel logSelectorViewModel)
         {
+            LogSelector = logSelectorViewModel;
         }
 
         [RelayCommand]

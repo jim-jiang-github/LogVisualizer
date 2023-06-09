@@ -2,20 +2,30 @@
     x:Class="LogVisualizer.Views.LoadingMask"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:customControls="clr-namespace:LogVisualizer.CustomControls;assembly=LogVisualizer"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:icon="clr-namespace:Projektanker.Icons.Avalonia;assembly=Projektanker.Icons.Avalonia"
     xmlns:local="using:LogVisualizer.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    d:DesignHeight="1080"
+    d:DesignWidth="1920"
     Background="#88000000"
     IsVisible="{local:LoadingMaskBinding}"
     mc:Ignorable="d">
-    <Viewbox Width="150" Height="150">
-        <icon:Icon
-            Animation="Spin"
-            Foreground="#3f3f3f"
-            Opacity="0.8"
-            Value="fa-solid fa-spinner" />
-    </Viewbox>
+    <Border
+        Width="500"
+        Height="100"
+        Background="#1f1f1f">
+        <Grid>
+            <customControls:LogVisualizerLogo Margin="0,-30,0,0" />
+            <TextBlock
+                Margin="0,0,0,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                FontSize="20"
+                Foreground="White"
+                Text="xxxxx" />
+            <ProgressBar VerticalAlignment="Bottom" IsIndeterminate="True" />
+        </Grid>
+    </Border>
 </UserControl>

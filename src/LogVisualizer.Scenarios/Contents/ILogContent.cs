@@ -18,10 +18,10 @@ namespace LogVisualizer.Scenarios.Contents
             var schemaType = Schema.GetSchemaTypeFromJsonFile(schemaLogPath);
             switch (schemaType)
             {
-                case SchemaType.LogText:
+                case SchemaLogType.LogText:
                     var logContentText = LoadLogContent<LogContentText, SchemaLogText>(logFileStream, schemaLogPath);
                     return logContentText;
-                case SchemaType.LogBinary:
+                case SchemaLogType.LogBinary:
                     var logContentBinary = LoadLogContent<LogContentBinary, SchemaLogBinary>(logFileStream, schemaLogPath);
                     return logContentBinary;
             }

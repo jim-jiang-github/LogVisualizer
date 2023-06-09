@@ -7,6 +7,9 @@ namespace LogVisualizer.Views
         public SplashWindow()
         {
             InitializeComponent();
+#if RELEASE
+            this.Topmost = true;
+#endif
         }
     }
 }

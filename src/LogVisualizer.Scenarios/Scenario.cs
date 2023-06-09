@@ -1,136 +1,89 @@
-﻿using System;
+﻿using LogVisualizer.Scenarios.Schemas;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using LogVisualizer.Scenarios.Schemas;
-using LogVisualizer.Scenarios.Contents;
+using static LogVisualizer.Scenarios.Scenario;
 
 namespace LogVisualizer.Scenarios
 {
-    public class Scenario : INotifyPropertyChanged, IDisposable
+    public class Scenario
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        private LogLoader? _streamLoader;
-        private string? _schemaLogPath;
-
-        public string[] SupportedExtensions { get; private set; } = Array.Empty<string>();
-        public string[] LoadedLogFiles { get; private set; } = Array.Empty<string>();
-        public ILogContent? LogContent { get; private set; }
-        public bool Initialized => SupportedExtensions.Length > 0;
-        public bool LogContentLoaded => LogContent != null;
-        public Scenario()
+        internal class LoadStep
         {
+            public string SupportedExtension { get; }
+            public string[] FileNameValidateRegexs { get; }
+            public LogReader Reader { get; }
 
+            public LoadStep(string supportedExtension, string[] fileNameValidateRegexs, LogReader reader)
+            {
+                SupportedExtension = supportedExtension;
+                FileNameValidateRegexs = fileNameValidateRegexs;
+                Reader = reader;
+            }
+
+            public bool IsFileValid(string filePath)
+            {
+                var extension = Path.GetExtension(filePath).TrimStart('.');
+                var fileName = Path.GetFileNameWithoutExtension(filePath);
+                if (extension != SupportedExtension)
+                {
+                    return false;
+                }
+                if (!FileNameValidateRegexs.Any(x => Regex.IsMatch(fileName, x)))
+                {
+                    return false;
+                }
+                return true;
+            }
         }
-        protected void OnPropertyChanged(string? propertyName = null)
+        public static Scenario? LoadFromFolder(string folder)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        public bool Init(string scenariosFolder)
-        {
-            if (!Directory.Exists(scenariosFolder))
+            var schemaLogPath = Path.Combine(folder, "schema_log.json");
+            var loader = SchemalogReader.GetSchemalogReaderFromJsonFile(schemaLogPath);
+            if (loader == null)
             {
-                return false;
+                return null;
             }
-            var files = Directory.GetFiles(scenariosFolder);
-            var schemaTypeMap = files.ToDictionary(f => Schema.GetSchemaTypeFromJsonFile(f), f => f);
-            var schemaScenarioCount = schemaTypeMap.Count(x => x.Key == SchemaType.Scenario);
-            if (schemaScenarioCount == 0)
-            {
-                Log.Warning("Can not found schemaScenario in {scenarioDirectory}", scenariosFolder);
-                return false;
-            }
-            if (schemaScenarioCount > 1)
-            {
-                Log.Warning("Found multiple schemaScenario in {scenarioDirectory}", scenariosFolder);
-                return false;
-            }
-            var schemaScenarioPath = schemaTypeMap.FirstOrDefault(x => x.Key == SchemaType.Scenario).Value;
-            var schemaScenario = IJsonSerializable.LoadFromJsonFile<SchemaScenario>(schemaScenarioPath);
-            if (schemaScenario == null)
-            {
-                Log.Warning("Can not load schemaScenario from json file in {schemaScenarioPath}", schemaScenarioPath);
-                return false;
-            }
-            if (schemaScenario.SchemaLogName == string.Empty)
-            {
-                Log.Warning("Schema scenario do not have schema log name");
-                return false;
-            }
-            var schemaLogPath = Path.Combine(scenariosFolder, schemaScenario.SchemaLogName);
-            var schemaLogContent = IJsonSerializable.LoadContentFromJsonFile(schemaLogPath);
-            if (schemaLogContent == null)
-            {
-                Log.Warning("Can not load schema log content from json file in {schemaLogPath}", schemaLogPath);
-                return false;
-            }
-            var supportExtensions = GetSupportedExtensionsFromJsonContent(schemaLogContent);
-            if (supportExtensions.Length <= 0)
-            {
-                Log.Warning("Can not support any extensions from json file in {schemaLogPath}", schemaLogPath);
-                return false;
-            }
-            var logFileLoaderType = GetLogFileLoaderTypeFromJsonContent(schemaLogContent);
-            var streamLoader = GetLoader(logFileLoaderType);
-            if (streamLoader == null)
-            {
-                Log.Warning("Can not load stream from json file by {loader} in {schemaLogContent}", streamLoader, schemaLogContent);
-                return false;
-            }
-            _schemaLogPath = schemaLogPath;
-            _streamLoader = streamLoader;
-            SupportedExtensions = supportExtensions;
-            Log.Information("Scenario inited");
-            //LoadLogContent(@"C:\Users\Jim.Jiang\Downloads\WRoomsFeedBack_HostLog_75a6889c-ce51-4840-ace1-3ef098034520_20220615-104915\RoomsHost-20220614_132503-pid_3220.log");
-            return true;
+            //var loadSteps = loader.LoadSteps.Select(x => new LoadStep(x.SupportedExtension, x.FileNameValidateRegexs, x.ExtensionLoaderType, LogReader.GetReader(x.ReaderType)));
+            //var supportedExtension = loader.LoadSteps.Select(x => x.SupportedExtension).ToArray();
+            //var extensionMap = loader.LoadSteps.ToDictionary(x => x.SupportedExtension, x => x.ExtensionLoaderType);
+            //var scenario = new Scenario(supportedExtension, loadSteps, extensionMap);
+            return null;
         }
 
-        public void Dispose()
+        private IEnumerable<LoadStep> _loadSteps;
+
+        public string[] SupportedExtensions { get; private set; }
+
+
+        private Scenario(string[] supportedExtensions, IEnumerable<LoadStep> loadSteps)
         {
-            LogContent?.Dispose();
-            LogContent = null;
-            _schemaLogPath = null;
-            _streamLoader = null;
-            SupportedExtensions = Array.Empty<string>();
+            SupportedExtensions = supportedExtensions;
+            _loadSteps = loadSteps;
         }
-        public void LoadLogFiles(string[] logFiles)
+
+        public Task OpenLog(string logPath)
         {
-            if (logFiles.Length == 0)
+            var step = _loadSteps.Where(x => x.IsFileValid(logPath)).FirstOrDefault();
+            if (step == null)
             {
-                return;
+                return Task.CompletedTask;
             }
-            LoadedLogFiles = logFiles;
-            LoadLogContent(logFiles[0]);
-            OnPropertyChanged(nameof(LoadedLogFiles));
+            return Task.CompletedTask;
         }
-        public bool LoadLogContent(string logFilePath)
+        public class Selector
         {
-            if (!Initialized)
+
+        }
+        public class ASDASD
+        {
+            public Task LoadLogSource(string sourcePath, Action<Selector> selector)
             {
-                Log.Warning("No initialized");
-                return false;
+                return Task.CompletedTask;
             }
-            if (_streamLoader == null || _schemaLogPath == null)
-            {
-                return false;
-            }
-            if (LogContentLoaded)
-            {
-                Log.Information("Reset LogContent");
-                LogContent?.Dispose();
-                LogContent = null;
-                GC.Collect();
-                OnPropertyChanged(nameof(LogContent));
-            }
-            Log.Information("Load LogContent from {logFilePath}", logFilePath);
-            var stream = _streamLoader.Load(logFilePath);
-            LogContent = ILogContent.LoadLogContent(stream, _schemaLogPath);
-            OnPropertyChanged(nameof(LogContent));
-            return true;
         }
     }
 }

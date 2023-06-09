@@ -67,7 +67,7 @@
                 <views:SideBar Grid.Column="0" DataContext="{Binding SideBar}" />
                 <GridSplitter
                     Grid.Column="1"
-                    Width="2"
+                    Width="1"
                     Background="Green" />
                 <Grid Grid.Column="2" RowDefinitions="*,Auto,100">
                     <ListBox Grid.Row="0" Items="{Binding CurrentLog.Items}">
@@ -100,7 +100,7 @@
                     </ListBox>
                     <GridSplitter
                         Grid.Row="1"
-                        Height="2"
+                        Height="1"
                         Background="Red" />
                     <Grid Grid.Row="2" Background="Gray" />
                 </Grid>

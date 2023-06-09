@@ -15,6 +15,18 @@ namespace LogVisualizer.Commons.Extensions
         /// </summary>
         public interface IJsonSerializable
         {
+            public static T? GetAnonymousTypeFromJsonContent<T>(dynamic anonymousType, Func<string, T> deserializeAnonymousTypeCallback, string jsonContent)
+            {
+                try
+                {
+                    return deserializeAnonymousTypeCallback.Invoke(jsonContent);
+                }
+                catch (Exception ex)
+                {
+                    Log.Warning("Load error {error message}.", ex);
+                    return default(T);
+                }
+            }
             public static string? LoadContentFromJsonFile(string jsonFilePath)
             {
                 if (!File.Exists(jsonFilePath))

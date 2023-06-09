@@ -47,7 +47,7 @@ namespace LogVisualizer.Scenarios.Schemas
             public int? Length { get; set; }
         }
         #endregion
-        public override SchemaType Type => SchemaType.LogBinary;
+        public override SchemaLogType Type => SchemaLogType.LogBinary;
 
         public SchemaLogBinary()
         {
@@ -55,10 +55,6 @@ namespace LogVisualizer.Scenarios.Schemas
 
         public void SaveAsDefault()
         {
-            Name = "schema_log_binary_rcv_windows_21.4.30";
-            EncodingName = "utf-8";
-            LoaderType = LogLoaderType.MemoryMapped;
-            SupportedExtensions = new[] { "rcvlog" };
             var timeConvertor = new SchemaConvertor()
             {
                 Name = "Time",
@@ -76,8 +72,10 @@ namespace LogVisualizer.Scenarios.Schemas
                 Type = ConvertorType.Enum,
                 Expression = "0:DEBUG,1:INFO,2:WARNING,3:ERROR"
             };
-            Convertors.Add(timeConvertor);
-            Convertors.Add(levelConvertor);
+            Convertors = new[] {
+                timeConvertor,
+                levelConvertor
+            };
 
             var header = new SchemaBlockBinary()
             {

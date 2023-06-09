@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogVisualizer.Commons.Notifications
+namespace LogVisualizer.Commons
 {
     public static class Notify
     {

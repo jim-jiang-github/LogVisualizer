@@ -2,7 +2,7 @@
 using Avalonia.Controls.Documents;
 using Avalonia.Input;
 using Avalonia.Threading;
-using LogVisualizer.Commons.Notifications;
+using LogVisualizer.Commons;
 using LogVisualizer.ViewModels;
 using MessageBox.Avalonia.DTO;
 using MessageBox.Avalonia.Models;

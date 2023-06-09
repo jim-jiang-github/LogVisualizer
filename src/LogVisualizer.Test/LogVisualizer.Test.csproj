@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LogVisualizer.Commons\LogVisualizer.Commons.csproj" />
+    <ProjectReference Include="..\LogVisualizer.Decompress\LogVisualizer.Decompress.csproj" />
     <ProjectReference Include="..\LogVisualizer.I18N\LogVisualizer.I18N.csproj" />
     <ProjectReference Include="..\LogVisualizer.Scenarios\LogVisualizer.Scenarios.csproj" />
     <ProjectReference Include="..\LogVisualizer\LogVisualizer.csproj" />
@@ -37,7 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Samples\1\Scenarios\schema_log.json">
+    <None Update="Samples\Schema\1\Scenarios\schema_log.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

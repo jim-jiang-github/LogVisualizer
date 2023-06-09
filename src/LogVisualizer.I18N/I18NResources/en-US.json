@@ -20,6 +20,14 @@
     "Value": "Open"
   },
   {
+    "Key": "Menu_Open_Pick_Log_Dialog",
+    "Value": "Pick logs"
+  },
+  {
+    "Key": "Menu_Open_Pick_Log_Dialog_Supported_Logs",
+    "Value": "Supported Logs"
+  },
+  {
     "Key": "Menu_From_Url",
     "Value": "From Url"
   },
