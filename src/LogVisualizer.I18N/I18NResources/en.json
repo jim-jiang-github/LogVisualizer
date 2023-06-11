@@ -1,56 +1,56 @@
 {
-  "Common": {
-    "Version": "Version ({l_version number}).",
-    "Cancel": "Cancel",
-    "Confirm": "Confirm",
-    "ConfirmDelete": "Are you sure you want to delete the '{l_name}'? This action cannot be undone!"
+  "common": {
+    "version": "Version ({l_version number}).",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "confirmDelete": "Are you sure you want to delete the '{l_name}'? This action cannot be undone!"
   },
-  "Menu": {
-    "File": "File",
-    "Open": "Open",
-    "FromUrl": "From Url",
-    "Exit": "Exit",
-    "Views": "Views",
-    "ShowOnlyFiltered": "Show only filtered line",
-    "Filter": "Filter",
-    "AddNewFilter": "Add new filter",
-    "Help": "Help",
-    "CheckUpgrade": "Check for upgrade",
-    "OpenAppDataFolder": "Open App data folder",
-    "About": "About"
+  "menu": {
+    "file": "File",
+    "open": "Open",
+    "fromUrl": "From Url",
+    "exit": "Exit",
+    "views": "Views",
+    "showOnlyFiltered": "Show only filtered line",
+    "filter": "Filter",
+    "addNewFilter": "Add new filter",
+    "help": "Help",
+    "checkUpgrade": "Check for upgrade",
+    "openAppDataFolder": "Open App data folder",
+    "about": "About"
   },
-  "OpenFileDialog": {
-    "PickLog": "Pick logs",
-    "SupportedLogs": "Supported Logs"
+  "openFileDialog": {
+    "pickLog": "Pick logs",
+    "supportedLogs": "Supported Logs"
   },
-  "Upgrader": {
-    "Title": "Upgrade is available: {l_version}",
-    "DownloadNow": "Download now",
-    "UpgradeNow": "Exit and upgrade now",
-    "UpgradeNextStartup": "Upgrade on next startup",
-    "IgnoreThisVersion": "Ignore this version"
+  "upgrader": {
+    "title": "Upgrade is available: {l_version}",
+    "downloadNow": "Download now",
+    "upgradeNow": "Exit and upgrade now",
+    "upgradeNextStartup": "Upgrade on next startup",
+    "ignoreThisVersion": "Ignore this version"
   },
-  "Scenario": {
-    "NoSource": "No scenario source",
-    "FilterBranches": "Filter branches",
-    "PanelTitle": "Scenario setting",
-    "Updating": "Updating\u2026",
-    "Creator": {
-      "ScenarioName": "Scenario name:",
-      "ScenarioNameWatermark": "Enter scenario name",
-      "ScenarioNameValidNameError": "A scenario config can't contain any of the following characters:/\\:*?\"<>|",
-      "ScenarioNameValidNull": "Scenario name cannot be null or while space.",
-      "ScenarioNameValidExist": "There is already an existing scenario config.",
-      "ScenarioRepo": "Scenario repository:",
-      "ScenarioRepoWatermark": "Enter scenario repository",
-      "ScenarioRepoValidNull": "Scenario repository cannot be null or while space.",
-      "ScenarioBranch": "Scenario branch:",
-      "ScenarioBranchWatermark": "Enter scenario branch",
-      "ScenarioBranchValidNull": "Scenario branch cannot be null or while space."
+  "scenario": {
+    "noSource": "No scenario source",
+    "filterBranches": "Filter branches",
+    "panelTitle": "Scenario setting",
+    "updating": "Updating\u2026",
+    "creator": {
+      "scenarioName": "Scenario name:",
+      "scenarioNameWatermark": "Enter scenario name",
+      "scenarioNameValidNameError": "A scenario config can not contain any of the following characters:/\\:*?\"<>|",
+      "scenarioNameValidNull": "Scenario name cannot be null or while space.",
+      "scenarioNameValidExist": "There is already an existing scenario config.",
+      "scenarioRepo": "Scenario repository:",
+      "scenarioRepoWatermark": "Enter scenario repository",
+      "scenarioRepoValidNull": "Scenario repository cannot be null or while space.",
+      "scenarioBranch": "Scenario branch:",
+      "scenarioBranchWatermark": "Enter scenario branch",
+      "scenarioBranchValidNull": "Scenario branch cannot be null or while space."
     }
   },
-  "Loading": {
-    "OpenFileStart": "Now loading...",
-    "LoadingFile": "Loading {l_file}."
+  "loading": {
+    "openFileStart": "Now loading...",
+    "loadingFile": "Loading {l_file}."
   }
 }
