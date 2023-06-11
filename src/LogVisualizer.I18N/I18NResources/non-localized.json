@@ -1,8 +1,0 @@
-{
-  "TestPlurals": {
-    "Plurals": {
-      "One": "This is {l_participant_number} participant",
-      "Few": "There are {l_participant_number} participants"
-    }
-  }
-}
