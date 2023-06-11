@@ -21,8 +21,8 @@ jobs:
               id: translate
               uses: msnyder-msft/i18n-auto-translation-action@v1.0.1
               with:
-                  provider: 'azure-official'
-                  subscriptionKey: '${{ secrets.TRANSLATOR_SUBSCRIPTION_KEY }}'
+                  provider: 'google-official'
+                  subscriptionKey: '${{ secrets.GOOGLE_TRANSLATION_API_KEY }}'
                   location: 'westus2'
                   filePath: './src/LogVisualizer.I18N/I18NResources/en.json'
                   from: 'en'
