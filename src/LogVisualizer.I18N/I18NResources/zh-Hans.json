@@ -909,10 +909,40 @@
       "valueDescription": "这可能是 CORS 问题、无效的 blob url 或网络错误。请联系存储此资产文件的容器的所有者或稍后重试。"
     },
     "sceneLayers": {
-      "title": "加载模型时出错。请尝试清除缓存并重试或检查您对该文件的访问权限。"
+      "title": "加载模型时出错。请尝试清除缓存并重试或检查您对该文件的访问权限。",
+      "mainContent": ""
     }
   },
   "scenePageErrorHandling": {
-    "sceneView": {}
+    "sceneView": {
+      "3dAssetLoadingErrorTitle": "",
+      "3dAssetLoadingNetworkErrorMessage": "",
+      "3dAssetLoadingGenericErrorMessage": ""
+    },
+    "resetConfigFile": "",
+    "unauthorizedAccessErrorTitle": "",
+    "unauthorizedAccessErrorMessage": "",
+    "blobNotFoundErrorTitle": "",
+    "blobNotFoundErrorMessage": "",
+    "unknownErrorTitle": "",
+    "corsErrorTitle": "",
+    "corsErrorMessage": "",
+    "internalServerErrorMessage": "",
+    "diagnoseAccessPermissions": "",
+    "checkingPermissions": "",
+    "resolveIssues": "",
+    "resolvingIssues": "",
+    "missingPermissionsMessage": "",
+    "assignRoleSuccessDesc": "",
+    "noMissingRoleDesc": "",
+    "finishedWithFailureDesc": "",
+    "verifyingPermissionsMessage": "",
+    "refreshPage": "",
+    "refreshing": "",
+    "noContainerUrlErrorTitle": "",
+    "noContainerUrlErrorMessage": "",
+    "noADTInstanceUrlTitle": "",
+    "noADTInstanceUrlMessage": "",
+    "configureEnvironment": ""
   }
 }
