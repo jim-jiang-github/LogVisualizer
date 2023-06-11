@@ -11,10 +11,10 @@
 
 <#
 string jsonNonLocalized = File.ReadAllText(this.Host.ResolvePath("I18NResources/non-localized.json"));
-string jsonEnUS = File.ReadAllText(this.Host.ResolvePath("I18NResources/en-US.json"));
+string jsonEn = File.ReadAllText(this.Host.ResolvePath("I18NResources/en.json"));
 
 var localizationKeyNonLocalized =  GetLocalizationKey(jsonNonLocalized);
-var localizationKeyEnUS =  GetLocalizationKey(jsonEnUS);
+var localizationKeyEn =  GetLocalizationKey(jsonEn);
   
 IEnumerable<KeyValuePair<string, string>> GetLocalizationKey(string? jsonContent, string? parentKey = null)
 {
@@ -58,9 +58,9 @@ namespace LogVisualizer.I18N
         WriteLine($"        /// <summary>[NonLocalized] {item.Value}</summary>");
         WriteLine($"        {item.Key},");
     }
-    foreach (var item in localizationKeyEnUS)
+    foreach (var item in localizationKeyEn)
     {
-        WriteLine($"        /// <summary>[en-US] {item.Value}</summary>");
+        WriteLine($"        /// <summary>{item.Value}</summary>");
         WriteLine($"        {item.Key},");
     }
 #>
@@ -81,9 +81,9 @@ namespace LogVisualizer.I18N
         WriteLine($"            {"}"}");
         WriteLine($"        {"}"}");
     }
-    foreach (var item in localizationKeyEnUS)
+    foreach (var item in localizationKeyEn)
     {
-        WriteLine($"        /// <summary>[en-US] {item.Value}</summary>");
+        WriteLine($"        /// <summary>{item.Value}</summary>");
         WriteLine($"        public const string {item.Key} = \"{item.Key}Source\";");
         WriteLine($"        public static string {item.Key}Source");
         WriteLine($"        {"{"}");

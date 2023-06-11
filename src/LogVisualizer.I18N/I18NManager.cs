@@ -22,21 +22,6 @@ namespace LogVisualizer.I18N
         private static bool enablePseudo = false;
         private static CultureInfo currentCulture = null;
 
-        private static readonly Dictionary<CultureInfo, CultureInfo> defaultCultureMap = new Dictionary<CultureInfo, CultureInfo>
-        {
-            { CultureInfo.GetCultureInfo("zh-HK"), CultureInfo.GetCultureInfo("zh-TW") },
-            { CultureInfo.GetCultureInfo("en-AU"), CultureInfo.GetCultureInfo("en-GB") },
-            { CultureInfo.GetCultureInfo("en"), CultureInfo.GetCultureInfo("en-US") },
-            { CultureInfo.GetCultureInfo("de"), CultureInfo.GetCultureInfo("de-DE") },
-            { CultureInfo.GetCultureInfo("es"), CultureInfo.GetCultureInfo("es-419") },
-            { CultureInfo.GetCultureInfo("fr"), CultureInfo.GetCultureInfo("fr-FR") },
-            { CultureInfo.GetCultureInfo("it"), CultureInfo.GetCultureInfo("it-IT") },
-            { CultureInfo.GetCultureInfo("ja"), CultureInfo.GetCultureInfo("ja-JP") },
-            { CultureInfo.GetCultureInfo("pt"), CultureInfo.GetCultureInfo("pt-BR") },
-            { CultureInfo.GetCultureInfo("zh"), CultureInfo.GetCultureInfo("zh-CN") },
-            { CultureInfo.GetCultureInfo("nl"), CultureInfo.GetCultureInfo("nl-NL") },
-            { CultureInfo.GetCultureInfo("ko"), CultureInfo.GetCultureInfo("ko-KR") },
-        };
         internal static Dictionary<I18NKeys, I18NValue> nonLocalizedMap = new Dictionary<I18NKeys, I18NValue>();
         internal static Dictionary<I18NKeys, I18NValue> i18nMapDefault = new Dictionary<I18NKeys, I18NValue>();
         internal static Dictionary<I18NKeys, I18NValue> i18nMap = new Dictionary<I18NKeys, I18NValue>();
@@ -64,8 +49,8 @@ namespace LogVisualizer.I18N
                 }
                 currentCulture = value;
                 using Stream nonLocalizedJsonStream = GetStreamByCultureName("non-localized");
-                using Stream defaultCultureJsonStream = I18NManager.GetStreamByCultureName("en-US");
-                using Stream cultureJsonStream = GetStreamByCultureName(value.Name);
+                using Stream defaultCultureJsonStream = I18NManager.GetStreamByCultureName("en");
+                using Stream cultureJsonStream = GetStreamByCultureName(value.TwoLetterISOLanguageName);
                 using StreamReader nonLocalizedJsonStreamReader = new StreamReader(nonLocalizedJsonStream, Encoding.UTF8);
                 using StreamReader defaultCultureJsonStreamReader = new StreamReader(defaultCultureJsonStream, Encoding.UTF8);
                 using StreamReader cultureJsonStreamReader = new StreamReader(cultureJsonStream, Encoding.UTF8);
@@ -107,22 +92,11 @@ namespace LogVisualizer.I18N
 
         private static CultureInfo FixCultureInfo(CultureInfo culture)
         {
-            using Stream cultureJsonStream = GetStreamByCultureName(culture.Name);
+            using Stream cultureJsonStream = GetStreamByCultureName(culture.TwoLetterISOLanguageName);
             if (cultureJsonStream == null)
             {
                 Log.Information($"Fix culture {culture.Name}");
-                if (defaultCultureMap.TryGetValue(culture, out CultureInfo sameCultureInfo))
-                {
-                    return FixCultureInfo(sameCultureInfo);
-                }
-                else if (defaultCultureMap.TryGetValue(CultureInfo.GetCultureInfo(culture.TwoLetterISOLanguageName), out CultureInfo sameParentCultureInfo) && culture.Name != sameParentCultureInfo.Name)
-                {
-                    return FixCultureInfo(sameParentCultureInfo);
-                }
-                else
-                {
-                    return FixCultureInfo(CultureInfo.GetCultureInfo("en-US"));
-                }
+                return FixCultureInfo(CultureInfo.GetCultureInfo("en"));
             }
             else
             {

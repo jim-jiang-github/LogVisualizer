@@ -91,11 +91,11 @@ namespace LogVisualizer.ViewModels
         {
             if (flag)
             {
-                I18NManager.CurrentCulture = System.Globalization.CultureInfo.GetCultureInfo("en-US");
+                I18NManager.CurrentCulture = System.Globalization.CultureInfo.GetCultureInfo("en");
             }
             else
             {
-                I18NManager.CurrentCulture = System.Globalization.CultureInfo.GetCultureInfo("zh-CN");
+                I18NManager.CurrentCulture = System.Globalization.CultureInfo.GetCultureInfo("zh");
             }
             flag = !flag;
         }
