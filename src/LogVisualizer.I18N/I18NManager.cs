@@ -22,6 +22,11 @@ namespace LogVisualizer.I18N
         private static bool enablePseudo = false;
         private static CultureInfo currentCulture = null;
 
+        private static readonly Dictionary<CultureInfo, CultureInfo> defaultCultureMap = new Dictionary<CultureInfo, CultureInfo>
+        {
+            { CultureInfo.GetCultureInfo("zh"), CultureInfo.GetCultureInfo("zh-Hans") },
+        };
+
         internal static Dictionary<I18NKeys, I18NValue> nonLocalizedMap = new Dictionary<I18NKeys, I18NValue>();
         internal static Dictionary<I18NKeys, I18NValue> i18nMapDefault = new Dictionary<I18NKeys, I18NValue>();
         internal static Dictionary<I18NKeys, I18NValue> i18nMap = new Dictionary<I18NKeys, I18NValue>();
@@ -50,7 +55,7 @@ namespace LogVisualizer.I18N
                 currentCulture = value;
                 using Stream nonLocalizedJsonStream = GetStreamByCultureName("non-localized");
                 using Stream defaultCultureJsonStream = I18NManager.GetStreamByCultureName("en");
-                using Stream cultureJsonStream = GetStreamByCultureName(value.TwoLetterISOLanguageName);
+                using Stream cultureJsonStream = GetStreamByCultureName(currentCulture.Name);
                 using StreamReader nonLocalizedJsonStreamReader = new StreamReader(nonLocalizedJsonStream, Encoding.UTF8);
                 using StreamReader defaultCultureJsonStreamReader = new StreamReader(defaultCultureJsonStream, Encoding.UTF8);
                 using StreamReader cultureJsonStreamReader = new StreamReader(cultureJsonStream, Encoding.UTF8);
@@ -58,6 +63,7 @@ namespace LogVisualizer.I18N
                 string defaultCultureJson = defaultCultureJsonStreamReader.ReadToEnd();
                 string cultureJson = cultureJsonStreamReader.ReadToEnd();
                 LoadFromJson(nonLocalizedJson, defaultCultureJson, cultureJson);
+                OnCultureChanged();
             }
         }
 
@@ -92,11 +98,19 @@ namespace LogVisualizer.I18N
 
         private static CultureInfo FixCultureInfo(CultureInfo culture)
         {
-            using Stream cultureJsonStream = GetStreamByCultureName(culture.TwoLetterISOLanguageName);
+            using Stream cultureJsonStream = GetStreamByCultureName(culture.Name);
             if (cultureJsonStream == null)
             {
                 Log.Information($"Fix culture {culture.Name}");
-                return FixCultureInfo(CultureInfo.GetCultureInfo("en"));
+                if (defaultCultureMap.TryGetValue(culture, out CultureInfo sameCultureInfo))
+                {
+                    return FixCultureInfo(sameCultureInfo);
+                }
+                if (culture.Name == culture.TwoLetterISOLanguageName)
+                {
+                    return FixCultureInfo(CultureInfo.GetCultureInfo("en"));
+                }
+                return FixCultureInfo(CultureInfo.GetCultureInfo(culture.TwoLetterISOLanguageName));
             }
             else
             {

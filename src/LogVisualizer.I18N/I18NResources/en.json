@@ -6,8 +6,8 @@
     "ConfirmDelete": "Are you sure you want to delete the '{l_name}'? This action cannot be undone!"
   },
   "Menu": {
-    "File": "File",
-    "FileMenu": {
+    "File": {
+      "File": "File",
       "Open": "Open",
       "OpenDialog": {
         "PickLog": "Pick logs",
@@ -16,16 +16,16 @@
       "FromUrl": "From Url",
       "Exit": "Exit"
     },
-    "Views": "Views",
-    "ViewsMenu": {
+    "Views": {
+      "Views": "Views",
       "ShowOnlyFiltered": "Show only filtered line"
     },
-    "Filter": "Filter",
-    "FilterMenu": {
+    "Filter": {
+      "Filter": "Filter",
       "AddFilter": "Add new filter"
     },
-    "Help": "Help",
-    "HelpMenu": {
+    "Help": {
+      "Help": "Help",
       "CheckUpgrade": "Check for upgrade",
       "OpenAppDataFolder": "Open App data folder",
       "About": "About"

@@ -16,33 +16,33 @@ namespace LogVisualizer.I18N
         /// <summary>Are you sure you want to delete the '{l_name}'? This action cannot be undone!</summary>
         Common_ConfirmDelete,
         /// <summary>File</summary>
-        Menu_File,
+        Menu_File_File,
         /// <summary>Open</summary>
-        Menu_FileMenu_Open,
+        Menu_File_Open,
         /// <summary>Pick logs</summary>
-        Menu_FileMenu_OpenDialog_PickLog,
+        Menu_File_OpenDialog_PickLog,
         /// <summary>Supported Logs</summary>
-        Menu_FileMenu_OpenDialog_SupportedLogs,
+        Menu_File_OpenDialog_SupportedLogs,
         /// <summary>From Url</summary>
-        Menu_FileMenu_FromUrl,
+        Menu_File_FromUrl,
         /// <summary>Exit</summary>
-        Menu_FileMenu_Exit,
+        Menu_File_Exit,
         /// <summary>Views</summary>
-        Menu_Views,
+        Menu_Views_Views,
         /// <summary>Show only filtered line</summary>
-        Menu_ViewsMenu_ShowOnlyFiltered,
+        Menu_Views_ShowOnlyFiltered,
         /// <summary>Filter</summary>
-        Menu_Filter,
+        Menu_Filter_Filter,
         /// <summary>Add new filter</summary>
-        Menu_FilterMenu_AddFilter,
+        Menu_Filter_AddFilter,
         /// <summary>Help</summary>
-        Menu_Help,
+        Menu_Help_Help,
         /// <summary>Check for upgrade</summary>
-        Menu_HelpMenu_CheckUpgrade,
+        Menu_Help_CheckUpgrade,
         /// <summary>Open App data folder</summary>
-        Menu_HelpMenu_OpenAppDataFolder,
+        Menu_Help_OpenAppDataFolder,
         /// <summary>About</summary>
-        Menu_HelpMenu_About,
+        Menu_Help_About,
         /// <summary>Upgrade is available: {l_version}</summary>
         Upgrader_Title,
         /// <summary>Download now</summary>
@@ -137,129 +137,129 @@ namespace LogVisualizer.I18N
             }
         }
         /// <summary>File</summary>
-        public const string Menu_File = "Menu_FileSource";
-        public static string Menu_FileSource
+        public const string Menu_File_File = "Menu_File_FileSource";
+        public static string Menu_File_FileSource
         {
             get
             {
-                return I18NKeys.Menu_File.GetLocalizationRawValue();
+                return I18NKeys.Menu_File_File.GetLocalizationRawValue();
             }
         }
         /// <summary>Open</summary>
-        public const string Menu_FileMenu_Open = "Menu_FileMenu_OpenSource";
-        public static string Menu_FileMenu_OpenSource
+        public const string Menu_File_Open = "Menu_File_OpenSource";
+        public static string Menu_File_OpenSource
         {
             get
             {
-                return I18NKeys.Menu_FileMenu_Open.GetLocalizationRawValue();
+                return I18NKeys.Menu_File_Open.GetLocalizationRawValue();
             }
         }
         /// <summary>Pick logs</summary>
-        public const string Menu_FileMenu_OpenDialog_PickLog = "Menu_FileMenu_OpenDialog_PickLogSource";
-        public static string Menu_FileMenu_OpenDialog_PickLogSource
+        public const string Menu_File_OpenDialog_PickLog = "Menu_File_OpenDialog_PickLogSource";
+        public static string Menu_File_OpenDialog_PickLogSource
         {
             get
             {
-                return I18NKeys.Menu_FileMenu_OpenDialog_PickLog.GetLocalizationRawValue();
+                return I18NKeys.Menu_File_OpenDialog_PickLog.GetLocalizationRawValue();
             }
         }
         /// <summary>Supported Logs</summary>
-        public const string Menu_FileMenu_OpenDialog_SupportedLogs = "Menu_FileMenu_OpenDialog_SupportedLogsSource";
-        public static string Menu_FileMenu_OpenDialog_SupportedLogsSource
+        public const string Menu_File_OpenDialog_SupportedLogs = "Menu_File_OpenDialog_SupportedLogsSource";
+        public static string Menu_File_OpenDialog_SupportedLogsSource
         {
             get
             {
-                return I18NKeys.Menu_FileMenu_OpenDialog_SupportedLogs.GetLocalizationRawValue();
+                return I18NKeys.Menu_File_OpenDialog_SupportedLogs.GetLocalizationRawValue();
             }
         }
         /// <summary>From Url</summary>
-        public const string Menu_FileMenu_FromUrl = "Menu_FileMenu_FromUrlSource";
-        public static string Menu_FileMenu_FromUrlSource
+        public const string Menu_File_FromUrl = "Menu_File_FromUrlSource";
+        public static string Menu_File_FromUrlSource
         {
             get
             {
-                return I18NKeys.Menu_FileMenu_FromUrl.GetLocalizationRawValue();
+                return I18NKeys.Menu_File_FromUrl.GetLocalizationRawValue();
             }
         }
         /// <summary>Exit</summary>
-        public const string Menu_FileMenu_Exit = "Menu_FileMenu_ExitSource";
-        public static string Menu_FileMenu_ExitSource
+        public const string Menu_File_Exit = "Menu_File_ExitSource";
+        public static string Menu_File_ExitSource
         {
             get
             {
-                return I18NKeys.Menu_FileMenu_Exit.GetLocalizationRawValue();
+                return I18NKeys.Menu_File_Exit.GetLocalizationRawValue();
             }
         }
         /// <summary>Views</summary>
-        public const string Menu_Views = "Menu_ViewsSource";
-        public static string Menu_ViewsSource
+        public const string Menu_Views_Views = "Menu_Views_ViewsSource";
+        public static string Menu_Views_ViewsSource
         {
             get
             {
-                return I18NKeys.Menu_Views.GetLocalizationRawValue();
+                return I18NKeys.Menu_Views_Views.GetLocalizationRawValue();
             }
         }
         /// <summary>Show only filtered line</summary>
-        public const string Menu_ViewsMenu_ShowOnlyFiltered = "Menu_ViewsMenu_ShowOnlyFilteredSource";
-        public static string Menu_ViewsMenu_ShowOnlyFilteredSource
+        public const string Menu_Views_ShowOnlyFiltered = "Menu_Views_ShowOnlyFilteredSource";
+        public static string Menu_Views_ShowOnlyFilteredSource
         {
             get
             {
-                return I18NKeys.Menu_ViewsMenu_ShowOnlyFiltered.GetLocalizationRawValue();
+                return I18NKeys.Menu_Views_ShowOnlyFiltered.GetLocalizationRawValue();
             }
         }
         /// <summary>Filter</summary>
-        public const string Menu_Filter = "Menu_FilterSource";
-        public static string Menu_FilterSource
+        public const string Menu_Filter_Filter = "Menu_Filter_FilterSource";
+        public static string Menu_Filter_FilterSource
         {
             get
             {
-                return I18NKeys.Menu_Filter.GetLocalizationRawValue();
+                return I18NKeys.Menu_Filter_Filter.GetLocalizationRawValue();
             }
         }
         /// <summary>Add new filter</summary>
-        public const string Menu_FilterMenu_AddFilter = "Menu_FilterMenu_AddFilterSource";
-        public static string Menu_FilterMenu_AddFilterSource
+        public const string Menu_Filter_AddFilter = "Menu_Filter_AddFilterSource";
+        public static string Menu_Filter_AddFilterSource
         {
             get
             {
-                return I18NKeys.Menu_FilterMenu_AddFilter.GetLocalizationRawValue();
+                return I18NKeys.Menu_Filter_AddFilter.GetLocalizationRawValue();
             }
         }
         /// <summary>Help</summary>
-        public const string Menu_Help = "Menu_HelpSource";
-        public static string Menu_HelpSource
+        public const string Menu_Help_Help = "Menu_Help_HelpSource";
+        public static string Menu_Help_HelpSource
         {
             get
             {
-                return I18NKeys.Menu_Help.GetLocalizationRawValue();
+                return I18NKeys.Menu_Help_Help.GetLocalizationRawValue();
             }
         }
         /// <summary>Check for upgrade</summary>
-        public const string Menu_HelpMenu_CheckUpgrade = "Menu_HelpMenu_CheckUpgradeSource";
-        public static string Menu_HelpMenu_CheckUpgradeSource
+        public const string Menu_Help_CheckUpgrade = "Menu_Help_CheckUpgradeSource";
+        public static string Menu_Help_CheckUpgradeSource
         {
             get
             {
-                return I18NKeys.Menu_HelpMenu_CheckUpgrade.GetLocalizationRawValue();
+                return I18NKeys.Menu_Help_CheckUpgrade.GetLocalizationRawValue();
             }
         }
         /// <summary>Open App data folder</summary>
-        public const string Menu_HelpMenu_OpenAppDataFolder = "Menu_HelpMenu_OpenAppDataFolderSource";
-        public static string Menu_HelpMenu_OpenAppDataFolderSource
+        public const string Menu_Help_OpenAppDataFolder = "Menu_Help_OpenAppDataFolderSource";
+        public static string Menu_Help_OpenAppDataFolderSource
         {
             get
             {
-                return I18NKeys.Menu_HelpMenu_OpenAppDataFolder.GetLocalizationRawValue();
+                return I18NKeys.Menu_Help_OpenAppDataFolder.GetLocalizationRawValue();
             }
         }
         /// <summary>About</summary>
-        public const string Menu_HelpMenu_About = "Menu_HelpMenu_AboutSource";
-        public static string Menu_HelpMenu_AboutSource
+        public const string Menu_Help_About = "Menu_Help_AboutSource";
+        public static string Menu_Help_AboutSource
         {
             get
             {
-                return I18NKeys.Menu_HelpMenu_About.GetLocalizationRawValue();
+                return I18NKeys.Menu_Help_About.GetLocalizationRawValue();
             }
         }
         /// <summary>Upgrade is available: {l_version}</summary>
