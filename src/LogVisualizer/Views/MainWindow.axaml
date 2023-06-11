@@ -20,35 +20,35 @@
 
     <NativeMenu.Menu>
         <NativeMenu>
-            <NativeMenuItem Header="{i18n:I18NKeyBinding Key=Menu_File_File}">
+            <NativeMenuItem Header="{i18n:I18NKeyBinding Key=Menu_File}">
                 <NativeMenuItem.Menu>
                     <NativeMenu>
-                        <NativeMenuItem Command="{Binding MenuBar.OpenCommand}" Header="{i18n:I18NKeyBinding Key=Menu_File_Open}" />
-                        <NativeMenuItem Command="{Binding MenuBar.FromUrlCommand}" Header="{i18n:I18NKeyBinding Key=Menu_File_FromUrl}" />
-                        <NativeMenuItem Command="{Binding MenuBar.ExitCommand}" Header="{i18n:I18NKeyBinding Key=Menu_File_Exit}" />
+                        <NativeMenuItem Command="{Binding MenuBar.OpenCommand}" Header="{i18n:I18NKeyBinding Key=Menu_Open}" />
+                        <NativeMenuItem Command="{Binding MenuBar.FromUrlCommand}" Header="{i18n:I18NKeyBinding Key=Menu_FromUrl}" />
+                        <NativeMenuItem Command="{Binding MenuBar.ExitCommand}" Header="{i18n:I18NKeyBinding Key=Menu_Exit}" />
                     </NativeMenu>
                 </NativeMenuItem.Menu>
             </NativeMenuItem>
-            <NativeMenuItem Header="{i18n:I18NKeyBinding Key=Menu_Views_Views}">
+            <NativeMenuItem Header="{i18n:I18NKeyBinding Key=Menu_Views}">
                 <NativeMenuItem.Menu>
                     <NativeMenu>
-                        <NativeMenuItem Command="{Binding MenuBar.ShowOnlyFilteredCommand}" Header="{i18n:I18NKeyBinding Key=Menu_Views_ShowOnlyFiltered}" />
+                        <NativeMenuItem Command="{Binding MenuBar.ShowOnlyFilteredCommand}" Header="{i18n:I18NKeyBinding Key=Menu_ShowOnlyFiltered}" />
                     </NativeMenu>
                 </NativeMenuItem.Menu>
             </NativeMenuItem>
-            <NativeMenuItem Header="{i18n:I18NKeyBinding Key=Menu_Filter_Filter}">
+            <NativeMenuItem Header="{i18n:I18NKeyBinding Key=Menu_Filter}">
                 <NativeMenuItem.Menu>
                     <NativeMenu>
-                        <NativeMenuItem Command="{Binding MenuBar.AddNewFilterCommand}" Header="{i18n:I18NKeyBinding Key=Menu_Filter_AddFilter}" />
+                        <NativeMenuItem Command="{Binding MenuBar.AddNewFilterCommand}" Header="{i18n:I18NKeyBinding Key=Menu_AddNewFilter}" />
                     </NativeMenu>
                 </NativeMenuItem.Menu>
             </NativeMenuItem>
-            <NativeMenuItem Header="{i18n:I18NKeyBinding Key=Menu_Help_Help}">
+            <NativeMenuItem Header="{i18n:I18NKeyBinding Key=Menu_Help}">
                 <NativeMenuItem.Menu>
                     <NativeMenu>
-                        <NativeMenuItem Command="{Binding MenuBar.OpenAppDataFolderCommand}" Header="{i18n:I18NKeyBinding Key=Menu_Help_OpenAppDataFolder}" />
-                        <NativeMenuItem Command="{Binding MenuBar.CheckForUpgradeCommand}" Header="{i18n:I18NKeyBinding Key=Menu_Help_CheckUpgrade}" />
-                        <NativeMenuItem Command="{Binding MenuBar.AboutCommand}" Header="{i18n:I18NKeyBinding Key=Menu_Help_About}" />
+                        <NativeMenuItem Command="{Binding MenuBar.OpenAppDataFolderCommand}" Header="{i18n:I18NKeyBinding Key=Menu_OpenAppDataFolder}" />
+                        <NativeMenuItem Command="{Binding MenuBar.CheckForUpgradeCommand}" Header="{i18n:I18NKeyBinding Key=Menu_CheckUpgrade}" />
+                        <NativeMenuItem Command="{Binding MenuBar.AboutCommand}" Header="{i18n:I18NKeyBinding Key=Menu_About}" />
                     </NativeMenu>
                 </NativeMenuItem.Menu>
             </NativeMenuItem>

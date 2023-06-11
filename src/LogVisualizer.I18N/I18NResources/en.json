@@ -6,30 +6,22 @@
     "ConfirmDelete": "Are you sure you want to delete the '{l_name}'? This action cannot be undone!"
   },
   "Menu": {
-    "File": {
-      "File": "File",
-      "Open": "Open",
-      "OpenDialog": {
-        "PickLog": "Pick logs",
-        "SupportedLogs": "Supported Logs"
-      },
-      "FromUrl": "From Url",
-      "Exit": "Exit"
-    },
-    "Views": {
-      "Views": "Views",
-      "ShowOnlyFiltered": "Show only filtered line"
-    },
-    "Filter": {
-      "Filter": "Filter",
-      "AddFilter": "Add new filter"
-    },
-    "Help": {
-      "Help": "Help",
-      "CheckUpgrade": "Check for upgrade",
-      "OpenAppDataFolder": "Open App data folder",
-      "About": "About"
-    }
+    "File": "File",
+    "Open": "Open",
+    "FromUrl": "From Url",
+    "Exit": "Exit",
+    "Views": "Views",
+    "ShowOnlyFiltered": "Show only filtered line",
+    "Filter": "Filter",
+    "AddNewFilter": "Add new filter",
+    "Help": "Help",
+    "CheckUpgrade": "Check for upgrade",
+    "OpenAppDataFolder": "Open App data folder",
+    "About": "About"
+  },
+  "OpenFileDialog": {
+    "PickLog": "Pick logs",
+    "SupportedLogs": "Supported Logs"
   },
   "Upgrader": {
     "Title": "Upgrade is available: {l_version}",

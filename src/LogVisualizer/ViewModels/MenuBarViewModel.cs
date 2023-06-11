@@ -28,7 +28,7 @@ namespace LogVisualizer.ViewModels
             {
                 return new FilePickerFileType[]
                 {
-                    new(I18NKeys.Menu_File_OpenDialog_SupportedLogs.GetLocalizationRawValue())
+                    new(I18NKeys.OpenFileDialog_SupportedLogs.GetLocalizationRawValue())
                     {
                         Patterns = _scenarioService.SupportedLogExtension
                     }
@@ -50,7 +50,7 @@ namespace LogVisualizer.ViewModels
                 Loading.SetMessage(I18NKeys.Loading_OpenFileStart.GetLocalizationRawValue());
                 var storageFiles = await GlobalStorageProvider.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions()
                 {
-                    Title = I18NKeys.Menu_File_OpenDialog_PickLog.GetLocalizationRawValue(),
+                    Title = I18NKeys.OpenFileDialog_PickLog.GetLocalizationRawValue(),
                     FileTypeFilter = SupportedFileType,
                     AllowMultiple = true
                 });

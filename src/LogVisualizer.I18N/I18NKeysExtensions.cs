@@ -69,7 +69,11 @@ namespace LogVisualizer.I18N
             }
             else
             {
-                rawString = I18NManager.i18nMap[i18NKey].GetMultiConditionValue(out string[] convertedParams, formatParams);
+                if (!I18NManager.i18nMap.TryGetValue(i18NKey, out I18NValue? i18NValue)) 
+                {
+                    i18NValue = I18NManager.i18nMapDefault[i18NKey];
+                }
+                rawString = i18NValue.GetMultiConditionValue(out string[] convertedParams, formatParams);
                 formatParams = convertedParams;
                 rawString = StringFormatterHelper.Format(rawString, formatParams);
             }
