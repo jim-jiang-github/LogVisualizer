@@ -9,7 +9,15 @@
     "File": "文件",
     "Views": "视图",
     "Filter": "过滤器|* |添加新过滤器",
-    "Help": "检查升级"
+    "Help": "检查升级",
+    "Open": "打开",
+    "FromUrl": "从Url",
+    "Exit": "退出",
+    "ShowOnlyFiltered": "只显示过滤的行",
+    "AddNewFilter": "添加新过滤器",
+    "CheckUpgrade": "检查升级",
+    "OpenAppDataFolder": "打开应用程序数据文件夹",
+    "About": "关于"
   },
   "Upgrader": {
     "Title": "立即下载",
@@ -40,5 +48,9 @@
   "Loading": {
     "OpenFileStart": "正在加载 {l_file}。",
     "LoadingFile": "正在加载 {l_file}。"
+  },
+  "OpenFileDialog": {
+    "PickLog": "选择日志",
+    "SupportedLogs": "支持的日志"
   }
 }

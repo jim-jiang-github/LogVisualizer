@@ -9,7 +9,15 @@
     "File": "Fichier",
     "Views": "Vues",
     "Filter": "Filtre|* |Ajouter un nouveau filtre",
-    "Help": "Vérifier la mise à niveau"
+    "Help": "Vérifier la mise à niveau",
+    "Open": "Ouvrir",
+    "FromUrl": "Depuis l'URL",
+    "Exit": "Quitter",
+    "ShowOnlyFiltered": "Afficher uniquement la ligne filtrée",
+    "AddNewFilter": "Ajouter un nouveau filtre",
+    "CheckUpgrade": "Vérifier la mise à niveau",
+    "OpenAppDataFolder": "Ouvrir le dossier de données de l'application",
+    "About": "À propos de"
   },
   "Upgrader": {
     "Title": "Télécharger maintenant",
@@ -40,5 +48,9 @@
   "Loading": {
     "OpenFileStart": "Chargement de {l_file}.",
     "LoadingFile": "Chargement de {l_file}."
+  },
+  "OpenFileDialog": {
+    "PickLog": "Choisir les journaux",
+    "SupportedLogs": "Journaux pris en charge"
   }
 }

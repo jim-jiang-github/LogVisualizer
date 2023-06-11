@@ -9,7 +9,15 @@
     "File": "Archivo",
     "Views": "Vistas",
     "Filter": "Filtro|* |Agregar nuevo filtro",
-    "Help": "Buscar actualización"
+    "Help": "Buscar actualización",
+    "Open": "Abrir",
+    "FromUrl": "Desde URL",
+    "Exit": "Salir",
+    "ShowOnlyFiltered": "Mostrar solo línea filtrada",
+    "AddNewFilter": "Agregar nuevo filtro",
+    "CheckUpgrade": "Buscar actualización",
+    "OpenAppDataFolder": "Abrir carpeta de datos de la aplicación",
+    "About": "Acerca de"
   },
   "Upgrader": {
     "Title": "Descargar ahora",
@@ -40,5 +48,9 @@
   "Loading": {
     "OpenFileStart": "Cargando {l_archivo}.",
     "LoadingFile": "Cargando {l_archivo}."
+  },
+  "OpenFileDialog": {
+    "PickLog": "Seleccionar registros",
+    "SupportedLogs": "Registros admitidos"
   }
 }

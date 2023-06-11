@@ -9,7 +9,15 @@
     "File": "Plik",
     "Views": "Widoki",
     "Filter": "Filtr|* |Dodaj nowy filtr",
-    "Help": "Sprawdź aktualizację"
+    "Help": "Sprawdź aktualizację",
+    "Open": "Otwórz",
+    "FromUrl": "Z adresu URL",
+    "Exit": "Wyjdź",
+    "ShowOnlyFiltered": "Pokaż tylko filtrowaną linię",
+    "AddNewFilter": "Dodaj nowy filtr",
+    "CheckUpgrade": "Sprawdź aktualizację",
+    "OpenAppDataFolder": "Otwórz folder danych aplikacji",
+    "About": "Informacje"
   },
   "Upgrader": {
     "Title": "Pobierz teraz",
@@ -40,5 +48,9 @@
   "Loading": {
     "OpenFileStart": "Ładowanie {l_file}.",
     "LoadingFile": "Ładowanie {l_file}."
+  },
+  "OpenFileDialog": {
+    "PickLog": "Wybierz dzienniki",
+    "SupportedLogs": "Obsługiwane dzienniki"
   }
 }

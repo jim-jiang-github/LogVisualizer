@@ -9,7 +9,15 @@
     "File": "Fil",
     "Views": "Visningar",
     "Filter": "Filter|* |Lägg till nytt filter",
-    "Help": "Sök efter uppgradering"
+    "Help": "Sök efter uppgradering",
+    "Open": "Öppna",
+    "FromUrl": "Från webbadress",
+    "Exit": "Avsluta",
+    "ShowOnlyFiltered": "Visa endast filtrerad rad",
+    "AddNewFilter": "Lägg till nytt filter",
+    "CheckUpgrade": "Sök efter uppgradering",
+    "OpenAppDataFolder": "Öppna appdatamappen",
+    "About": "Om"
   },
   "Upgrader": {
     "Title": "Ladda ner nu",
@@ -40,5 +48,9 @@
   "Loading": {
     "OpenFileStart": "Laddar {l_file}.",
     "LoadingFile": "Laddar {l_file}."
+  },
+  "OpenFileDialog": {
+    "PickLog": "Välj loggar",
+    "SupportedLogs": "loggar som stöds"
   }
 }

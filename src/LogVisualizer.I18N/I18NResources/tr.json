@@ -9,7 +9,15 @@
     "File": "Dosya",
     "Views": "Görüntülemeler",
     "Filter": "Filtre|* |Yeni filtre ekle",
-    "Help": "Yükseltmeyi kontrol et"
+    "Help": "Yükseltmeyi kontrol et",
+    "Open": "Aç",
+    "FromUrl": "Url'den",
+    "Exit": "Çıkış",
+    "ShowOnlyFiltered": "Yalnızca filtrelenmiş satırı göster",
+    "AddNewFilter": "Yeni filtre ekle",
+    "CheckUpgrade": "Yükseltmeyi kontrol et",
+    "OpenAppDataFolder": "Uygulama veri klasörünü aç",
+    "About": "Hakkında"
   },
   "Upgrader": {
     "Title": "Şimdi indir",
@@ -40,5 +48,9 @@
   "Loading": {
     "OpenFileStart": "{l_file} yükleniyor.",
     "LoadingFile": "{l_file} yükleniyor."
+  },
+  "OpenFileDialog": {
+    "PickLog": "Seçim günlükleri",
+    "SupportedLogs": "Desteklenen Günlükler"
   }
 }

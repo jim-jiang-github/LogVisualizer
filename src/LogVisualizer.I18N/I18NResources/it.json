@@ -9,7 +9,15 @@
     "File": "File",
     "Views": "Visualizzazioni",
     "Filter": "Filtro|* |Aggiungi nuovo filtro",
-    "Help": "Controlla aggiornamento"
+    "Help": "Controlla aggiornamento",
+    "Open": "Apri",
+    "FromUrl": "Da Url",
+    "Exit": "Esci",
+    "ShowOnlyFiltered": "Mostra solo riga filtrata",
+    "AddNewFilter": "Aggiungi nuovo filtro",
+    "CheckUpgrade": "Controlla aggiornamento",
+    "OpenAppDataFolder": "Apri cartella dati app",
+    "About": "Informazioni"
   },
   "Upgrader": {
     "Title": "Scarica ora",
@@ -40,5 +48,9 @@
   "Loading": {
     "OpenFileStart": "Caricamento {l_file}.",
     "LoadingFile": "Caricamento {l_file}."
+  },
+  "OpenFileDialog": {
+    "PickLog": "Scegli registri",
+    "SupportedLogs": "Registri supportati"
   }
 }

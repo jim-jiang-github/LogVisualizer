@@ -9,7 +9,15 @@
     "File": "파일",
     "Views": "보기",
     "Filter": "필터|* |새 필터 추가",
-    "Help": "업그레이드 확인"
+    "Help": "업그레이드 확인",
+    "Open": "열기",
+    "FromUrl": "URL에서",
+    "Exit": "종료",
+    "ShowOnlyFiltered": "필터링된 라인만 표시",
+    "AddNewFilter": "새 필터 추가",
+    "CheckUpgrade": "업그레이드 확인",
+    "OpenAppDataFolder": "앱 데이터 폴더 열기",
+    "About": "정보"
   },
   "Upgrader": {
     "Title": "지금 다운로드",
@@ -40,5 +48,9 @@
   "Loading": {
     "OpenFileStart": "{l_file} 로드 중.",
     "LoadingFile": "{l_file} 로드 중."
+  },
+  "OpenFileDialog": {
+    "PickLog": "로그 선택",
+    "SupportedLogs": "지원되는 로그"
   }
 }

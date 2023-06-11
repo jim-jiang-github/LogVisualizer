@@ -9,7 +9,15 @@
     "File": "Soubor",
     "Views": "Zobrazení",
     "Filter": "Filtr|* |Přidat nový filtr",
-    "Help": "Zkontrolovat upgrade"
+    "Help": "Zkontrolovat upgrade",
+    "Open": "Otevřít",
+    "FromUrl": "Z adresy URL",
+    "Exit": "Konec",
+    "ShowOnlyFiltered": "Zobrazit pouze filtrovaný řádek",
+    "AddNewFilter": "Přidat nový filtr",
+    "CheckUpgrade": "Zkontrolovat aktualizaci",
+    "OpenAppDataFolder": "Otevřít složku s daty aplikace",
+    "About": "O aplikaci"
   },
   "Upgrader": {
     "Title": "Stáhnout nyní",
@@ -40,5 +48,9 @@
   "Loading": {
     "OpenFileStart": "Načítání {l_file}.",
     "LoadingFile": "Načítání {l_file}."
+  },
+  "OpenFileDialog": {
+    "PickLog": "Vybrat protokoly",
+    "SupportedLogs": "Podporované protokoly"
   }
 }

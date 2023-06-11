@@ -9,7 +9,15 @@
     "File": "Fájl",
     "Views": "Megtekintések",
     "Filter": "Szűrő|* |Új szűrő hozzáadása",
-    "Help": "Frissítés keresése"
+    "Help": "Frissítés keresése",
+    "Open": "Megnyitás",
+    "FromUrl": "Url-ről",
+    "Exit": "Kilépés",
+    "ShowOnlyFiltered": "Csak szűrt sor megjelenítése",
+    "AddNewFilter": "Új szűrő hozzáadása",
+    "CheckUpgrade": "Frissítés keresése",
+    "OpenAppDataFolder": "Alkalmazás adatmappa megnyitása",
+    "About": "Névjegy"
   },
   "Upgrader": {
     "Title": "Letöltés most",
@@ -40,5 +48,9 @@
   "Loading": {
     "OpenFileStart": "{l_file} betöltése.",
     "LoadingFile": "{l_file} betöltése."
+  },
+  "OpenFileDialog": {
+    "PickLog": "Naplók kiválasztása",
+    "SupportedLogs": "Támogatott naplók"
   }
 }

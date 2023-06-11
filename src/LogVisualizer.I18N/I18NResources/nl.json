@@ -9,7 +9,15 @@
     "File": "Bestand",
     "Views": "Views",
     "Filter": "Filter|* |Nieuw filter toevoegen",
-    "Help": "Controleren op upgrade"
+    "Help": "Controleren op upgrade",
+    "Open": "Openen",
+    "FromUrl": "Van URL",
+    "Exit": "Afsluiten",
+    "ShowOnlyFiltered": "Toon alleen gefilterde regel",
+    "AddNewFilter": "Nieuw filter toevoegen",
+    "CheckUpgrade": "Controleren op upgrade",
+    "OpenAppDataFolder": "Open app-gegevensmap",
+    "About": "Over"
   },
   "Upgrader": {
     "Title": "Nu downloaden",
@@ -40,5 +48,9 @@
   "Loading": {
     "OpenFileStart": "Bezig met laden van {l_file}.",
     "LoadingFile": "{l_file} laden."
+  },
+  "OpenFileDialog": {
+    "PickLog": "Kies logs",
+    "SupportedLogs": "Ondersteunde logs"
   }
 }

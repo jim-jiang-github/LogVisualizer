@@ -9,7 +9,15 @@
     "File": "Datei",
     "Views": "Ansichten",
     "Filter": "Filter|* |Neuen Filter hinzufügen",
-    "Help": "Nach Upgrade suchen"
+    "Help": "Nach Upgrade suchen",
+    "Open": "Öffnen",
+    "FromUrl": "Von der URL",
+    "Exit": "Beenden",
+    "ShowOnlyFiltered": "Nur gefilterte Zeile anzeigen",
+    "AddNewFilter": "Neuen Filter hinzufügen",
+    "CheckUpgrade": "Auf Upgrade prüfen",
+    "OpenAppDataFolder": "App-Datenordner öffnen",
+    "About": "Über"
   },
   "Upgrader": {
     "Title": "Jetzt herunterladen",
@@ -40,5 +48,9 @@
   "Loading": {
     "OpenFileStart": "Laden {l_file}.",
     "LoadingFile": "{l_file} wird geladen."
+  },
+  "OpenFileDialog": {
+    "PickLog": "Protokolle auswählen",
+    "SupportedLogs": "Unterstützte Protokolle"
   }
 }

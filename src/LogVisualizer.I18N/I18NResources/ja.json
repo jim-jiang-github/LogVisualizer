@@ -9,7 +9,15 @@
     "File": "ファイル",
     "Views": "ビュー",
     "Filter": "フィルタ|* |新しいフィルターを追加",
-    "Help": "アップグレードを確認"
+    "Help": "アップグレードを確認",
+    "Open": "開く",
+    "FromUrl": "URLから",
+    "Exit": "終了",
+    "ShowOnlyFiltered": "フィルタリングされた行のみ表示",
+    "AddNewFilter": "新しいフィルタを追加",
+    "CheckUpgrade": "アップグレードを確認",
+    "OpenAppDataFolder": "アプリデータフォルダを開く",
+    "About": "概要"
   },
   "Upgrader": {
     "Title": "今すぐダウンロード",
@@ -40,5 +48,9 @@
   "Loading": {
     "OpenFileStart": "{l_file} をロードしています。",
     "LoadingFile": "{l_file}をロードしています。"
+  },
+  "OpenFileDialog": {
+    "PickLog": "ログを選択",
+    "SupportedLogs": "サポートされているログ"
   }
 }
