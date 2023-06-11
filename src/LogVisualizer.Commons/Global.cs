@@ -18,6 +18,6 @@ namespace LogVisualizer.Commons
 
         public static string UpgradeResourcesFolder { get; } = Path.Combine(AppDataDirectory, "UpgraderResources");
 
-        public static string SchemaConfigFolderRoot { get; } = Path.Combine(AppDataDirectory, "SchemaConfigs");
+        public static string ScenarioConfigFolderRoot { get; } = Path.Combine(AppDataDirectory, "ScenarioConfigs");
     }
 }

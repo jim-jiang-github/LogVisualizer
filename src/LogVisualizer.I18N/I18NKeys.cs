@@ -1,139 +1,115 @@
-﻿namespace LogVisualizer.I18N
+﻿
+
+namespace LogVisualizer.I18N
 {
     // This is an auto-generated file. Do not modify this file manually, if you need to modify the contents, Please motify the I18NKeys.tt file.
     public enum I18NKeys
     {
-        /// <summary>[Non-Localized] This is a time value</summary>
-        /// <remarks>
-        /// <para>
-        /// [Ms]: Meeting will end after {l_seconds} Milliseconds
-        /// </para>
-        /// <para>
-        /// [Sec]: Meeting will end after {l_seconds} Seconds
-        /// </para>
-        /// <para>
-        /// [Min]: Meeting will end after {l_seconds} Minute
-        /// </para>
-        /// </remarks>
-        TestTimeString,
-        /// <summary>[Non-Localized] This is a plurals value</summary>
-        /// <remarks>
-        /// <para>
-        /// [One]: This is {l_participant_number} participant
-        /// </para>
-        /// <para>
-        /// [Few]: There are {l_participant_number} participants
-        /// </para>
-        /// </remarks>
-        TestPluralsString,
-        /// <summary>Cancel</summary>
+        /// <summary>[NonLocalized] {    "One": "This is {l_participant_number} participant",    "Few": "There are {l_participant_number} participants"  }</summary>
+        TestPlurals,
+        /// <summary>[en-US] Version ({l_version number}).</summary>
+        Common_Version,
+        /// <summary>[en-US] Cancel</summary>
         Common_Cancel,
-        /// <summary>Confirm</summary>
+        /// <summary>[en-US] Confirm</summary>
         Common_Confirm,
-        /// <summary>Are you sure you want to delete the '{l_name}'? This action cannot be undone!</summary>
-        Common_Confirm_Delete,
-        /// <summary>File</summary>
+        /// <summary>[en-US] Are you sure you want to delete the '{l_name}'? This action cannot be undone!</summary>
+        Common_ConfirmDelete,
+        /// <summary>[en-US] File</summary>
         Menu_File,
-        /// <summary>Open</summary>
-        Menu_Open,
-        /// <summary>Pick logs</summary>
-        Menu_Open_Pick_Log_Dialog,
-        /// <summary>Supported Logs</summary>
-        Menu_Open_Pick_Log_Dialog_Supported_Logs,
-        /// <summary>From Url</summary>
-        Menu_From_Url,
-        /// <summary>Exit</summary>
-        Menu_Exit,
-        /// <summary>View</summary>
-        Menu_View,
-        /// <summary>Show only filtered line</summary>
-        Menu_Show_Only_Filtered,
-        /// <summary>Filter</summary>
+        /// <summary>[en-US] Open</summary>
+        Menu_FileMenu_Open,
+        /// <summary>[en-US] Pick logs</summary>
+        Menu_FileMenu_OpenDialog_PickLog,
+        /// <summary>[en-US] Supported Logs</summary>
+        Menu_FileMenu_OpenDialog_SupportedLogs,
+        /// <summary>[en-US] From Url</summary>
+        Menu_FileMenu_FromUrl,
+        /// <summary>[en-US] Exit</summary>
+        Menu_FileMenu_Exit,
+        /// <summary>[en-US] Views</summary>
+        Menu_Views,
+        /// <summary>[en-US] Show only filtered line</summary>
+        Menu_ViewsMenu_ShowOnlyFiltered,
+        /// <summary>[en-US] Filter</summary>
         Menu_Filter,
-        /// <summary>Add new filter</summary>
-        Menu_Add_Filter,
-        /// <summary>Help</summary>
+        /// <summary>[en-US] Add new filter</summary>
+        Menu_FilterMenu_AddFilter,
+        /// <summary>[en-US] Help</summary>
         Menu_Help,
-        /// <summary>Check for upgrade</summary>
-        Menu_Check_Upgrade,
-        /// <summary>Open App data folder</summary>
-        Menu_Open_App_Data_Folder,
-        /// <summary>About</summary>
-        Menu_About,
-        /// <summary>Download now</summary>
-        Upgrader_Download_Now,
-        /// <summary>Exit and upgrade now</summary>
-        Upgrader_Upgrade_Now,
-        /// <summary>Upgrade on next startup</summary>
-        Upgrader_Upgrade_Next_Startup,
-        /// <summary>Ignore this version</summary>
-        Upgrader_Ignore_This_Version,
-        /// <summary>Upgrade is available: {l_version}</summary>
-        Upgrader_Upgrade_Version_Title,
-        /// <summary>No schema source</summary>
-        Schema_No_Source,
-        /// <summary>Filter branches</summary>
-        Schema_Filter_Branches,
-        /// <summary>Schema setting</summary>
-        Schema_Panel_Title,
-        /// <summary>Schema name:</summary>
-        Schema_Creator_Schema_Name,
-        /// <summary>Create a schema</summary>
-        Schema_Creator_Create,
-        /// <summary>Enter schema name</summary>
-        Schema_Creator_Schema_Name_Watermark,
-        /// <summary>Schema repository:</summary>
-        Schema_Creator_Schema_Repo,
-        /// <summary>Enter schema repository</summary>
-        Schema_Creator_Schema_Repo_Watermark,
-        /// <summary>Schema branch:</summary>
-        Schema_Creator_Schema_Branch,
-        /// <summary>Enter schema branch</summary>
-        Schema_Creator_Schema_Branch_Watermark,
-        /// <summary>Schema name cannot be null or while space.</summary>
-        Schema_Creator_Schema_Name_Valid,
-        /// <summary>Schema repository cannot be null or while space.</summary>
-        Schema_Creator_Schema_Repo_Valid,
-        /// <summary>Schema branch cannot be null or while space.</summary>
-        Schema_Creator_Schema_Branch_Valid,
-        /// <summary>There is already an existing schema config.</summary>
-        Schema_Creator_Schema_Name_Exist,
-        /// <summary>A schema config can't contain any of the following characters:/\:*?"<>|</summary>
-        Schema_Creator_Schema_Name_Error,
-        /// <summary>Updating…</summary>
-        Schema_Updating,
-        /// <summary>Updating…</summary>
-        Schema_,
-        /// <summary>Version ({l_version number}).</summary>
-        Version,
+        /// <summary>[en-US] Check for upgrade</summary>
+        Menu_HelpMenu_CheckUpgrade,
+        /// <summary>[en-US] Open App data folder</summary>
+        Menu_HelpMenu_OpenAppDataFolder,
+        /// <summary>[en-US] About</summary>
+        Menu_HelpMenu_About,
+        /// <summary>[en-US] Upgrade is available: {l_version}</summary>
+        Upgrader_Title,
+        /// <summary>[en-US] Download now</summary>
+        Upgrader_DownloadNow,
+        /// <summary>[en-US] Exit and upgrade now</summary>
+        Upgrader_UpgradeNow,
+        /// <summary>[en-US] Upgrade on next startup</summary>
+        Upgrader_UpgradeNextStartup,
+        /// <summary>[en-US] Ignore this version</summary>
+        Upgrader_IgnoreThisVersion,
+        /// <summary>[en-US] No scenario source</summary>
+        Scenario_NoSource,
+        /// <summary>[en-US] Filter branches</summary>
+        Scenario_FilterBranches,
+        /// <summary>[en-US] Scenario setting</summary>
+        Scenario_PanelTitle,
+        /// <summary>[en-US] Updating…</summary>
+        Scenario_Updating,
+        /// <summary>[en-US] Scenario name:</summary>
+        Scenario_Creator_ScenarioName,
+        /// <summary>[en-US] Enter scenario name</summary>
+        Scenario_Creator_ScenarioNameWatermark,
+        /// <summary>[en-US] A scenario config can't contain any of the following characters:/\:*?"<>|</summary>
+        Scenario_Creator_ScenarioNameValidNameError,
+        /// <summary>[en-US] Scenario name cannot be null or while space.</summary>
+        Scenario_Creator_ScenarioNameValidNull,
+        /// <summary>[en-US] There is already an existing scenario config.</summary>
+        Scenario_Creator_ScenarioNameValidExist,
+        /// <summary>[en-US] Scenario repository:</summary>
+        Scenario_Creator_ScenarioRepo,
+        /// <summary>[en-US] Enter scenario repository</summary>
+        Scenario_Creator_ScenarioRepoWatermark,
+        /// <summary>[en-US] Scenario repository cannot be null or while space.</summary>
+        Scenario_Creator_ScenarioRepoValidNull,
+        /// <summary>[en-US] Scenario branch:</summary>
+        Scenario_Creator_ScenarioBranch,
+        /// <summary>[en-US] Enter scenario branch</summary>
+        Scenario_Creator_ScenarioBranchWatermark,
+        /// <summary>[en-US] Scenario branch cannot be null or while space.</summary>
+        Scenario_Creator_ScenarioBranchValidNull,
+        /// <summary>[en-US] Now loading...</summary>
+        Loading_OpenFileStart,
+        /// <summary>[en-US] Loading {l_file}.</summary>
+        Loading_LoadingFile,
     }
 
     public class I18NResource
     {
-        /// <summary>[Non-Localized] This is a time value</summary>
-        /// <remarks>
-        /// <para>
-        /// [Ms]: Meeting will end after {l_seconds} Milliseconds
-        /// </para>
-        /// <para>
-        /// [Sec]: Meeting will end after {l_seconds} Seconds
-        /// </para>
-        /// <para>
-        /// [Min]: Meeting will end after {l_seconds} Minute
-        /// </para>
-        /// </remarks>
-        public const string TestTimeString = "TestTimeString";
-        /// <summary>[Non-Localized] This is a plurals value</summary>
-        /// <remarks>
-        /// <para>
-        /// [One]: This is {l_participant_number} participant
-        /// </para>
-        /// <para>
-        /// [Few]: There are {l_participant_number} participants
-        /// </para>
-        /// </remarks>
-        public const string TestPluralsString = "TestPluralsString";
-        /// <summary>Cancel</summary>
+        /// <summary>[NonLocalized] {    "One": "This is {l_participant_number} participant",    "Few": "There are {l_participant_number} participants"  }</summary>
+        public const string TestPlurals = "TestPluralsSource";
+        public static string TestPluralsSource
+        {
+            get
+            {
+                return I18NKeys.TestPlurals.GetLocalizationRawValue();
+            }
+        }
+        /// <summary>[en-US] Version ({l_version number}).</summary>
+        public const string Common_Version = "Common_VersionSource";
+        public static string Common_VersionSource
+        {
+            get
+            {
+                return I18NKeys.Common_Version.GetLocalizationRawValue();
+            }
+        }
+        /// <summary>[en-US] Cancel</summary>
         public const string Common_Cancel = "Common_CancelSource";
         public static string Common_CancelSource
         {
@@ -142,7 +118,7 @@
                 return I18NKeys.Common_Cancel.GetLocalizationRawValue();
             }
         }
-        /// <summary>Confirm</summary>
+        /// <summary>[en-US] Confirm</summary>
         public const string Common_Confirm = "Common_ConfirmSource";
         public static string Common_ConfirmSource
         {
@@ -151,16 +127,16 @@
                 return I18NKeys.Common_Confirm.GetLocalizationRawValue();
             }
         }
-        /// <summary>Are you sure you want to delete the '{l_name}'? This action cannot be undone!</summary>
-        public const string Common_Confirm_Delete = "Common_Confirm_DeleteSource";
-        public static string Common_Confirm_DeleteSource
+        /// <summary>[en-US] Are you sure you want to delete the '{l_name}'? This action cannot be undone!</summary>
+        public const string Common_ConfirmDelete = "Common_ConfirmDeleteSource";
+        public static string Common_ConfirmDeleteSource
         {
             get
             {
-                return I18NKeys.Common_Confirm_Delete.GetLocalizationRawValue();
+                return I18NKeys.Common_ConfirmDelete.GetLocalizationRawValue();
             }
         }
-        /// <summary>File</summary>
+        /// <summary>[en-US] File</summary>
         public const string Menu_File = "Menu_FileSource";
         public static string Menu_FileSource
         {
@@ -169,70 +145,70 @@
                 return I18NKeys.Menu_File.GetLocalizationRawValue();
             }
         }
-        /// <summary>Open</summary>
-        public const string Menu_Open = "Menu_OpenSource";
-        public static string Menu_OpenSource
+        /// <summary>[en-US] Open</summary>
+        public const string Menu_FileMenu_Open = "Menu_FileMenu_OpenSource";
+        public static string Menu_FileMenu_OpenSource
         {
             get
             {
-                return I18NKeys.Menu_Open.GetLocalizationRawValue();
+                return I18NKeys.Menu_FileMenu_Open.GetLocalizationRawValue();
             }
         }
-        /// <summary>Pick logs</summary>
-        public const string Menu_Open_Pick_Log_Dialog = "Menu_Open_Pick_Log_DialogSource";
-        public static string Menu_Open_Pick_Log_DialogSource
+        /// <summary>[en-US] Pick logs</summary>
+        public const string Menu_FileMenu_OpenDialog_PickLog = "Menu_FileMenu_OpenDialog_PickLogSource";
+        public static string Menu_FileMenu_OpenDialog_PickLogSource
         {
             get
             {
-                return I18NKeys.Menu_Open_Pick_Log_Dialog.GetLocalizationRawValue();
+                return I18NKeys.Menu_FileMenu_OpenDialog_PickLog.GetLocalizationRawValue();
             }
         }
-        /// <summary>Supported Logs</summary>
-        public const string Menu_Open_Pick_Log_Dialog_Supported_Logs = "Menu_Open_Pick_Log_Dialog_Supported_LogsSource";
-        public static string Menu_Open_Pick_Log_Dialog_Supported_LogsSource
+        /// <summary>[en-US] Supported Logs</summary>
+        public const string Menu_FileMenu_OpenDialog_SupportedLogs = "Menu_FileMenu_OpenDialog_SupportedLogsSource";
+        public static string Menu_FileMenu_OpenDialog_SupportedLogsSource
         {
             get
             {
-                return I18NKeys.Menu_Open_Pick_Log_Dialog_Supported_Logs.GetLocalizationRawValue();
+                return I18NKeys.Menu_FileMenu_OpenDialog_SupportedLogs.GetLocalizationRawValue();
             }
         }
-        /// <summary>From Url</summary>
-        public const string Menu_From_Url = "Menu_From_UrlSource";
-        public static string Menu_From_UrlSource
+        /// <summary>[en-US] From Url</summary>
+        public const string Menu_FileMenu_FromUrl = "Menu_FileMenu_FromUrlSource";
+        public static string Menu_FileMenu_FromUrlSource
         {
             get
             {
-                return I18NKeys.Menu_From_Url.GetLocalizationRawValue();
+                return I18NKeys.Menu_FileMenu_FromUrl.GetLocalizationRawValue();
             }
         }
-        /// <summary>Exit</summary>
-        public const string Menu_Exit = "Menu_ExitSource";
-        public static string Menu_ExitSource
+        /// <summary>[en-US] Exit</summary>
+        public const string Menu_FileMenu_Exit = "Menu_FileMenu_ExitSource";
+        public static string Menu_FileMenu_ExitSource
         {
             get
             {
-                return I18NKeys.Menu_Exit.GetLocalizationRawValue();
+                return I18NKeys.Menu_FileMenu_Exit.GetLocalizationRawValue();
             }
         }
-        /// <summary>View</summary>
-        public const string Menu_View = "Menu_ViewSource";
-        public static string Menu_ViewSource
+        /// <summary>[en-US] Views</summary>
+        public const string Menu_Views = "Menu_ViewsSource";
+        public static string Menu_ViewsSource
         {
             get
             {
-                return I18NKeys.Menu_View.GetLocalizationRawValue();
+                return I18NKeys.Menu_Views.GetLocalizationRawValue();
             }
         }
-        /// <summary>Show only filtered line</summary>
-        public const string Menu_Show_Only_Filtered = "Menu_Show_Only_FilteredSource";
-        public static string Menu_Show_Only_FilteredSource
+        /// <summary>[en-US] Show only filtered line</summary>
+        public const string Menu_ViewsMenu_ShowOnlyFiltered = "Menu_ViewsMenu_ShowOnlyFilteredSource";
+        public static string Menu_ViewsMenu_ShowOnlyFilteredSource
         {
             get
             {
-                return I18NKeys.Menu_Show_Only_Filtered.GetLocalizationRawValue();
+                return I18NKeys.Menu_ViewsMenu_ShowOnlyFiltered.GetLocalizationRawValue();
             }
         }
-        /// <summary>Filter</summary>
+        /// <summary>[en-US] Filter</summary>
         public const string Menu_Filter = "Menu_FilterSource";
         public static string Menu_FilterSource
         {
@@ -241,16 +217,16 @@
                 return I18NKeys.Menu_Filter.GetLocalizationRawValue();
             }
         }
-        /// <summary>Add new filter</summary>
-        public const string Menu_Add_Filter = "Menu_Add_FilterSource";
-        public static string Menu_Add_FilterSource
+        /// <summary>[en-US] Add new filter</summary>
+        public const string Menu_FilterMenu_AddFilter = "Menu_FilterMenu_AddFilterSource";
+        public static string Menu_FilterMenu_AddFilterSource
         {
             get
             {
-                return I18NKeys.Menu_Add_Filter.GetLocalizationRawValue();
+                return I18NKeys.Menu_FilterMenu_AddFilter.GetLocalizationRawValue();
             }
         }
-        /// <summary>Help</summary>
+        /// <summary>[en-US] Help</summary>
         public const string Menu_Help = "Menu_HelpSource";
         public static string Menu_HelpSource
         {
@@ -259,240 +235,230 @@
                 return I18NKeys.Menu_Help.GetLocalizationRawValue();
             }
         }
-        /// <summary>Check for upgrade</summary>
-        public const string Menu_Check_Upgrade = "Menu_Check_UpgradeSource";
-        public static string Menu_Check_UpgradeSource
+        /// <summary>[en-US] Check for upgrade</summary>
+        public const string Menu_HelpMenu_CheckUpgrade = "Menu_HelpMenu_CheckUpgradeSource";
+        public static string Menu_HelpMenu_CheckUpgradeSource
         {
             get
             {
-                return I18NKeys.Menu_Check_Upgrade.GetLocalizationRawValue();
+                return I18NKeys.Menu_HelpMenu_CheckUpgrade.GetLocalizationRawValue();
             }
         }
-        /// <summary>Open App data folder</summary>
-        public const string Menu_Open_App_Data_Folder = "Menu_Open_App_Data_FolderSource";
-        public static string Menu_Open_App_Data_FolderSource
+        /// <summary>[en-US] Open App data folder</summary>
+        public const string Menu_HelpMenu_OpenAppDataFolder = "Menu_HelpMenu_OpenAppDataFolderSource";
+        public static string Menu_HelpMenu_OpenAppDataFolderSource
         {
             get
             {
-                return I18NKeys.Menu_Open_App_Data_Folder.GetLocalizationRawValue();
+                return I18NKeys.Menu_HelpMenu_OpenAppDataFolder.GetLocalizationRawValue();
             }
         }
-        /// <summary>About</summary>
-        public const string Menu_About = "Menu_AboutSource";
-        public static string Menu_AboutSource
+        /// <summary>[en-US] About</summary>
+        public const string Menu_HelpMenu_About = "Menu_HelpMenu_AboutSource";
+        public static string Menu_HelpMenu_AboutSource
         {
             get
             {
-                return I18NKeys.Menu_About.GetLocalizationRawValue();
+                return I18NKeys.Menu_HelpMenu_About.GetLocalizationRawValue();
             }
         }
-        /// <summary>Download now</summary>
-        public const string Upgrader_Download_Now = "Upgrader_Download_NowSource";
-        public static string Upgrader_Download_NowSource
+        /// <summary>[en-US] Upgrade is available: {l_version}</summary>
+        public const string Upgrader_Title = "Upgrader_TitleSource";
+        public static string Upgrader_TitleSource
         {
             get
             {
-                return I18NKeys.Upgrader_Download_Now.GetLocalizationRawValue();
+                return I18NKeys.Upgrader_Title.GetLocalizationRawValue();
             }
         }
-        /// <summary>Exit and upgrade now</summary>
-        public const string Upgrader_Upgrade_Now = "Upgrader_Upgrade_NowSource";
-        public static string Upgrader_Upgrade_NowSource
+        /// <summary>[en-US] Download now</summary>
+        public const string Upgrader_DownloadNow = "Upgrader_DownloadNowSource";
+        public static string Upgrader_DownloadNowSource
         {
             get
             {
-                return I18NKeys.Upgrader_Upgrade_Now.GetLocalizationRawValue();
+                return I18NKeys.Upgrader_DownloadNow.GetLocalizationRawValue();
             }
         }
-        /// <summary>Upgrade on next startup</summary>
-        public const string Upgrader_Upgrade_Next_Startup = "Upgrader_Upgrade_Next_StartupSource";
-        public static string Upgrader_Upgrade_Next_StartupSource
+        /// <summary>[en-US] Exit and upgrade now</summary>
+        public const string Upgrader_UpgradeNow = "Upgrader_UpgradeNowSource";
+        public static string Upgrader_UpgradeNowSource
         {
             get
             {
-                return I18NKeys.Upgrader_Upgrade_Next_Startup.GetLocalizationRawValue();
+                return I18NKeys.Upgrader_UpgradeNow.GetLocalizationRawValue();
             }
         }
-        /// <summary>Ignore this version</summary>
-        public const string Upgrader_Ignore_This_Version = "Upgrader_Ignore_This_VersionSource";
-        public static string Upgrader_Ignore_This_VersionSource
+        /// <summary>[en-US] Upgrade on next startup</summary>
+        public const string Upgrader_UpgradeNextStartup = "Upgrader_UpgradeNextStartupSource";
+        public static string Upgrader_UpgradeNextStartupSource
         {
             get
             {
-                return I18NKeys.Upgrader_Ignore_This_Version.GetLocalizationRawValue();
+                return I18NKeys.Upgrader_UpgradeNextStartup.GetLocalizationRawValue();
             }
         }
-        /// <summary>Upgrade is available: {l_version}</summary>
-        public const string Upgrader_Upgrade_Version_Title = "Upgrader_Upgrade_Version_TitleSource";
-        public static string Upgrader_Upgrade_Version_TitleSource
+        /// <summary>[en-US] Ignore this version</summary>
+        public const string Upgrader_IgnoreThisVersion = "Upgrader_IgnoreThisVersionSource";
+        public static string Upgrader_IgnoreThisVersionSource
         {
             get
             {
-                return I18NKeys.Upgrader_Upgrade_Version_Title.GetLocalizationRawValue();
+                return I18NKeys.Upgrader_IgnoreThisVersion.GetLocalizationRawValue();
             }
         }
-        /// <summary>No schema source</summary>
-        public const string Schema_No_Source = "Schema_No_SourceSource";
-        public static string Schema_No_SourceSource
+        /// <summary>[en-US] No scenario source</summary>
+        public const string Scenario_NoSource = "Scenario_NoSourceSource";
+        public static string Scenario_NoSourceSource
         {
             get
             {
-                return I18NKeys.Schema_No_Source.GetLocalizationRawValue();
+                return I18NKeys.Scenario_NoSource.GetLocalizationRawValue();
             }
         }
-        /// <summary>Filter branches</summary>
-        public const string Schema_Filter_Branches = "Schema_Filter_BranchesSource";
-        public static string Schema_Filter_BranchesSource
+        /// <summary>[en-US] Filter branches</summary>
+        public const string Scenario_FilterBranches = "Scenario_FilterBranchesSource";
+        public static string Scenario_FilterBranchesSource
         {
             get
             {
-                return I18NKeys.Schema_Filter_Branches.GetLocalizationRawValue();
+                return I18NKeys.Scenario_FilterBranches.GetLocalizationRawValue();
             }
         }
-        /// <summary>Schema setting</summary>
-        public const string Schema_Panel_Title = "Schema_Panel_TitleSource";
-        public static string Schema_Panel_TitleSource
+        /// <summary>[en-US] Scenario setting</summary>
+        public const string Scenario_PanelTitle = "Scenario_PanelTitleSource";
+        public static string Scenario_PanelTitleSource
         {
             get
             {
-                return I18NKeys.Schema_Panel_Title.GetLocalizationRawValue();
+                return I18NKeys.Scenario_PanelTitle.GetLocalizationRawValue();
             }
         }
-        /// <summary>Schema name:</summary>
-        public const string Schema_Creator_Schema_Name = "Schema_Creator_Schema_NameSource";
-        public static string Schema_Creator_Schema_NameSource
+        /// <summary>[en-US] Updating…</summary>
+        public const string Scenario_Updating = "Scenario_UpdatingSource";
+        public static string Scenario_UpdatingSource
         {
             get
             {
-                return I18NKeys.Schema_Creator_Schema_Name.GetLocalizationRawValue();
+                return I18NKeys.Scenario_Updating.GetLocalizationRawValue();
             }
         }
-        /// <summary>Create a schema</summary>
-        public const string Schema_Creator_Create = "Schema_Creator_CreateSource";
-        public static string Schema_Creator_CreateSource
+        /// <summary>[en-US] Scenario name:</summary>
+        public const string Scenario_Creator_ScenarioName = "Scenario_Creator_ScenarioNameSource";
+        public static string Scenario_Creator_ScenarioNameSource
         {
             get
             {
-                return I18NKeys.Schema_Creator_Create.GetLocalizationRawValue();
+                return I18NKeys.Scenario_Creator_ScenarioName.GetLocalizationRawValue();
             }
         }
-        /// <summary>Enter schema name</summary>
-        public const string Schema_Creator_Schema_Name_Watermark = "Schema_Creator_Schema_Name_WatermarkSource";
-        public static string Schema_Creator_Schema_Name_WatermarkSource
+        /// <summary>[en-US] Enter scenario name</summary>
+        public const string Scenario_Creator_ScenarioNameWatermark = "Scenario_Creator_ScenarioNameWatermarkSource";
+        public static string Scenario_Creator_ScenarioNameWatermarkSource
         {
             get
             {
-                return I18NKeys.Schema_Creator_Schema_Name_Watermark.GetLocalizationRawValue();
+                return I18NKeys.Scenario_Creator_ScenarioNameWatermark.GetLocalizationRawValue();
             }
         }
-        /// <summary>Schema repository:</summary>
-        public const string Schema_Creator_Schema_Repo = "Schema_Creator_Schema_RepoSource";
-        public static string Schema_Creator_Schema_RepoSource
+        /// <summary>[en-US] A scenario config can't contain any of the following characters:/\:*?"<>|</summary>
+        public const string Scenario_Creator_ScenarioNameValidNameError = "Scenario_Creator_ScenarioNameValidNameErrorSource";
+        public static string Scenario_Creator_ScenarioNameValidNameErrorSource
         {
             get
             {
-                return I18NKeys.Schema_Creator_Schema_Repo.GetLocalizationRawValue();
+                return I18NKeys.Scenario_Creator_ScenarioNameValidNameError.GetLocalizationRawValue();
             }
         }
-        /// <summary>Enter schema repository</summary>
-        public const string Schema_Creator_Schema_Repo_Watermark = "Schema_Creator_Schema_Repo_WatermarkSource";
-        public static string Schema_Creator_Schema_Repo_WatermarkSource
+        /// <summary>[en-US] Scenario name cannot be null or while space.</summary>
+        public const string Scenario_Creator_ScenarioNameValidNull = "Scenario_Creator_ScenarioNameValidNullSource";
+        public static string Scenario_Creator_ScenarioNameValidNullSource
         {
             get
             {
-                return I18NKeys.Schema_Creator_Schema_Repo_Watermark.GetLocalizationRawValue();
+                return I18NKeys.Scenario_Creator_ScenarioNameValidNull.GetLocalizationRawValue();
             }
         }
-        /// <summary>Schema branch:</summary>
-        public const string Schema_Creator_Schema_Branch = "Schema_Creator_Schema_BranchSource";
-        public static string Schema_Creator_Schema_BranchSource
+        /// <summary>[en-US] There is already an existing scenario config.</summary>
+        public const string Scenario_Creator_ScenarioNameValidExist = "Scenario_Creator_ScenarioNameValidExistSource";
+        public static string Scenario_Creator_ScenarioNameValidExistSource
         {
             get
             {
-                return I18NKeys.Schema_Creator_Schema_Branch.GetLocalizationRawValue();
+                return I18NKeys.Scenario_Creator_ScenarioNameValidExist.GetLocalizationRawValue();
             }
         }
-        /// <summary>Enter schema branch</summary>
-        public const string Schema_Creator_Schema_Branch_Watermark = "Schema_Creator_Schema_Branch_WatermarkSource";
-        public static string Schema_Creator_Schema_Branch_WatermarkSource
+        /// <summary>[en-US] Scenario repository:</summary>
+        public const string Scenario_Creator_ScenarioRepo = "Scenario_Creator_ScenarioRepoSource";
+        public static string Scenario_Creator_ScenarioRepoSource
         {
             get
             {
-                return I18NKeys.Schema_Creator_Schema_Branch_Watermark.GetLocalizationRawValue();
+                return I18NKeys.Scenario_Creator_ScenarioRepo.GetLocalizationRawValue();
             }
         }
-        /// <summary>Schema name cannot be null or while space.</summary>
-        public const string Schema_Creator_Schema_Name_Valid = "Schema_Creator_Schema_Name_ValidSource";
-        public static string Schema_Creator_Schema_Name_ValidSource
+        /// <summary>[en-US] Enter scenario repository</summary>
+        public const string Scenario_Creator_ScenarioRepoWatermark = "Scenario_Creator_ScenarioRepoWatermarkSource";
+        public static string Scenario_Creator_ScenarioRepoWatermarkSource
         {
             get
             {
-                return I18NKeys.Schema_Creator_Schema_Name_Valid.GetLocalizationRawValue();
+                return I18NKeys.Scenario_Creator_ScenarioRepoWatermark.GetLocalizationRawValue();
             }
         }
-        /// <summary>Schema repository cannot be null or while space.</summary>
-        public const string Schema_Creator_Schema_Repo_Valid = "Schema_Creator_Schema_Repo_ValidSource";
-        public static string Schema_Creator_Schema_Repo_ValidSource
+        /// <summary>[en-US] Scenario repository cannot be null or while space.</summary>
+        public const string Scenario_Creator_ScenarioRepoValidNull = "Scenario_Creator_ScenarioRepoValidNullSource";
+        public static string Scenario_Creator_ScenarioRepoValidNullSource
         {
             get
             {
-                return I18NKeys.Schema_Creator_Schema_Repo_Valid.GetLocalizationRawValue();
+                return I18NKeys.Scenario_Creator_ScenarioRepoValidNull.GetLocalizationRawValue();
             }
         }
-        /// <summary>Schema branch cannot be null or while space.</summary>
-        public const string Schema_Creator_Schema_Branch_Valid = "Schema_Creator_Schema_Branch_ValidSource";
-        public static string Schema_Creator_Schema_Branch_ValidSource
+        /// <summary>[en-US] Scenario branch:</summary>
+        public const string Scenario_Creator_ScenarioBranch = "Scenario_Creator_ScenarioBranchSource";
+        public static string Scenario_Creator_ScenarioBranchSource
         {
             get
             {
-                return I18NKeys.Schema_Creator_Schema_Branch_Valid.GetLocalizationRawValue();
+                return I18NKeys.Scenario_Creator_ScenarioBranch.GetLocalizationRawValue();
             }
         }
-        /// <summary>There is already an existing schema config.</summary>
-        public const string Schema_Creator_Schema_Name_Exist = "Schema_Creator_Schema_Name_ExistSource";
-        public static string Schema_Creator_Schema_Name_ExistSource
+        /// <summary>[en-US] Enter scenario branch</summary>
+        public const string Scenario_Creator_ScenarioBranchWatermark = "Scenario_Creator_ScenarioBranchWatermarkSource";
+        public static string Scenario_Creator_ScenarioBranchWatermarkSource
         {
             get
             {
-                return I18NKeys.Schema_Creator_Schema_Name_Exist.GetLocalizationRawValue();
+                return I18NKeys.Scenario_Creator_ScenarioBranchWatermark.GetLocalizationRawValue();
             }
         }
-        /// <summary>A schema config can't contain any of the following characters:/\:*?"<>|</summary>
-        public const string Schema_Creator_Schema_Name_Error = "Schema_Creator_Schema_Name_ErrorSource";
-        public static string Schema_Creator_Schema_Name_ErrorSource
+        /// <summary>[en-US] Scenario branch cannot be null or while space.</summary>
+        public const string Scenario_Creator_ScenarioBranchValidNull = "Scenario_Creator_ScenarioBranchValidNullSource";
+        public static string Scenario_Creator_ScenarioBranchValidNullSource
         {
             get
             {
-                return I18NKeys.Schema_Creator_Schema_Name_Error.GetLocalizationRawValue();
+                return I18NKeys.Scenario_Creator_ScenarioBranchValidNull.GetLocalizationRawValue();
             }
         }
-        /// <summary>Updating…</summary>
-        public const string Schema_Updating = "Schema_UpdatingSource";
-        public static string Schema_UpdatingSource
+        /// <summary>[en-US] Now loading...</summary>
+        public const string Loading_OpenFileStart = "Loading_OpenFileStartSource";
+        public static string Loading_OpenFileStartSource
         {
             get
             {
-                return I18NKeys.Schema_Updating.GetLocalizationRawValue();
+                return I18NKeys.Loading_OpenFileStart.GetLocalizationRawValue();
             }
         }
-        /// <summary>Updating…</summary>
-        public const string Schema_ = "Schema_Source";
-        public static string Schema_Source
+        /// <summary>[en-US] Loading {l_file}.</summary>
+        public const string Loading_LoadingFile = "Loading_LoadingFileSource";
+        public static string Loading_LoadingFileSource
         {
             get
             {
-                return I18NKeys.Schema_.GetLocalizationRawValue();
-            }
-        }
-        /// <summary>Version ({l_version number}).</summary>
-        public const string Version = "VersionSource";
-        public static string VersionSource
-        {
-            get
-            {
-                return I18NKeys.Version.GetLocalizationRawValue();
+                return I18NKeys.Loading_LoadingFile.GetLocalizationRawValue();
             }
         }
     }
 }
-

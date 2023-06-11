@@ -1,4 +1,5 @@
-﻿using Serilog;
+﻿using Newtonsoft.Json;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -136,13 +137,13 @@ namespace LogVisualizer.I18N
                 nonLocalizedMap.Clear();
                 i18nMapDefault.Clear();
                 i18nMap.Clear();
-                var nonLocalizedJsonDictionary = JsonSerializer.Deserialize<Dictionary<string, object>[]>(nonLocalizedJson);
-                var defaultCultureJsonDictionary = JsonSerializer.Deserialize<Dictionary<string, object>[]>(defaultCultureJson);
-                var cultureJsonDictionary = JsonSerializer.Deserialize<Dictionary<string, object>[]>(cultureJson);
+                var nonLocalizedJsonDictionary = GetLocalizationMap(nonLocalizedJson);
+                var defaultCultureJsonDictionary = GetLocalizationMap(defaultCultureJson);
+                var cultureJsonDictionary = GetLocalizationMap(cultureJson);
                 Log.Information($"Load from json culture [nonLocalized:{nonLocalizedJsonDictionary.Count()}|defaultCulture:{defaultCultureJsonDictionary.Count()}|culture:{cultureJsonDictionary.Count()}]");
                 foreach (var property in nonLocalizedJsonDictionary)
                 {
-                    var key = property["Key"].ToString();
+                    var key = property.Key;
                     if (Enum.TryParse(key, out I18NKeys i18NKey) && I18NValue.CreateI18NValue(property) is I18NValue value)
                     {
                         nonLocalizedMap.Add(i18NKey, value);
@@ -150,7 +151,7 @@ namespace LogVisualizer.I18N
                 }
                 foreach (var property in defaultCultureJsonDictionary)
                 {
-                    var key = property["Key"].ToString();
+                    var key = property.Key;
                     if (Enum.TryParse(key, out I18NKeys i18NKey) && I18NValue.CreateI18NValue(property) is I18NValue value)
                     {
                         i18nMapDefault.Add(i18NKey, value);
@@ -158,7 +159,7 @@ namespace LogVisualizer.I18N
                 }
                 foreach (var property in cultureJsonDictionary)
                 {
-                    var key = property["Key"].ToString();
+                    var key = property.Key;
                     if (Enum.TryParse(key, out I18NKeys i18NKey) && I18NValue.CreateI18NValue(property) is I18NValue value)
                     {
                         i18nMap.Add(i18NKey, value);
@@ -169,6 +170,39 @@ namespace LogVisualizer.I18N
             catch (Exception)
             {
                 return false;
+            }
+        }
+
+        private static IEnumerable<KeyValuePair<string, object>> GetLocalizationMap(string? jsonContent, string? parentKey = null)
+        {
+            if (jsonContent != null)
+            {
+                var jsonObjects = JsonConvert.DeserializeObject<Dictionary<string, object>>(jsonContent);
+                if (jsonObjects != null)
+                {
+                    foreach (var jsonObject in jsonObjects)
+                    {
+                        var key = (parentKey == null ? "" : $"{parentKey}_") + jsonObject.Key;
+                        if (jsonObject.Key == "Plurals" && parentKey != null)
+                        {
+                            var plurals = Plurals.LoadFromJson(jsonObject.Value.ToString());
+                            if (plurals != null)
+                            {
+                                yield return new KeyValuePair<string, object>(parentKey, plurals);
+                            }
+                            continue;
+                        }
+                        if (jsonObject.Value is string value)
+                        {
+                            yield return new KeyValuePair<string, object>(key, value);
+                            continue;
+                        }
+                        foreach (var item in GetLocalizationMap(jsonObject.Value.ToString(), key))
+                        {
+                            yield return item;
+                        }
+                    }
+                }
             }
         }
 

@@ -1,162 +1,64 @@
-[
-  {
-    "Key": "Common_Cancel",
-    "Value": "Cancel"
+{
+  "Common": {
+    "Version": "Version ({l_version number}).",
+    "Cancel": "Cancel",
+    "Confirm": "Confirm",
+    "ConfirmDelete": "Are you sure you want to delete the '{l_name}'? This action cannot be undone!"
   },
-  {
-    "Key": "Common_Confirm",
-    "Value": "Confirm"
+  "Menu": {
+    "File": "File",
+    "FileMenu": {
+      "Open": "Open",
+      "OpenDialog": {
+        "PickLog": "Pick logs",
+        "SupportedLogs": "Supported Logs"
+      },
+      "FromUrl": "From Url",
+      "Exit": "Exit"
+    },
+    "Views": "Views",
+    "ViewsMenu": {
+      "ShowOnlyFiltered": "Show only filtered line"
+    },
+    "Filter": "Filter",
+    "FilterMenu": {
+      "AddFilter": "Add new filter"
+    },
+    "Help": "Help",
+    "HelpMenu": {
+      "CheckUpgrade": "Check for upgrade",
+      "OpenAppDataFolder": "Open App data folder",
+      "About": "About"
+    }
   },
-  {
-    "Key": "Common_Confirm_Delete",
-    "Value": "Are you sure you want to delete the '{l_name}'? This action cannot be undone!"
+  "Upgrader": {
+    "Title": "Upgrade is available: {l_version}",
+    "DownloadNow": "Download now",
+    "UpgradeNow": "Exit and upgrade now",
+    "UpgradeNextStartup": "Upgrade on next startup",
+    "IgnoreThisVersion": "Ignore this version"
   },
-  {
-    "Key": "Menu_File",
-    "Value": "File"
+  "Scenario": {
+    "NoSource": "No scenario source",
+    "FilterBranches": "Filter branches",
+    "PanelTitle": "Scenario setting",
+    "Updating": "Updating\u2026",
+    "Creator": {
+      "ScenarioName": "Scenario name:",
+      "ScenarioNameWatermark": "Enter scenario name",
+      "ScenarioNameValidNameError": "A scenario config can't contain any of the following characters:/\\:*?\"<>|",
+      "ScenarioNameValidNull": "Scenario name cannot be null or while space.",
+      "ScenarioNameValidExist": "There is already an existing scenario config.",
+      "ScenarioRepo": "Scenario repository:",
+      "ScenarioRepoWatermark": "Enter scenario repository",
+      "ScenarioRepoValidNull": "Scenario repository cannot be null or while space.",
+      "ScenarioBranch": "Scenario branch:",
+      "ScenarioBranchWatermark": "Enter scenario branch",
+      "ScenarioBranchValidNull": "Scenario branch cannot be null or while space."
+    }
   },
-  {
-    "Key": "Menu_Open",
-    "Value": "Open"
-  },
-  {
-    "Key": "Menu_Open_Pick_Log_Dialog",
-    "Value": "Pick logs"
-  },
-  {
-    "Key": "Menu_Open_Pick_Log_Dialog_Supported_Logs",
-    "Value": "Supported Logs"
-  },
-  {
-    "Key": "Menu_From_Url",
-    "Value": "From Url"
-  },
-  {
-    "Key": "Menu_Exit",
-    "Value": "Exit"
-  },
-  {
-    "Key": "Menu_View",
-    "Value": "View"
-  },
-  {
-    "Key": "Menu_Show_Only_Filtered",
-    "Value": "Show only filtered line"
-  },
-  {
-    "Key": "Menu_Filter",
-    "Value": "Filter"
-  },
-  {
-    "Key": "Menu_Add_Filter",
-    "Value": "Add new filter"
-  },
-  {
-    "Key": "Menu_Help",
-    "Value": "Help"
-  },
-  {
-    "Key": "Menu_Check_Upgrade",
-    "Value": "Check for upgrade"
-  },
-  {
-    "Key": "Menu_Open_App_Data_Folder",
-    "Value": "Open App data folder"
-  },
-  {
-    "Key": "Menu_About",
-    "Value": "About"
-  },
-  {
-    "Key": "Upgrader_Download_Now",
-    "Value": "Download now"
-  },
-  {
-    "Key": "Upgrader_Upgrade_Now",
-    "Value": "Exit and upgrade now"
-  },
-  {
-    "Key": "Upgrader_Upgrade_Next_Startup",
-    "Value": "Upgrade on next startup"
-  },
-  {
-    "Key": "Upgrader_Ignore_This_Version",
-    "Value": "Ignore this version"
-  },
-  {
-    "Key": "Upgrader_Upgrade_Version_Title",
-    "Value": "Upgrade is available: {l_version}"
-  },
-  {
-    "Key": "Schema_No_Source",
-    "Value": "No schema source"
-  },
-  {
-    "Key": "Schema_Filter_Branches",
-    "Value": "Filter branches"
-  },
-  {
-    "Key": "Schema_Panel_Title",
-    "Value": "Schema setting"
-  },
-  {
-    "Key": "Schema_Creator_Schema_Name",
-    "Value": "Schema name:"
-  },
-  {
-    "Key": "Schema_Creator_Create",
-    "Value": "Create a schema"
-  },
-  {
-    "Key": "Schema_Creator_Schema_Name_Watermark",
-    "Value": "Enter schema name"
-  },
-  {
-    "Key": "Schema_Creator_Schema_Repo",
-    "Value": "Schema repository:"
-  },
-  {
-    "Key": "Schema_Creator_Schema_Repo_Watermark",
-    "Value": "Enter schema repository"
-  },
-  {
-    "Key": "Schema_Creator_Schema_Branch",
-    "Value": "Schema branch:"
-  },
-  {
-    "Key": "Schema_Creator_Schema_Branch_Watermark",
-    "Value": "Enter schema branch"
-  },
-  {
-    "Key": "Schema_Creator_Schema_Name_Valid",
-    "Value": "Schema name cannot be null or while space."
-  },
-  {
-    "Key": "Schema_Creator_Schema_Repo_Valid",
-    "Value": "Schema repository cannot be null or while space."
-  },
-  {
-    "Key": "Schema_Creator_Schema_Branch_Valid",
-    "Value": "Schema branch cannot be null or while space."
-  },
-  {
-    "Key": "Schema_Creator_Schema_Name_Exist",
-    "Value": "There is already an existing schema config."
-  },
-  {
-    "Key": "Schema_Creator_Schema_Name_Error",
-    "Value": "A schema config can't contain any of the following characters:/\\:*?\"<>|"
-  },
-  {
-    "Key": "Schema_Updating",
-    "Value": "Updating\u2026"
-  },
-  {
-    "Key": "Schema_",
-    "Value": "Updating\u2026"
-  },
-  {
-    "Key": "Version",
-    "Value": "Version ({l_version number})."
+  "Loading": {
+    "OpenFileStart": "Now loading...",
+    "LoadingFile": "Loading {l_file}."
   }
-]
+}

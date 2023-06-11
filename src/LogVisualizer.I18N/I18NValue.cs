@@ -46,24 +46,52 @@ namespace LogVisualizer.I18N
 
             private readonly IEnumerable<PluralsBlock> pluralsBlock;
 
-            public I18NValuePlurals(Dictionary<string, string>[] pluralsDictionary)
+            public I18NValuePlurals(Plurals plurals)
             {
-                pluralsBlock = pluralsDictionary.Select(p => new PluralsBlock()
+                var pluralsBlock = new List<PluralsBlock>();
+                if (plurals.Zero != null)
                 {
-                    Quantity = p["Quantity"] switch
+                    pluralsBlock.Add(new PluralsBlock()
                     {
-                        nameof(PluralsQuantity.Zero) => PluralsQuantity.Zero,
-                        nameof(PluralsQuantity.One) => PluralsQuantity.One,
-                        nameof(PluralsQuantity.Two) => PluralsQuantity.Two,
-                        nameof(PluralsQuantity.Few) => PluralsQuantity.Few,
-                        nameof(PluralsQuantity.Many) => PluralsQuantity.Many,
-                        _ => PluralsQuantity.Other
-                    },
-                    Value = p["Value"]
-                });
+                        Quantity = PluralsQuantity.Zero,
+                        Value = plurals.Zero
+                    });
+                }
+                if (plurals.One != null)
+                {
+                    pluralsBlock.Add(new PluralsBlock()
+                    {
+                        Quantity = PluralsQuantity.One,
+                        Value = plurals.One
+                    });
+                }
+                if (plurals.Few != null)
+                {
+                    pluralsBlock.Add(new PluralsBlock()
+                    {
+                        Quantity = PluralsQuantity.Few,
+                        Value = plurals.Few
+                    });
+                }
+                if (plurals.Many != null)
+                {
+                    pluralsBlock.Add(new PluralsBlock()
+                    {
+                        Quantity = PluralsQuantity.Many,
+                        Value = plurals.Many
+                    });
+                }
+                if (plurals.Other != null)
+                {
+                    pluralsBlock.Add(new PluralsBlock()
+                    {
+                        Quantity = PluralsQuantity.Other,
+                        Value = plurals.Other
+                    });
+                }
             }
 
-            public override string GetMultiConditionValue(out string[] convertedParams, params string[] @params)
+            public override string? GetMultiConditionValue(out string[] convertedParams, params string[] @params)
             {
                 convertedParams = @params;
                 if (@params.Length >= 1 && int.TryParse(@params[0], out int number))
@@ -119,7 +147,7 @@ namespace LogVisualizer.I18N
                     Value = t["Value"]
                 });
             }
-            public override string GetMultiConditionValue(out string[] convertedParams, params string[] @params)
+            public override string? GetMultiConditionValue(out string[] convertedParams, params string[] @params)
             {
                 convertedParams = @params;
                 if (@params.Length >= 1 && int.TryParse(@params[0], out int seconds))
@@ -148,25 +176,18 @@ namespace LogVisualizer.I18N
         /// <param name="convertedParams"></param>
         /// <param name="params"></param>
         /// <returns></returns>
-        public abstract string GetMultiConditionValue(out string[] convertedParams, params string[] @params);
+        public abstract string? GetMultiConditionValue(out string[] convertedParams, params string[] @params);
         public abstract string GetAllValues();
 
-        public static I18NValue CreateI18NValue(Dictionary<string, object> dictionary)
+        public static I18NValue CreateI18NValue(KeyValuePair<string, object> keyValuePair)
         {
-            if (dictionary.ContainsKey("Value"))
+            if (keyValuePair.Value is string value)
             {
-                var value = dictionary["Value"].ToString();
                 return new I18NValueString(value);
             }
-            if (dictionary.ContainsKey("Plurals"))
+            if (keyValuePair.Value is Plurals plurals)
             {
-                var plurals = JsonSerializer.Deserialize<Dictionary<string, string>[]>(dictionary["Plurals"].ToString());
                 return new I18NValuePlurals(plurals);
-            }
-            if (dictionary.ContainsKey("Time"))
-            {
-                var time = JsonSerializer.Deserialize<Dictionary<string, string>[]>(dictionary["Time"].ToString());
-                return new I18NValueTime(time);
             }
             return null;
         }

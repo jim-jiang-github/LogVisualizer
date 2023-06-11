@@ -1,114 +1,64 @@
-﻿[
-  {
-    "Key": "Common_Cancel",
-    "Value": "取消"
+﻿{
+  "Common": {
+    "Version": "Version ({l_version number}).",
+    "Cancel": "Cancel",
+    "Confirm": "Confirm",
+    "ConfirmDelete": "Are you sure you want to delete the '{l_name}'? This action cannot be undone!"
   },
-  {
-    "Key": "Common_Confirm",
-    "Value": "确认"
+  "Menu": {
+    "File": "File",
+    "FileMenu": {
+      "Open": "Open",
+      "OpenDialog": {
+        "PickLog": "Pick logs",
+        "SupportedLogs": "Supported Logs"
+      },
+      "FromUrl": "From Url",
+      "Exit": "Exit"
+    },
+    "Views": "Views",
+    "ViewsMenu": {
+      "ShowOnlyFiltered": "Show only filtered line"
+    },
+    "Filter": "Filter",
+    "FilterMenu": {
+      "AddFilter": "Add new filter"
+    },
+    "Help": "Help",
+    "HelpMenu": {
+      "CheckUpgrade": "Check for upgrade",
+      "OpenAppDataFolder": "Open App data folder",
+      "About": "About"
+    }
   },
-  {
-    "Key": "Menu_File",
-    "Value": "文件"
+  "Upgrader": {
+    "Title": "Upgrade is available: {l_version}",
+    "DownloadNow": "Download now",
+    "UpgradeNow": "Exit and upgrade now",
+    "UpgradeNextStartup": "Upgrade on next startup",
+    "IgnoreThisVersion": "Ignore this version"
   },
-  {
-    "Key": "Menu_Open",
-    "Value": "打开"
+  "Scenario": {
+    "NoSource": "No scenario source",
+    "FilterBranches": "Filter branches",
+    "PanelTitle": "Scenario setting",
+    "Updating": "Updating\u2026",
+    "Creator": {
+      "ScenarioName": "Scenario name:",
+      "CreateScenarioWatermark": "Enter scenario name",
+      "ScenarioNameValidNameError": "A scenario config can't contain any of the following characters:/\\:*?\"<>|",
+      "ScenarioNameValidNull": "Scenario name cannot be null or while space.",
+      "ScenarioNameValidExist": "There is already an existing scenario config.",
+      "ScenarioRepo": "Scenario repository:",
+      "ScenarioRepoWatermark": "Enter scenario repository",
+      "ScenarioRepoValidNull": "Scenario repository cannot be null or while space.",
+      "ScenarioBranch": "Scenario branch:",
+      "ScenarioBranchWatermark": "Enter scenario branch",
+      "ScenarioBranchValidNull": "Scenario branch cannot be null or while space."
+    }
   },
-  {
-    "Key": "Menu_Exit",
-    "Value": "退出"
-  },
-  {
-    "Key": "Menu_View",
-    "Value": "查看"
-  },
-  {
-    "Key": "Menu_Show_Only_Filtered",
-    "Value": "仅显示过滤后的行"
-  },
-  {
-    "Key": "Menu_Filter",
-    "Value": "过滤"
-  },
-  {
-    "Key": "Menu_Add_Filter",
-    "Value": "添加新过滤器"
-  },
-  {
-    "Key": "Menu_Help",
-    "Value": "帮助"
-  },
-  {
-    "Key": "Menu_Check_Upgrade",
-    "Value": "检查更新"
-  },
-  {
-    "Key": "Menu_About",
-    "Value": "关于"
-  },
-  {
-    "Key": "Upgrader_Title",
-    "Value": "升级器"
-  },
-  {
-    "Key": "Upgrader_Upgrade",
-    "Value": "立即升级"
-  },
-  {
-    "Key": "Upgrader_Upgrade_Next_Startup",
-    "Value": "下次启动时升级"
-  },
-  {
-    "Key": "Upgrader_Ignore_This_Version",
-    "Value": "忽略此版本"
-  },
-  {
-    "Key": "Upgrader_Upgrade_Version_Title",
-    "Value": "升级可用：{l_version}"
-  },
-  {
-    "Key": "Schema_No_Source",
-    "Value": "没有模式源"
-  },
-  {
-    "Key": "Schema_Filter_Branches",
-    "Value": "过滤分支"
-  },
-  {
-    "Key": "Schema_Panel_Title",
-    "Value": "模式设置"
-  },
-  {
-    "Key": "Schema_Creator_Schema_Name",
-    "Value": "模式名称："
-  },
-  {
-    "Key": "Schema_Creator_Schema_Name_Watermark",
-    "Value": "输入模式名称"
-  },
-  {
-    "Key": "Schema_Creator_Schema_Repo",
-    "Value": "模式仓库："
-  },
-  {
-    "Key": "Schema_Creator_Schema_Repo_Watermark",
-    "Value": "输入模式仓库"
-  },
-  {
-    "Key": "Schema_Creator_Schema_Branch",
-    "Value": "模式分支："
-  },
-  {
-    "Key": "Schema_Creator_Schema_Branch_Watermark",
-    "Value": "输入模式分支"
-  },
-  {
-    "Key": "Schema_Updating",
-    "Value": "正在更新..."
-  },
-  {
-    "Key": "Version",
-    "Value": "版本（{l_version number}）."
+  "Loading": {
+    "OpenFileStart": "Now loading...",
+    "LoadingFile": "Loading {l_file}."
   }
-]
+}

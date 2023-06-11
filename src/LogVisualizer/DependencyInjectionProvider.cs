@@ -25,7 +25,7 @@ namespace LogVisualizer
                 .AddScoped<LogDisplayViewModel>()
                 .AddScoped<SideBarViewModel>()
                 .AddScoped<BottomBarViewModel>()
-                .AddSingleton<SchemaConfigViewModel>()
+                .AddSingleton<ScenarioConfigViewModel>()
                 .AddSingleton<SplashWindowViewModel>()
                 .BuildServiceProvider();
             Log.Information("DependencyInjectionProvider inited!");

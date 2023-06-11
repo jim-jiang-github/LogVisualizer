@@ -37,10 +37,10 @@ namespace LogVisualizer.Services
 
             public override async Task Force(Version currentVersion, Version newtVersion, string? releaseLogMarkDown, ForceUpgradeHandle forceUpgradeHandle)
             {
-                var title = I18NKeys.Upgrader_Upgrade_Version_Title.GetLocalizationString($"v{newtVersion}");
+                var title = I18NKeys.Upgrader_Title.GetLocalizationString($"v{newtVersion}");
                 var content = releaseLogMarkDown;
-                var buttonNext = I18NKeys.Upgrader_Upgrade_Next_Startup.GetLocalizationRawValue();
-                var buttonUpgrade = I18NKeys.Upgrader_Upgrade_Now.GetLocalizationRawValue();
+                var buttonNext = I18NKeys.Upgrader_UpgradeNextStartup.GetLocalizationRawValue();
+                var buttonUpgrade = I18NKeys.Upgrader_UpgradeNow.GetLocalizationRawValue();
                 var result = await Commons.Notify.ShowMessageBox(title, content, new MessageBoxButton(buttonNext), new MessageBoxButton(buttonUpgrade, true));
 
                 if (result == buttonUpgrade)
@@ -55,11 +55,11 @@ namespace LogVisualizer.Services
 
             public override async Task Notify(Version currentVersion, Version newtVersion, string? releaseLogMarkDown, NotifyUpgradeHandle notifyUpgradeHandle)
             {
-                var title = I18NKeys.Upgrader_Upgrade_Version_Title.GetLocalizationString($"v{newtVersion}");
+                var title = I18NKeys.Upgrader_Title.GetLocalizationString($"v{newtVersion}");
                 var content = releaseLogMarkDown;
-                var buttonIgnore = I18NKeys.Upgrader_Ignore_This_Version.GetLocalizationRawValue();
-                var buttonNext = I18NKeys.Upgrader_Upgrade_Next_Startup.GetLocalizationRawValue();
-                var buttonDownload = I18NKeys.Upgrader_Download_Now.GetLocalizationRawValue();
+                var buttonIgnore = I18NKeys.Upgrader_IgnoreThisVersion.GetLocalizationRawValue();
+                var buttonNext = I18NKeys.Upgrader_UpgradeNextStartup.GetLocalizationRawValue();
+                var buttonDownload = I18NKeys.Upgrader_DownloadNow.GetLocalizationRawValue();
 
                 var result = await Commons.Notify.ShowMessageBox(title, content, new MessageBoxButton(buttonIgnore), new MessageBoxButton(buttonNext), new MessageBoxButton(buttonDownload, true));
 

@@ -77,19 +77,19 @@
         </Button>
         <Button
             Margin="10,0,0,2"
-            Classes="schema"
-            Content="{Binding SchemaConfig.CurrentName}">
+            Classes="scenario"
+            Content="{Binding ScenarioConfig.CurrentName}">
             <Button.Styles>
-                <Style Selector="Button.schema">
+                <Style Selector="Button.scenario">
                     <Setter Property="Background" Value="Transparent" />
                 </Style>
-                <Style Selector="Button.schema:pointerover">
+                <Style Selector="Button.scenario:pointerover">
                     <Setter Property="Background" Value="#10FFFFFF" />
                 </Style>
-                <Style Selector="Button.schema[IsEnabled=false]">
+                <Style Selector="Button.scenario[IsEnabled=false]">
                     <Setter Property="Background" Value="#20FFFFFF" />
                 </Style>
-                <Style Selector="Button.schema">
+                <Style Selector="Button.scenario">
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate>
@@ -113,7 +113,7 @@
                                                     HorizontalAlignment="Center"
                                                     VerticalAlignment="Center"
                                                     FontSize="9"
-                                                    Text="{Binding SchemaConfig.SchemaConfigs.Count}"
+                                                    Text="{Binding ScenarioConfig.ScenarioConfigs.Count}"
                                                     TextAlignment="Center" />
                                             </Border>
                                             <Border
@@ -126,8 +126,8 @@
                                                 CornerRadius="7">
                                                 <Border.IsVisible>
                                                     <MultiBinding Converter="{x:Static BoolConverters.Or}">
-                                                        <Binding Path="!DataContext.SchemaConfig.SchemaConfigs.Count" RelativeSource="{RelativeSource TemplatedParent}" />
-                                                        <Binding Path="DataContext.SchemaConfig.HasSomeError" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                        <Binding Path="!DataContext.ScenarioConfig.ScenarioConfigs.Count" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                        <Binding Path="DataContext.ScenarioConfig.HasSomeError" RelativeSource="{RelativeSource TemplatedParent}" />
                                                     </MultiBinding>
                                                 </Border.IsVisible>
                                                 <icon:Icon
@@ -143,7 +143,7 @@
                                                 BorderBrush="White"
                                                 BorderThickness="1"
                                                 CornerRadius="7"
-                                                IsVisible="{Binding !SchemaConfig.Enabled}">
+                                                IsVisible="{Binding !ScenarioConfig.Enabled}">
                                                 <icon:Icon
                                                     Animation="Spin"
                                                     FontSize="10"
@@ -160,8 +160,8 @@
             </Button.Styles>
             <Button.Flyout>
                 <Flyout Placement="Top">
-                    <customControls:FlyoutPanel Title="{i18n:I18NKeyBinding Key=Schema_Panel_Title}">
-                        <views:SchemaConfigPanel DataContext="{Binding SchemaConfig}" />
+                    <customControls:FlyoutPanel Title="{i18n:I18NKeyBinding Key=Scenario_PanelTitle}">
+                        <views:ScenarioConfigPanel DataContext="{Binding ScenarioConfig}" />
                     </customControls:FlyoutPanel>
                 </Flyout>
             </Button.Flyout>

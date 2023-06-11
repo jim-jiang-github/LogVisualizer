@@ -10,7 +10,7 @@
     d:DesignHeight="1080"
     d:DesignWidth="1920"
     Background="#88000000"
-    IsVisible="{local:LoadingMaskBinding}"
+    IsVisible="{Binding ShowLoading}"
     mc:Ignorable="d">
     <Border
         Width="500"
@@ -22,10 +22,16 @@
                 Margin="0,0,0,5"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Bottom"
-                FontSize="20"
                 Foreground="White"
-                Text="xxxxx" />
-            <ProgressBar VerticalAlignment="Bottom" IsIndeterminate="True" />
+                MaxWidth="450"
+                TextTrimming="CharacterEllipsis"
+                TextWrapping="NoWrap"
+                Text="{Binding Message}" />
+            <ProgressBar
+                VerticalAlignment="Bottom"
+                IsIndeterminate="{Binding IsIndeterminate}"
+                Maximum="100"
+                Value="{Binding Value}" />
         </Grid>
     </Border>
 </UserControl>

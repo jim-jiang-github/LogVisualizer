@@ -9,18 +9,18 @@ using System.Threading.Tasks;
 
 namespace LogVisualizer.Models
 {
-    public partial class SchemaConfig : ObservableObject
+    public partial class ScenarioConfig : ObservableObject
     {
         [ObservableProperty]
-        private string? _schemaName = string.Empty;
+        private string? _scenarioName = string.Empty;
         [ObservableProperty]
-        private string? _schemaRepo = string.Empty;
+        private string? _scenarioRepo = string.Empty;
         [ObservableProperty]
-        private string? _schemaBranch = string.Empty;
+        private string? _scenarioBranch = string.Empty;
         [ObservableProperty]
         private bool _hasUpdate = false;
         [ObservableProperty]
         private ObservableCollection<string> _filterBranches = new ObservableCollection<string>();
-        public string SchemaConfigFolder => System.IO.Path.Combine(Global.SchemaConfigFolderRoot, SchemaName);
+        public string ScenarioConfigFolder => System.IO.Path.Combine(Global.ScenarioConfigFolderRoot, ScenarioName);
     }
 }

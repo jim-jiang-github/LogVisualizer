@@ -21,11 +21,11 @@ namespace LogVisualizer.Services
 
         public ScenarioService()
         {
-            if (!Directory.Exists(Global.SchemaConfigFolderRoot))
+            if (!Directory.Exists(Global.ScenarioConfigFolderRoot))
             {
                 return;
             }
-            _scenarios = Directory.GetDirectories(Global.SchemaConfigFolderRoot)
+            _scenarios = Directory.GetDirectories(Global.ScenarioConfigFolderRoot)
                 .Select(directory => Scenario.LoadFromFolder(directory))
                 .OfType<Scenario>()
                 .ToArray();

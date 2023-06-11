@@ -1,32 +1,8 @@
-[
-  {
-    "Key": "TestTimeString",
-    "Time": [
-      {
-        "Unit": "Ms",
-        "Value": "Meeting will end after {l_seconds} Milliseconds"
-      },
-      {
-        "Unit": "Sec",
-        "Value": "Meeting will end after {l_seconds} Seconds"
-      },
-      {
-        "Unit": "Min",
-        "Value": "Meeting will end after {l_seconds} Minute"
-      }
-    ]
-  },
-  {
-    "Key": "TestPluralsString",
-    "Plurals": [
-      {
-        "Quantity": "One",
-        "Value": "This is {l_participant_number} participant"
-      },
-      {
-        "Quantity": "Few",
-        "Value": "There are {l_participant_number} participants"
-      }
-    ]
+{
+  "TestPlurals": {
+    "Plurals": {
+      "One": "This is {l_participant_number} participant",
+      "Few": "There are {l_participant_number} participants"
+    }
   }
-]
+}

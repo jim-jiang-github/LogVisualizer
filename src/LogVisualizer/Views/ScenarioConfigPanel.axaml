@@ -1,5 +1,5 @@
 <UserControl
-    x:Class="LogVisualizer.Views.SchemaConfigPanel"
+    x:Class="LogVisualizer.Views.ScenarioConfigPanel"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -72,13 +72,13 @@
     <DockPanel FlowDirection="LeftToRight">
         <DockPanel DockPanel.Dock="Top">
             <Expander
-                Name="ExpanderSchema"
+                Name="ExpanderScenario"
                 Width="500"
                 Padding="0"
                 Background="Transparent"
                 CornerRadius="0"
                 ExpandDirection="Up"
-                IsExpanded="{Binding !SchemaConfigs.Count}">
+                IsExpanded="{Binding !ScenarioConfigs.Count}">
                 <Expander.Styles>
                     <Style Selector="Expander:expanded /template/ ToggleButton#ExpanderHeader /template/ Border#ExpandCollapseChevronBorder">
                         <Style.Animations>
@@ -106,13 +106,13 @@
                     </Style>
                 </Expander.Styles>
                 <Expander.Header>
-                    <ComboBox Height="30" Items="{Binding SelectedSchemaConfig.FilterBranches}">
+                    <ComboBox Height="30" Items="{Binding SelectedScenarioConfig.FilterBranches}">
                         <ComboBox.IsVisible>
                             <MultiBinding Converter="{x:Static BoolConverters.And}">
-                                <Binding ElementName="ExpanderSchema" Path="!IsExpanded" />
+                                <Binding ElementName="ExpanderScenario" Path="!IsExpanded" />
                                 <Binding
                                     Converter="{x:Static ObjectConverters.IsNotNull}"
-                                    Path="DataContext.SelectedSchemaConfig"
+                                    Path="DataContext.SelectedScenarioConfig"
                                     RelativeSource="{RelativeSource TemplatedParent}" />
                             </MultiBinding>
                         </ComboBox.IsVisible>
@@ -127,12 +127,12 @@
                             Width="120"
                             VerticalAlignment="Center"
                             DockPanel.Dock="Left"
-                            Text="{i18n:I18NKeyBinding Key=Schema_Creator_Schema_Name}" />
+                            Text="{i18n:I18NKeyBinding Key=Scenario_Creator_ScenarioName}" />
                         <TextBox
-                            Name="SchemaName"
+                            Name="ScenarioName"
                             Margin="10,0,0,0"
-                            Text="{Binding Creator.SchemaName}"
-                            Watermark="{i18n:I18NKeyBinding Key=Schema_Creator_Schema_Name_Watermark}" />
+                            Text="{Binding Creator.ScenarioName}"
+                            Watermark="{i18n:I18NKeyBinding Key=Scenario_Creator_ScenarioNameWatermark}" />
                     </DockPanel>
                     <DockPanel
                         Grid.Row="1"
@@ -142,15 +142,15 @@
                             Width="120"
                             VerticalAlignment="Center"
                             DockPanel.Dock="Left"
-                            Text="{i18n:I18NKeyBinding Key=Schema_Creator_Schema_Repo}" />
+                            Text="{i18n:I18NKeyBinding Key=Scenario_Creator_ScenarioRepo}" />
                         <StackPanel>
                             <TextBox
-                                Name="SchemaRepo"
+                                Name="ScenarioRepo"
                                 Margin="10,0,0,0"
-                                Text="{Binding Creator.SchemaRepo}"
-                                Watermark="{i18n:I18NKeyBinding Key=Schema_Creator_Schema_Repo_Watermark}">
+                                Text="{Binding Creator.ScenarioRepo}"
+                                Watermark="{i18n:I18NKeyBinding Key=Scenario_Creator_ScenarioRepoWatermark}">
                                 <i:Interaction.Behaviors>
-                                    <ia:EventTriggerBehavior EventName="TextChanged" SourceObject="SchemaRepo">
+                                    <ia:EventTriggerBehavior EventName="TextChanged" SourceObject="ScenarioRepo">
                                         <ia:InvokeCommandAction Command="{Binding Creator.FetchBranchesCommand}" />
                                     </ia:EventTriggerBehavior>
                                 </i:Interaction.Behaviors>
@@ -169,15 +169,15 @@
                             Width="120"
                             VerticalAlignment="Center"
                             DockPanel.Dock="Left"
-                            Text="{i18n:I18NKeyBinding Key=Schema_Creator_Schema_Branch}" />
+                            Text="{i18n:I18NKeyBinding Key=Scenario_Creator_ScenarioBranch}" />
                         <AutoCompleteBox
-                            Name="SchemaBranch"
+                            Name="ScenarioBranch"
                             Margin="10,0,0,0"
                             FilterMode="Contains"
                             IsEnabled="{Binding !!Creator.AllBranches.Count}"
                             Items="{Binding Creator.AllBranches}"
-                            Text="{Binding Creator.SchemaBranch}"
-                            Watermark="{i18n:I18NKeyBinding Key=Schema_Creator_Schema_Branch_Watermark}" />
+                            Text="{Binding Creator.ScenarioBranch}"
+                            Watermark="{i18n:I18NKeyBinding Key=Scenario_Creator_ScenarioBranchWatermark}" />
                     </DockPanel>
                     <StackPanel
                         Grid.Row="3"
@@ -185,12 +185,12 @@
                         Orientation="Horizontal">
                         <Button
                             Margin="0,10,0,0"
-                            Command="{Binding Creator.CreateSchemaCancelCommand}"
+                            Command="{Binding Creator.CreateScenarioCancelCommand}"
                             Content="{i18n:I18NKeyBinding Key=Common_Cancel}"
                             IsVisible="{Binding !Enabled}" />
                         <Button
                             Margin="10,10,0,0"
-                            Command="{Binding Creator.CreateSchemaCommand}"
+                            Command="{Binding Creator.CreateScenarioCommand}"
                             Content="{i18n:I18NKeyBinding Key=Common_Confirm}" />
                     </StackPanel>
                 </Grid>
@@ -198,9 +198,9 @@
         </DockPanel>
         <ListBox
             MaxHeight="400"
-            IsVisible="{Binding ElementName=ExpanderSchema, Path=!IsExpanded}"
-            Items="{Binding SchemaConfigs}"
-            SelectedItem="{Binding SelectedSchemaConfig}">
+            IsVisible="{Binding ElementName=ExpanderScenario, Path=!IsExpanded}"
+            Items="{Binding ScenarioConfigs}"
+            SelectedItem="{Binding SelectedScenarioConfig}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <DockPanel IsEnabled="{Binding !!DataContext.FilterBranches.Count, RelativeSource={RelativeSource FindAncestor, AncestorType=ListBoxItem}}">
@@ -212,14 +212,14 @@
                             IsVisible="{Binding !DataContext.FilterBranches.Count, RelativeSource={RelativeSource FindAncestor, AncestorType=ListBoxItem}}" />
                         <Grid ColumnDefinitions="*,30,30">
                             <Grid Grid.Column="0" RowDefinitions="*,*">
-                                <TextBlock Grid.Row="0" Text="{Binding SchemaName}" />
-                                <TextBlock Grid.Row="1" Text="{Binding SchemaBranch}" />
+                                <TextBlock Grid.Row="0" Text="{Binding ScenarioName}" />
+                                <TextBlock Grid.Row="1" Text="{Binding ScenarioBranch}" />
                             </Grid>
                             <Button
                                 Grid.Column="1"
                                 Width="30"
                                 Height="30"
-                                Command="{Binding DataContext.DeleteSchemaConfigCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                Command="{Binding DataContext.DeleteScenarioConfigCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
                                 CommandParameter="{Binding}">
                                 <Button.Styles>
                                     <Style Selector="Button">
@@ -254,7 +254,7 @@
                                 Grid.Column="2"
                                 Width="30"
                                 Height="30"
-                                Command="{Binding DataContext.DeleteSchemaConfigCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                Command="{Binding DataContext.DeleteScenarioConfigCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
                                 CommandParameter="{Binding}">
                                 <Button.Styles>
                                     <Style Selector="Button">

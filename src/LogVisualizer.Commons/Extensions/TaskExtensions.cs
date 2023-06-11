@@ -12,6 +12,7 @@ namespace LogVisualizer.Commons.Extensions
         {
             Loading.ShowLoading();
             await task;
+            await Task.Delay(200);
             Loading.HideLoading();
             return task.Result;
         }
@@ -20,6 +21,7 @@ namespace LogVisualizer.Commons.Extensions
         {
             Loading.ShowLoading();
             await task;
+            await Task.Delay(200);
             Loading.HideLoading();
         }
     }

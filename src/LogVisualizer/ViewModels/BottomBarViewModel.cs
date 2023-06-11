@@ -13,11 +13,11 @@ namespace LogVisualizer.ViewModels
 {
     public partial class BottomBarViewModel : ViewModelBase
     {
-        public SchemaConfigViewModel SchemaConfig { get; }
+        public ScenarioConfigViewModel ScenarioConfig { get; }
 
-        public BottomBarViewModel(SchemaConfigViewModel schemaConfigViewModel)
+        public BottomBarViewModel(ScenarioConfigViewModel schemaConfigViewModel)
         {
-            SchemaConfig = schemaConfigViewModel;
+            ScenarioConfig = schemaConfigViewModel;
         }
     }
 }

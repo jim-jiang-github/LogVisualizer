@@ -28,7 +28,7 @@ namespace LogVisualizer.ViewModels
             {
                 return new FilePickerFileType[]
                 {
-                    new(I18NKeys.Menu_Open_Pick_Log_Dialog_Supported_Logs.GetLocalizationRawValue())
+                    new(I18NKeys.Menu_FileMenu_OpenDialog_SupportedLogs.GetLocalizationRawValue())
                     {
                         Patterns = _scenarioService.SupportedLogExtension
                     }
@@ -45,14 +45,15 @@ namespace LogVisualizer.ViewModels
         [RelayCommand]
         public async Task Open()
         {
-            var storageFiles = await GlobalStorageProvider.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions()
-            {
-                Title = I18NKeys.Menu_Open_Pick_Log_Dialog.GetLocalizationRawValue(),
-                FileTypeFilter = SupportedFileType,
-                AllowMultiple = true
-            });
             await Task.Run(async () =>
             {
+                Loading.SetMessage(I18NKeys.Loading_OpenFileStart.GetLocalizationRawValue());
+                var storageFiles = await GlobalStorageProvider.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions()
+                {
+                    Title = I18NKeys.Menu_FileMenu_OpenDialog_PickLog.GetLocalizationRawValue(),
+                    FileTypeFilter = SupportedFileType,
+                    AllowMultiple = true
+                });
                 var paths = storageFiles
                     .Where(x => x.CanBookmark).Select(async x => await x.SaveBookmarkAsync())
                     .Select(x => x.Result)
@@ -60,6 +61,7 @@ namespace LogVisualizer.ViewModels
                     .Cast<string>()
                     .SelectMany(x =>
                     {
+                        Loading.SetMessage(I18NKeys.Loading_LoadingFile.GetLocalizationString(x));
                         if (CompressedPackageLoader.IsSupportedCompressedPackage(x))
                         {
                             return CompressedPackageLoader.GetEntryPaths(x);
@@ -75,6 +77,7 @@ namespace LogVisualizer.ViewModels
                     return;
                 }
                 await _scenarioService.OpenLogSource(paths);
+                Loading.SetProgress(1);
             }).WithLoadingMask();
         }
 
