@@ -1,56 +1,52 @@
 {
-  "Common": {
-    "Version": "Version ({l_version number}).",
-    "Cancel": "Abbrechen",
-    "Confirm": "Bestätigen",
-    "ConfirmDelete": "Sind Sie sicher, dass Sie '{l_name}' löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden!"
+  "common": {
+    "version": "Version ({l_version number}).",
+    "cancel": "Abbrechen",
+    "confirm": "Bestätigen",
+    "confirmDelete": "Sind Sie sicher, dass Sie '{l_name}' löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden!"
   },
-  "Menu": {
-    "File": "Datei",
-    "Views": "Ansichten",
-    "Filter": "Filter|* |Neuen Filter hinzufügen",
-    "Help": "Nach Upgrade suchen",
-    "Open": "Öffnen",
-    "FromUrl": "Von der URL",
-    "Exit": "Beenden",
-    "ShowOnlyFiltered": "Nur gefilterte Zeile anzeigen",
-    "AddNewFilter": "Neuen Filter hinzufügen",
-    "CheckUpgrade": "Auf Upgrade prüfen",
-    "OpenAppDataFolder": "App-Datenordner öffnen",
-    "About": "Über"
+  "menu": {
+    "file": "Datei",
+    "open": "Öffnen",
+    "fromUrl": "Von URL",
+    "exit": "Beenden",
+    "views": "Ansichten",
+    "showOnlyFiltered": "Nur gefilterte Zeile anzeigen",
+    "filter": "Filter",
+    "addNewFilter": "Neuen Filter hinzufügen",
+    "help": "Hilfe|* |Nach Upgrade suchen",
+    "checkUpgrade": "App-Datenordner öffnen",
+    "openAppDataFolder": "Info",
+    "about": "Protokolle auswählen"
   },
-  "Upgrader": {
-    "Title": "Jetzt herunterladen",
-    "DownloadNow": "Jetzt beenden und upgraden",
-    "UpgradeNow": "Beim nächsten Start aktualisieren",
-    "UpgradeNextStartup": "Diese Version ignorieren",
-    "IgnoreThisVersion": "Keine Szenarioquelle"
+  "openFileDialog": {
+    "pickLog": "Unterstützte Protokolle",
+    "supportedLogs": "Upgrade ist verfügbar: {l_version}"
   },
-  "Scenario": {
-    "NoSource": "Zweige filtern",
-    "FilterBranches": "Szenarioeinstellung",
-    "PanelTitle": "Aktualisierung…",
-    "Updating": "Szenarioname:",
-    "Creator": {
-      "ScenarioName": "Szenarionamen eingeben",
-      "ScenarioNameWatermark": "Eine Szenariokonfiguration kann&apos ;t enthält eines der folgenden Zeichen:/\\:*?\"<>|",
-      "ScenarioNameValidNameError": "Der Szenarioname darf nicht null oder Leerzeichen sein.",
-      "ScenarioNameValidNull": "Es ist bereits eine Szenariokonfiguration vorhanden.",
-      "ScenarioNameValidExist": "Szenario-Repository: ",
-      "ScenarioRepo": "Szenario-Repository eingeben",
-      "ScenarioRepoWatermark": "Szenario-Repository darf nicht null oder solange Speicherplatz sein.",
-      "ScenarioRepoValidNull": "Szenariozweig:",
-      "ScenarioBranch": "Szenariozweig eingeben",
-      "ScenarioBranchWatermark": "Szenariozweig darf nicht null oder solange Speicherplatz sein.",
-      "ScenarioBranchValidNull": "Wird geladen... "
+  "upgrader": {
+    "title": "Jetzt herunterladen",
+    "downloadNow": "Jetzt beenden und aktualisieren",
+    "upgradeNow": "Beim nächsten Start aktualisieren",
+    "upgradeNextStartup": "Diese Version ignorieren",
+    "ignoreThisVersion": "Keine Szenarioquelle"
+  },
+  "scenario": {
+    "noSource": "Zweige filtern",
+    "filterBranches": "Szenarioeinstellung",
+    "panelTitle": "Aktualisierung…",
+    "updating": "Szenarioname:",
+    "creator": {
+      "scenarioName": "Szenarionamen eingeben",
+      "scenarioNameWatermark": "Eine Szenariokonfiguration kann darf keines der folgenden Zeichen enthalten:/\\:*?\"<>|",
+      "scenarioNameValidNameError": "Der Szenarioname darf nicht null oder Leerzeichen sein.",
+      "scenarioNameValidNull": "Es ist bereits eine Szenariokonfiguration vorhanden.",
+      "scenarioNameValidExist": "Szenario-Repository:| *|Szenario-Repository eingeben",
+      "scenarioRepo": "Szenario-Repository darf nicht null oder solange Speicherplatz sein.",
+      "scenarioRepoWatermark": "Szenariozweig:",
+      "scenarioRepoValidNull": "Szenariozweig eingeben",
+      "scenarioBranch": "Szenariozweig darf nicht null oder solange Speicherplatz sein.",
+      "scenarioBranchWatermark": "Wird geladen...| *|Laden von {l_file}."
     }
   },
-  "Loading": {
-    "OpenFileStart": "Laden {l_file}.",
-    "LoadingFile": "{l_file} wird geladen."
-  },
-  "OpenFileDialog": {
-    "PickLog": "Protokolle auswählen",
-    "SupportedLogs": "Unterstützte Protokolle"
-  }
+  "loading": {}
 }

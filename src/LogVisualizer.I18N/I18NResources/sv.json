@@ -1,56 +1,52 @@
 {
-  "Common": {
-    "Version": "Version ({l_version number}).",
-    "Cancel": "Avbryt",
-    "Confirm": "Bekräfta",
-    "ConfirmDelete": "Är du säker på att du vill ta bort '{l_name}'? Denna åtgärd kan inte ångras!"
+  "common": {
+    "version": "Version ({l_version number}).",
+    "cancel": "Avbryt",
+    "confirm": "Bekräfta",
+    "confirmDelete": "Är du säker på att du vill ta bort '{l_name}'? Denna åtgärd kan inte ångras!"
   },
-  "Menu": {
-    "File": "Fil",
-    "Views": "Visningar",
-    "Filter": "Filter|* |Lägg till nytt filter",
-    "Help": "Sök efter uppgradering",
-    "Open": "Öppna",
-    "FromUrl": "Från webbadress",
-    "Exit": "Avsluta",
-    "ShowOnlyFiltered": "Visa endast filtrerad rad",
-    "AddNewFilter": "Lägg till nytt filter",
-    "CheckUpgrade": "Sök efter uppgradering",
-    "OpenAppDataFolder": "Öppna appdatamappen",
-    "About": "Om"
+  "menu": {
+    "file": "Fil",
+    "open": "Öppna",
+    "fromUrl": "Från URL",
+    "exit": "Avsluta",
+    "views": "Visningar",
+    "showOnlyFiltered": "Visa endast filtrerad rad",
+    "filter": "Filter",
+    "addNewFilter": "Lägg till nytt filter",
+    "help": "Hjälp|* |Sök efter uppgradering",
+    "checkUpgrade": "Öppna appdatamappen",
+    "openAppDataFolder": "Om",
+    "about": "Välj loggar"
   },
-  "Upgrader": {
-    "Title": "Ladda ner nu",
-    "DownloadNow": "Avsluta och uppgradera nu",
-    "UpgradeNow": "Uppgradera vid nästa start",
-    "UpgradeNextStartup": "Ignorera den här versionen",
-    "IgnoreThisVersion": "Ingen scenariokälla"
+  "openFileDialog": {
+    "pickLog": "Loggar som stöds",
+    "supportedLogs": "Uppgradering är tillgänglig: {l_version}"
   },
-  "Scenario": {
-    "NoSource": "Filtrera grenar",
-    "FilterBranches": "Scenarioinställning",
-    "PanelTitle": "Uppdaterar...",
-    "Updating": "Scenarionamn:",
-    "Creator": {
-      "ScenarioName": "Ange scenarionamn",
-      "ScenarioNameWatermark": "En scenariokonfiguration kan&apos ;t innehåller något av följande tecken:/\\:*?\"<>|",
-      "ScenarioNameValidNameError": "Scenarionamn kan inte vara null eller medan mellanslag.",
-      "ScenarioNameValidNull": "Det finns redan en befintlig scenariokonfiguration.",
-      "ScenarioNameValidExist": "Scenarioförråd: ",
-      "ScenarioRepo": "Ange scenarioförråd",
-      "ScenarioRepoWatermark": "Scenarioförråd kan inte vara null eller medan mellanslag.",
-      "ScenarioRepoValidNull": "Scenarioförgrening:",
-      "ScenarioBranch": "Ange scenarioförgrening",
-      "ScenarioBranchWatermark": "Scenarioförgrening kan inte vara null eller medan mellanslag.",
-      "ScenarioBranchValidNull": "Läser nu in... "
+  "upgrader": {
+    "title": "Ladda ner nu",
+    "downloadNow": "Avsluta och uppgradera nu",
+    "upgradeNow": "Uppgradera vid nästa start",
+    "upgradeNextStartup": "Ignorera den här versionen",
+    "ignoreThisVersion": "Ingen scenariokälla"
+  },
+  "scenario": {
+    "noSource": "Filtrera grenar",
+    "filterBranches": "Scenarioinställning",
+    "panelTitle": "Uppdaterar...",
+    "updating": "Scenarionamn:",
+    "creator": {
+      "scenarioName": "Ange scenarionamn",
+      "scenarioNameWatermark": "En scenariokonfiguration kan inte innehålla något av följande tecken:/\\:*?\"<>|",
+      "scenarioNameValidNameError": "Scenarionamn kan inte vara null eller medan mellanslag.",
+      "scenarioNameValidNull": "Det finns redan en befintlig scenariokonfiguration.",
+      "scenarioNameValidExist": "Scenarioförråd:| *|Ange scenarioförråd",
+      "scenarioRepo": "Scenarioförråd kan inte vara null eller medan mellanslag.",
+      "scenarioRepoWatermark": "Scenariogren:",
+      "scenarioRepoValidNull": "Ange scenarioförgrening",
+      "scenarioBranch": "Scenarioförgrening kan inte vara null eller medan mellanrum.",
+      "scenarioBranchWatermark": "Laddar nu in...| *|Laddar {l_file}."
     }
   },
-  "Loading": {
-    "OpenFileStart": "Laddar {l_file}.",
-    "LoadingFile": "Laddar {l_file}."
-  },
-  "OpenFileDialog": {
-    "PickLog": "Välj loggar",
-    "SupportedLogs": "loggar som stöds"
-  }
+  "loading": {}
 }

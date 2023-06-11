@@ -1,56 +1,52 @@
 {
-  "Common": {
-    "Version": "Версия ({l_version number}).",
-    "Cancel": "Отмена",
-    "Confirm": "Подтвердить",
-    "ConfirmDelete": "Вы уверены, что хотите удалить '{l_name}'? Это действие нельзя отменить!"
+  "common": {
+    "version": "Версия ({l_version number}).",
+    "cancel": "Отмена",
+    "confirm": "Подтвердить",
+    "confirmDelete": "Вы уверены, что хотите удалить '{l_name}'? Это действие нельзя отменить!"
   },
-  "Menu": {
-    "File": "Файл",
-    "Views": "Представления",
-    "Filter": "Фильтр|* |Добавить новый фильтр",
-    "Help": "Проверить наличие обновления",
-    "Open": "Открыть",
-    "FromUrl": "Из URL",
-    "Exit": "Выйти",
-    "ShowOnlyFiltered": "Показать только отфильтрованную строку",
-    "AddNewFilter": "Добавить новый фильтр",
-    "CheckUpgrade": "Проверить наличие обновлений",
-    "OpenAppDataFolder": "Открыть папку данных приложения",
-    "About": "О программе"
+  "menu": {
+    "file": "Файл",
+    "open": "Открыть",
+    "fromUrl": "Из URL",
+    "exit": "Выход",
+    "views": "Виды",
+    "showOnlyFiltered": "Показать только отфильтрованную строку",
+    "filter": "Фильтр",
+    "addNewFilter": "Добавить новый фильтр",
+    "help": "Справка|* |Проверить наличие обновлений",
+    "checkUpgrade": "Открыть папку данных приложения",
+    "openAppDataFolder": "О программе",
+    "about": "Журналы выбора"
   },
-  "Upgrader": {
-    "Title": "Загрузить сейчас",
-    "DownloadNow": "Выйти и выполнить обновление сейчас",
-    "UpgradeNow": "Обновить при следующем запуске",
-    "UpgradeNextStartup": "Игнорировать эту версию",
-    "IgnoreThisVersion": "Нет источника сценария"
+  "openFileDialog": {
+    "pickLog": "Поддерживаемые журналы",
+    "supportedLogs": "Доступно обновление: {l_version}"
   },
-  "Scenario": {
-    "NoSource": "Ветви фильтра",
-    "FilterBranches": "Настройка сценария",
-    "PanelTitle": "Обновление…",
-    "Updating": "Имя сценария:",
-    "Creator": {
-      "ScenarioName": "Введите имя сценария",
-      "ScenarioNameWatermark": "Конфигурация сценария может&apos ;t не содержит ни одного из следующих символов:/\\:*?\"<>|",
-      "ScenarioNameValidNameError": "Имя сценария не может быть нулевым или содержать пробел.",
-      "ScenarioNameValidNull": "Уже существует конфигурация сценария.",
-      "ScenarioNameValidExist": "Репозиторий сценариев: ",
-      "ScenarioRepo": "Введите репозиторий сценария",
-      "ScenarioRepoWatermark": "Репозиторий сценария не может быть нулевым или с пробелом.",
-      "ScenarioRepoValidNull": "Ветвь сценария:",
-      "ScenarioBranch": "Введите ветку сценария",
-      "ScenarioBranchWatermark": "Ветвь сценария не может быть нулевым или с пробелом.",
-      "ScenarioBranchValidNull": "Сейчас загружается... "
+  "upgrader": {
+    "title": "Загрузить сейчас",
+    "downloadNow": "Выйти и обновить сейчас",
+    "upgradeNow": "Обновить при следующем запуске",
+    "upgradeNextStartup": "Игнорировать эту версию",
+    "ignoreThisVersion": "Нет источника сценария"
+  },
+  "scenario": {
+    "noSource": "Ветви фильтра",
+    "filterBranches": "Настройка сценария",
+    "panelTitle": "Обновление…",
+    "updating": "Имя сценария:",
+    "creator": {
+      "scenarioName": "Введите имя сценария",
+      "scenarioNameWatermark": "Конфигурация сценария может не содержит ни одного из следующих символов:/\\:*?\"<>|",
+      "scenarioNameValidNameError": "Имя сценария не может быть нулевым или содержать пробел.",
+      "scenarioNameValidNull": "Уже существует конфигурация сценария.",
+      "scenarioNameValidExist": "Репозиторий сценариев:| *|Введите репозиторий сценариев",
+      "scenarioRepo": "Репозиторий сценариев не может быть пустым или с пробелом.",
+      "scenarioRepoWatermark": "Ветвь сценария:",
+      "scenarioRepoValidNull": "Введите ветку сценария",
+      "scenarioBranch": "Ветвь сценария не может быть нулевой или с пробелом.",
+      "scenarioBranchWatermark": "Сейчас загружается...| *|Загружается {l_file}."
     }
   },
-  "Loading": {
-    "OpenFileStart": "Загружается {l_file}.",
-    "LoadingFile": "Загрузка {l_file}."
-  },
-  "OpenFileDialog": {
-    "PickLog": "Выбрать журналы",
-    "SupportedLogs": "Поддерживаемые журналы"
-  }
+  "loading": {}
 }

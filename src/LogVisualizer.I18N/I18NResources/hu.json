@@ -1,56 +1,52 @@
 {
-  "Common": {
-    "Version": "Verzió ({l_version number}).",
-    "Cancel": "Mégse",
-    "Confirm": "Megerősítés",
-    "ConfirmDelete": "Biztosan törölni szeretné a következőt: '{l_name}'? Ez a művelet nem vonható vissza!"
+  "common": {
+    "version": "Verzió ({l_version number}).",
+    "cancel": "Mégse",
+    "confirm": "Megerősítés",
+    "confirmDelete": "Biztosan törölni szeretné a következőt: '{l_name}'? Ez a művelet nem vonható vissza!"
   },
-  "Menu": {
-    "File": "Fájl",
-    "Views": "Megtekintések",
-    "Filter": "Szűrő|* |Új szűrő hozzáadása",
-    "Help": "Frissítés keresése",
-    "Open": "Megnyitás",
-    "FromUrl": "Url-ről",
-    "Exit": "Kilépés",
-    "ShowOnlyFiltered": "Csak szűrt sor megjelenítése",
-    "AddNewFilter": "Új szűrő hozzáadása",
-    "CheckUpgrade": "Frissítés keresése",
-    "OpenAppDataFolder": "Alkalmazás adatmappa megnyitása",
-    "About": "Névjegy"
+  "menu": {
+    "file": "Fájl",
+    "open": "Megnyitás",
+    "fromUrl": "Url-ről",
+    "exit": "Kilépés",
+    "views": "Megtekintések",
+    "showOnlyFiltered": "Csak a szűrt sor megjelenítése",
+    "filter": "Szűrő",
+    "addNewFilter": "Új szűrő hozzáadása",
+    "help": "Súgó|* |Frissítés keresése",
+    "checkUpgrade": "Nyissa meg az alkalmazás adatmappáját",
+    "openAppDataFolder": "Névjegy",
+    "about": "Naplók kiválasztása"
   },
-  "Upgrader": {
-    "Title": "Letöltés most",
-    "DownloadNow": "Kilépés és frissítés most",
-    "UpgradeNow": "Frissítés a következő indításkor",
-    "UpgradeNextStartup": "A verzió figyelmen kívül hagyása",
-    "IgnoreThisVersion": "Nincs forgatókönyv forrása"
+  "openFileDialog": {
+    "pickLog": "Támogatott naplók",
+    "supportedLogs": "A frissítés elérhető: {l_version}"
   },
-  "Scenario": {
-    "NoSource": "Szűrő ágak",
-    "FilterBranches": "Forgatókönyv-beállítás",
-    "PanelTitle": "Frissítés…",
-    "Updating": "Forgatókönyv neve:",
-    "Creator": {
-      "ScenarioName": "Adja meg a forgatókönyv nevét",
-      "ScenarioNameWatermark": "A forgatókönyv-konfiguráció ;t tartalmazza a következő karakterek bármelyikét:/\\:*?\"<>|",
-      "ScenarioNameValidNameError": "A forgatókönyv neve nem lehet null vagy míg szóköz.",
-      "ScenarioNameValidNull": "Már létezik forgatókönyv-konfiguráció.",
-      "ScenarioNameValidExist": "Forgatókönyvtár: ",
-      "ScenarioRepo": "Belépés a forgatókönyvtárba",
-      "ScenarioRepoWatermark": "A forgatókönyvtár nem lehet null vagy miközben szóköz.",
-      "ScenarioRepoValidNull": "Forgatókönyv-elágazás:",
-      "ScenarioBranch": "Scenárió ág megadása",
-      "ScenarioBranchWatermark": "A forgatókönyv ága nem lehet null vagy közben szóköz.",
-      "ScenarioBranchValidNull": "Betöltés... "
+  "upgrader": {
+    "title": "Letöltés most",
+    "downloadNow": "Kilépés és frissítés most",
+    "upgradeNow": "Frissítés a következő indításkor",
+    "upgradeNextStartup": "Hagyja figyelmen kívül ezt a verziót",
+    "ignoreThisVersion": "Nincs forgatókönyv forrása"
+  },
+  "scenario": {
+    "noSource": "Szűrő ágak",
+    "filterBranches": "Forgatókönyv-beállítás",
+    "panelTitle": "Frissítés…",
+    "updating": "Forgatókönyv neve:",
+    "creator": {
+      "scenarioName": "Adja meg a forgatókönyv nevét",
+      "scenarioNameWatermark": "A forgatókönyv-konfiguráció nem tartalmazza a következő karakterek egyikét sem:/\\:*?\"<>|",
+      "scenarioNameValidNameError": "A forgatókönyv neve nem lehet null vagy míg szóköz.",
+      "scenarioNameValidNull": "Már létezik forgatókönyv-konfiguráció.",
+      "scenarioNameValidExist": "Forgatókönyvtár:| *|Adja meg a forgatókönyv-tárat",
+      "scenarioRepo": "A forgatókönyvtár nem lehet null vagy miközben szóköz.",
+      "scenarioRepoWatermark": "Forgatókönyv-elágazás:",
+      "scenarioRepoValidNull": "Scenárió-elágazás megadása",
+      "scenarioBranch": "A forgatókönyv ága nem lehet null vagy miközben szóköz.",
+      "scenarioBranchWatermark": "Betöltés...| *|{l_file} betöltése."
     }
   },
-  "Loading": {
-    "OpenFileStart": "{l_file} betöltése.",
-    "LoadingFile": "{l_file} betöltése."
-  },
-  "OpenFileDialog": {
-    "PickLog": "Naplók kiválasztása",
-    "SupportedLogs": "Támogatott naplók"
-  }
+  "loading": {}
 }

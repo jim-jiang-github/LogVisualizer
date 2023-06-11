@@ -1,56 +1,52 @@
 {
-  "Common": {
-    "Version": "Version ({l_numéro de version}).",
-    "Cancel": "Annuler",
-    "Confirm": "Confirmer",
-    "ConfirmDelete": "Voulez-vous vraiment supprimer le '{l_name}' ? Cette action ne peut pas être annulée !"
+  "common": {
+    "version": "Version ({l_numéro de version}).",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "confirmDelete": "Voulez-vous vraiment supprimer le '{l_name}' ? Cette action ne peut pas être annulée !"
   },
-  "Menu": {
-    "File": "Fichier",
-    "Views": "Vues",
-    "Filter": "Filtre|* |Ajouter un nouveau filtre",
-    "Help": "Vérifier la mise à niveau",
-    "Open": "Ouvrir",
-    "FromUrl": "Depuis l'URL",
-    "Exit": "Quitter",
-    "ShowOnlyFiltered": "Afficher uniquement la ligne filtrée",
-    "AddNewFilter": "Ajouter un nouveau filtre",
-    "CheckUpgrade": "Vérifier la mise à niveau",
-    "OpenAppDataFolder": "Ouvrir le dossier de données de l'application",
-    "About": "À propos de"
+  "menu": {
+    "file": "Fichier",
+    "open": "Ouvrir",
+    "fromUrl": "Depuis l'URL",
+    "exit": "Quitter",
+    "views": "Vues",
+    "showOnlyFiltered": "Afficher uniquement la ligne filtrée",
+    "filter": "Filtre",
+    "addNewFilter": "Ajouter un nouveau filtre",
+    "help": "Aide|* |Vérifier la mise à niveau",
+    "checkUpgrade": "Ouvrir le dossier de données de l'application",
+    "openAppDataFolder": "À propos de",
+    "about": "Choisir les journaux"
   },
-  "Upgrader": {
-    "Title": "Télécharger maintenant",
-    "DownloadNow": "Quitter et mettre à niveau maintenant",
-    "UpgradeNow": "Mettre à niveau au prochain démarrage",
-    "UpgradeNextStartup": "Ignorer cette version",
-    "IgnoreThisVersion": "Aucune source de scénario"
+  "openFileDialog": {
+    "pickLog": "Journaux pris en charge",
+    "supportedLogs": "La mise à niveau est disponible : {l_version}"
   },
-  "Scenario": {
-    "NoSource": "Filtrer les branches",
-    "FilterBranches": "Paramètres du scénario",
-    "PanelTitle": "Mise à jour…",
-    "Updating": "Nom du scénario :",
-    "Creator": {
-      "ScenarioName": "Entrez le nom du scénario",
-      "ScenarioNameWatermark": "Une configuration de scénario peut&apos ;t contenir l'un des caractères suivants :/\\:*?\"<>|",
-      "ScenarioNameValidNameError": "Le nom du scénario ne peut pas être nul ou un espace.",
-      "ScenarioNameValidNull": "Il existe déjà une configuration de scénario existante.",
-      "ScenarioNameValidExist": "Référentiel de scénarios : ",
-      "ScenarioRepo": "Entrez le référentiel de scénarios",
-      "ScenarioRepoWatermark": "Le référentiel de scénarios ne peut pas être nul ou tant que l'espace.",
-      "ScenarioRepoValidNull": "Branche de scénario :",
-      "ScenarioBranch": "Entrez la branche de scénario",
-      "ScenarioBranchWatermark": "La branche de scénario ne peut pas être nulle ou tant que l'espace.",
-      "ScenarioBranchValidNull": "Chargement en cours... "
+  "upgrader": {
+    "title": "Télécharger maintenant",
+    "downloadNow": "Quitter et mettre à niveau maintenant",
+    "upgradeNow": "Mettre à jour au prochain démarrage",
+    "upgradeNextStartup": "Ignorer cette version",
+    "ignoreThisVersion": "Aucune source de scénario"
+  },
+  "scenario": {
+    "noSource": "Filtrer les branches",
+    "filterBranches": "Paramètre du scénario",
+    "panelTitle": "Mise à jour…",
+    "updating": "Nom du scénario :",
+    "creator": {
+      "scenarioName": "Entrez le nom du scénario",
+      "scenarioNameWatermark": "Une configuration de scénario peut ne contient aucun des caractères suivants :/\\:* ?\"<>|",
+      "scenarioNameValidNameError": "Le nom du scénario ne peut pas être nul ou tout espace.",
+      "scenarioNameValidNull": "Il existe déjà une configuration de scénario existante.",
+      "scenarioNameValidExist": "Référentiel de scénarios :| *|Entrez le référentiel de scénarios",
+      "scenarioRepo": "Le référentiel de scénarios ne peut pas être nul ou tant que l'espace.",
+      "scenarioRepoWatermark": "Branche de scénario :",
+      "scenarioRepoValidNull": "Entrez la branche de scénario",
+      "scenarioBranch": "La branche de scénario ne peut pas être nulle ou tant que l'espace.",
+      "scenarioBranchWatermark": "Chargement en cours...| *|Chargement de {l_file}."
     }
   },
-  "Loading": {
-    "OpenFileStart": "Chargement de {l_file}.",
-    "LoadingFile": "Chargement de {l_file}."
-  },
-  "OpenFileDialog": {
-    "PickLog": "Choisir les journaux",
-    "SupportedLogs": "Journaux pris en charge"
-  }
+  "loading": {}
 }

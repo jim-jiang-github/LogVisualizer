@@ -1,56 +1,52 @@
 {
-  "Common": {
-    "Version": "Verze ({l_version number}).",
-    "Cancel": "Zrušit",
-    "Confirm": "Potvrdit",
-    "ConfirmDelete": "Opravdu chcete smazat '{l_name}'? Tuto akci nelze vrátit zpět!"
+  "common": {
+    "version": "Verze ({l_version number}).",
+    "cancel": "Zrušit",
+    "confirm": "Potvrdit",
+    "confirmDelete": "Opravdu chcete smazat '{l_name}'? Tuto akci nelze vrátit zpět!"
   },
-  "Menu": {
-    "File": "Soubor",
-    "Views": "Zobrazení",
-    "Filter": "Filtr|* |Přidat nový filtr",
-    "Help": "Zkontrolovat upgrade",
-    "Open": "Otevřít",
-    "FromUrl": "Z adresy URL",
-    "Exit": "Konec",
-    "ShowOnlyFiltered": "Zobrazit pouze filtrovaný řádek",
-    "AddNewFilter": "Přidat nový filtr",
-    "CheckUpgrade": "Zkontrolovat aktualizaci",
-    "OpenAppDataFolder": "Otevřít složku s daty aplikace",
-    "About": "O aplikaci"
+  "menu": {
+    "file": "Soubor",
+    "open": "Otevřít",
+    "fromUrl": "Z adresy URL",
+    "exit": "Konec",
+    "views": "Zobrazení",
+    "showOnlyFiltered": "Zobrazit pouze filtrovaný řádek",
+    "filter": "Filtr",
+    "addNewFilter": "Přidat nový filtr",
+    "help": "Nápověda|* |Zkontrolovat upgrade",
+    "checkUpgrade": "Otevřít složku s daty aplikace",
+    "openAppDataFolder": "O aplikaci",
+    "about": "Vybrat protokoly"
   },
-  "Upgrader": {
-    "Title": "Stáhnout nyní",
-    "DownloadNow": "Ukončit a upgradovat nyní",
-    "UpgradeNow": "Upgrade při příštím spuštění",
-    "UpgradeNextStartup": "Ignorovat tuto verzi",
-    "IgnoreThisVersion": "Žádný zdroj scénáře"
+  "openFileDialog": {
+    "pickLog": "Podporované protokoly",
+    "supportedLogs": "Upgrade je k dispozici: {l_version}"
   },
-  "Scenario": {
-    "NoSource": "Větve filtru",
-    "FilterBranches": "Nastavení scénáře",
-    "PanelTitle": "Aktualizace…",
-    "Updating": "Název scénáře:",
-    "Creator": {
-      "ScenarioName": "Zadejte název scénáře",
-      "ScenarioNameWatermark": "Konfiguraci scénáře lze&apos ;neobsahuje žádný z následujících znaků:/\\:*?\"<>|",
-      "ScenarioNameValidNameError": "Název scénáře nemůže být null nebo je mezera.",
-      "ScenarioNameValidNull": "Již existuje konfigurace scénáře.",
-      "ScenarioNameValidExist": "Úložiště scénářů: ",
-      "ScenarioRepo": "Vstup do úložiště scénářů",
-      "ScenarioRepoWatermark": "Úložiště scénářů nemůže být null nebo v prostoru.",
-      "ScenarioRepoValidNull": "Větev scénáře:",
-      "ScenarioBranch": "Vstup do větve scénáře",
-      "ScenarioBranchWatermark": "Větev scénáře nemůže být nulová nebo v prostoru.",
-      "ScenarioBranchValidNull": "Nyní se načítá... "
+  "upgrader": {
+    "title": "Stáhnout nyní",
+    "downloadNow": "Ukončit a upgradovat nyní",
+    "upgradeNow": "Upgrade při příštím spuštění",
+    "upgradeNextStartup": "Ignorovat tuto verzi",
+    "ignoreThisVersion": "Žádný zdroj scénáře"
+  },
+  "scenario": {
+    "noSource": "Větve filtru",
+    "filterBranches": "Nastavení scénáře",
+    "panelTitle": "Aktualizace…",
+    "updating": "Název scénáře:",
+    "creator": {
+      "scenarioName": "Zadejte název scénáře",
+      "scenarioNameWatermark": "Konfiguraci scénáře lze neobsahují žádný z následujících znaků:/\\:*?\"<>|",
+      "scenarioNameValidNameError": "Název scénáře nemůže být prázdný nebo dokud je mezera.",
+      "scenarioNameValidNull": "Konfigurace scénáře již existuje.",
+      "scenarioNameValidExist": "Úložiště scénáře:| *|Vstup do úložiště scénářů",
+      "scenarioRepo": "Úložiště scénářů nemůže být null nebo v prostoru.",
+      "scenarioRepoWatermark": "Větev scénáře:",
+      "scenarioRepoValidNull": "Vstup do větve scénáře",
+      "scenarioBranch": "Větev scénáře nemůže být nulová nebo v prostoru.",
+      "scenarioBranchWatermark": "Nyní se načítá...| *|Načítání {l_file}."
     }
   },
-  "Loading": {
-    "OpenFileStart": "Načítání {l_file}.",
-    "LoadingFile": "Načítání {l_file}."
-  },
-  "OpenFileDialog": {
-    "PickLog": "Vybrat protokoly",
-    "SupportedLogs": "Podporované protokoly"
-  }
+  "loading": {}
 }

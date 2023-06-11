@@ -1,56 +1,52 @@
 {
-  "Common": {
-    "Version": "Wersja ({l_version number}).",
-    "Cancel": "Anuluj",
-    "Confirm": "Potwierdź",
-    "ConfirmDelete": "Czy na pewno chcesz usunąć '{l_name}'? Tej czynności nie można cofnąć!"
+  "common": {
+    "version": "Wersja ({l_version number}).",
+    "cancel": "Anuluj",
+    "confirm": "Potwierdź",
+    "confirmDelete": "Czy na pewno chcesz usunąć '{l_name}'? Tej czynności nie można cofnąć!"
   },
-  "Menu": {
-    "File": "Plik",
-    "Views": "Widoki",
-    "Filter": "Filtr|* |Dodaj nowy filtr",
-    "Help": "Sprawdź aktualizację",
-    "Open": "Otwórz",
-    "FromUrl": "Z adresu URL",
-    "Exit": "Wyjdź",
-    "ShowOnlyFiltered": "Pokaż tylko filtrowaną linię",
-    "AddNewFilter": "Dodaj nowy filtr",
-    "CheckUpgrade": "Sprawdź aktualizację",
-    "OpenAppDataFolder": "Otwórz folder danych aplikacji",
-    "About": "Informacje"
+  "menu": {
+    "file": "Plik",
+    "open": "Otwórz",
+    "fromUrl": "Z adresu URL",
+    "exit": "Wyjdź",
+    "views": "Widoki",
+    "showOnlyFiltered": "Pokaż tylko przefiltrowaną linię",
+    "filter": "Filtr",
+    "addNewFilter": "Dodaj nowy filtr",
+    "help": "Pomoc|* |Sprawdź dostępność aktualizacji",
+    "checkUpgrade": "Otwórz folder danych aplikacji",
+    "openAppDataFolder": "Informacje",
+    "about": "Wybierz dzienniki"
   },
-  "Upgrader": {
-    "Title": "Pobierz teraz",
-    "DownloadNow": "Wyjdź i uaktualnij teraz",
-    "UpgradeNow": "Aktualizacja przy następnym uruchomieniu",
-    "UpgradeNextStartup": "Ignoruj tę wersję",
-    "IgnoreThisVersion": "Brak źródła scenariusza"
+  "openFileDialog": {
+    "pickLog": "Obsługiwane dzienniki",
+    "supportedLogs": "Dostępna jest aktualizacja: {l_version}"
   },
-  "Scenario": {
-    "NoSource": "Filtruj gałęzie",
-    "FilterBranches": "Ustawienia scenariusza",
-    "PanelTitle": "Aktualizowanie...",
-    "Updating": "Nazwa scenariusza:",
-    "Creator": {
-      "ScenarioName": "Wprowadź nazwę scenariusza",
-      "ScenarioNameWatermark": "Konfiguracja scenariusza może&apos ;t nie może zawierać żadnego z następujących znaków:/\\:*?\"<>|",
-      "ScenarioNameValidNameError": "Nazwa scenariusza nie może być null ani spacją.",
-      "ScenarioNameValidNull": "Istnieje już konfiguracja scenariusza.",
-      "ScenarioNameValidExist": "Repozytorium scenariuszy: ",
-      "ScenarioRepo": "Wprowadź repozytorium scenariusza",
-      "ScenarioRepoWatermark": "Repozytorium scenariusza nie może mieć wartości null ani spacji.",
-      "ScenarioRepoValidNull": "Gałąź scenariusza:",
-      "ScenarioBranch": "Wprowadź gałąź scenariusza",
-      "ScenarioBranchWatermark": "Gałąź scenariusza nie może mieć wartości null ani spacji.",
-      "ScenarioBranchValidNull": "Teraz ładuję... "
+  "upgrader": {
+    "title": "Pobierz teraz",
+    "downloadNow": "Wyjdź i uaktualnij teraz",
+    "upgradeNow": "Aktualizacja przy następnym uruchomieniu",
+    "upgradeNextStartup": "Ignoruj tę wersję",
+    "ignoreThisVersion": "Brak źródła scenariusza"
+  },
+  "scenario": {
+    "noSource": "Filtruj gałęzie",
+    "filterBranches": "Ustawienia scenariusza",
+    "panelTitle": "Aktualizowanie...",
+    "updating": "Nazwa scenariusza:",
+    "creator": {
+      "scenarioName": "Wprowadź nazwę scenariusza",
+      "scenarioNameWatermark": "Konfiguracja scenariusza może nie może zawierać żadnego z następujących znaków:/\\:*?\"<>|",
+      "scenarioNameValidNameError": "Nazwa scenariusza nie może być pusta ani spacją.",
+      "scenarioNameValidNull": "Istnieje już konfiguracja scenariusza.",
+      "scenarioNameValidExist": "Repozytorium scenariuszy:| *|Wprowadź repozytorium scenariuszy",
+      "scenarioRepo": "Repozytorium scenariuszy nie może mieć wartości null ani spacji.",
+      "scenarioRepoWatermark": "Gałąź scenariusza:",
+      "scenarioRepoValidNull": "Wprowadź gałąź scenariusza",
+      "scenarioBranch": "Gałąź scenariusza nie może mieć wartości null ani spacji.",
+      "scenarioBranchWatermark": "Teraz ładuję...| *|Ładowanie {l_file}."
     }
   },
-  "Loading": {
-    "OpenFileStart": "Ładowanie {l_file}.",
-    "LoadingFile": "Ładowanie {l_file}."
-  },
-  "OpenFileDialog": {
-    "PickLog": "Wybierz dzienniki",
-    "SupportedLogs": "Obsługiwane dzienniki"
-  }
+  "loading": {}
 }

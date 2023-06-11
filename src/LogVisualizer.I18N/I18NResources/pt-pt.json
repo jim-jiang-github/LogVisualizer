@@ -1,56 +1,52 @@
 {
-  "Common": {
-    "Version": "Versão ({l_version number}).",
-    "Cancel": "Cancelar",
-    "Confirm": "Confirmar",
-    "ConfirmDelete": "Tem certeza de que deseja excluir o '{l_name}'? Esta ação não pode ser desfeita!"
+  "common": {
+    "version": "Versão ({l_version number}).",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "confirmDelete": "Tem certeza de que deseja excluir o '{l_name}'? Esta ação não pode ser desfeita!"
   },
-  "Menu": {
-    "File": "Arquivo",
-    "Views": "Exibições",
-    "Filter": "Filtro|* |Adicionar novo filtro",
-    "Help": "Verificar atualização",
-    "Open": "Abrir",
-    "FromUrl": "De Url",
-    "Exit": "Sair",
-    "ShowOnlyFiltered": "Mostrar apenas linha filtrada",
-    "AddNewFilter": "Adicionar novo filtro",
-    "CheckUpgrade": "Verificar atualização",
-    "OpenAppDataFolder": "Abrir pasta de dados do aplicativo",
-    "About": "Sobre"
+  "menu": {
+    "file": "Arquivo",
+    "open": "Abrir",
+    "fromUrl": "Do URL",
+    "exit": "Sair",
+    "views": "Exibições",
+    "showOnlyFiltered": "Mostrar apenas linha filtrada",
+    "filter": "Filtro",
+    "addNewFilter": "Adicionar novo filtro",
+    "help": "Ajuda|* |Verifique se há atualização",
+    "checkUpgrade": "Abra a pasta de dados do aplicativo",
+    "openAppDataFolder": "Sobre",
+    "about": "Selecione logs"
   },
-  "Upgrader": {
-    "Title": "Baixe agora",
-    "DownloadNow": "Sair e atualizar agora",
-    "UpgradeNow": "Atualizar na próxima inicialização",
-    "UpgradeNextStartup": "Ignorar esta versão",
-    "IgnoreThisVersion": "Nenhuma fonte de cenário"
+  "openFileDialog": {
+    "pickLog": "Logs suportados",
+    "supportedLogs": "A atualização está disponível: {l_version}"
   },
-  "Scenario": {
-    "NoSource": "Filter branches",
-    "FilterBranches": "Configuração do cenário",
-    "PanelTitle": "Atualizando…",
-    "Updating": "Nome do cenário:",
-    "Creator": {
-      "ScenarioName": "Insira o nome do cenário",
-      "ScenarioNameWatermark": "Uma configuração de cenário pode&apos ;não contém nenhum dos seguintes caracteres:/\\:*?\"<>|",
-      "ScenarioNameValidNameError": "O nome do cenário não pode ser nulo ou enquanto espaço.",
-      "ScenarioNameValidNull": "Já existe uma configuração de cenário existente.",
-      "ScenarioNameValidExist": "Repositório do cenário: ",
-      "ScenarioRepo": "Insira o repositório do cenário",
-      "ScenarioRepoWatermark": "O repositório do cenário não pode ser nulo ou enquanto espaço.",
-      "ScenarioRepoValidNull": "Branch do cenário:",
-      "ScenarioBranch": "Insira o branch do cenário",
-      "ScenarioBranchWatermark": "O branch do cenário não pode ser null ou while space.",
-      "ScenarioBranchValidNull": "Now loading... "
+  "upgrader": {
+    "title": "Baixe agora",
+    "downloadNow": "Sair e atualizar agora",
+    "upgradeNow": "Atualizar na próxima inicialização",
+    "upgradeNextStartup": "Ignorar esta versão",
+    "ignoreThisVersion": "Nenhuma fonte de cenário"
+  },
+  "scenario": {
+    "noSource": "Filtrar ramificações",
+    "filterBranches": "Configuração do cenário",
+    "panelTitle": "Atualizando…",
+    "updating": "Nome do cenário:",
+    "creator": {
+      "scenarioName": "Insira o nome do cenário",
+      "scenarioNameWatermark": "Uma configuração do cenário pode não contém nenhum dos seguintes caracteres:/\\:*?\"<>|",
+      "scenarioNameValidNameError": "O nome do cenário não pode ser nulo ou enquanto espaço.",
+      "scenarioNameValidNull": "Já existe uma configuração de cenário existente.",
+      "scenarioNameValidExist": "Repositório do cenário:| *|Insira o repositório do cenário",
+      "scenarioRepo": "O repositório do cenário não pode ser nulo ou enquanto espaço.",
+      "scenarioRepoWatermark": "Ramificação do cenário:",
+      "scenarioRepoValidNull": "Insira a ramificação do cenário",
+      "scenarioBranch": "A ramificação do cenário não pode ser nula ou espaço enquanto.",
+      "scenarioBranchWatermark": "Carregando agora...| *|Carregando {l_arquivo}."
     }
   },
-  "Loading": {
-    "OpenFileStart": "Carregando {l_file}.",
-    "LoadingFile": "Carregando {l_file}."
-  },
-  "OpenFileDialog": {
-    "PickLog": "Selecionar logs",
-    "SupportedLogs": "Logs suportados"
-  }
+  "loading": {}
 }

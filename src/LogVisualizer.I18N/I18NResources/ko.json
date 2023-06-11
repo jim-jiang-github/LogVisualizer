@@ -1,56 +1,52 @@
 {
-  "Common": {
-    "Version": "버전({l_version number}).",
-    "Cancel": "취소",
-    "Confirm": "확인",
-    "ConfirmDelete": "'{l_name}'을(를) 삭제하시겠습니까? 이 작업은 취소할 수 없습니다!"
+  "common": {
+    "version": "버전({l_version number}).",
+    "cancel": "취소",
+    "confirm": "확인",
+    "confirmDelete": "'{l_name}'을(를) 삭제하시겠습니까? 이 작업은 취소할 수 없습니다!"
   },
-  "Menu": {
-    "File": "파일",
-    "Views": "보기",
-    "Filter": "필터|* |새 필터 추가",
-    "Help": "업그레이드 확인",
-    "Open": "열기",
-    "FromUrl": "URL에서",
-    "Exit": "종료",
-    "ShowOnlyFiltered": "필터링된 라인만 표시",
-    "AddNewFilter": "새 필터 추가",
-    "CheckUpgrade": "업그레이드 확인",
-    "OpenAppDataFolder": "앱 데이터 폴더 열기",
-    "About": "정보"
+  "menu": {
+    "file": "파일",
+    "open": "열기",
+    "fromUrl": "URL에서",
+    "exit": "종료",
+    "views": "보기",
+    "showOnlyFiltered": "필터링된 라인만 표시",
+    "filter": "필터",
+    "addNewFilter": "새 필터 추가",
+    "help": "도움말|* |업그레이드 확인",
+    "checkUpgrade": "앱 데이터 폴더 열기",
+    "openAppDataFolder": "정보",
+    "about": "로그 선택"
   },
-  "Upgrader": {
-    "Title": "지금 다운로드",
-    "DownloadNow": "지금 종료하고 업그레이드",
-    "UpgradeNow": "다음 시작 시 업그레이드",
-    "UpgradeNextStartup": "이 버전 무시",
-    "IgnoreThisVersion": "시나리오 소스 없음"
+  "openFileDialog": {
+    "pickLog": "지원되는 로그",
+    "supportedLogs": "업그레이드 가능: {l_version}"
   },
-  "Scenario": {
-    "NoSource": "분기 필터링",
-    "FilterBranches": "시나리오 설정",
-    "PanelTitle": "업데이트 중...",
-    "Updating": "시나리오 이름:",
-    "Creator": {
-      "ScenarioName": "시나리오 이름 입력",
-      "ScenarioNameWatermark": "시나리오 구성에서 &apos ;t 다음 문자를 포함:/\\:*?'<>|",
-      "ScenarioNameValidNameError": "시나리오 이름은 null이거나 공백일 수 없습니다.",
-      "ScenarioNameValidNull": "이미 기존 시나리오 구성이 있습니다.",
-      "ScenarioNameValidExist": "시나리오 저장소: ",
-      "ScenarioRepo": "시나리오 저장소 입력",
-      "ScenarioRepoWatermark": "시나리오 저장소는 null이거나 공백일 수 없습니다.",
-      "ScenarioRepoValidNull": "시나리오 분기:",
-      "ScenarioBranch": "시나리오 분기 입력",
-      "ScenarioBranchWatermark": "시나리오 분기는 null이거나 공백일 수 없습니다.",
-      "ScenarioBranchValidNull": "지금 로드 중... "
+  "upgrader": {
+    "title": "지금 다운로드",
+    "downloadNow": "지금 종료하고 업그레이드",
+    "upgradeNow": "다음 시작 시 업그레이드",
+    "upgradeNextStartup": "이 버전 무시",
+    "ignoreThisVersion": "시나리오 소스 없음"
+  },
+  "scenario": {
+    "noSource": "분기 필터링",
+    "filterBranches": "시나리오 설정",
+    "panelTitle": "업데이트 중...",
+    "updating": "시나리오 이름:",
+    "creator": {
+      "scenarioName": "시나리오 이름 입력",
+      "scenarioNameWatermark": "시나리오 구성은 다음을 시작할 수 있습니다. 다음 문자를 포함할 수 없습니다:/\\:*?'<>|",
+      "scenarioNameValidNameError": "시나리오 이름은 null이거나 공백일 수 없습니다.",
+      "scenarioNameValidNull": "기존 시나리오 구성이 이미 있습니다.",
+      "scenarioNameValidExist": "시나리오 저장소:| *|시나리오 저장소 입력",
+      "scenarioRepo": "시나리오 저장소는 null이거나 공백일 수 없습니다.",
+      "scenarioRepoWatermark": "시나리오 분기:",
+      "scenarioRepoValidNull": "시나리오 분기 입력",
+      "scenarioBranch": "시나리오 분기는 null이거나 공백일 수 없습니다.",
+      "scenarioBranchWatermark": "지금 로드 중...| *|{l_file} 로드 중."
     }
   },
-  "Loading": {
-    "OpenFileStart": "{l_file} 로드 중.",
-    "LoadingFile": "{l_file} 로드 중."
-  },
-  "OpenFileDialog": {
-    "PickLog": "로그 선택",
-    "SupportedLogs": "지원되는 로그"
-  }
+  "loading": {}
 }

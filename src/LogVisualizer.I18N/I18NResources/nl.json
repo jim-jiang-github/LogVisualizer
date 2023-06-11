@@ -1,56 +1,52 @@
 {
-  "Common": {
-    "Version": "Versie ({l_versienummer}).",
-    "Cancel": "Annuleren",
-    "Confirm": "Bevestigen",
-    "ConfirmDelete": "Weet u zeker dat u de '{l_name}' wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt!"
+  "common": {
+    "version": "Versie ({l_versienummer}).",
+    "cancel": "Annuleren",
+    "confirm": "Bevestigen",
+    "confirmDelete": "Weet u zeker dat u de '{l_name}' wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt!"
   },
-  "Menu": {
-    "File": "Bestand",
-    "Views": "Views",
-    "Filter": "Filter|* |Nieuw filter toevoegen",
-    "Help": "Controleren op upgrade",
-    "Open": "Openen",
-    "FromUrl": "Van URL",
-    "Exit": "Afsluiten",
-    "ShowOnlyFiltered": "Toon alleen gefilterde regel",
-    "AddNewFilter": "Nieuw filter toevoegen",
-    "CheckUpgrade": "Controleren op upgrade",
-    "OpenAppDataFolder": "Open app-gegevensmap",
-    "About": "Over"
+  "menu": {
+    "file": "Bestand",
+    "open": "Openen",
+    "fromUrl": "Vanaf URL",
+    "exit": "Afsluiten",
+    "views": "Weergaven",
+    "showOnlyFiltered": "Toon alleen gefilterde regel",
+    "filter": "Filter",
+    "addNewFilter": "Nieuw filter toevoegen",
+    "help": "Help|* |Controleer op upgrade",
+    "checkUpgrade": "Open app-gegevensmap",
+    "openAppDataFolder": "Over",
+    "about": "Kies logs"
   },
-  "Upgrader": {
-    "Title": "Nu downloaden",
-    "DownloadNow": "Sluit af en upgrade nu",
-    "UpgradeNow": "Upgrade bij volgende start",
-    "UpgradeNextStartup": "Negeer deze versie",
-    "IgnoreThisVersion": "Geen scenariobron"
+  "openFileDialog": {
+    "pickLog": "Ondersteunde logs",
+    "supportedLogs": "Upgrade is beschikbaar: {l_version}"
   },
-  "Scenario": {
-    "NoSource": "Filtertakken",
-    "FilterBranches": "Scenario-instelling",
-    "PanelTitle": "Bijwerken...",
-    "Updating": "Scenarionaam:",
-    "Creator": {
-      "ScenarioName": "Scenarionaam invoeren",
-      "ScenarioNameWatermark": "Een scenarioconfiguratie kan&apos ;t een van de volgende tekens bevatten:/\\:*?\"<>|",
-      "ScenarioNameValidNameError": "Scenarionaam mag niet null of while-spatie zijn.",
-      "ScenarioNameValidNull": "Er is al een bestaande scenarioconfiguratie.",
-      "ScenarioNameValidExist": "Scenario-opslagplaats: ",
-      "ScenarioRepo": "Scenario-opslagplaats openen",
-      "ScenarioRepoWatermark": "Scenario-opslagplaats mag niet null of while-spatie zijn.",
-      "ScenarioRepoValidNull": "Scenariotak:",
-      "ScenarioBranch": "Scenario-tak openen",
-      "ScenarioBranchWatermark": "Scenario-tak kan niet null of while-spatie zijn.",
-      "ScenarioBranchValidNull": "Bezig met laden... "
+  "upgrader": {
+    "title": "Nu downloaden",
+    "downloadNow": "Sluit af en upgrade nu",
+    "upgradeNow": "Upgrade bij volgende keer opstarten",
+    "upgradeNextStartup": "Negeer deze versie",
+    "ignoreThisVersion": "Geen scenariobron"
+  },
+  "scenario": {
+    "noSource": "Filtertakken",
+    "filterBranches": "Scenario-instelling",
+    "panelTitle": "Bijwerken...",
+    "updating": "Scenarionaam:",
+    "creator": {
+      "scenarioName": "Scenarionaam invoeren",
+      "scenarioNameWatermark": "Een scenarioconfiguratie kan bevat geen van de volgende tekens:/\\:*?\"<>|",
+      "scenarioNameValidNameError": "Scenarionaam mag niet null of while-spatie zijn.",
+      "scenarioNameValidNull": "Er is al een bestaande scenarioconfiguratie.",
+      "scenarioNameValidExist": "Scenario-opslagplaats:| *|Scenario-opslagplaats openen",
+      "scenarioRepo": "Scenario-opslagplaats mag niet null of while-spatie zijn.",
+      "scenarioRepoWatermark": "Scenariotak:",
+      "scenarioRepoValidNull": "Scenario-tak openen",
+      "scenarioBranch": "Scenario-tak kan niet null of while-spatie zijn.",
+      "scenarioBranchWatermark": "Bezig met laden...| *|Bezig met laden van {l_file}."
     }
   },
-  "Loading": {
-    "OpenFileStart": "Bezig met laden van {l_file}.",
-    "LoadingFile": "{l_file} laden."
-  },
-  "OpenFileDialog": {
-    "PickLog": "Kies logs",
-    "SupportedLogs": "Ondersteunde logs"
-  }
+  "loading": {}
 }

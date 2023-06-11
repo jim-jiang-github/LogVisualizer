@@ -1,56 +1,52 @@
 {
-  "Common": {
-    "Version": "Sürüm ({l_sürüm numarası}).",
-    "Cancel": "İptal",
-    "Confirm": "Onayla",
-    "ConfirmDelete": "'{l_name}'yi silmek istediğinizden emin misiniz? Bu işlem geri alınamaz!"
+  "common": {
+    "version": "Sürüm ({l_sürüm numarası}).",
+    "cancel": "İptal",
+    "confirm": "Onayla",
+    "confirmDelete": "'{l_name}'yi silmek istediğinizden emin misiniz? Bu işlem geri alınamaz!"
   },
-  "Menu": {
-    "File": "Dosya",
-    "Views": "Görüntülemeler",
-    "Filter": "Filtre|* |Yeni filtre ekle",
-    "Help": "Yükseltmeyi kontrol et",
-    "Open": "Aç",
-    "FromUrl": "Url'den",
-    "Exit": "Çıkış",
-    "ShowOnlyFiltered": "Yalnızca filtrelenmiş satırı göster",
-    "AddNewFilter": "Yeni filtre ekle",
-    "CheckUpgrade": "Yükseltmeyi kontrol et",
-    "OpenAppDataFolder": "Uygulama veri klasörünü aç",
-    "About": "Hakkında"
+  "menu": {
+    "file": "Dosya",
+    "open": "Aç",
+    "fromUrl": "URL'den",
+    "exit": "Çıkış",
+    "views": "Görünümler",
+    "showOnlyFiltered": "Yalnızca filtrelenmiş satırı göster",
+    "filter": "Filtre",
+    "addNewFilter": "Yeni filtre ekle",
+    "help": "Yardım|* |Yükseltmeyi kontrol et",
+    "checkUpgrade": "Uygulama veri klasörünü aç",
+    "openAppDataFolder": "Hakkında",
+    "about": "Günlükleri seç"
   },
-  "Upgrader": {
-    "Title": "Şimdi indir",
-    "DownloadNow": "Çıkış ve şimdi yükselt",
-    "UpgradeNow": "Bir sonraki açılışta yükselt",
-    "UpgradeNextStartup": "Bu sürümü yoksay",
-    "IgnoreThisVersion": "Senaryo kaynağı yok"
+  "openFileDialog": {
+    "pickLog": "Desteklenen Günlükler",
+    "supportedLogs": "Yükseltme mevcut: {l_version}"
   },
-  "Scenario": {
-    "NoSource": "Filtre dalları",
-    "FilterBranches": "Senaryo ayarı",
-    "PanelTitle": "Güncelleniyor…",
-    "Updating": "Senaryo adı:",
-    "Creator": {
-      "ScenarioName": "Senaryo adını girin",
-      "ScenarioNameWatermark": "Bir senaryo yapılandırması yapılabilir. ;t aşağıdaki karakterlerden herhangi birini içermez:/\\:*?\"<>|",
-      "ScenarioNameValidNameError": "Senaryo adı null veya while boşluk olamaz.",
-      "ScenarioNameValidNull": "Zaten bir senaryo yapılandırması var.",
-      "ScenarioNameValidExist": "Senaryo deposu: ",
-      "ScenarioRepo": "Senaryo deposunu girin",
-      "ScenarioRepoWatermark": "Senaryo deposu null veya while alanı olamaz.",
-      "ScenarioRepoValidNull": "Senaryo dalı:",
-      "ScenarioBranch": "Senaryo dalı girin",
-      "ScenarioBranchWatermark": "Senaryo dalı null veya while boşluk olamaz.",
-      "ScenarioBranchValidNull": "Şimdi yükleniyor... "
+  "upgrader": {
+    "title": "Şimdi indir",
+    "downloadNow": "Çıkış ve şimdi yükselt",
+    "upgradeNow": "Sonraki başlatmada yükselt",
+    "upgradeNextStartup": "Bu sürümü yoksay",
+    "ignoreThisVersion": "Senaryo kaynağı yok"
+  },
+  "scenario": {
+    "noSource": "Filtre dalları",
+    "filterBranches": "Senaryo ayarı",
+    "panelTitle": "Güncelleniyor…",
+    "updating": "Senaryo adı:",
+    "creator": {
+      "scenarioName": "Senaryo adını girin",
+      "scenarioNameWatermark": "Bir senaryo yapılandırması şunları yapabilir: şu karakterlerden hiçbirini içeremez:/\\:*?\"<>|",
+      "scenarioNameValidNameError": "Senaryo adı null veya while boşluk olamaz.",
+      "scenarioNameValidNull": "Mevcut bir senaryo yapılandırması var.",
+      "scenarioNameValidExist": "Senaryo deposu:| *|Senaryo deposunu girin",
+      "scenarioRepo": "Senaryo deposu null veya while alanı olamaz.",
+      "scenarioRepoWatermark": "Senaryo dalı:",
+      "scenarioRepoValidNull": "Senaryo dalı girin",
+      "scenarioBranch": "Senaryo dalı null veya while boşluk olamaz.",
+      "scenarioBranchWatermark": "Şimdi yükleniyor...| *|{l_file} yükleniyor."
     }
   },
-  "Loading": {
-    "OpenFileStart": "{l_file} yükleniyor.",
-    "LoadingFile": "{l_file} yükleniyor."
-  },
-  "OpenFileDialog": {
-    "PickLog": "Seçim günlükleri",
-    "SupportedLogs": "Desteklenen Günlükler"
-  }
+  "loading": {}
 }

@@ -1,56 +1,52 @@
 {
-  "Common": {
-    "Version": "Versión ({l_version number}).",
-    "Cancel": "Cancelar",
-    "Confirm": "Confirmar",
-    "ConfirmDelete": "¿Está seguro de que desea eliminar '{l_name}'? ¡Esta acción no se puede deshacer!"
+  "common": {
+    "version": "Versión ({l_version number}).",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "confirmDelete": "¿Está seguro de que desea eliminar '{l_name}'? ¡Esta acción no se puede deshacer!"
   },
-  "Menu": {
-    "File": "Archivo",
-    "Views": "Vistas",
-    "Filter": "Filtro|* |Agregar nuevo filtro",
-    "Help": "Buscar actualización",
-    "Open": "Abrir",
-    "FromUrl": "Desde URL",
-    "Exit": "Salir",
-    "ShowOnlyFiltered": "Mostrar solo línea filtrada",
-    "AddNewFilter": "Agregar nuevo filtro",
-    "CheckUpgrade": "Buscar actualización",
-    "OpenAppDataFolder": "Abrir carpeta de datos de la aplicación",
-    "About": "Acerca de"
+  "menu": {
+    "file": "Archivo",
+    "open": "Abrir",
+    "fromUrl": "Desde URL",
+    "exit": "Salir",
+    "views": "Vistas",
+    "showOnlyFiltered": "Mostrar solo línea filtrada",
+    "filter": "Filtro",
+    "addNewFilter": "Agregar nuevo filtro",
+    "help": "Ayuda|* |Buscar actualización",
+    "checkUpgrade": "Abrir carpeta de datos de la aplicación",
+    "openAppDataFolder": "Acerca de",
+    "about": "Seleccionar registros"
   },
-  "Upgrader": {
-    "Title": "Descargar ahora",
-    "DownloadNow": "Salir y actualizar ahora",
-    "UpgradeNow": "Actualizar en el próximo inicio",
-    "UpgradeNextStartup": "Ignorar esta versión",
-    "IgnoreThisVersion": "Sin fuente de escenario"
+  "openFileDialog": {
+    "pickLog": "Registros admitidos",
+    "supportedLogs": "La actualización está disponible: {l_version}"
   },
-  "Scenario": {
-    "NoSource": "Filtrar ramas",
-    "FilterBranches": "Configuración del escenario",
-    "PanelTitle": "Actualizando…",
-    "Updating": "Nombre del escenario:",
-    "Creator": {
-      "ScenarioName": "Ingrese el nombre del escenario",
-      "ScenarioNameWatermark": "Una configuración de escenario puede&apos ;t contiene alguno de los siguientes caracteres:/\\:*?\"<>|",
-      "ScenarioNameValidNameError": "El nombre del escenario no puede ser nulo ni puede contener un espacio.",
-      "ScenarioNameValidNull": "Ya existe una configuración de escenario.",
-      "ScenarioNameValidExist": "Repositorio de escenarios: ",
-      "ScenarioRepo": "Ingresar al repositorio de escenarios",
-      "ScenarioRepoWatermark": "El repositorio de escenarios no puede ser nulo o espacio libre.",
-      "ScenarioRepoValidNull": "Rama de escenario:",
-      "ScenarioBranch": "Ingresar rama de escenario",
-      "ScenarioBranchWatermark": "La rama de escenario no puede ser nulo ni espacio libre.",
-      "ScenarioBranchValidNull": "Ahora cargando... "
+  "upgrader": {
+    "title": "Descargar ahora",
+    "downloadNow": "Salir y actualizar ahora",
+    "upgradeNow": "Actualizar en el próximo inicio",
+    "upgradeNextStartup": "Ignorar esta versión",
+    "ignoreThisVersion": "Sin fuente de escenario"
+  },
+  "scenario": {
+    "noSource": "Filtrar ramas",
+    "filterBranches": "Configuración del escenario",
+    "panelTitle": "Actualizando…",
+    "updating": "Nombre del escenario:",
+    "creator": {
+      "scenarioName": "Ingrese el nombre del escenario",
+      "scenarioNameWatermark": "Una configuración de escenario puede no contener ninguno de los siguientes caracteres:/\\:*?\"<>|",
+      "scenarioNameValidNameError": "El nombre del escenario no puede ser nulo o un espacio en blanco.",
+      "scenarioNameValidNull": "Ya existe una configuración de escenario.",
+      "scenarioNameValidExist": "Repositorio de escenarios:| *|Ingresar al repositorio de escenarios",
+      "scenarioRepo": "El repositorio de escenarios no puede ser nulo ni espacio libre.",
+      "scenarioRepoWatermark": "Rama de escenario:",
+      "scenarioRepoValidNull": "Ingresar rama de escenario",
+      "scenarioBranch": "La rama de escenario no puede ser nulo ni espacio libre.",
+      "scenarioBranchWatermark": "Ahora cargando...| *|Cargando {l_archivo}."
     }
   },
-  "Loading": {
-    "OpenFileStart": "Cargando {l_archivo}.",
-    "LoadingFile": "Cargando {l_archivo}."
-  },
-  "OpenFileDialog": {
-    "PickLog": "Seleccionar registros",
-    "SupportedLogs": "Registros admitidos"
-  }
+  "loading": {}
 }
