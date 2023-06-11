@@ -7,29 +7,9 @@
   },
   "Menu": {
     "File": "Bestand",
-    "FileMenu": {
-      "Open": "Openen",
-      "OpenDialog": {
-        "PickLog": "Kies logs",
-        "SupportedLogs": "Ondersteunde logs"
-      },
-      "FromUrl": "Van URL",
-      "Exit": "Afsluiten"
-    },
     "Views": "Views",
-    "ViewsMenu": {
-      "ShowOnlyFiltered": "Toon alleen gefilterde regel"
-    },
     "Filter": "Filter|* |Nieuw filter toevoegen",
-    "FilterMenu": {
-      "AddFilter": "Help"
-    },
-    "Help": "Controleren op upgrade",
-    "HelpMenu": {
-      "CheckUpgrade": "App-gegevensmap openen",
-      "OpenAppDataFolder": "Over",
-      "About": "Upgrade is beschikbaar: {l_version}"
-    }
+    "Help": "Controleren op upgrade"
   },
   "Upgrader": {
     "Title": "Nu downloaden",
@@ -58,6 +38,7 @@
     }
   },
   "Loading": {
-    "OpenFileStart": "Bezig met laden van {l_file}."
+    "OpenFileStart": "Bezig met laden van {l_file}.",
+    "LoadingFile": "{l_file} laden."
   }
 }

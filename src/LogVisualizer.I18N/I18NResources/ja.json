@@ -7,29 +7,9 @@
   },
   "Menu": {
     "File": "ファイル",
-    "FileMenu": {
-      "Open": "開く",
-      "OpenDialog": {
-        "PickLog": "ログを選択",
-        "SupportedLogs": "サポートされているログ"
-      },
-      "FromUrl": "URL から",
-      "Exit": "終了"
-    },
     "Views": "ビュー",
-    "ViewsMenu": {
-      "ShowOnlyFiltered": "フィルタリングされた行のみを表示"
-    },
     "Filter": "フィルタ|* |新しいフィルターを追加",
-    "FilterMenu": {
-      "AddFilter": "ヘルプ"
-    },
-    "Help": "アップグレードを確認",
-    "HelpMenu": {
-      "CheckUpgrade": "アプリ データ フォルダーを開く",
-      "OpenAppDataFolder": "概要",
-      "About": "アップグレードが利用可能: {l_version}"
-    }
+    "Help": "アップグレードを確認"
   },
   "Upgrader": {
     "Title": "今すぐダウンロード",
@@ -58,6 +38,7 @@
     }
   },
   "Loading": {
-    "OpenFileStart": "{l_file} をロードしています。"
+    "OpenFileStart": "{l_file} をロードしています。",
+    "LoadingFile": "{l_file}をロードしています。"
   }
 }

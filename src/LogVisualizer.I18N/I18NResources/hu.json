@@ -7,29 +7,9 @@
   },
   "Menu": {
     "File": "Fájl",
-    "FileMenu": {
-      "Open": "Megnyitás",
-      "OpenDialog": {
-        "PickLog": "Lapok kiválasztása",
-        "SupportedLogs": "Támogatott naplók"
-      },
-      "FromUrl": "Feladó URL",
-      "Exit": "Kilépés"
-    },
     "Views": "Megtekintések",
-    "ViewsMenu": {
-      "ShowOnlyFiltered": "Csak a szűrt sor megjelenítése"
-    },
     "Filter": "Szűrő|* |Új szűrő hozzáadása",
-    "FilterMenu": {
-      "AddFilter": "Súgó"
-    },
-    "Help": "Frissítés keresése",
-    "HelpMenu": {
-      "CheckUpgrade": "Nyissa meg az alkalmazás adatmappáját",
-      "OpenAppDataFolder": "Névjegy",
-      "About": "A frissítés elérhető: {l_version}"
-    }
+    "Help": "Frissítés keresése"
   },
   "Upgrader": {
     "Title": "Letöltés most",
@@ -58,6 +38,7 @@
     }
   },
   "Loading": {
-    "OpenFileStart": "{l_file} betöltése."
+    "OpenFileStart": "{l_file} betöltése.",
+    "LoadingFile": "{l_file} betöltése."
   }
 }

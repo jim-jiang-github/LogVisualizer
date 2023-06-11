@@ -7,29 +7,9 @@
   },
   "Menu": {
     "File": "Datei",
-    "FileMenu": {
-      "Open": "Öffnen",
-      "OpenDialog": {
-        "PickLog": "Protokolle auswählen",
-        "SupportedLogs": "Unterstützte Protokolle"
-      },
-      "FromUrl": "Von URL",
-      "Exit": "Beenden"
-    },
     "Views": "Ansichten",
-    "ViewsMenu": {
-      "ShowOnlyFiltered": "Nur gefilterte Zeile anzeigen"
-    },
     "Filter": "Filter|* |Neuen Filter hinzufügen",
-    "FilterMenu": {
-      "AddFilter": "Hilfe"
-    },
-    "Help": "Nach Upgrade suchen",
-    "HelpMenu": {
-      "CheckUpgrade": "App-Datenordner öffnen",
-      "OpenAppDataFolder": "Info",
-      "About": "Upgrade ist verfügbar: {l_version}"
-    }
+    "Help": "Nach Upgrade suchen"
   },
   "Upgrader": {
     "Title": "Jetzt herunterladen",
@@ -58,6 +38,7 @@
     }
   },
   "Loading": {
-    "OpenFileStart": "Laden {l_file}."
+    "OpenFileStart": "Laden {l_file}.",
+    "LoadingFile": "{l_file} wird geladen."
   }
 }

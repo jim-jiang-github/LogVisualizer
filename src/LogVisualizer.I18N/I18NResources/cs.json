@@ -7,29 +7,9 @@
   },
   "Menu": {
     "File": "Soubor",
-    "FileMenu": {
-      "Open": "Otevřít",
-      "OpenDialog": {
-        "PickLog": "Vybrat protokoly",
-        "SupportedLogs": "Podporované protokoly"
-      },
-      "FromUrl": "Z adresy URL",
-      "Exit": "Konec"
-    },
     "Views": "Zobrazení",
-    "ViewsMenu": {
-      "ShowOnlyFiltered": "Zobrazit pouze filtrovaný řádek"
-    },
     "Filter": "Filtr|* |Přidat nový filtr",
-    "FilterMenu": {
-      "AddFilter": "Nápověda"
-    },
-    "Help": "Zkontrolovat upgrade",
-    "HelpMenu": {
-      "CheckUpgrade": "Otevřít datovou složku aplikace",
-      "OpenAppDataFolder": "O aplikaci",
-      "About": "Upgrade je k dispozici: {l_version}"
-    }
+    "Help": "Zkontrolovat upgrade"
   },
   "Upgrader": {
     "Title": "Stáhnout nyní",
@@ -58,6 +38,7 @@
     }
   },
   "Loading": {
-    "OpenFileStart": "Načítání {l_file}."
+    "OpenFileStart": "Načítání {l_file}.",
+    "LoadingFile": "Načítání {l_file}."
   }
 }

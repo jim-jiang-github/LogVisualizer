@@ -7,29 +7,9 @@
   },
   "Menu": {
     "File": "파일",
-    "FileMenu": {
-      "Open": "열기",
-      "OpenDialog": {
-        "PickLog": "로그 선택",
-        "SupportedLogs": "지원되는 로그"
-      },
-      "FromUrl": "URL에서",
-      "Exit": "종료"
-    },
     "Views": "보기",
-    "ViewsMenu": {
-      "ShowOnlyFiltered": "필터링된 행만 표시"
-    },
     "Filter": "필터|* |새 필터 추가",
-    "FilterMenu": {
-      "AddFilter": "도움말"
-    },
-    "Help": "업그레이드 확인",
-    "HelpMenu": {
-      "CheckUpgrade": "앱 데이터 폴더 열기",
-      "OpenAppDataFolder": "정보",
-      "About": "업그레이드 가능: {l_version}"
-    }
+    "Help": "업그레이드 확인"
   },
   "Upgrader": {
     "Title": "지금 다운로드",
@@ -58,6 +38,7 @@
     }
   },
   "Loading": {
-    "OpenFileStart": "{l_file} 로드 중."
+    "OpenFileStart": "{l_file} 로드 중.",
+    "LoadingFile": "{l_file} 로드 중."
   }
 }

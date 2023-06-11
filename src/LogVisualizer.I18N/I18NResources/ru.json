@@ -7,29 +7,9 @@
   },
   "Menu": {
     "File": "Файл",
-    "FileMenu": {
-      "Open": "Открыть",
-      "OpenDialog": {
-        "PickLog": "Выбор журналов",
-        "SupportedLogs": "Поддерживаемые журналы"
-      },
-      "FromUrl": "Из URL",
-      "Exit": "Выйти"
-    },
     "Views": "Представления",
-    "ViewsMenu": {
-      "ShowOnlyFiltered": "Показать только отфильтрованную строку"
-    },
     "Filter": "Фильтр|* |Добавить новый фильтр",
-    "FilterMenu": {
-      "AddFilter": "Справка"
-    },
-    "Help": "Проверить наличие обновления",
-    "HelpMenu": {
-      "CheckUpgrade": "Открыть папку данных приложения",
-      "OpenAppDataFolder": "О программе",
-      "About": "Доступно обновление: {l_version}"
-    }
+    "Help": "Проверить наличие обновления"
   },
   "Upgrader": {
     "Title": "Загрузить сейчас",
@@ -58,6 +38,7 @@
     }
   },
   "Loading": {
-    "OpenFileStart": "Загружается {l_file}."
+    "OpenFileStart": "Загружается {l_file}.",
+    "LoadingFile": "Загрузка {l_file}."
   }
 }

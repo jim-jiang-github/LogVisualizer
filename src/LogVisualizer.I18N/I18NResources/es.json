@@ -7,29 +7,9 @@
   },
   "Menu": {
     "File": "Archivo",
-    "FileMenu": {
-      "Open": "Abrir",
-      "OpenDialog": {
-        "PickLog": "Seleccionar registros",
-        "SupportedLogs": "Registros admitidos"
-      },
-      "FromUrl": "De URL",
-      "Exit": "Salir"
-    },
     "Views": "Vistas",
-    "ViewsMenu": {
-      "ShowOnlyFiltered": "Mostrar solo línea filtrada"
-    },
     "Filter": "Filtro|* |Agregar nuevo filtro",
-    "FilterMenu": {
-      "AddFilter": "Ayuda"
-    },
-    "Help": "Buscar actualización",
-    "HelpMenu": {
-      "CheckUpgrade": "Abrir carpeta de datos de la aplicación",
-      "OpenAppDataFolder": "Acerca de",
-      "About": "La actualización está disponible: {l_version}"
-    }
+    "Help": "Buscar actualización"
   },
   "Upgrader": {
     "Title": "Descargar ahora",
@@ -58,6 +38,7 @@
     }
   },
   "Loading": {
-    "OpenFileStart": "Cargando {l_archivo}."
+    "OpenFileStart": "Cargando {l_archivo}.",
+    "LoadingFile": "Cargando {l_archivo}."
   }
 }

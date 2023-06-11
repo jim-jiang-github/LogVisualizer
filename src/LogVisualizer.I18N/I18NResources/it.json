@@ -7,29 +7,9 @@
   },
   "Menu": {
     "File": "File",
-    "FileMenu": {
-      "Open": "Apri",
-      "OpenDialog": {
-        "PickLog": "Seleziona log",
-        "SupportedLogs": "Log supportati"
-      },
-      "FromUrl": "Da Url",
-      "Exit": "Esci"
-    },
     "Views": "Visualizzazioni",
-    "ViewsMenu": {
-      "ShowOnlyFiltered": "Mostra solo riga filtrata"
-    },
     "Filter": "Filtro|* |Aggiungi nuovo filtro",
-    "FilterMenu": {
-      "AddFilter": "Guida"
-    },
-    "Help": "Controlla aggiornamento",
-    "HelpMenu": {
-      "CheckUpgrade": "Apri cartella dati app",
-      "OpenAppDataFolder": "Informazioni",
-      "About": "L'aggiornamento è disponibile: {l_version}"
-    }
+    "Help": "Controlla aggiornamento"
   },
   "Upgrader": {
     "Title": "Scarica ora",
@@ -58,6 +38,7 @@
     }
   },
   "Loading": {
-    "OpenFileStart": "Caricamento {l_file}."
+    "OpenFileStart": "Caricamento {l_file}.",
+    "LoadingFile": "Caricamento {l_file}."
   }
 }

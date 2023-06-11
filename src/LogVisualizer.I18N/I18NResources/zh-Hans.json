@@ -7,29 +7,9 @@
   },
   "Menu": {
     "File": "文件",
-    "FileMenu": {
-      "Open": "打开",
-      "OpenDialog": {
-        "PickLog": "选择日志",
-        "SupportedLogs": "支持的日志"
-      },
-      "FromUrl": "来自 Url",
-      "Exit": "退出"
-    },
     "Views": "视图",
-    "ViewsMenu": {
-      "ShowOnlyFiltered": "仅显示过滤的行"
-    },
     "Filter": "过滤器|* |添加新过滤器",
-    "FilterMenu": {
-      "AddFilter": "帮助"
-    },
-    "Help": "检查升级",
-    "HelpMenu": {
-      "CheckUpgrade": "打开应用数据文件夹",
-      "OpenAppDataFolder": "关于",
-      "About": "升级可用：{l_version}"
-    }
+    "Help": "检查升级"
   },
   "Upgrader": {
     "Title": "立即下载",
@@ -58,6 +38,7 @@
     }
   },
   "Loading": {
-    "OpenFileStart": "正在加载 {l_file}。"
+    "OpenFileStart": "正在加载 {l_file}。",
+    "LoadingFile": "正在加载 {l_file}。"
   }
 }

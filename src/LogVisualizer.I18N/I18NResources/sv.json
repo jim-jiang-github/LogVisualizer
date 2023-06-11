@@ -7,29 +7,9 @@
   },
   "Menu": {
     "File": "Fil",
-    "FileMenu": {
-      "Open": "Öppna",
-      "OpenDialog": {
-        "PickLog": "Välj loggar",
-        "SupportedLogs": "Loggar som stöds"
-      },
-      "FromUrl": "Från URL",
-      "Exit": "Avsluta"
-    },
     "Views": "Visningar",
-    "ViewsMenu": {
-      "ShowOnlyFiltered": "Visa endast filtrerad rad"
-    },
     "Filter": "Filter|* |Lägg till nytt filter",
-    "FilterMenu": {
-      "AddFilter": "Hjälp"
-    },
-    "Help": "Sök efter uppgradering",
-    "HelpMenu": {
-      "CheckUpgrade": "Öppna appdatamappen",
-      "OpenAppDataFolder": "Om",
-      "About": "Uppgradering är tillgänglig: {l_version}"
-    }
+    "Help": "Sök efter uppgradering"
   },
   "Upgrader": {
     "Title": "Ladda ner nu",
@@ -58,6 +38,7 @@
     }
   },
   "Loading": {
-    "OpenFileStart": "Laddar {l_file}."
+    "OpenFileStart": "Laddar {l_file}.",
+    "LoadingFile": "Laddar {l_file}."
   }
 }

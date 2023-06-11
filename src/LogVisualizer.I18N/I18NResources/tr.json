@@ -7,29 +7,9 @@
   },
   "Menu": {
     "File": "Dosya",
-    "FileMenu": {
-      "Open": "Aç",
-      "OpenDialog": {
-        "PickLog": "Günlükleri seç",
-        "SupportedLogs": "Desteklenen Günlükler"
-      },
-      "FromUrl": "URL'den",
-      "Exit": "Çıkış"
-    },
     "Views": "Görüntülemeler",
-    "ViewsMenu": {
-      "ShowOnlyFiltered": "Yalnızca filtrelenmiş satırı göster"
-    },
     "Filter": "Filtre|* |Yeni filtre ekle",
-    "FilterMenu": {
-      "AddFilter": "Yardım"
-    },
-    "Help": "Yükseltmeyi kontrol et",
-    "HelpMenu": {
-      "CheckUpgrade": "Uygulama veri klasörünü aç",
-      "OpenAppDataFolder": "Hakkında",
-      "About": "Yükseltme mevcut: {l_version}"
-    }
+    "Help": "Yükseltmeyi kontrol et"
   },
   "Upgrader": {
     "Title": "Şimdi indir",
@@ -58,6 +38,7 @@
     }
   },
   "Loading": {
-    "OpenFileStart": "{l_file} yükleniyor."
+    "OpenFileStart": "{l_file} yükleniyor.",
+    "LoadingFile": "{l_file} yükleniyor."
   }
 }
