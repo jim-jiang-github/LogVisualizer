@@ -1,0 +1,63 @@
+{
+  "Common": {
+    "Version": "Версия ({l_version number}).",
+    "Cancel": "Отмена",
+    "Confirm": "Подтвердить",
+    "ConfirmDelete": "Вы уверены, что хотите удалить '{l_name}'? Это действие нельзя отменить!"
+  },
+  "Menu": {
+    "File": "Файл",
+    "FileMenu": {
+      "Open": "Открыть",
+      "OpenDialog": {
+        "PickLog": "Выбор журналов",
+        "SupportedLogs": "Поддерживаемые журналы"
+      },
+      "FromUrl": "Из URL",
+      "Exit": "Выйти"
+    },
+    "Views": "Представления",
+    "ViewsMenu": {
+      "ShowOnlyFiltered": "Показать только отфильтрованную строку"
+    },
+    "Filter": "Фильтр|* |Добавить новый фильтр",
+    "FilterMenu": {
+      "AddFilter": "Справка"
+    },
+    "Help": "Проверить наличие обновления",
+    "HelpMenu": {
+      "CheckUpgrade": "Открыть папку данных приложения",
+      "OpenAppDataFolder": "О программе",
+      "About": "Доступно обновление: {l_version}"
+    }
+  },
+  "Upgrader": {
+    "Title": "Загрузить сейчас",
+    "DownloadNow": "Выйти и выполнить обновление сейчас",
+    "UpgradeNow": "Обновить при следующем запуске",
+    "UpgradeNextStartup": "Игнорировать эту версию",
+    "IgnoreThisVersion": "Нет источника сценария"
+  },
+  "Scenario": {
+    "NoSource": "Ветви фильтра",
+    "FilterBranches": "Настройка сценария",
+    "PanelTitle": "Обновление…",
+    "Updating": "Имя сценария:",
+    "Creator": {
+      "ScenarioName": "Введите имя сценария",
+      "ScenarioNameWatermark": "Конфигурация сценария может&apos ;t не содержит ни одного из следующих символов:/\\:*?\"<>|",
+      "ScenarioNameValidNameError": "Имя сценария не может быть нулевым или содержать пробел.",
+      "ScenarioNameValidNull": "Уже существует конфигурация сценария.",
+      "ScenarioNameValidExist": "Репозиторий сценариев: ",
+      "ScenarioRepo": "Введите репозиторий сценария",
+      "ScenarioRepoWatermark": "Репозиторий сценария не может быть нулевым или с пробелом.",
+      "ScenarioRepoValidNull": "Ветвь сценария:",
+      "ScenarioBranch": "Введите ветку сценария",
+      "ScenarioBranchWatermark": "Ветвь сценария не может быть нулевым или с пробелом.",
+      "ScenarioBranchValidNull": "Сейчас загружается... "
+    }
+  },
+  "Loading": {
+    "OpenFileStart": "Загружается {l_file}."
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "Common": {
+    "Version": "Verze ({l_version number}).",
+    "Cancel": "Zrušit",
+    "Confirm": "Potvrdit",
+    "ConfirmDelete": "Opravdu chcete smazat '{l_name}'? Tuto akci nelze vrátit zpět!"
+  },
+  "Menu": {
+    "File": "Soubor",
+    "FileMenu": {
+      "Open": "Otevřít",
+      "OpenDialog": {
+        "PickLog": "Vybrat protokoly",
+        "SupportedLogs": "Podporované protokoly"
+      },
+      "FromUrl": "Z adresy URL",
+      "Exit": "Konec"
+    },
+    "Views": "Zobrazení",
+    "ViewsMenu": {
+      "ShowOnlyFiltered": "Zobrazit pouze filtrovaný řádek"
+    },
+    "Filter": "Filtr|* |Přidat nový filtr",
+    "FilterMenu": {
+      "AddFilter": "Nápověda"
+    },
+    "Help": "Zkontrolovat upgrade",
+    "HelpMenu": {
+      "CheckUpgrade": "Otevřít datovou složku aplikace",
+      "OpenAppDataFolder": "O aplikaci",
+      "About": "Upgrade je k dispozici: {l_version}"
+    }
+  },
+  "Upgrader": {
+    "Title": "Stáhnout nyní",
+    "DownloadNow": "Ukončit a upgradovat nyní",
+    "UpgradeNow": "Upgrade při příštím spuštění",
+    "UpgradeNextStartup": "Ignorovat tuto verzi",
+    "IgnoreThisVersion": "Žádný zdroj scénáře"
+  },
+  "Scenario": {
+    "NoSource": "Větve filtru",
+    "FilterBranches": "Nastavení scénáře",
+    "PanelTitle": "Aktualizace…",
+    "Updating": "Název scénáře:",
+    "Creator": {
+      "ScenarioName": "Zadejte název scénáře",
+      "ScenarioNameWatermark": "Konfiguraci scénáře lze&apos ;neobsahuje žádný z následujících znaků:/\\:*?\"<>|",
+      "ScenarioNameValidNameError": "Název scénáře nemůže být null nebo je mezera.",
+      "ScenarioNameValidNull": "Již existuje konfigurace scénáře.",
+      "ScenarioNameValidExist": "Úložiště scénářů: ",
+      "ScenarioRepo": "Vstup do úložiště scénářů",
+      "ScenarioRepoWatermark": "Úložiště scénářů nemůže být null nebo v prostoru.",
+      "ScenarioRepoValidNull": "Větev scénáře:",
+      "ScenarioBranch": "Vstup do větve scénáře",
+      "ScenarioBranchWatermark": "Větev scénáře nemůže být nulová nebo v prostoru.",
+      "ScenarioBranchValidNull": "Nyní se načítá... "
+    }
+  },
+  "Loading": {
+    "OpenFileStart": "Načítání {l_file}."
+  }
+}

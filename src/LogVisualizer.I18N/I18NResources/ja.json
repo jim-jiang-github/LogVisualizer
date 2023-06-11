@@ -1,0 +1,63 @@
+{
+  "Common": {
+    "Version": "バージョン ({l_versionnumber})。",
+    "Cancel": "キャンセル",
+    "Confirm": "確認",
+    "ConfirmDelete": "'{l_name}'を削除してもよろしいですか?この操作は元に戻すことができません。"
+  },
+  "Menu": {
+    "File": "ファイル",
+    "FileMenu": {
+      "Open": "開く",
+      "OpenDialog": {
+        "PickLog": "ログを選択",
+        "SupportedLogs": "サポートされているログ"
+      },
+      "FromUrl": "URL から",
+      "Exit": "終了"
+    },
+    "Views": "ビュー",
+    "ViewsMenu": {
+      "ShowOnlyFiltered": "フィルタリングされた行のみを表示"
+    },
+    "Filter": "フィルタ|* |新しいフィルターを追加",
+    "FilterMenu": {
+      "AddFilter": "ヘルプ"
+    },
+    "Help": "アップグレードを確認",
+    "HelpMenu": {
+      "CheckUpgrade": "アプリ データ フォルダーを開く",
+      "OpenAppDataFolder": "概要",
+      "About": "アップグレードが利用可能: {l_version}"
+    }
+  },
+  "Upgrader": {
+    "Title": "今すぐダウンロード",
+    "DownloadNow": "今すぐ終了してアップグレード",
+    "UpgradeNow": "次回起動時にアップグレード",
+    "UpgradeNextStartup": "このバージョンを無視",
+    "IgnoreThisVersion": "シナリオ ソースなし"
+  },
+  "Scenario": {
+    "NoSource": "ブランチをフィルタ",
+    "FilterBranches": "シナリオ設定",
+    "PanelTitle": "更新中…",
+    "Updating": "シナリオ名:",
+    "Creator": {
+      "ScenarioName": "シナリオ名を入力",
+      "ScenarioNameWatermark": "シナリオ構成は可能(&A) ;次の文字は含まれません:/\\:*?\"<>|",
+      "ScenarioNameValidNameError": "シナリオ名には null またはスペースを使用できません。",
+      "ScenarioNameValidNull": "既存のシナリオ構成がすでに存在します。",
+      "ScenarioNameValidExist": "シナリオ リポジトリ: ",
+      "ScenarioRepo": "シナリオ リポジトリに入力してください",
+      "ScenarioRepoWatermark": "シナリオ リポジトリは null または空白にすることはできません。",
+      "ScenarioRepoValidNull": "シナリオ ブランチ:",
+      "ScenarioBranch": "シナリオ ブランチを入力してください",
+      "ScenarioBranchWatermark": "シナリオ ブランチは null または空白にすることはできません。",
+      "ScenarioBranchValidNull": "読み込み中... "
+    }
+  },
+  "Loading": {
+    "OpenFileStart": "{l_file} をロードしています。"
+  }
+}

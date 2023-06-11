@@ -1,0 +1,63 @@
+{
+  "Common": {
+    "Version": "Version ({l_numéro de version}).",
+    "Cancel": "Annuler",
+    "Confirm": "Confirmer",
+    "ConfirmDelete": "Voulez-vous vraiment supprimer le '{l_name}' ? Cette action ne peut pas être annulée !"
+  },
+  "Menu": {
+    "File": "Fichier",
+    "FileMenu": {
+      "Open": "Ouvrir",
+      "OpenDialog": {
+        "PickLog": "Choisir les journaux",
+        "SupportedLogs": "Journaux pris en charge"
+      },
+      "FromUrl": "Depuis l'URL",
+      "Exit": "Quitter"
+    },
+    "Views": "Vues",
+    "ViewsMenu": {
+      "ShowOnlyFiltered": "Afficher uniquement la ligne filtrée"
+    },
+    "Filter": "Filtre|* |Ajouter un nouveau filtre",
+    "FilterMenu": {
+      "AddFilter": "Aide"
+    },
+    "Help": "Vérifier la mise à niveau",
+    "HelpMenu": {
+      "CheckUpgrade": "Ouvrir le dossier de données de l'application",
+      "OpenAppDataFolder": "À propos de",
+      "About": "La mise à niveau est disponible : {l_version}"
+    }
+  },
+  "Upgrader": {
+    "Title": "Télécharger maintenant",
+    "DownloadNow": "Quitter et mettre à niveau maintenant",
+    "UpgradeNow": "Mettre à niveau au prochain démarrage",
+    "UpgradeNextStartup": "Ignorer cette version",
+    "IgnoreThisVersion": "Aucune source de scénario"
+  },
+  "Scenario": {
+    "NoSource": "Filtrer les branches",
+    "FilterBranches": "Paramètres du scénario",
+    "PanelTitle": "Mise à jour…",
+    "Updating": "Nom du scénario :",
+    "Creator": {
+      "ScenarioName": "Entrez le nom du scénario",
+      "ScenarioNameWatermark": "Une configuration de scénario peut&apos ;t contenir l'un des caractères suivants :/\\:*?\"<>|",
+      "ScenarioNameValidNameError": "Le nom du scénario ne peut pas être nul ou un espace.",
+      "ScenarioNameValidNull": "Il existe déjà une configuration de scénario existante.",
+      "ScenarioNameValidExist": "Référentiel de scénarios : ",
+      "ScenarioRepo": "Entrez le référentiel de scénarios",
+      "ScenarioRepoWatermark": "Le référentiel de scénarios ne peut pas être nul ou tant que l'espace.",
+      "ScenarioRepoValidNull": "Branche de scénario :",
+      "ScenarioBranch": "Entrez la branche de scénario",
+      "ScenarioBranchWatermark": "La branche de scénario ne peut pas être nulle ou tant que l'espace.",
+      "ScenarioBranchValidNull": "Chargement en cours... "
+    }
+  },
+  "Loading": {
+    "OpenFileStart": "Chargement de {l_file}."
+  }
+}

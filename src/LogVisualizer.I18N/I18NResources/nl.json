@@ -1,0 +1,63 @@
+{
+  "Common": {
+    "Version": "Versie ({l_versienummer}).",
+    "Cancel": "Annuleren",
+    "Confirm": "Bevestigen",
+    "ConfirmDelete": "Weet u zeker dat u de '{l_name}' wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt!"
+  },
+  "Menu": {
+    "File": "Bestand",
+    "FileMenu": {
+      "Open": "Openen",
+      "OpenDialog": {
+        "PickLog": "Kies logs",
+        "SupportedLogs": "Ondersteunde logs"
+      },
+      "FromUrl": "Van URL",
+      "Exit": "Afsluiten"
+    },
+    "Views": "Views",
+    "ViewsMenu": {
+      "ShowOnlyFiltered": "Toon alleen gefilterde regel"
+    },
+    "Filter": "Filter|* |Nieuw filter toevoegen",
+    "FilterMenu": {
+      "AddFilter": "Help"
+    },
+    "Help": "Controleren op upgrade",
+    "HelpMenu": {
+      "CheckUpgrade": "App-gegevensmap openen",
+      "OpenAppDataFolder": "Over",
+      "About": "Upgrade is beschikbaar: {l_version}"
+    }
+  },
+  "Upgrader": {
+    "Title": "Nu downloaden",
+    "DownloadNow": "Sluit af en upgrade nu",
+    "UpgradeNow": "Upgrade bij volgende start",
+    "UpgradeNextStartup": "Negeer deze versie",
+    "IgnoreThisVersion": "Geen scenariobron"
+  },
+  "Scenario": {
+    "NoSource": "Filtertakken",
+    "FilterBranches": "Scenario-instelling",
+    "PanelTitle": "Bijwerken...",
+    "Updating": "Scenarionaam:",
+    "Creator": {
+      "ScenarioName": "Scenarionaam invoeren",
+      "ScenarioNameWatermark": "Een scenarioconfiguratie kan&apos ;t een van de volgende tekens bevatten:/\\:*?\"<>|",
+      "ScenarioNameValidNameError": "Scenarionaam mag niet null of while-spatie zijn.",
+      "ScenarioNameValidNull": "Er is al een bestaande scenarioconfiguratie.",
+      "ScenarioNameValidExist": "Scenario-opslagplaats: ",
+      "ScenarioRepo": "Scenario-opslagplaats openen",
+      "ScenarioRepoWatermark": "Scenario-opslagplaats mag niet null of while-spatie zijn.",
+      "ScenarioRepoValidNull": "Scenariotak:",
+      "ScenarioBranch": "Scenario-tak openen",
+      "ScenarioBranchWatermark": "Scenario-tak kan niet null of while-spatie zijn.",
+      "ScenarioBranchValidNull": "Bezig met laden... "
+    }
+  },
+  "Loading": {
+    "OpenFileStart": "Bezig met laden van {l_file}."
+  }
+}

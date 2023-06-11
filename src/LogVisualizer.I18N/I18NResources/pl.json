@@ -1,0 +1,63 @@
+{
+  "Common": {
+    "Version": "Wersja ({l_version number}).",
+    "Cancel": "Anuluj",
+    "Confirm": "Potwierdź",
+    "ConfirmDelete": "Czy na pewno chcesz usunąć '{l_name}'? Tej czynności nie można cofnąć!"
+  },
+  "Menu": {
+    "File": "Plik",
+    "FileMenu": {
+      "Open": "Otwórz",
+      "OpenDialog": {
+        "PickLog": "Wybierz dzienniki",
+        "SupportedLogs": "Obsługiwane dzienniki"
+      },
+      "FromUrl": "Z adresu URL",
+      "Exit": "Wyjdź"
+    },
+    "Views": "Widoki",
+    "ViewsMenu": {
+      "ShowOnlyFiltered": "Pokaż tylko filtrowaną linię"
+    },
+    "Filter": "Filtr|* |Dodaj nowy filtr",
+    "FilterMenu": {
+      "AddFilter": "Pomoc"
+    },
+    "Help": "Sprawdź aktualizację",
+    "HelpMenu": {
+      "CheckUpgrade": "Otwórz folder danych aplikacji",
+      "OpenAppDataFolder": "Informacje",
+      "About": "Dostępna jest aktualizacja: {l_version}"
+    }
+  },
+  "Upgrader": {
+    "Title": "Pobierz teraz",
+    "DownloadNow": "Wyjdź i uaktualnij teraz",
+    "UpgradeNow": "Aktualizacja przy następnym uruchomieniu",
+    "UpgradeNextStartup": "Ignoruj tę wersję",
+    "IgnoreThisVersion": "Brak źródła scenariusza"
+  },
+  "Scenario": {
+    "NoSource": "Filtruj gałęzie",
+    "FilterBranches": "Ustawienia scenariusza",
+    "PanelTitle": "Aktualizowanie...",
+    "Updating": "Nazwa scenariusza:",
+    "Creator": {
+      "ScenarioName": "Wprowadź nazwę scenariusza",
+      "ScenarioNameWatermark": "Konfiguracja scenariusza może&apos ;t nie może zawierać żadnego z następujących znaków:/\\:*?\"<>|",
+      "ScenarioNameValidNameError": "Nazwa scenariusza nie może być null ani spacją.",
+      "ScenarioNameValidNull": "Istnieje już konfiguracja scenariusza.",
+      "ScenarioNameValidExist": "Repozytorium scenariuszy: ",
+      "ScenarioRepo": "Wprowadź repozytorium scenariusza",
+      "ScenarioRepoWatermark": "Repozytorium scenariusza nie może mieć wartości null ani spacji.",
+      "ScenarioRepoValidNull": "Gałąź scenariusza:",
+      "ScenarioBranch": "Wprowadź gałąź scenariusza",
+      "ScenarioBranchWatermark": "Gałąź scenariusza nie może mieć wartości null ani spacji.",
+      "ScenarioBranchValidNull": "Teraz ładuję... "
+    }
+  },
+  "Loading": {
+    "OpenFileStart": "Ładowanie {l_file}."
+  }
+}

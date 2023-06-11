@@ -1,0 +1,63 @@
+{
+  "Common": {
+    "Version": "Versión ({l_version number}).",
+    "Cancel": "Cancelar",
+    "Confirm": "Confirmar",
+    "ConfirmDelete": "¿Está seguro de que desea eliminar '{l_name}'? ¡Esta acción no se puede deshacer!"
+  },
+  "Menu": {
+    "File": "Archivo",
+    "FileMenu": {
+      "Open": "Abrir",
+      "OpenDialog": {
+        "PickLog": "Seleccionar registros",
+        "SupportedLogs": "Registros admitidos"
+      },
+      "FromUrl": "De URL",
+      "Exit": "Salir"
+    },
+    "Views": "Vistas",
+    "ViewsMenu": {
+      "ShowOnlyFiltered": "Mostrar solo línea filtrada"
+    },
+    "Filter": "Filtro|* |Agregar nuevo filtro",
+    "FilterMenu": {
+      "AddFilter": "Ayuda"
+    },
+    "Help": "Buscar actualización",
+    "HelpMenu": {
+      "CheckUpgrade": "Abrir carpeta de datos de la aplicación",
+      "OpenAppDataFolder": "Acerca de",
+      "About": "La actualización está disponible: {l_version}"
+    }
+  },
+  "Upgrader": {
+    "Title": "Descargar ahora",
+    "DownloadNow": "Salir y actualizar ahora",
+    "UpgradeNow": "Actualizar en el próximo inicio",
+    "UpgradeNextStartup": "Ignorar esta versión",
+    "IgnoreThisVersion": "Sin fuente de escenario"
+  },
+  "Scenario": {
+    "NoSource": "Filtrar ramas",
+    "FilterBranches": "Configuración del escenario",
+    "PanelTitle": "Actualizando…",
+    "Updating": "Nombre del escenario:",
+    "Creator": {
+      "ScenarioName": "Ingrese el nombre del escenario",
+      "ScenarioNameWatermark": "Una configuración de escenario puede&apos ;t contiene alguno de los siguientes caracteres:/\\:*?\"<>|",
+      "ScenarioNameValidNameError": "El nombre del escenario no puede ser nulo ni puede contener un espacio.",
+      "ScenarioNameValidNull": "Ya existe una configuración de escenario.",
+      "ScenarioNameValidExist": "Repositorio de escenarios: ",
+      "ScenarioRepo": "Ingresar al repositorio de escenarios",
+      "ScenarioRepoWatermark": "El repositorio de escenarios no puede ser nulo o espacio libre.",
+      "ScenarioRepoValidNull": "Rama de escenario:",
+      "ScenarioBranch": "Ingresar rama de escenario",
+      "ScenarioBranchWatermark": "La rama de escenario no puede ser nulo ni espacio libre.",
+      "ScenarioBranchValidNull": "Ahora cargando... "
+    }
+  },
+  "Loading": {
+    "OpenFileStart": "Cargando {l_archivo}."
+  }
+}

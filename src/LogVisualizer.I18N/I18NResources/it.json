@@ -1,0 +1,63 @@
+{
+  "Common": {
+    "Version": "Versione ({l_numero versione}).",
+    "Cancel": "Annulla",
+    "Confirm": "Conferma",
+    "ConfirmDelete": "Sei sicuro di voler eliminare '{l_name}'? Questa azione non può essere annullata!"
+  },
+  "Menu": {
+    "File": "File",
+    "FileMenu": {
+      "Open": "Apri",
+      "OpenDialog": {
+        "PickLog": "Seleziona log",
+        "SupportedLogs": "Log supportati"
+      },
+      "FromUrl": "Da Url",
+      "Exit": "Esci"
+    },
+    "Views": "Visualizzazioni",
+    "ViewsMenu": {
+      "ShowOnlyFiltered": "Mostra solo riga filtrata"
+    },
+    "Filter": "Filtro|* |Aggiungi nuovo filtro",
+    "FilterMenu": {
+      "AddFilter": "Guida"
+    },
+    "Help": "Controlla aggiornamento",
+    "HelpMenu": {
+      "CheckUpgrade": "Apri cartella dati app",
+      "OpenAppDataFolder": "Informazioni",
+      "About": "L'aggiornamento è disponibile: {l_version}"
+    }
+  },
+  "Upgrader": {
+    "Title": "Scarica ora",
+    "DownloadNow": "Esci e aggiorna ora",
+    "UpgradeNow": "Aggiorna al prossimo avvio",
+    "UpgradeNextStartup": "Ignora questa versione",
+    "IgnoreThisVersion": "Nessuna origine scenario"
+  },
+  "Scenario": {
+    "NoSource": "Filtra rami",
+    "FilterBranches": "Impostazione scenario",
+    "PanelTitle": "Aggiornamento in corso...",
+    "Updating": "Nome scenario:",
+    "Creator": {
+      "ScenarioName": "Inserisci nome scenario",
+      "ScenarioNameWatermark": "Una configurazione scenario può&apos ;t contengono uno dei seguenti caratteri:/\\:*?\"<>|",
+      "ScenarioNameValidNameError": "Il nome dello scenario non può essere nullo o while space.",
+      "ScenarioNameValidNull": "Esiste già una configurazione dello scenario esistente.",
+      "ScenarioNameValidExist": "Repository dello scenario: ",
+      "ScenarioRepo": "Entra nel repository dello scenario",
+      "ScenarioRepoWatermark": "Il repository dello scenario non può essere nullo o while space.",
+      "ScenarioRepoValidNull": "Ramo dello scenario:",
+      "ScenarioBranch": "Inserisci branch dello scenario",
+      "ScenarioBranchWatermark": "Il ramo dello scenario non può essere nullo o while space.",
+      "ScenarioBranchValidNull": "Caricamento in corso... "
+    }
+  },
+  "Loading": {
+    "OpenFileStart": "Caricamento {l_file}."
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "Common": {
+    "Version": "Verzió ({l_version number}).",
+    "Cancel": "Mégse",
+    "Confirm": "Megerősítés",
+    "ConfirmDelete": "Biztosan törölni szeretné a következőt: '{l_name}'? Ez a művelet nem vonható vissza!"
+  },
+  "Menu": {
+    "File": "Fájl",
+    "FileMenu": {
+      "Open": "Megnyitás",
+      "OpenDialog": {
+        "PickLog": "Lapok kiválasztása",
+        "SupportedLogs": "Támogatott naplók"
+      },
+      "FromUrl": "Feladó URL",
+      "Exit": "Kilépés"
+    },
+    "Views": "Megtekintések",
+    "ViewsMenu": {
+      "ShowOnlyFiltered": "Csak a szűrt sor megjelenítése"
+    },
+    "Filter": "Szűrő|* |Új szűrő hozzáadása",
+    "FilterMenu": {
+      "AddFilter": "Súgó"
+    },
+    "Help": "Frissítés keresése",
+    "HelpMenu": {
+      "CheckUpgrade": "Nyissa meg az alkalmazás adatmappáját",
+      "OpenAppDataFolder": "Névjegy",
+      "About": "A frissítés elérhető: {l_version}"
+    }
+  },
+  "Upgrader": {
+    "Title": "Letöltés most",
+    "DownloadNow": "Kilépés és frissítés most",
+    "UpgradeNow": "Frissítés a következő indításkor",
+    "UpgradeNextStartup": "A verzió figyelmen kívül hagyása",
+    "IgnoreThisVersion": "Nincs forgatókönyv forrása"
+  },
+  "Scenario": {
+    "NoSource": "Szűrő ágak",
+    "FilterBranches": "Forgatókönyv-beállítás",
+    "PanelTitle": "Frissítés…",
+    "Updating": "Forgatókönyv neve:",
+    "Creator": {
+      "ScenarioName": "Adja meg a forgatókönyv nevét",
+      "ScenarioNameWatermark": "A forgatókönyv-konfiguráció ;t tartalmazza a következő karakterek bármelyikét:/\\:*?\"<>|",
+      "ScenarioNameValidNameError": "A forgatókönyv neve nem lehet null vagy míg szóköz.",
+      "ScenarioNameValidNull": "Már létezik forgatókönyv-konfiguráció.",
+      "ScenarioNameValidExist": "Forgatókönyvtár: ",
+      "ScenarioRepo": "Belépés a forgatókönyvtárba",
+      "ScenarioRepoWatermark": "A forgatókönyvtár nem lehet null vagy miközben szóköz.",
+      "ScenarioRepoValidNull": "Forgatókönyv-elágazás:",
+      "ScenarioBranch": "Scenárió ág megadása",
+      "ScenarioBranchWatermark": "A forgatókönyv ága nem lehet null vagy közben szóköz.",
+      "ScenarioBranchValidNull": "Betöltés... "
+    }
+  },
+  "Loading": {
+    "OpenFileStart": "{l_file} betöltése."
+  }
+}

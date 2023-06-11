@@ -1,0 +1,63 @@
+{
+  "Common": {
+    "Version": "Versão ({l_version number}).",
+    "Cancel": "Cancelar",
+    "Confirm": "Confirmar",
+    "ConfirmDelete": "Tem certeza de que deseja excluir o '{l_name}'? Esta ação não pode ser desfeita!"
+  },
+  "Menu": {
+    "File": "Arquivo",
+    "FileMenu": {
+      "Open": "Abrir",
+      "OpenDialog": {
+        "PickLog": "Selecionar logs",
+        "SupportedLogs": "Logs suportados"
+      },
+      "FromUrl": "De Url",
+      "Exit": "Sair"
+    },
+    "Views": "Exibições",
+    "ViewsMenu": {
+      "ShowOnlyFiltered": "Mostrar apenas linha filtrada"
+    },
+    "Filter": "Filtro|* |Adicionar novo filtro",
+    "FilterMenu": {
+      "AddFilter": "Ajuda"
+    },
+    "Help": "Verificar atualização",
+    "HelpMenu": {
+      "CheckUpgrade": "Abrir pasta de dados do aplicativo",
+      "OpenAppDataFolder": "Sobre",
+      "About": "A atualização está disponível: {l_version}"
+    }
+  },
+  "Upgrader": {
+    "Title": "Baixe agora",
+    "DownloadNow": "Sair e atualizar agora",
+    "UpgradeNow": "Atualizar na próxima inicialização",
+    "UpgradeNextStartup": "Ignorar esta versão",
+    "IgnoreThisVersion": "Nenhuma fonte de cenário"
+  },
+  "Scenario": {
+    "NoSource": "Filter branches",
+    "FilterBranches": "Configuração do cenário",
+    "PanelTitle": "Atualizando…",
+    "Updating": "Nome do cenário:",
+    "Creator": {
+      "ScenarioName": "Insira o nome do cenário",
+      "ScenarioNameWatermark": "Uma configuração de cenário pode&apos ;não contém nenhum dos seguintes caracteres:/\\:*?\"<>|",
+      "ScenarioNameValidNameError": "O nome do cenário não pode ser nulo ou enquanto espaço.",
+      "ScenarioNameValidNull": "Já existe uma configuração de cenário existente.",
+      "ScenarioNameValidExist": "Repositório do cenário: ",
+      "ScenarioRepo": "Insira o repositório do cenário",
+      "ScenarioRepoWatermark": "O repositório do cenário não pode ser nulo ou enquanto espaço.",
+      "ScenarioRepoValidNull": "Branch do cenário:",
+      "ScenarioBranch": "Insira o branch do cenário",
+      "ScenarioBranchWatermark": "O branch do cenário não pode ser null ou while space.",
+      "ScenarioBranchValidNull": "Now loading... "
+    }
+  },
+  "Loading": {
+    "OpenFileStart": "Carregando {l_file}."
+  }
+}

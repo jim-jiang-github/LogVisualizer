@@ -1,0 +1,63 @@
+{
+  "Common": {
+    "Version": "Version ({l_version number}).",
+    "Cancel": "Abbrechen",
+    "Confirm": "Bestätigen",
+    "ConfirmDelete": "Sind Sie sicher, dass Sie '{l_name}' löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden!"
+  },
+  "Menu": {
+    "File": "Datei",
+    "FileMenu": {
+      "Open": "Öffnen",
+      "OpenDialog": {
+        "PickLog": "Protokolle auswählen",
+        "SupportedLogs": "Unterstützte Protokolle"
+      },
+      "FromUrl": "Von URL",
+      "Exit": "Beenden"
+    },
+    "Views": "Ansichten",
+    "ViewsMenu": {
+      "ShowOnlyFiltered": "Nur gefilterte Zeile anzeigen"
+    },
+    "Filter": "Filter|* |Neuen Filter hinzufügen",
+    "FilterMenu": {
+      "AddFilter": "Hilfe"
+    },
+    "Help": "Nach Upgrade suchen",
+    "HelpMenu": {
+      "CheckUpgrade": "App-Datenordner öffnen",
+      "OpenAppDataFolder": "Info",
+      "About": "Upgrade ist verfügbar: {l_version}"
+    }
+  },
+  "Upgrader": {
+    "Title": "Jetzt herunterladen",
+    "DownloadNow": "Jetzt beenden und upgraden",
+    "UpgradeNow": "Beim nächsten Start aktualisieren",
+    "UpgradeNextStartup": "Diese Version ignorieren",
+    "IgnoreThisVersion": "Keine Szenarioquelle"
+  },
+  "Scenario": {
+    "NoSource": "Zweige filtern",
+    "FilterBranches": "Szenarioeinstellung",
+    "PanelTitle": "Aktualisierung…",
+    "Updating": "Szenarioname:",
+    "Creator": {
+      "ScenarioName": "Szenarionamen eingeben",
+      "ScenarioNameWatermark": "Eine Szenariokonfiguration kann&apos ;t enthält eines der folgenden Zeichen:/\\:*?\"<>|",
+      "ScenarioNameValidNameError": "Der Szenarioname darf nicht null oder Leerzeichen sein.",
+      "ScenarioNameValidNull": "Es ist bereits eine Szenariokonfiguration vorhanden.",
+      "ScenarioNameValidExist": "Szenario-Repository: ",
+      "ScenarioRepo": "Szenario-Repository eingeben",
+      "ScenarioRepoWatermark": "Szenario-Repository darf nicht null oder solange Speicherplatz sein.",
+      "ScenarioRepoValidNull": "Szenariozweig:",
+      "ScenarioBranch": "Szenariozweig eingeben",
+      "ScenarioBranchWatermark": "Szenariozweig darf nicht null oder solange Speicherplatz sein.",
+      "ScenarioBranchValidNull": "Wird geladen... "
+    }
+  },
+  "Loading": {
+    "OpenFileStart": "Laden {l_file}."
+  }
+}

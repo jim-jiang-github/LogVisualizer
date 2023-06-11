@@ -1,0 +1,63 @@
+{
+  "Common": {
+    "Version": "Sürüm ({l_sürüm numarası}).",
+    "Cancel": "İptal",
+    "Confirm": "Onayla",
+    "ConfirmDelete": "'{l_name}'yi silmek istediğinizden emin misiniz? Bu işlem geri alınamaz!"
+  },
+  "Menu": {
+    "File": "Dosya",
+    "FileMenu": {
+      "Open": "Aç",
+      "OpenDialog": {
+        "PickLog": "Günlükleri seç",
+        "SupportedLogs": "Desteklenen Günlükler"
+      },
+      "FromUrl": "URL'den",
+      "Exit": "Çıkış"
+    },
+    "Views": "Görüntülemeler",
+    "ViewsMenu": {
+      "ShowOnlyFiltered": "Yalnızca filtrelenmiş satırı göster"
+    },
+    "Filter": "Filtre|* |Yeni filtre ekle",
+    "FilterMenu": {
+      "AddFilter": "Yardım"
+    },
+    "Help": "Yükseltmeyi kontrol et",
+    "HelpMenu": {
+      "CheckUpgrade": "Uygulama veri klasörünü aç",
+      "OpenAppDataFolder": "Hakkında",
+      "About": "Yükseltme mevcut: {l_version}"
+    }
+  },
+  "Upgrader": {
+    "Title": "Şimdi indir",
+    "DownloadNow": "Çıkış ve şimdi yükselt",
+    "UpgradeNow": "Bir sonraki açılışta yükselt",
+    "UpgradeNextStartup": "Bu sürümü yoksay",
+    "IgnoreThisVersion": "Senaryo kaynağı yok"
+  },
+  "Scenario": {
+    "NoSource": "Filtre dalları",
+    "FilterBranches": "Senaryo ayarı",
+    "PanelTitle": "Güncelleniyor…",
+    "Updating": "Senaryo adı:",
+    "Creator": {
+      "ScenarioName": "Senaryo adını girin",
+      "ScenarioNameWatermark": "Bir senaryo yapılandırması yapılabilir. ;t aşağıdaki karakterlerden herhangi birini içermez:/\\:*?\"<>|",
+      "ScenarioNameValidNameError": "Senaryo adı null veya while boşluk olamaz.",
+      "ScenarioNameValidNull": "Zaten bir senaryo yapılandırması var.",
+      "ScenarioNameValidExist": "Senaryo deposu: ",
+      "ScenarioRepo": "Senaryo deposunu girin",
+      "ScenarioRepoWatermark": "Senaryo deposu null veya while alanı olamaz.",
+      "ScenarioRepoValidNull": "Senaryo dalı:",
+      "ScenarioBranch": "Senaryo dalı girin",
+      "ScenarioBranchWatermark": "Senaryo dalı null veya while boşluk olamaz.",
+      "ScenarioBranchValidNull": "Şimdi yükleniyor... "
+    }
+  },
+  "Loading": {
+    "OpenFileStart": "{l_file} yükleniyor."
+  }
+}

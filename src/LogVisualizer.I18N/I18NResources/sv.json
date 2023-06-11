@@ -1,0 +1,63 @@
+{
+  "Common": {
+    "Version": "Version ({l_version number}).",
+    "Cancel": "Avbryt",
+    "Confirm": "Bekräfta",
+    "ConfirmDelete": "Är du säker på att du vill ta bort '{l_name}'? Denna åtgärd kan inte ångras!"
+  },
+  "Menu": {
+    "File": "Fil",
+    "FileMenu": {
+      "Open": "Öppna",
+      "OpenDialog": {
+        "PickLog": "Välj loggar",
+        "SupportedLogs": "Loggar som stöds"
+      },
+      "FromUrl": "Från URL",
+      "Exit": "Avsluta"
+    },
+    "Views": "Visningar",
+    "ViewsMenu": {
+      "ShowOnlyFiltered": "Visa endast filtrerad rad"
+    },
+    "Filter": "Filter|* |Lägg till nytt filter",
+    "FilterMenu": {
+      "AddFilter": "Hjälp"
+    },
+    "Help": "Sök efter uppgradering",
+    "HelpMenu": {
+      "CheckUpgrade": "Öppna appdatamappen",
+      "OpenAppDataFolder": "Om",
+      "About": "Uppgradering är tillgänglig: {l_version}"
+    }
+  },
+  "Upgrader": {
+    "Title": "Ladda ner nu",
+    "DownloadNow": "Avsluta och uppgradera nu",
+    "UpgradeNow": "Uppgradera vid nästa start",
+    "UpgradeNextStartup": "Ignorera den här versionen",
+    "IgnoreThisVersion": "Ingen scenariokälla"
+  },
+  "Scenario": {
+    "NoSource": "Filtrera grenar",
+    "FilterBranches": "Scenarioinställning",
+    "PanelTitle": "Uppdaterar...",
+    "Updating": "Scenarionamn:",
+    "Creator": {
+      "ScenarioName": "Ange scenarionamn",
+      "ScenarioNameWatermark": "En scenariokonfiguration kan&apos ;t innehåller något av följande tecken:/\\:*?\"<>|",
+      "ScenarioNameValidNameError": "Scenarionamn kan inte vara null eller medan mellanslag.",
+      "ScenarioNameValidNull": "Det finns redan en befintlig scenariokonfiguration.",
+      "ScenarioNameValidExist": "Scenarioförråd: ",
+      "ScenarioRepo": "Ange scenarioförråd",
+      "ScenarioRepoWatermark": "Scenarioförråd kan inte vara null eller medan mellanslag.",
+      "ScenarioRepoValidNull": "Scenarioförgrening:",
+      "ScenarioBranch": "Ange scenarioförgrening",
+      "ScenarioBranchWatermark": "Scenarioförgrening kan inte vara null eller medan mellanslag.",
+      "ScenarioBranchValidNull": "Läser nu in... "
+    }
+  },
+  "Loading": {
+    "OpenFileStart": "Laddar {l_file}."
+  }
+}
