@@ -24,7 +24,6 @@ namespace LogVisualizer.I18N
 
         private static readonly Dictionary<CultureInfo, CultureInfo> defaultCultureMap = new Dictionary<CultureInfo, CultureInfo>
         {
-            { CultureInfo.GetCultureInfo("zh"), CultureInfo.GetCultureInfo("zh-Hans") },
         };
 
         internal static Dictionary<I18NKeys, I18NValue> nonLocalizedMap = new Dictionary<I18NKeys, I18NValue>();
