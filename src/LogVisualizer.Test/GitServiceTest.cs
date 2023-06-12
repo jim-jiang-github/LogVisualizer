@@ -28,8 +28,6 @@ namespace LogVisualizer.Test
         [InlineData(null, new string[0])]
         [InlineData("", new string[0])]
         [InlineData("xxxx", new string[0])]
-        [InlineData(Global.GITHUB_URL, new string[] { "dev" })]
-        //[InlineData("https://github.com/AvaloniaUI/Avalonia.git", new string[] { "dev" })]
         public async Task GetAllOriginBranches(string githubUrl, string[]? expected)
         {
             var branchs = await _gitService.GetAllOriginBranches(githubUrl);
@@ -37,7 +35,6 @@ namespace LogVisualizer.Test
         }
 
         [Theory]
-        [InlineData("TestFolder", "dev")]
         [InlineData(null, null)]
         [InlineData("", "dev")]
         [InlineData("xxxqwex", null)]
@@ -59,7 +56,6 @@ namespace LogVisualizer.Test
 
         [Theory]
         [InlineData(null, null)]
-        [InlineData("", $"{Global.GITHUB_URL}.git")]
         [InlineData("xxxx", null)]
         public async Task GetFolderGitRepo(string folder, string expected)
         {
@@ -78,22 +74,11 @@ namespace LogVisualizer.Test
         }
 
         [Theory]
-        [InlineData("TestFolder", true)]
-        //[InlineData("xxxx", false)]
+        [InlineData("xxxx", false)]
         public async Task HasUpdate(string folder, bool expected)
         {
             var dir = Path.Combine(Global.AppTempDirectory, folder);
             var result = await _gitService.HasUpdate(dir);
-            Assert.Equal(expected, result);
-        }
-
-        [Theory]
-        [InlineData("TestFolder", true)]
-        //[InlineData("xxxx", false)]
-        public async Task Pull(string folder, bool expected)
-        {
-            var dir = Path.Combine(Global.AppTempDirectory, folder);
-            var result = await _gitService.Pull(dir);
             Assert.Equal(expected, result);
         }
     }

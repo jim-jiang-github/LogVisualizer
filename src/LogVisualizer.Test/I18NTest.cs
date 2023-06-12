@@ -16,36 +16,16 @@ namespace LogVisualizer.Test
         }
 
         [Theory]
-        [InlineData(@"..\LogVisualizer.I18N\I18NResources\en-US.json", 12)]
-        [InlineData(@"..\LogVisualizer.I18N\I18NResources\non-localized.json", 12)]
-        public async Task I18NKeysTest(string i18nJsonPath, int expected)
+        [InlineData(@"..\..\..\..\..\LogVisualizer.I18N\I18NResources\en.json")]
+        [InlineData(@"..\..\..\..\..\LogVisualizer.I18N\I18NResources\non-localized.json")]
+        public void I18NKeysTest(string i18nJsonPath)
         {
             var i18nJsonContent = File.ReadAllText(i18nJsonPath);
             var localizationKey = GetLocalizationKey(i18nJsonContent);
-            //Assert.Equal(expected, count);
+            Assert.IsAssignableFrom<IEnumerable<string>>(localizationKey);
+            var localizationMap = GetLocalizationMap(i18nJsonContent);
+            Assert.IsAssignableFrom<IEnumerable<KeyValuePair<string, object>>>(localizationMap);
         }
-
-        //[Theory]
-        //[InlineData(@"..\LogVisualizer.I18N\I18NResources\en-US.json", 12)]
-        //[InlineData(@"..\LogVisualizer.I18N\I18NResources\non-localized.json", 12)]
-        //public async Task ReadCompressedPackage(string compressedPackagePath)
-        //{
-        //    var paths = CompressedPackageLoader.GetEntryPaths(compressedPackagePath);
-        //    foreach (string path in paths)
-        //    {
-        //        using var stream = CompressedPackageReader.ReadStream(path);
-        //        StreamReader reader = new StreamReader(stream);
-        //        var newPath = path;
-        //        int delimiterIndex = path.LastIndexOf("|");
-        //        if (delimiterIndex != -1)
-        //        {
-        //            newPath = newPath.Substring(delimiterIndex + 1);
-        //        }
-        //        var fileName = Path.GetFileNameWithoutExtension(newPath);
-        //        var content = reader.ReadLine();
-        //        Assert.Equal(fileName, content);
-        //    }
-        //}
 
         private IEnumerable<string> GetLocalizationKey(string? jsonContent, string? parentKey = null)
         {
