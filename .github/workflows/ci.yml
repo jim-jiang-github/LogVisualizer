@@ -43,9 +43,6 @@ jobs:
       - name: Extract version from tag
         uses: damienaicheh/extract-version-from-tag-action@v1.1.0
 
-      - name: Install dependencies
-        run: dotnet restore ${{env.SLN_DIR}}\LogVisualizer.sln
-
       - name: Build win-x64
         run: dotnet publish ${{env.CSPROJ_DIR}}\LogVisualizer.csproj -r win-x64 -p:Configuration=Release -p:PublishSingleFile=true -p:PublishReadyToRun=true -p:IncludeNativeLibrariesForSelfExtract=true --self-contained true -p:PublishTrimmed=True -p:TrimMode=CopyUsed -property:Version='${{ env.MAJOR }}.${{ env.MINOR }}.${{ env.PATCH }}.${{ env.NUMBER_OF_COMMITS }}'
 
