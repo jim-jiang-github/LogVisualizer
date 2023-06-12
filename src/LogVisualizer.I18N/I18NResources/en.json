@@ -4,53 +4,5 @@
     "cancel": "Cancel",
     "confirm": "Confirm",
     "confirmDelete": "Are you sure you want to delete the '{{name}}'? This action cannot be undone!"
-  },
-  "menu": {
-    "file": "File",
-    "open": "Open",
-    "fromUrl": "From Url",
-    "exit": "Exit",
-    "views": "Views",
-    "showOnlyFiltered": "Show only filtered line",
-    "filter": "Filter",
-    "addNewFilter": "Add new filter",
-    "help": "Help",
-    "checkUpgrade": "Check for upgrade",
-    "openAppDataFolder": "Open App data folder",
-    "about": "About"
-  },
-  "openFileDialog": {
-    "pickLog": "Pick logs",
-    "supportedLogs": "Supported Logs"
-  },
-  "upgrader": {
-    "title": "Upgrade is available: {{version}}",
-    "downloadNow": "Download now",
-    "upgradeNow": "Exit and upgrade now",
-    "upgradeNextStartup": "Upgrade on next startup",
-    "ignoreThisVersion": "Ignore this version"
-  },
-  "scenario": {
-    "noSource": "No scenario source",
-    "filterBranches": "Filter branches",
-    "panelTitle": "Scenario setting",
-    "updating": "Updating",
-    "creator": {
-      "scenarioName": "Scenario name:",
-      "scenarioNameWatermark": "Enter scenario name",
-      "scenarioNameValidNameError": "A scenario config can not contain any of the following characters:/\\:*?\"<>|",
-      "scenarioNameValidNull": "Scenario name cannot be null or while space.",
-      "scenarioNameValidExist": "There is already an existing scenario config.",
-      "scenarioRepo": "Scenario repository:",
-      "scenarioRepoWatermark": "Enter scenario repository",
-      "scenarioRepoValidNull": "Scenario repository cannot be null or while space.",
-      "scenarioBranch": "Scenario branch:",
-      "scenarioBranchWatermark": "Enter scenario branch",
-      "scenarioBranchValidNull": "Scenario branch cannot be null or while space."
-    }
-  },
-  "loading": {
-    "openFileStart": "Now loading...",
-    "loadingFile": "Loading {{file}}."
   }
 }
