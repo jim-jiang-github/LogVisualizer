@@ -39,9 +39,6 @@ jobs:
       - name: Initialize submodules
         run: git submodule update --init --recursive
 
-      - name: Update submodules
-        run: git submodule update --remote
-
       - name: Extract version from tag
         uses: damienaicheh/extract-version-from-tag-action@v1.1.0
 
