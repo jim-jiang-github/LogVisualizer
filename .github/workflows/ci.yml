@@ -20,6 +20,8 @@ jobs:
     runs-on: windows-latest
 
     steps:
+      - uses: AutoModality/action-clean@v1
+
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v1.9.0
         with:
