@@ -23,7 +23,7 @@ jobs:
               with:
                   provider: 'azure-official'
                   subscriptionKey: '${{ secrets.AZURE_TRANSLATION_API_KEY }}'
-                  location: 'westus2'
+                  location: 'eastasia'
                   filePath: './src/LogVisualizer.I18N/I18NResources/en.json'
                   from: 'en'
                   to: 'zh-Hans'
