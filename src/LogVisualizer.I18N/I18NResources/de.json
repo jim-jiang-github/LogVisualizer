@@ -1,56 +1,56 @@
 {
-  "common": {
-    "version": "Version ({{Versionsnummer}}).",
-    "cancel": "Abbrechen",
-    "confirm": "Bestätigen",
-    "confirmDelete": "Bist du sicher, dass du den '{{name}}' löschen möchtest? Diese Aktion kann nicht rückgängig gemacht werden!"
+  "Common": {
+    "Version": "Version ({l_version number}).",
+    "Cancel": "Abbrechen",
+    "Confirm": "Bestätigen",
+    "ConfirmDelete": "Sind Sie sicher, dass Sie die '{l_name}' löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden!"
   },
-  "menu": {
-    "file": "Datei",
-    "open": "Offen",
-    "fromUrl": "Von URL",
-    "exit": "Ausgang",
-    "views": "Ansichten",
-    "showOnlyFiltered": "Nur gefilterte Zeile anzeigen",
-    "filter": "Filter",
-    "addNewFilter": "Neuen Filter hinzufügen",
-    "help": "Hilfe",
-    "checkUpgrade": "Nach Upgrades suchen",
-    "openAppDataFolder": "App-Datenordner öffnen",
-    "about": "Über"
+  "Menu": {
+    "File": "Datei",
+    "Open": "Offen",
+    "FromUrl": "Von URL",
+    "Exit": "Ausgang",
+    "Views": "Ansichten",
+    "ShowOnlyFiltered": "Nur gefilterte Zeile anzeigen",
+    "Filter": "Filter",
+    "AddNewFilter": "Neuen Filter hinzufügen",
+    "Help": "Hilfe",
+    "CheckUpgrade": "Nach Upgrades suchen",
+    "OpenAppDataFolder": "App-Datenordner öffnen",
+    "About": "Über"
   },
-  "openFileDialog": {
-    "pickLog": "Protokolle auswählen",
-    "supportedLogs": "Unterstützte Protokolle"
+  "OpenFileDialog": {
+    "PickLog": "Protokolle auswählen",
+    "SupportedLogs": "Unterstützte Protokolle"
   },
-  "upgrader": {
-    "title": "Upgrade ist verfügbar: {{version}}",
-    "downloadNow": "Jetzt herunterladen",
-    "upgradeNow": "Jetzt beenden und upgraden",
-    "upgradeNextStartup": "Upgrade beim nächsten Start",
-    "ignoreThisVersion": "Ignorieren Sie diese Version"
+  "Upgrader": {
+    "Title": "Upgrade ist verfügbar: {l_version}",
+    "DownloadNow": "Jetzt herunterladen",
+    "UpgradeNow": "Jetzt beenden und upgraden",
+    "UpgradeNextStartup": "Upgrade beim nächsten Start",
+    "IgnoreThisVersion": "Ignorieren Sie diese Version"
   },
-  "scenario": {
-    "noSource": "Keine Szenarioquelle",
-    "filterBranches": "Verzweigungen filtern",
-    "panelTitle": "Szenario-Einstellung",
-    "updating": "Aktualisierung",
-    "creator": {
-      "scenarioName": "Name des Szenarios:",
-      "scenarioNameWatermark": "Geben Sie den Namen des Szenarios ein",
-      "scenarioNameValidNameError": "Eine Szenariokonfiguration darf keines der folgenden Zeichen enthalten:/\\:*?\"<>|",
-      "scenarioNameValidNull": "Der Name des Szenarios darf nicht null oder while space sein.",
-      "scenarioNameValidExist": "Es gibt bereits eine vorhandene Szenariokonfiguration.",
-      "scenarioRepo": "Szenario-Repository:",
-      "scenarioRepoWatermark": "Szenario-Repository aufrufen",
-      "scenarioRepoValidNull": "Das Szenario-Repository darf nicht null oder while space sein.",
-      "scenarioBranch": "Szenario-Verzweigung:",
-      "scenarioBranchWatermark": "Szenario-Verzweigung eingeben",
-      "scenarioBranchValidNull": "Die Verzweigung des Szenarios darf nicht null oder while space sein."
+  "Scenario": {
+    "NoSource": "Keine Szenarioquelle",
+    "FilterBranches": "Verzweigungen filtern",
+    "PanelTitle": "Szenario-Einstellung",
+    "Updating": "Aktualisierung...",
+    "Creator": {
+      "ScenarioName": "Name des Szenarios:",
+      "ScenarioNameWatermark": "Geben Sie den Namen des Szenarios ein",
+      "ScenarioNameValidNameError": "Eine Szenariokonfiguration darf keines der folgenden Zeichen enthalten:/\\:*?\"<>|",
+      "ScenarioNameValidNull": "Der Name des Szenarios darf nicht null oder while space sein.",
+      "ScenarioNameValidExist": "Es gibt bereits eine vorhandene Szenariokonfiguration.",
+      "ScenarioRepo": "Szenario-Repository:",
+      "ScenarioRepoWatermark": "Szenario-Repository aufrufen",
+      "ScenarioRepoValidNull": "Das Szenario-Repository darf nicht null oder while space sein.",
+      "ScenarioBranch": "Szenario-Verzweigung:",
+      "ScenarioBranchWatermark": "Szenario-Verzweigung eingeben",
+      "ScenarioBranchValidNull": "Die Verzweigung des Szenarios darf nicht null oder while space sein."
     }
   },
-  "loading": {
-    "openFileStart": "Jetzt wird geladen...",
-    "loadingFile": "{{file}} wird geladen."
+  "Loading": {
+    "OpenFileStart": "Jetzt wird geladen...",
+    "LoadingFile": "{l_file} wird geladen."
   }
 }
