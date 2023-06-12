@@ -1,0 +1,56 @@
+{
+  "Common": {
+    "Version": "版本（{l_version编号}）。",
+    "Cancel": "取消",
+    "Confirm": "确认",
+    "ConfirmDelete": "是否确实要删除“{l_name}”？此操作无法撤消！"
+  },
+  "Menu": {
+    "File": "文件",
+    "Open": "打开",
+    "FromUrl": "从网址",
+    "Exit": "退出",
+    "Views": "视图",
+    "ShowOnlyFiltered": "仅显示筛选的行",
+    "Filter": "滤波器",
+    "AddNewFilter": "添加新筛选器",
+    "Help": "帮助",
+    "CheckUpgrade": "检查升级",
+    "OpenAppDataFolder": "打开应用数据文件夹",
+    "About": "大约"
+  },
+  "OpenFileDialog": {
+    "PickLog": "拾取日志",
+    "SupportedLogs": "支持的日志"
+  },
+  "Upgrader": {
+    "Title": "升级可用：{l_version}",
+    "DownloadNow": "立即下载",
+    "UpgradeNow": "立即退出并升级",
+    "UpgradeNextStartup": "下次启动时升级",
+    "IgnoreThisVersion": "忽略此版本"
+  },
+  "Scenario": {
+    "NoSource": "无方案源",
+    "FilterBranches": "筛选分支",
+    "PanelTitle": "场景设置",
+    "Updating": "更新。。。",
+    "Creator": {
+      "ScenarioName": "方案名称：",
+      "ScenarioNameWatermark": "输入方案名称",
+      "ScenarioNameValidNameError": "场景配置不能包含以下任何字符：/\\:*？“<>|",
+      "ScenarioNameValidNull": "方案名称不能为空或空格。",
+      "ScenarioNameValidExist": "已存在一个现有的方案配置。",
+      "ScenarioRepo": "场景存储库：",
+      "ScenarioRepoWatermark": "进入场景存储库",
+      "ScenarioRepoValidNull": "方案存储库不能为空或空格。",
+      "ScenarioBranch": "方案分支：",
+      "ScenarioBranchWatermark": "输入方案分支",
+      "ScenarioBranchValidNull": "方案分支不能为空或空格。"
+    }
+  },
+  "Loading": {
+    "OpenFileStart": "正在加载中...",
+    "LoadingFile": "正在加载 {l_file}。"
+  }
+}
