@@ -25,7 +25,7 @@ namespace LogVisualizer.Test
                 .AddScoped<LogDisplayViewModel>()
                 .AddScoped<SideBarViewModel>()
                 .AddScoped<BottomBarViewModel>()
-                .AddSingleton<SchemaConfigViewModel>()
+                .AddSingleton<ScenarioConfigViewModel>()
                 .AddSingleton<SplashWindowViewModel>();
         }
 
