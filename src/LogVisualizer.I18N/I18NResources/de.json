@@ -1,0 +1,56 @@
+{
+  "common": {
+    "version": "Version ({{Versionsnummer}}).",
+    "cancel": "Abbrechen",
+    "confirm": "Bestätigen",
+    "confirmDelete": "Bist du sicher, dass du den '{{name}}' löschen möchtest? Diese Aktion kann nicht rückgängig gemacht werden!"
+  },
+  "menu": {
+    "file": "Datei",
+    "open": "Offen",
+    "fromUrl": "Von URL",
+    "exit": "Ausgang",
+    "views": "Ansichten",
+    "showOnlyFiltered": "Nur gefilterte Zeile anzeigen",
+    "filter": "Filter",
+    "addNewFilter": "Neuen Filter hinzufügen",
+    "help": "Hilfe",
+    "checkUpgrade": "Nach Upgrades suchen",
+    "openAppDataFolder": "App-Datenordner öffnen",
+    "about": "Über"
+  },
+  "openFileDialog": {
+    "pickLog": "Protokolle auswählen",
+    "supportedLogs": "Unterstützte Protokolle"
+  },
+  "upgrader": {
+    "title": "Upgrade ist verfügbar: {{version}}",
+    "downloadNow": "Jetzt herunterladen",
+    "upgradeNow": "Jetzt beenden und upgraden",
+    "upgradeNextStartup": "Upgrade beim nächsten Start",
+    "ignoreThisVersion": "Ignorieren Sie diese Version"
+  },
+  "scenario": {
+    "noSource": "Keine Szenarioquelle",
+    "filterBranches": "Verzweigungen filtern",
+    "panelTitle": "Szenario-Einstellung",
+    "updating": "Aktualisierung",
+    "creator": {
+      "scenarioName": "Name des Szenarios:",
+      "scenarioNameWatermark": "Geben Sie den Namen des Szenarios ein",
+      "scenarioNameValidNameError": "Eine Szenariokonfiguration darf keines der folgenden Zeichen enthalten:/\\:*?\"<>|",
+      "scenarioNameValidNull": "Der Name des Szenarios darf nicht null oder while space sein.",
+      "scenarioNameValidExist": "Es gibt bereits eine vorhandene Szenariokonfiguration.",
+      "scenarioRepo": "Szenario-Repository:",
+      "scenarioRepoWatermark": "Szenario-Repository aufrufen",
+      "scenarioRepoValidNull": "Das Szenario-Repository darf nicht null oder while space sein.",
+      "scenarioBranch": "Szenario-Verzweigung:",
+      "scenarioBranchWatermark": "Szenario-Verzweigung eingeben",
+      "scenarioBranchValidNull": "Die Verzweigung des Szenarios darf nicht null oder while space sein."
+    }
+  },
+  "loading": {
+    "openFileStart": "Jetzt wird geladen...",
+    "loadingFile": "{{file}} wird geladen."
+  }
+}
