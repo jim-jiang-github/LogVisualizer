@@ -20,8 +20,6 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: git9527/clean-up-action@v1
-
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v1.9.0
         with:
