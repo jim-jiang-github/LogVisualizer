@@ -1,56 +1,56 @@
 {
-  "Common": {
-    "Version": "",
-    "Cancel": "",
-    "Confirm": "",
-    "ConfirmDelete": ""
+  "common": {
+    "version": "",
+    "cancel": "",
+    "confirm": "",
+    "confirmDelete": ""
   },
-  "Menu": {
-    "File": "",
-    "Open": "",
-    "FromUrl": "",
-    "Exit": "",
-    "Views": "",
-    "ShowOnlyFiltered": "",
-    "Filter": "",
-    "AddNewFilter": "",
-    "Help": "",
-    "CheckUpgrade": "",
-    "OpenAppDataFolder": "",
-    "About": ""
+  "menu": {
+    "file": "",
+    "open": "",
+    "fromUrl": "",
+    "exit": "",
+    "views": "",
+    "showOnlyFiltered": "",
+    "filter": "",
+    "addNewFilter": "",
+    "help": "",
+    "checkUpgrade": "",
+    "openAppDataFolder": "",
+    "about": ""
   },
-  "OpenFileDialog": {
-    "PickLog": "",
-    "SupportedLogs": ""
+  "openFileDialog": {
+    "pickLog": "",
+    "supportedLogs": ""
   },
-  "Upgrader": {
-    "Title": "",
-    "DownloadNow": "",
-    "UpgradeNow": "",
-    "UpgradeNextStartup": "",
-    "IgnoreThisVersion": ""
+  "upgrader": {
+    "title": "",
+    "downloadNow": "",
+    "upgradeNow": "",
+    "upgradeNextStartup": "",
+    "ignoreThisVersion": ""
   },
-  "Scenario": {
-    "NoSource": "",
-    "FilterBranches": "",
-    "PanelTitle": "",
-    "Updating": "",
-    "Creator": {
-      "ScenarioName": "",
-      "ScenarioNameWatermark": "",
-      "ScenarioNameValidNameError": "",
-      "ScenarioNameValidNull": "",
-      "ScenarioNameValidExist": "",
-      "ScenarioRepo": "",
-      "ScenarioRepoWatermark": "",
-      "ScenarioRepoValidNull": "",
-      "ScenarioBranch": "",
-      "ScenarioBranchWatermark": "",
-      "ScenarioBranchValidNull": ""
+  "scenario": {
+    "noSource": "",
+    "filterBranches": "",
+    "panelTitle": "",
+    "updating": "",
+    "creator": {
+      "scenarioName": "",
+      "scenarioNameWatermark": "",
+      "scenarioNameValidNameError": "",
+      "scenarioNameValidNull": "",
+      "scenarioNameValidExist": "",
+      "scenarioRepo": "",
+      "scenarioRepoWatermark": "",
+      "scenarioRepoValidNull": "",
+      "scenarioBranch": "",
+      "scenarioBranchWatermark": "",
+      "scenarioBranchValidNull": ""
     }
   },
-  "Loading": {
-    "OpenFileStart": "",
-    "LoadingFile": ""
+  "loading": {
+    "openFileStart": "",
+    "loadingFile": ""
   }
 }
