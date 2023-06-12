@@ -1,41 +1,56 @@
 {
-  "errors": {
-    "missing_entity": "配置中缺少实体",
-    "too_many_segments_requested": "num_segments 中请求的预测段太多。必须 <= 预测实体中的段数。",
-    "daily_forecasts": "所选天气实体似乎提供每日预报。考虑切换到小时实体。",
-    "must_be_int": "必须是大于或等于 2 的偶数",
-    "invalid_colors": "您配置中的以下颜色无效：",
-    "must_be_positive_int": "必须是正整数",
-    "label_spacing_positive_even_int": "label_spacing 必须是偶数大于等于2",
-    "offset_must_be_positive_int": "offset必须为正整数"
+  "Common": {
+    "Version": "",
+    "Cancel": "",
+    "Confirm": "",
+    "ConfirmDelete": ""
   },
-  "common": {
-    "version": "版本",
-    "title": "每小时天气",
-    "title_card": "每小时天气卡片",
-    "description": "将每小时天气状况呈现为条形的卡片。",
-    "invalid_configuration": "无效配置"
+  "Menu": {
+    "File": "",
+    "Open": "",
+    "FromUrl": "",
+    "Exit": "",
+    "Views": "",
+    "ShowOnlyFiltered": "",
+    "Filter": "",
+    "AddNewFilter": "",
+    "Help": "",
+    "CheckUpgrade": "",
+    "OpenAppDataFolder": "",
+    "About": ""
   },
-  "editor": {
-    "entity": "实体（必需）",
-    "name": "名称（可选）",
-    "segments_to_show": "数量要显示的预测段数（可选）",
-    "offset": "要偏移的预测段数开始于（可选）",
-    "icons": "显示图标而不是文本标签",
-    "label_spacing": "预测段数到空间时间和温度标签（可选）"
+  "OpenFileDialog": {
+    "PickLog": "",
+    "SupportedLogs": ""
   },
-  "conditions": {
-    "clear": "晴",
-    "cloudy": "多云",
-    "fog": "雾",
-    "hail": "冰雹",
-    "thunderstorm": "雷暴",
-    "partlyCloudy": "多云",
-    "heavyRain": "大雨",
-    "rain": "雨| *|雪",
-    "snow": "夹层",
-    "mixedPrecip": "晴",
-    "sunny": "多风",
-    "windy": ""
+  "Upgrader": {
+    "Title": "",
+    "DownloadNow": "",
+    "UpgradeNow": "",
+    "UpgradeNextStartup": "",
+    "IgnoreThisVersion": ""
+  },
+  "Scenario": {
+    "NoSource": "",
+    "FilterBranches": "",
+    "PanelTitle": "",
+    "Updating": "",
+    "Creator": {
+      "ScenarioName": "",
+      "ScenarioNameWatermark": "",
+      "ScenarioNameValidNameError": "",
+      "ScenarioNameValidNull": "",
+      "ScenarioNameValidExist": "",
+      "ScenarioRepo": "",
+      "ScenarioRepoWatermark": "",
+      "ScenarioRepoValidNull": "",
+      "ScenarioBranch": "",
+      "ScenarioBranchWatermark": "",
+      "ScenarioBranchValidNull": ""
+    }
+  },
+  "Loading": {
+    "OpenFileStart": "",
+    "LoadingFile": ""
   }
 }
