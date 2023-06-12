@@ -32,10 +32,25 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0
+          fetch-depth: 1
 
       - name: Initialize submodules
         run: git submodule update --init --recursive
+
+      - name: Install localization package
+        run: npm install -g i18n-auto-translation-msnyder
+
+      - name: Translate files
+        id: translate
+        uses: msnyder-msft/i18n-auto-translation-action@v1.0.1
+        with:
+            provider: 'azure-official'
+            subscriptionKey: '${{ secrets.AZURE_TRANSLATION_API_KEY }}'
+            location: 'westus2'
+            filePath: './src/LogVisualizer.I18N/I18NResources/en.json'
+            from: 'en'
+            to: 'zh'
+            debug: false
 
       - name: Extract version from tag
         uses: damienaicheh/extract-version-from-tag-action@v1.1.0
