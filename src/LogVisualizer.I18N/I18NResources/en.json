@@ -1,41 +1,56 @@
 {
-  "common": {
-    "version": "Version",
-    "title": "Hourly Weather",
-    "title_card": "Hourly Weather Card",
-    "description": "A card to render hourly weather conditions as a bar.",
-    "invalid_configuration": "Invalid configuration"
+  "Common": {
+    "Version": "Version ({l_version number}).",
+    "Cancel": "Cancel",
+    "Confirm": "Confirm",
+    "ConfirmDelete": "Are you sure you want to delete the '{l_name}'? This action cannot be undone!"
   },
-  "editor": {
-    "entity": "Entity (Required)",
-    "name": "Name (Optional)",
-    "segments_to_show": "Number of forecast segments to show (Optional)",
-    "offset": "Number of forecast segments to offset start by (Optional)",
-    "icons": "Show icons instead of text labels",
-    "label_spacing": "Number of forecast segments to space time and temperature labels by (Optional)"
+  "Menu": {
+    "File": "File",
+    "Open": "Open",
+    "FromUrl": "From Url",
+    "Exit": "Exit",
+    "Views": "Views",
+    "ShowOnlyFiltered": "Show only filtered line",
+    "Filter": "Filter",
+    "AddNewFilter": "Add new filter",
+    "Help": "Help",
+    "CheckUpgrade": "Check for upgrade",
+    "OpenAppDataFolder": "Open App data folder",
+    "About": "About"
   },
-  "errors": {
-    "missing_entity": "entity is missing in configuration",
-    "too_many_segments_requested": "Too many forecast segments requested in num_segments. Must be <= number of segments in forecast entity.",
-    "daily_forecasts": "The selected weather entity seems to provide daily forecasts. Consider switching to an hourly entity.",
-    "must_be_int": "Must be an even integer greater than or equal to 2",
-    "invalid_colors": "The following colors in your configuration are invalid:",
-    "must_be_positive_int": "Must be a positive integer",
-    "label_spacing_positive_even_int": "label_spacing must be an even integer greater than or equal to 2",
-    "offset_must_be_positive_int": "offset must be a positive integer"
+  "OpenFileDialog": {
+    "PickLog": "Pick logs",
+    "SupportedLogs": "Supported Logs"
   },
-  "conditions": {
-    "clear": "Clear",
-    "cloudy": "Cloudy",
-    "fog": "Fog",
-    "hail": "Hail",
-    "thunderstorm": "Thunderstorm",
-    "partlyCloudy": "Partly cloudy",
-    "heavyRain": "Heavy rain",
-    "rain": "Rain",
-    "snow": "Snow",
-    "mixedPrecip": "Mixed precip",
-    "sunny": "Sunny",
-    "windy": "Windy"
+  "Upgrader": {
+    "Title": "Upgrade is available: {l_version}",
+    "DownloadNow": "Download now",
+    "UpgradeNow": "Exit and upgrade now",
+    "UpgradeNextStartup": "Upgrade on next startup",
+    "IgnoreThisVersion": "Ignore this version"
+  },
+  "Scenario": {
+    "NoSource": "No scenario source",
+    "FilterBranches": "Filter branches",
+    "PanelTitle": "Scenario setting",
+    "Updating": "Updating\u2026",
+    "Creator": {
+      "ScenarioName": "Scenario name:",
+      "ScenarioNameWatermark": "Enter scenario name",
+      "ScenarioNameValidNameError": "A scenario config can't contain any of the following characters:/\\:*?\"<>|",
+      "ScenarioNameValidNull": "Scenario name cannot be null or while space.",
+      "ScenarioNameValidExist": "There is already an existing scenario config.",
+      "ScenarioRepo": "Scenario repository:",
+      "ScenarioRepoWatermark": "Enter scenario repository",
+      "ScenarioRepoValidNull": "Scenario repository cannot be null or while space.",
+      "ScenarioBranch": "Scenario branch:",
+      "ScenarioBranchWatermark": "Enter scenario branch",
+      "ScenarioBranchValidNull": "Scenario branch cannot be null or while space."
+    }
+  },
+  "Loading": {
+    "OpenFileStart": "Now loading...",
+    "LoadingFile": "Loading {l_file}."
   }
 }
