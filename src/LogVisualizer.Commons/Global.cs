@@ -8,6 +8,17 @@ namespace LogVisualizer.Commons
 {
     public static class Global
     {
+        public static bool IsDebug
+        {
+            get
+            {
+#if DEBUG
+                return true;
+#else
+                return false;
+#endif
+            }
+        }
         public const string APP_NAME = "LogVisualizer";
 
         public const string GITHUB_URL = "https://github.com/jim-jiang-github/LogVisualizer";

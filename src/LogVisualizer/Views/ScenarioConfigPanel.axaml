@@ -2,6 +2,7 @@
     x:Class="LogVisualizer.Views.ScenarioConfigPanel"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviours="clr-namespace:LogVisualizer.Behaviours;assembly=LogVisualizer"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
     xmlns:i18n="clr-namespace:LogVisualizer.I18N;assembly=LogVisualizer.I18N"
@@ -118,81 +119,95 @@
                         </ComboBox.IsVisible>
                     </ComboBox>
                 </Expander.Header>
-                <Grid
-                    Margin="10,10,10,10"
-                    VerticalAlignment="Top"
-                    RowDefinitions="*,*,*,*">
-                    <DockPanel Grid.Row="0" Height="30">
-                        <TextBlock
-                            Width="120"
-                            VerticalAlignment="Center"
-                            DockPanel.Dock="Left"
-                            Text="{i18n:I18NKeyBinding Key=Scenario_Creator_ScenarioName}" />
-                        <TextBox
-                            Name="ScenarioName"
-                            Margin="10,0,0,0"
-                            Text="{Binding Creator.ScenarioName}"
-                            Watermark="{i18n:I18NKeyBinding Key=Scenario_Creator_ScenarioNameWatermark}" />
-                    </DockPanel>
-                    <DockPanel
-                        Grid.Row="1"
-                        Height="30"
-                        Margin="0,10,0,0">
-                        <TextBlock
-                            Width="120"
-                            VerticalAlignment="Center"
-                            DockPanel.Dock="Left"
-                            Text="{i18n:I18NKeyBinding Key=Scenario_Creator_ScenarioRepo}" />
-                        <StackPanel>
+                <Grid VerticalAlignment="Top" RowDefinitions="*,*,*">
+                    <Grid
+                        Grid.Row="0"
+                        Margin="10,10,10,10"
+                        IsEnabled="{Binding Enabled}"
+                        RowDefinitions="*,*,*">
+                        <DockPanel Grid.Row="0" Height="30">
+                            <TextBlock
+                                Width="140"
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Left"
+                                Text="{i18n:I18NKeyBinding Key=Scenario_Creator_ScenarioName}" />
                             <TextBox
-                                Name="ScenarioRepo"
+                                Name="ScenarioName"
                                 Margin="10,0,0,0"
-                                Text="{Binding Creator.ScenarioRepo}"
-                                Watermark="{i18n:I18NKeyBinding Key=Scenario_Creator_ScenarioRepoWatermark}">
+                                Text="{Binding Creator.ScenarioName}"
+                                Watermark="{i18n:I18NKeyBinding Key=Scenario_Creator_ScenarioNameWatermark}" />
+                        </DockPanel>
+                        <DockPanel
+                            Grid.Row="1"
+                            Height="30"
+                            Margin="0,10,0,0">
+                            <TextBlock
+                                Width="140"
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Left"
+                                Text="{i18n:I18NKeyBinding Key=Scenario_Creator_ScenarioRepo}" />
+                            <StackPanel>
+                                <TextBox
+                                    Name="ScenarioRepo"
+                                    Margin="10,0,0,0"
+                                    IsEnabled="{Binding !!Creator.ScenarioName}"
+                                    Text="{Binding Creator.ScenarioRepo}"
+                                    Watermark="{i18n:I18NKeyBinding Key=Scenario_Creator_ScenarioRepoWatermark}">
+                                    <i:Interaction.Behaviors>
+                                        <ia:EventTriggerBehavior EventName="TextChanged" SourceObject="ScenarioRepo">
+                                            <ia:InvokeCommandAction Command="{Binding Creator.FetchBranchesCommand}" />
+                                        </ia:EventTriggerBehavior>
+                                    </i:Interaction.Behaviors>
+                                </TextBox>
+                                <ProgressBar
+                                    Margin="10,0,0,0"
+                                    IsIndeterminate="True"
+                                    IsVisible="{Binding Creator.IsFetchingBranches}" />
+                            </StackPanel>
+                        </DockPanel>
+                        <DockPanel
+                            Grid.Row="2"
+                            Height="30"
+                            Margin="0,10,0,0">
+                            <TextBlock
+                                Width="140"
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Left"
+                                Text="{i18n:I18NKeyBinding Key=Scenario_Creator_ScenarioBranch}" />
+                            <AutoCompleteBox
+                                Name="ScenarioBranch"
+                                Margin="10,0,0,0"
+                                FilterMode="Contains"
+                                IsEnabled="{Binding !!Creator.AllBranches.Count}"
+                                Items="{Binding Creator.AllBranches}"
+                                Text="{Binding Creator.ScenarioBranch}"
+                                Watermark="{i18n:I18NKeyBinding Key=Scenario_Creator_ScenarioBranchWatermark}">
                                 <i:Interaction.Behaviors>
-                                    <ia:EventTriggerBehavior EventName="TextChanged" SourceObject="ScenarioRepo">
-                                        <ia:InvokeCommandAction Command="{Binding Creator.FetchBranchesCommand}" />
-                                    </ia:EventTriggerBehavior>
+                                    <behaviours:AutoCompleteZeroMinimumPrefixLengthDropdownBehaviour />
                                 </i:Interaction.Behaviors>
-                            </TextBox>
-                            <ProgressBar
-                                Margin="10,0,0,0"
-                                IsIndeterminate="True"
-                                IsVisible="{Binding Creator.IsLoading}" />
-                        </StackPanel>
-                    </DockPanel>
-                    <DockPanel
-                        Grid.Row="2"
-                        Height="30"
-                        Margin="0,10,0,0">
-                        <TextBlock
-                            Width="120"
-                            VerticalAlignment="Center"
-                            DockPanel.Dock="Left"
-                            Text="{i18n:I18NKeyBinding Key=Scenario_Creator_ScenarioBranch}" />
-                        <AutoCompleteBox
-                            Name="ScenarioBranch"
-                            Margin="10,0,0,0"
-                            FilterMode="Contains"
-                            IsEnabled="{Binding !!Creator.AllBranches.Count}"
-                            Items="{Binding Creator.AllBranches}"
-                            Text="{Binding Creator.ScenarioBranch}"
-                            Watermark="{i18n:I18NKeyBinding Key=Scenario_Creator_ScenarioBranchWatermark}" />
-                    </DockPanel>
+                            </AutoCompleteBox>
+                        </DockPanel>
+                    </Grid>
                     <StackPanel
-                        Grid.Row="3"
+                        Grid.Row="1"
+                        Margin="10,0,10,0"
                         HorizontalAlignment="Right"
                         Orientation="Horizontal">
                         <Button
-                            Margin="0,10,0,0"
+                            Margin="0,0,0,0"
                             Command="{Binding Creator.CreateScenarioCancelCommand}"
                             Content="{i18n:I18NKeyBinding Key=Common_Cancel}"
                             IsVisible="{Binding !Enabled}" />
                         <Button
-                            Margin="10,10,0,0"
+                            Margin="10,0,0,0"
                             Command="{Binding Creator.CreateScenarioCommand}"
                             Content="{i18n:I18NKeyBinding Key=Common_Confirm}" />
                     </StackPanel>
+                    <ProgressBar
+                        Grid.Row="2"
+                        VerticalAlignment="Bottom"
+                        IsIndeterminate="True"
+                        IsVisible="{Binding !Enabled}" />
                 </Grid>
             </Expander>
         </DockPanel>

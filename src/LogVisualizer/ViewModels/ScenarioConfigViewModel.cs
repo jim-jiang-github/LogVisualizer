@@ -19,17 +19,66 @@ using Avalonia.Controls;
 using System.Collections;
 using LogVisualizer.Models;
 using Avalonia.Threading;
+using LogVisualizer.ValidationAttributes;
+using LogVisualizer.Commons.Attributes;
+using FluentValidation;
+using System.Text.RegularExpressions;
+using Metalama.Framework.Validation;
 
 namespace LogVisualizer.ViewModels
 {
     public partial class ScenarioConfigViewModel : ViewModelBase
     {
-        public partial class ScenarioCreator : ObservableValidator
+        public partial class ScenarioCreator : ViewModelBase, INotifyDataErrorInfo
         {
-            public class ScenarioConfigsFolderExistValidation : ValidationAttribute
+            public class ScenarioCreatorValidator : AbstractValidator<ScenarioCreator>
             {
-                public override bool IsValid(object? value)
+                public ScenarioCreatorValidator()
                 {
+                    RuleFor(x => x.ScenarioName)
+                        .NotEmpty()
+                        .When(x => x.ScenarioName != null)
+                        .WithMessage(x =>
+                        {
+                            return I18NKeys.Scenario_Creator_ScenarioNameValidNull.GetLocalizationRawValue();
+                        });
+                    RuleFor(x => x.ScenarioName)
+                        .Must(IsScenarioConfigsFolderExist)
+                        //.When(x => x.ScenarioName != null)
+                        .WithMessage(x =>
+                        {
+                            return I18NKeys.Scenario_Creator_ScenarioNameValidExist.GetLocalizationRawValue();
+                        });
+                    RuleFor(x => x.ScenarioName)
+                        .Must(IsValidFileName)
+                        .WithMessage(x =>
+                        {
+                            return I18NKeys.Scenario_Creator_ScenarioNameValidNameError.GetLocalizationRawValue();
+                        });
+
+                    RuleFor(x => x.ScenarioRepo)
+                        .NotEmpty()
+                        .When(x => x.ScenarioRepo != null)
+                        .WithMessage(x =>
+                        {
+                            return I18NKeys.Scenario_Creator_ScenarioRepoValidNull.GetLocalizationRawValue();
+                        });
+
+                    RuleFor(x => x.ScenarioBranch)
+                        .NotEmpty()
+                        .When(x => x.ScenarioBranch != null)
+                        .WithMessage(x =>
+                        {
+                            return I18NKeys.Scenario_Creator_ScenarioBranchValidNull.GetLocalizationRawValue();
+                        });
+                }
+
+                public bool IsScenarioConfigsFolderExist(string? value)
+                {
+                    if (value == null)
+                    {
+                        return true;
+                    }
                     var gitService = DependencyInjectionProvider.GetService<GitService>();
                     if (value is string folderName)
                     {
@@ -41,32 +90,41 @@ namespace LogVisualizer.ViewModels
                     }
                     return false;
                 }
+
+                public bool IsValidFileName(string? value)
+                {
+                    if (string.IsNullOrEmpty(value))
+                    {
+                        return true;
+                    }
+                    var isValid = Regex.IsMatch(value, @"^[^<>:""/\\|?*\x00-\x1F\x7F]+(\.[^<>:""/\\|?*\x00-\x1F\x7F]+)*$");
+                    return isValid;
+                }
             }
 
+            private readonly ScenarioCreatorValidator _validator;
             private readonly ScenarioConfigViewModel _owner;
             private readonly GitService _gitService;
             private readonly DebounceDispatcher _debounceDispatcher;
             private CancellationTokenSource? _checkRepoCancellationTokenSource;
 
-            [RegularExpression(@"^[^<>:""/\\|?*\x00-\x1F\x7F]+(\.[^<>:""/\\|?*\x00-\x1F\x7F]+)*$", ErrorMessageResourceType = typeof(I18NResource), ErrorMessageResourceName = I18NResource.Scenario_Creator_ScenarioNameValidNameError)]
-            [NotifyCanExecuteChangedFor(nameof(CreateScenarioCommand))]
-            [ScenarioConfigsFolderExistValidation(ErrorMessageResourceType = typeof(I18NResource), ErrorMessageResourceName = I18NResource.Scenario_Creator_ScenarioNameValidExist)]
-            [Required(ErrorMessageResourceType = typeof(I18NResource), ErrorMessageResourceName = I18NResource.Scenario_Creator_ScenarioNameValidNull)]
             [ObservableProperty]
-            private string? _scenarioName = string.Empty;
+            [NotifyCanExecuteChangedFor(nameof(CreateScenarioCommand))]
 
-            [NotifyCanExecuteChangedFor(nameof(CreateScenarioCommand))]
-            [Required(ErrorMessageResourceType = typeof(I18NResource), ErrorMessageResourceName = I18NResource.Scenario_Creator_ScenarioRepoValidNull)]
-            [ObservableProperty]
-            private string? _scenarioRepo = string.Empty;
-
-            [NotifyCanExecuteChangedFor(nameof(CreateScenarioCommand))]
-            [Required(ErrorMessageResourceType = typeof(I18NResource), ErrorMessageResourceName = I18NResource.Scenario_Creator_ScenarioBranchValidNull)]
-            [ObservableProperty]
-            private string? _scenarioBranch = string.Empty;
+            private string? _scenarioName = null;
 
             [ObservableProperty]
-            private bool _isLoading = false;
+            [NotifyCanExecuteChangedFor(nameof(CreateScenarioCommand))]
+
+            private string? _scenarioRepo = null;
+
+            [ObservableProperty]
+            [NotifyCanExecuteChangedFor(nameof(CreateScenarioCommand))]
+
+            private string? _scenarioBranch = null;
+
+            [ObservableProperty]
+            private bool _isFetchingBranches = false;
 
             [ObservableProperty]
             private ObservableCollection<string> _allBranches;
@@ -75,32 +133,47 @@ namespace LogVisualizer.ViewModels
             {
                 _owner = owner;
                 _gitService = gitService;
+                _validator = new ScenarioCreatorValidator();
                 _allBranches = new ObservableCollection<string>();
                 _debounceDispatcher = new DebounceDispatcher();
             }
 
-            [RelayCommand(IncludeCancelCommand = true, CanExecute = nameof(CanCreateScenario))]
-            private async Task CreateScenario(CancellationToken token = default)
+            private void Reset()
             {
+                ScenarioName = null;
+                ScenarioRepo = null;
+                ScenarioBranch = null;
+                IsFetchingBranches = false;
+                AllBranches = new ObservableCollection<string>();
+            }
+
+            [RelayCommand(IncludeCancelCommand = true, CanExecute = nameof(CanCreateScenario))]
+            [LogInfo]
+            private async Task CreateScenario(CancellationToken cancellationToken = default)
+            {
+                if (ScenarioName == null || ScenarioRepo == null || ScenarioBranch == null)
+                {
+                    return;
+                }
                 if (!HasErrors)
                 {
-                    _owner.Enabled = true;
-                    string folder = System.IO.Path.Combine(Global.ScenarioConfigFolderRoot, ScenarioName);
-                    var result = await _gitService.Clone(ScenarioRepo, ScenarioBranch, folder, token);
-                    if (!result)
-                    {
-                        FileOperationsHelper.SafeDeleteDirectory(folder);
-                    }
                     _owner.Enabled = false;
+                    string folder = System.IO.Path.Combine(Global.ScenarioConfigFolderRoot, ScenarioName);
+                    await _gitService.Clone(folder, ScenarioRepo, ScenarioBranch, cancellationToken);
+                    _owner.Enabled = true;
+                    _owner.LoadScenarioConfigs();
+                    Reset();
                 }
             }
             private bool CanCreateScenario()
             {
-                ValidateAllProperties();
-                return !HasErrors;
+                return !string.IsNullOrEmpty(ScenarioName) &&
+                    !string.IsNullOrEmpty(ScenarioRepo) &&
+                    !string.IsNullOrEmpty(ScenarioBranch);
             }
 
             [RelayCommand]
+            [LogInfo]
             private void FetchBranches()
             {
                 if (string.IsNullOrWhiteSpace(ScenarioRepo))
@@ -110,14 +183,27 @@ namespace LogVisualizer.ViewModels
                 _checkRepoCancellationTokenSource?.Cancel();
                 _checkRepoCancellationTokenSource = new CancellationTokenSource();
 
-                _debounceDispatcher.Debounce(800, async (x) =>
+                _debounceDispatcher.Debounce(400, async (x) =>
                 {
-                    IsLoading = true;
+                    IsFetchingBranches = true;
                     var allBranches = await _gitService.GetAllOriginBranches(ScenarioRepo, _checkRepoCancellationTokenSource.Token);
                     AllBranches = new ObservableCollection<string>(allBranches);
-                    IsLoading = false;
+                    IsFetchingBranches = false;
                 });
             }
+
+            #region INotifyDataErrorInfo
+
+            public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
+
+            public bool HasErrors => !_validator.Validate(this).IsValid;
+
+            public IEnumerable GetErrors(string? propertyName)
+            {
+                return _validator.Validate(this).Errors.Where(x => x.PropertyName == propertyName);
+            }
+
+            #endregion
         }
 
         private GitService _gitService;
@@ -150,6 +236,7 @@ namespace LogVisualizer.ViewModels
             LoadScenarioConfigs();
         }
 
+        [LogInfo]
         private void StartCheckForScenarioUpdate()
         {
             DispatcherTimer dispatcherTimer = new DispatcherTimer(TimeSpan.FromSeconds(10), DispatcherPriority.ApplicationIdle, async (s, e) =>
@@ -162,12 +249,14 @@ namespace LogVisualizer.ViewModels
             dispatcherTimer.Start();
         }
 
+        [LogInfo]
         private void LoadScenarioConfigs()
         {
             if (!Directory.Exists(Global.ScenarioConfigFolderRoot))
             {
                 return;
             }
+            ScenarioConfigs.Clear();
             var scenarioConfigFolders = Directory.GetDirectories(Global.ScenarioConfigFolderRoot);
             foreach (var scenarioConfigFolder in scenarioConfigFolders)
             {

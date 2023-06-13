@@ -24,25 +24,29 @@ namespace LogVisualizer.Services
             return Clone(folder, gitRepo, branch, cancellationTokenSource.Token);
         }
 
-        public Task<bool> Clone(string folder, string gitRepo, string branch, CancellationToken cancellationToken = default)
+        public async Task<bool> Clone(string folder, string gitRepo, string branch, CancellationToken cancellationToken = default)
         {
             if (!string.IsNullOrEmpty(folder) && !FileOperationsHelper.IsValidFileName(Path.GetFileName(folder)))
             {
                 Log.Error("folder:{folder} is not a vaild path.", folder);
-                return Task.FromResult(false);
+                return false;
             }
             if (!string.IsNullOrEmpty(folder))
             {
                 if (!FileOperationsHelper.SafeResetDirectory(folder))
                 {
                     FileOperationsHelper.SafeDeleteDirectory(folder);
-                    return Task.FromResult(false);
+                    return false;
                 }
             }
-            var result = ExecuteGitCommand(null, null, (str) =>
+            var result = await ExecuteGitCommand(null, null, (str) =>
             {
-                return str.StartsWith("Cloning into");
+                return str.StartsWith("Cloning into") && !str.Contains("Could not find");
             }, cancellationToken, "clone", gitRepo, "--depth=1", "-b", branch, folder);
+            if (!result)
+            {
+                FileOperationsHelper.SafeDeleteDirectory(folder);
+            }
             return result;
         }
 

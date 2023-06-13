@@ -76,6 +76,7 @@
             </Button.Styles>
         </Button>
         <Button
+            Name="scenarioConfig"
             Margin="10,0,0,2"
             Classes="scenario"
             Content="{Binding ScenarioConfig.CurrentName}">

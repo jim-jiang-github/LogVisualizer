@@ -61,7 +61,10 @@
     </Window.DataTemplates>-->
     <Grid>
         <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <titlebars:WindowsTitleBar Name="WindowsTitleBar" DockPanel.Dock="Top" />
+            <titlebars:WindowsTitleBar
+                Name="WindowsTitleBar"
+                DataContext="{Binding TitleBar}"
+                DockPanel.Dock="Top" />
             <views:BottomBar DataContext="{Binding BottomBar}" DockPanel.Dock="Bottom" />
             <Grid ColumnDefinitions="250,Auto,*">
                 <views:SideBar Grid.Column="0" DataContext="{Binding SideBar}" />

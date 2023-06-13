@@ -65,34 +65,4 @@ namespace LogVisualizer.I18N
     }
 #>
     }
-
-    public class I18NResource
-    {
-<#
-    foreach (var item in localizationKeyNonLocalized)
-    {
-        WriteLine($"        /// <summary>[NonLocalized] {item.Value}</summary>");
-        WriteLine($"        public const string {item.Key} = \"{item.Key}Source\";");
-        WriteLine($"        public static string {item.Key}Source");
-        WriteLine($"        {"{"}");
-        WriteLine($"            get");
-        WriteLine($"            {"{"}");
-        WriteLine($"                return I18NKeys.{item.Key}.GetLocalizationRawValue();");
-        WriteLine($"            {"}"}");
-        WriteLine($"        {"}"}");
-    }
-    foreach (var item in localizationKeyEn)
-    {
-        WriteLine($"        /// <summary>{item.Value}</summary>");
-        WriteLine($"        public const string {item.Key} = \"{item.Key}Source\";");
-        WriteLine($"        public static string {item.Key}Source");
-        WriteLine($"        {"{"}");
-        WriteLine($"            get");
-        WriteLine($"            {"{"}");
-        WriteLine($"                return I18NKeys.{item.Key}.GetLocalizationRawValue();");
-        WriteLine($"            {"}"}");
-        WriteLine($"        {"}"}");
-    }
-#>
-    }
 }

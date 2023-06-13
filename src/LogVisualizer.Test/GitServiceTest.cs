@@ -13,8 +13,8 @@ namespace LogVisualizer.Test
         }
 
         [Theory]
-        //[InlineData("TestFolder", Global.GITHUB_URL, "dev", true)]
-        [InlineData("TestFolder", "https://git.ringcentral.com/jim.jiang/logvisualizerschema.git", "windows_rooms_23.2.20", true)]
+        [InlineData("TestFolder", Global.GITHUB_URL, "dev", true)]
+        [InlineData("TestFolder", Global.GITHUB_URL, "xxxxx", false)]
         //[InlineData("~!@#$%^&*().,/?;'", Global.GITHUB_URL, "dev", false)]
         //[InlineData("TestFolder", Global.GITHUB_URL, "xxxx", false)]
         public async Task Clone(string folder, string gitRepo, string branch, bool expected)

@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using CommunityToolkit.Mvvm.Messaging;
 using LogVisualizer.ViewModels;
 
 namespace LogVisualizer.Views
@@ -8,39 +9,14 @@ namespace LogVisualizer.Views
         public BottomBar()
         {
             InitializeComponent();
+            //WeakReferenceMessenger.Default.Register<ScenarioConfigViewModel>(this, (r, m) =>
+            //{
+            //    Log.Information("BottomBar receive scenarioConfig.Flyout:{f} ScenarioConfigViewModel.Enabled:{e}", scenarioConfig.Flyout, m.Enabled);
+            //    if (scenarioConfig.Flyout is { } && !m.Enabled)
+            //    {
+            //        scenarioConfig.Flyout.Hide();
+            //    }
+            //});
         }
-
-        //protected override void OnLoaded()
-        //{
-        //    base.OnLoaded();
-        //    var schemaConfigViewModel = DependencyInjectionProvider.GetService<SchemaConfigViewModel>();
-        //    if (schemaConfigViewModel == null)
-        //    {
-        //        return;
-        //    }
-        //    schemaConfigViewModel.PropertyChanged += SchemaConfigViewModel_PropertyChanged;
-        //}
-
-        //protected override void OnUnloaded()
-        //{
-        //    base.OnUnloaded();
-        //    var schemaConfigViewModel = DependencyInjectionProvider.GetService<SchemaConfigViewModel>();
-        //    if (schemaConfigViewModel == null)
-        //    {
-        //        return;
-        //    }
-        //    schemaConfigViewModel.PropertyChanged -= SchemaConfigViewModel_PropertyChanged;
-        //}
-
-        //private void SchemaConfigViewModel_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
-        //{
-        //    if (sender is SchemaConfigViewModel schemaConfigViewModel && e.PropertyName == nameof(SchemaConfigViewModel.Enabled))
-        //    {
-        //        if (ButtonSchema.Flyout is { } && !schemaConfigViewModel.Enabled)
-        //        {
-        //            ButtonSchema.Flyout.Hide();
-        //        }
-        //    }
-        //}
     }
 }

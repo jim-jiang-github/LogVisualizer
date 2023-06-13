@@ -28,6 +28,7 @@
     <PackageReference Include="Avalonia.Xaml.Interactivity" Version="11.0.0-preview4" />
     <PackageReference Include="Ben.Demystifier" Version="0.4.1" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
+    <PackageReference Include="FluentValidation" Version="11.5.2" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Projektanker.Icons.Avalonia.FontAwesome" Version="6.3.0-preview4" />
     <PackageReference Include="Projektanker.Icons.Avalonia.MaterialDesign" Version="6.3.0-preview4" />
