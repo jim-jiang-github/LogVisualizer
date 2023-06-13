@@ -48,6 +48,5 @@ namespace LogVisualizer.Test
                 Assert.Equal(fileName, content);
             }
         }
-        //}
     }
 }

@@ -3,6 +3,7 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:icon="clr-namespace:Projektanker.Icons.Avalonia;assembly=Projektanker.Icons.Avalonia"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="30"
     d:DesignWidth="800"
@@ -20,9 +21,41 @@
             Source="/Assets/logo.ico" />
         <Border
             Width="300"
-            Margin="0,0,150,0"
+            Margin="0,0,140,0"
             HorizontalAlignment="Right"
-            DockPanel.Dock="Right" />
+            DockPanel.Dock="Right">
+            <CheckBox HorizontalAlignment="Right" IsChecked="{Binding EnablePseudo}" Classes="pseudo">
+                <CheckBox.Styles>
+                    <Style Selector="CheckBox.pseudo">
+                        <Setter Property="Background" Value="Transparent" />
+                    </Style>
+                    <Style Selector="CheckBox.pseudo:pointerover">
+                        <Setter Property="Background" Value="#80FFFFFF" />
+                    </Style>
+                    <Style Selector="CheckBox.pseudo[IsChecked=true]:pointerover">
+                        <Setter Property="Background" Value="#80FFFFFF" />
+                    </Style>
+                    <Style Selector="CheckBox.pseudo[IsChecked=true]">
+                        <Setter Property="Background" Value="#80FF0000" />
+                    </Style>
+                    <Style Selector="CheckBox.pseudo">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <Border Background="{TemplateBinding Background}" CornerRadius="0">
+                                        <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
+                                            <Grid Width="30" Height="30">
+                                                <icon:Icon Foreground="White" Value="fa-solid fa-text-width" />
+                                            </Grid>
+                                        </StackPanel>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </CheckBox.Styles>
+            </CheckBox>
+        </Border>
         <NativeMenuBar
             Width="270"
             Height="30"

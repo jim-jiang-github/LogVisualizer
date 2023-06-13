@@ -23,6 +23,7 @@ namespace LogVisualizer
                 .AddScoped<LogSelectorViewModel>()
                 .AddScoped<MainWindowViewModel>()
                 .AddScoped<LogDisplayViewModel>()
+                .AddScoped<TitleBarViewModel>()
                 .AddScoped<SideBarViewModel>()
                 .AddScoped<BottomBarViewModel>()
                 .AddSingleton<ScenarioConfigViewModel>()
