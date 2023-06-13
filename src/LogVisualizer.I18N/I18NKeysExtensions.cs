@@ -69,7 +69,7 @@ namespace LogVisualizer.I18N
             }
             else
             {
-                if (!I18NManager.i18nMap.TryGetValue(i18NKey, out I18NValue? i18NValue)) 
+                if (!I18NManager.i18nMap.TryGetValue(i18NKey, out I18NValue? i18NValue))
                 {
                     i18NValue = I18NManager.i18nMapDefault[i18NKey];
                 }
@@ -129,7 +129,7 @@ namespace LogVisualizer.I18N
             {
                 rawString = I18NManager.i18nMap[i18NKey].GetAllValues();
             }
-            return rawString;
+            return I18NManager.EnablePseudo ? PseudoHelper.GetPseudoString(rawString) : rawString;
         }
 
         /// <summary>
