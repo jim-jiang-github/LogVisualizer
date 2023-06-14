@@ -7,23 +7,49 @@ using LogVisualizer.Services;
 using LogVisualizer.Views;
 using System.Collections.ObjectModel;
 using LogVisualizer.Models;
+using CommunityToolkit.Mvvm.Messaging;
+using LogVisualizer.Messages;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace LogVisualizer.ViewModels
 {
-    public class LogSelectorViewModel : ViewModelBase
+    public partial class LogSelectorViewModel : ViewModelBase
     {
-        public ObservableCollection<LogItem> LogItems { get; }
+        private ScenarioService _scenarioService;
 
-        public LogSelectorViewModel()
+        [ObservableProperty]
+        private LogFileItem? _selectedItem = null;
+        [ObservableProperty]
+        private ObservableCollection<LogFileItem> _logFileItems;
+
+        partial void OnSelectedItemChanged(LogFileItem? value)
         {
-            LogItems = new ObservableCollection<LogItem>();
-            for (int i = 0; i < 20; i++)
+            if (value == null)
             {
-                LogItems.Add(new LogItem()
-                {
-                    Name = $"Log{i}"
-                });
+                return;
             }
+            if (value.Children != null)
+            {
+                return;
+            }
+            _scenarioService.LoadLogFileItem(value);
+        }
+
+        public LogSelectorViewModel(ScenarioService scenarioService)
+        {
+            _scenarioService = scenarioService;
+            LogFileItems = new ObservableCollection<LogFileItem>();
+            WeakReferenceMessenger.Default.Register<LogFileItemsChangedMessage>(this, (r, m) =>
+            {
+                foreach (var item in m.Value)
+                {
+                    LogFileItems.Add(item);
+                }
+                if (LogFileItems.Count == 1)
+                {
+                    SelectedItem = LogFileItems[0];
+                }
+            });
         }
     }
 }

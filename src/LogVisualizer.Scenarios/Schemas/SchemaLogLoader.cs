@@ -8,28 +8,28 @@ using System.Threading.Tasks;
 
 namespace LogVisualizer.Scenarios.Schemas
 {
-    internal class SchemalogReader
+    internal class SchemaLogLoader
     {
-        public class SchemaLogLoadStep
+        public class SchemaLogSupportedLoadType
         {
             public string SupportedExtension { get; set; } = "txt";
-            public string[] FileNameValidateRegexs { get; set; } = Array.Empty<string>();
+            public string? FileNameValidateRegex = null;
             [JsonConverter(typeof(StringEnumConverter))]
             public LogReaderType ReaderType { get; set; } = LogReaderType.Text;
         }
 
-        public static SchemalogReader? GetSchemalogReaderFromJsonFile(string jsonFilePath)
+        public static SchemaLogLoader? GetSchemalogReaderFromJsonFile(string jsonFilePath)
         {
             var schemaLogContent = IJsonSerializable.LoadContentFromJsonFile(jsonFilePath);
             if (schemaLogContent == null)
             {
                 return null;
             }
-            var anonymousType = new { Loader = new SchemalogReader() };
+            var anonymousType = new { Loader = new SchemaLogLoader() };
             var type = JsonConvert.DeserializeAnonymousType(schemaLogContent, anonymousType)?.Loader ?? null;
             return type;
         }
 
-        public SchemaLogLoadStep[] LoadSteps { get; set; } = Array.Empty<SchemaLogLoadStep>();
+        public SchemaLogSupportedLoadType[] SupportedLoadTypes { get; set; } = Array.Empty<SchemaLogSupportedLoadType>();
     }
 }

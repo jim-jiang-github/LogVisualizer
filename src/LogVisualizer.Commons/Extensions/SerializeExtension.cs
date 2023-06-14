@@ -57,13 +57,14 @@ namespace LogVisualizer.Commons.Extensions
                 }
             }
         }
-        public static void SaveAsJson(this IJsonSerializable jsonSerializable, string jsonFilePath)
+        public static string SaveAsJson(this IJsonSerializable jsonSerializable, string jsonFilePath)
         {
             var jsonContent = JsonConvert.SerializeObject(jsonSerializable, Formatting.Indented, new JsonSerializerSettings
             {
                 NullValueHandling = NullValueHandling.Ignore
             });
             File.WriteAllText(jsonFilePath, jsonContent);
+            return jsonFilePath;
         }
     }
 }

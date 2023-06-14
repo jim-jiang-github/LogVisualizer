@@ -22,7 +22,7 @@ namespace LogVisualizer.Test
                 .AddSingleton<GitService>()
                 .AddScoped<MenuBarViewModel>()
                 .AddScoped<MainWindowViewModel>()
-                .AddScoped<LogDisplayViewModel>()
+                .AddScoped<LogViewerViewModel>()
                 .AddScoped<SideBarViewModel>()
                 .AddScoped<BottomBarViewModel>()
                 .AddSingleton<ScenarioConfigViewModel>()

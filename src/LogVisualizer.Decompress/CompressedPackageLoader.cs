@@ -9,7 +9,7 @@ namespace LogVisualizer.Decompress
         #region InnerClass
         private class CompressedPackageLoaderZip : CompressedPackageLoader
         {
-            protected override string Extension => ".zip";
+            protected override string Extension => "zip";
 
             internal override IEnumerable<EntryItem> GetEntryPathsInternal(EntryItem entryItem)
             {
@@ -34,7 +34,7 @@ namespace LogVisualizer.Decompress
         }
         private class CompressedPackageLoader7Z : CompressedPackageLoader
         {
-            protected override string Extension => ".7z";
+            protected override string Extension => "7z";
 
             internal override IEnumerable<EntryItem> GetEntryPathsInternal(EntryItem entryItem)
             {
@@ -59,6 +59,7 @@ namespace LogVisualizer.Decompress
         #endregion
 
         private static CompressedPackageLoader[] AllCompressedPackageLoaders { get; }
+        public static string[] SupportedExtensions => AllCompressedPackageLoaders.Select(x => $"*.{x.Extension}").ToArray();
         static CompressedPackageLoader()
         {
             AllCompressedPackageLoaders = Assembly.GetExecutingAssembly()
@@ -72,7 +73,7 @@ namespace LogVisualizer.Decompress
         {
             var extension = Path.GetExtension(entryItem.EntryPath);
 
-            CompressedPackageLoader? compressedPackageLoader = AllCompressedPackageLoaders.FirstOrDefault(x => x.Extension == extension);
+            CompressedPackageLoader? compressedPackageLoader = AllCompressedPackageLoaders.FirstOrDefault(x => $".{x.Extension}" == extension);
             if (compressedPackageLoader == null)
             {
                 yield return entryItem.EntryPath;
@@ -93,7 +94,7 @@ namespace LogVisualizer.Decompress
         {
             var extension = Path.GetExtension(entryPath);
 
-            CompressedPackageLoader? compressedPackageLoader = AllCompressedPackageLoaders.FirstOrDefault(x => x.Extension == extension);
+            CompressedPackageLoader? compressedPackageLoader = AllCompressedPackageLoaders.FirstOrDefault(x => $".{x.Extension}" == extension);
             if (compressedPackageLoader == null)
             {
                 yield return entryPath;
@@ -113,9 +114,14 @@ namespace LogVisualizer.Decompress
         }
         public static bool IsSupportedCompressedPackage(string entryPath)
         {
+            int delimiterIndex = entryPath.IndexOf("|");
+            if (delimiterIndex != -1)
+            {
+                entryPath = entryPath.Substring(0, delimiterIndex);
+            }
             var extension = Path.GetExtension(entryPath);
-            CompressedPackageLoader? compressedPackageLoader = AllCompressedPackageLoaders.FirstOrDefault(x => x.Extension == extension);
-            return compressedPackageLoader != null;
+            bool isSupported = SupportedExtensions.Any(x => x == $"*{extension}");
+            return isSupported;
         }
 
         private CompressedPackageLoader() { }

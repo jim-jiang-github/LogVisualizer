@@ -19,7 +19,6 @@ using Avalonia.Controls;
 using System.Collections;
 using LogVisualizer.Models;
 using Avalonia.Threading;
-using LogVisualizer.ValidationAttributes;
 using LogVisualizer.Commons.Attributes;
 using FluentValidation;
 using System.Text.RegularExpressions;
@@ -29,9 +28,9 @@ namespace LogVisualizer.ViewModels
 {
     public partial class ScenarioConfigViewModel : ViewModelBase
     {
-        public partial class ScenarioCreator : ViewModelBase, INotifyDataErrorInfo
+        public partial class ScenarioCreatorViewModel : ViewModelBase, INotifyDataErrorInfo
         {
-            public class ScenarioCreatorValidator : AbstractValidator<ScenarioCreator>
+            public class ScenarioCreatorValidator : AbstractValidator<ScenarioCreatorViewModel>
             {
                 public ScenarioCreatorValidator()
                 {
@@ -110,17 +109,14 @@ namespace LogVisualizer.ViewModels
 
             [ObservableProperty]
             [NotifyCanExecuteChangedFor(nameof(CreateScenarioCommand))]
-
             private string? _scenarioName = null;
 
             [ObservableProperty]
             [NotifyCanExecuteChangedFor(nameof(CreateScenarioCommand))]
-
             private string? _scenarioRepo = null;
 
             [ObservableProperty]
             [NotifyCanExecuteChangedFor(nameof(CreateScenarioCommand))]
-
             private string? _scenarioBranch = null;
 
             [ObservableProperty]
@@ -129,7 +125,7 @@ namespace LogVisualizer.ViewModels
             [ObservableProperty]
             private ObservableCollection<string> _allBranches;
 
-            public ScenarioCreator(ScenarioConfigViewModel owner, GitService gitService)
+            public ScenarioCreatorViewModel(ScenarioConfigViewModel owner, GitService gitService)
             {
                 _owner = owner;
                 _gitService = gitService;
@@ -223,11 +219,11 @@ namespace LogVisualizer.ViewModels
         [ObservableProperty]
         private ScenarioConfig? _selectedScenarioConfig;
         [ObservableProperty]
-        private ScenarioCreator _creator;
+        private ScenarioCreatorViewModel _creator;
 
         public ScenarioConfigViewModel(GitService gitService)
         {
-            Creator = new ScenarioCreator(this, gitService);
+            Creator = new ScenarioCreatorViewModel(this, gitService);
             _gitService = gitService;
             _filterBranches = new ObservableCollection<string>();
             _scenarioConfigs = new ObservableCollection<ScenarioConfig>();

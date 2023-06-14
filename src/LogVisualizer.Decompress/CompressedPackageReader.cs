@@ -14,7 +14,7 @@ namespace LogVisualizer.Decompress
         #region InnerClass
         private class CompressedPackageReaderZip : CompressedPackageReader
         {
-            protected override string Extension => ".zip";
+            protected override string Extension => "zip";
 
             internal override Stream? ReadStreamInternal(EntryItem entryItem)
             {
@@ -38,7 +38,7 @@ namespace LogVisualizer.Decompress
         }
         private class CompressedPackageReader7Z : CompressedPackageReader
         {
-            protected override string Extension => ".7z";
+            protected override string Extension => "7z";
 
             internal override Stream? ReadStreamInternal(EntryItem entryItem)
             {
@@ -86,7 +86,7 @@ namespace LogVisualizer.Decompress
         private static Stream? ReadStream(string currentPath, Stream entryItemStream, string? lastPath)
         {
             var extension = Path.GetExtension(currentPath);
-            CompressedPackageReader? compressedPackageReader = AllCompressedPackageReaders.FirstOrDefault(x => x.Extension == extension);
+            CompressedPackageReader? compressedPackageReader = AllCompressedPackageReaders.FirstOrDefault(x => $".{x.Extension}" == extension);
             if (compressedPackageReader == null)
             {
                 return entryItemStream;

@@ -13,18 +13,15 @@
     mc:Ignorable="d">
 
     <TabControl Classes="sidebar">
-        <TabItem
-            Classes="sidebar"
-            Header="mdi text-box-outline"
-            ToolTip.Tip="xxxxxxxxxxxxxx">
+        <TabItem Classes="sidebar" Header="mdi text-box-outline">
             <views:LogSelector DataContext="{Binding LogSelector}" />
         </TabItem>
-        <!--<TabItem Classes="sidebar" Header="mdi text-box-edit-outline">
+        <TabItem Classes="sidebar" Header="mdi text-box-edit-outline">
             <Border Background="Blue" />
         </TabItem>
         <TabItem Classes="sidebar" Header="mdi google-analytics">
             <Border Background="Green" />
-        </TabItem>-->
+        </TabItem>
         <TabControl.ContentTemplate>
             <DataTemplate>
                 <StackPanel Orientation="Vertical" Spacing="8">
@@ -46,7 +43,10 @@
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="{TemplateBinding CornerRadius}">
                             <DockPanel>
-                                <Border BorderBrush="#525252" BorderThickness="0,0,1,0">
+                                <Border
+                                    Width="50"
+                                    BorderBrush="#525252"
+                                    BorderThickness="0,0,1,0">
                                     <ItemsPresenter
                                         Name="PART_ItemsPresenter"
                                         DockPanel.Dock="{TemplateBinding TabStripPlacement}"

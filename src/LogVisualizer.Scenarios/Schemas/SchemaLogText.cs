@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using static LogVisualizer.Scenarios.Schemas.SchemalogReader;
+using static LogVisualizer.Scenarios.Schemas.SchemaLogLoader;
 
 namespace LogVisualizer.Scenarios.Schemas
 {
@@ -36,7 +36,7 @@ namespace LogVisualizer.Scenarios.Schemas
         public SchemaLogText()
         {
         }
-        public void Default_22_2_20()
+        public string Default_22_2_20()
         {
             var timeConvertor = new SchemaConvertor()
             {
@@ -47,14 +47,14 @@ namespace LogVisualizer.Scenarios.Schemas
             Convertors = new[] {
                 timeConvertor
             };
-            Loader = new SchemalogReader()
+            Loader = new SchemaLogLoader()
             {
-                LoadSteps = new[]
+                SupportedLoadTypes = new[]
                 {
-                    new SchemaLogLoadStep()
+                    new SchemaLogSupportedLoadType()
                     {
                         SupportedExtension = "log",
-                        FileNameValidateRegexs = new[]{ @"RoomsHost-\d+_\d+_pid-\d+(\.\S+|)$" },
+                        FileNameValidateRegex = @"RoomsHost-\d+_\d+_pid-\d+(\.\S+|)$",
                         ReaderType = LogReaderType.Text
                     },
                 }
@@ -91,9 +91,9 @@ namespace LogVisualizer.Scenarios.Schemas
                     }
                 }
             };
-            this.SaveAsJson($"schema_log.json");
+            return this.SaveAsJson($"schema_log.json");
         }
-        public void Default_21_4_30()
+        public string Default_21_4_30()
         {
             var header = new SchemaBlockText()
             {
@@ -111,14 +111,14 @@ namespace LogVisualizer.Scenarios.Schemas
                 }
             };
             Blocks.Add(header);
-            Loader = new SchemalogReader()
+            Loader = new SchemaLogLoader()
             {
-                LoadSteps = new[]
+                SupportedLoadTypes = new[]
                 {
-                    new SchemaLogLoadStep()
+                    new SchemaLogSupportedLoadType()
                     {
                         SupportedExtension = "log",
-                        FileNameValidateRegexs = new[]{ @"RoomsHost-\d+_\d+_pid-\d+(\.\S+|)$" },
+                        FileNameValidateRegex = @"RoomsHost-\d+_\d+_pid-\d+(\.\S+|)$",
                         ReaderType = LogReaderType.Text
                     },
                 }
@@ -156,7 +156,7 @@ namespace LogVisualizer.Scenarios.Schemas
                     }
                 }
             };
-            this.SaveAsJson($"schema_log.json");
+            return this.SaveAsJson($"schema_log.json");
         }
     }
 }

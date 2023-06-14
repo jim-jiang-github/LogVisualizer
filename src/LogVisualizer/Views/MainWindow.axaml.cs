@@ -24,24 +24,5 @@ namespace LogVisualizer.Views
             base.OnLoaded();
             Notify.Init(this);
         }
-        private bool flag = false;
-        protected async override void OnKeyDown(KeyEventArgs e)
-        {
-            base.OnKeyDown(e);
-            Task.Run(async () =>
-            {
-                await Notify.ShowMessageBox("xxxx","asdasd");
-            });
-            return;
-            if (flag)
-            {
-                I18N.I18NManager.CurrentCulture = CultureInfo.GetCultureInfo("zh-CN");
-            }
-            else
-            {
-                I18N.I18NManager.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            }
-            flag = !flag;
-        }
     }
 }

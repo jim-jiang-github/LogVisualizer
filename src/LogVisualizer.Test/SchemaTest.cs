@@ -22,7 +22,7 @@ namespace LogVisualizer.Test
         public void SchemaLogText()
         {
             SchemaLogText schemaLogText = new SchemaLogText();
-            schemaLogText.Default_22_2_20();
+            var path = schemaLogText.Default_22_2_20();
         }
     }
 }

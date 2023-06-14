@@ -21,7 +21,7 @@ namespace LogVisualizer.Scenarios.Schemas
         [JsonConverter(typeof(StringEnumConverter))]
         public abstract SchemaLogType Type { get; }
         public SchemaConvertor[] Convertors { get; set; } = Array.Empty<SchemaConvertor>();
-        public SchemalogReader Loader { get; set; } = new SchemalogReader();
+        public SchemaLogLoader Loader { get; set; } = new SchemaLogLoader();
     }
     /// <summary>
     /// SchemaLog|

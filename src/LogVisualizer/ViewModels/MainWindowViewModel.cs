@@ -19,20 +19,20 @@ namespace LogVisualizer.ViewModels
         public MenuBarViewModel MenuBar { get; }
         public SideBarViewModel SideBar { get; }
         public BottomBarViewModel BottomBar { get; }
-        public LogDisplayViewModel CurrentLog { get; }
+        public LogViewerViewModel LogViewer { get; }
 
         public MainWindowViewModel(
             TitleBarViewModel titleBarViewModel,
             MenuBarViewModel menuBarViewModel,
             SideBarViewModel sideBarViewModel,
             BottomBarViewModel bottomBarViewModel,
-            LogDisplayViewModel logDisplayViewModel)
+            LogViewerViewModel logDisplayViewModel)
         {
             TitleBar = titleBarViewModel;
             MenuBar = menuBarViewModel;
             SideBar = sideBarViewModel;
             BottomBar = bottomBarViewModel;
-            CurrentLog = logDisplayViewModel;
+            LogViewer = logDisplayViewModel;
         }
     }
 }

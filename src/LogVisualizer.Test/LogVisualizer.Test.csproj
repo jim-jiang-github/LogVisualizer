@@ -38,7 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Samples\Schema\1\Scenarios\schema_log.json">
+    <None Update="Samples\Scenarios\1\Schemas\schema_log.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

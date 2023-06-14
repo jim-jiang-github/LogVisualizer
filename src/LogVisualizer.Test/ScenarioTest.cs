@@ -13,23 +13,40 @@ namespace LogVisualizer.Test
 {
     public class ScenarioTest
     {
-        private MemoryStream _memoryStream;
-        public ScenarioTest() 
+        public ScenarioTest()
         {
-            _memoryStream = new MemoryStream();
-            using var streamWriter = new StreamWriter(_memoryStream);
-            var line = File.ReadAllText(@"Samples\1\1.log");
-            for (int i = 0; i < 99999; i++)
+        }
+
+        [Theory]
+        [InlineData(@"Samples\Scenarios\x", false)]
+        [InlineData(@"Samples\Scenarios\1", true)]
+        [InlineData(@"Samples\Scenarios\x\", false)]
+        [InlineData(@"Samples\Scenarios\1\", true)]
+        public void ScenarioLoadTest(string scenariosFolder, bool excepted)
+        {
+            Scenario? scenario = Scenario.LoadFromFolder(scenariosFolder);
+            var result = scenario != null;
+            Assert.Equal(excepted, result);
+        }
+
+        [Theory]
+        [InlineData(@"Samples\Scenarios\1\", new[] { "*.log", "*.txt" })]
+        public void ScenarioSupportedExtensionsTest(string scenariosFolder, string[] excepted)
+        {
+            Scenario? scenario = Scenario.LoadFromFolder(scenariosFolder);
+            if (scenario == null)
             {
-                streamWriter.WriteLine(line);
+                Assert.Fail("scenario is null");
             }
+            var result = scenario.SupportedExtensions;
+            Assert.Equal(excepted, result);
         }
 
         //[Theory]
-        //[InlineData(@"Samples\1\1.log", @"Samples\1\Scenarios", 12)]
-        //public void Scenario(string logFilePath, string scenariosFolder, int rowCount)
+        //[InlineData(@"Samples\Scenarios\1\1.log", @"Samples\Scenarios\1", 12)]
+        //public void ScenarioLoadTest(string logFilePath, string scenariosFolder, int rowCount)
         //{
-        //    Scenario scenario = new Scenario();
+        //    Scenario? scenario = Scenario.LoadFromFolder(scenariosFolder);
         //    scenario.Init(scenariosFolder);
         //    var result = scenario.LoadLogContent(logFilePath);
         //    Assert.True(result);

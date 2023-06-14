@@ -12,12 +12,6 @@ namespace LogVisualizer
 {
     public class Configuration : IJsonSerializable
     {
-        public class ScenarioConfiguration
-        {
-            public string? ScenarioName { get; set; }
-            public string? ScenarioRepo { get; set; }
-        }
-
         private const string CONFIG_FILE_NAME = "configuration.json";
 
         private static Configuration _instance;
@@ -40,7 +34,7 @@ namespace LogVisualizer
             _instance = configuration ?? new Configuration();
         }
 
-        public ScenarioConfiguration? Scenario { get; set; }
+        public string? DefaultScenario { get; set; }
 
         public void Save()
         {

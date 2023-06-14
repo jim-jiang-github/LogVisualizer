@@ -48,18 +48,26 @@
       }
     ]
   },
-  "Name": "schema_log",
   "EncodingName": "utf-8",
-  "LogFileLoaderType": "Txt",
-  "SupportedExtensions": [
-    ".txt",
-    ".log"
-  ],
   "Convertors": [
     {
       "Name": "Time",
       "Type": "Time2Time",
       "Expression": "[MM/dd/yy HH:mm:ss.fff][yyyy-MM-dd HH:mm:ss,fff]"
     }
-  ]
+  ],
+  "Loader": {
+    "SupportedLoadTypes": [
+      {
+        "FileNameValidateRegex": "RoomsHost-\\d+_\\d+_pid-\\d+(\\.\\S+|)$",
+        "SupportedExtension": "log",
+        "ReaderType": "Text"
+      },
+      {
+        "FileNameValidateRegex": "RoomsHost-\\d+_\\d+_pid-\\d+(\\.\\S+|)$",
+        "SupportedExtension": "txt",
+        "ReaderType": "Text"
+      }
+    ]
+  }
 }

@@ -12,8 +12,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static LogVisualizer.ViewModels.LogDisplayViewModel;
+using static LogVisualizer.ViewModels.LogViewerViewModel;
 using LogVisualizer.Decompress;
+using LogVisualizer.Models;
+using System.IO;
 
 namespace LogVisualizer.ViewModels
 {
@@ -45,40 +47,7 @@ namespace LogVisualizer.ViewModels
         [RelayCommand]
         public async Task Open()
         {
-            await Task.Run(async () =>
-            {
-                Loading.SetMessage(I18NKeys.Loading_OpenFileStart.GetLocalizationRawValue());
-                var storageFiles = await GlobalStorageProvider.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions()
-                {
-                    Title = I18NKeys.OpenFileDialog_PickLog.GetLocalizationRawValue(),
-                    FileTypeFilter = SupportedFileType,
-                    AllowMultiple = true
-                });
-                var paths = storageFiles
-                    .Where(x => x.CanBookmark).Select(async x => await x.SaveBookmarkAsync())
-                    .Select(x => x.Result)
-                    .Where(x => !string.IsNullOrEmpty(x))
-                    .Cast<string>()
-                    .SelectMany(x =>
-                    {
-                        Loading.SetMessage(I18NKeys.Loading_LoadingFile.GetLocalizationString(x));
-                        if (CompressedPackageLoader.IsSupportedCompressedPackage(x))
-                        {
-                            return CompressedPackageLoader.GetEntryPaths(x);
-                        }
-                        else
-                        {
-                            return new[] { x };
-                        }
-                    })
-                    .ToArray();
-                if (paths.Length == 0)
-                {
-                    return;
-                }
-                await _scenarioService.OpenLogSource(paths);
-                Loading.SetProgress(1);
-            }).WithLoadingMask();
+            await _scenarioService.OpenAndSelectLogFileItems().WithLoadingMask();
         }
 
         [RelayCommand]

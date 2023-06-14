@@ -11,10 +11,14 @@ using LogVisualizer.Services;
 using LogVisualizer.Views;
 using LogVisualizer.Scenarios;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using System.Collections.Specialized;
+using CommunityToolkit.Mvvm.Messaging;
+using LogVisualizer.Messages;
 
 namespace LogVisualizer.ViewModels
 {
-    public class LogDisplayViewModel : ViewModelBase
+    public class LogViewerViewModel : ViewModelBase
     {
         public struct Item
         {
@@ -23,8 +27,23 @@ namespace LogVisualizer.ViewModels
             public int Age { get; set; }
         }
 
-        public class ItemCollection : IList
+        public class ItemCollection : IList, INotifyCollectionChanged, INotifyPropertyChanged
         {
+            private int count = 50;
+            public ItemCollection(LogViewerViewModel logViewerViewModel)
+            {
+                Task.Run(async () =>
+                {
+                    while (true)
+                    {
+                        count++;
+                        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Count)));
+                        CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add));
+                        await Task.Delay(100);
+
+                    }
+                });
+            }
             public object? this[int index]
             {
                 get
@@ -43,11 +62,14 @@ namespace LogVisualizer.ViewModels
 
             public bool IsReadOnly => true;
 
-            public int Count => int.MaxValue;
+            public int Count => count;
 
             public bool IsSynchronized => true;
 
             public object SyncRoot => this;
+
+            public event NotifyCollectionChangedEventHandler? CollectionChanged;
+            public event PropertyChangedEventHandler? PropertyChanged;
 
             public int Add(object? value)
             {
@@ -90,9 +112,12 @@ namespace LogVisualizer.ViewModels
             }
         }
         public IList Items { get; }
-        public LogDisplayViewModel()
+        public LogViewerViewModel()
         {
-            Items = new ItemCollection();
+            Items = new ItemCollection(this);
+            WeakReferenceMessenger.Default.Register<LogFileItemSelectedChangedMessage>(this, (r, m) =>
+            {
+            });
         }
     }
 

@@ -4,27 +4,21 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:LogVisualizer.ViewModels;assembly=LogVisualizer"
     d:DesignHeight="450"
     d:DesignWidth="800"
+    x:DataType="viewModels:LogSelectorViewModel"
     mc:Ignorable="d">
-  <ListBox
-      Items="{Binding LogItems}"
-      SelectionMode="Single">
-    <ListBox.Styles>
-      <Style Selector="ListBoxItem">
-        <Setter Property="Height" Value="20" />
-        <Setter Property="FontSize" Value="12" />
-      </Style>
-    </ListBox.Styles>
-    <ListBox.ItemTemplate>
-      <DataTemplate>
-        <StackPanel Orientation="Horizontal">
-          <TextBlock
-              Height="15"
-              FontSize="12"
-              Text="{Binding Name}" />
-        </StackPanel>
-      </DataTemplate>
-    </ListBox.ItemTemplate>
-  </ListBox>
+    <TreeView
+        Items="{Binding LogFileItems}"
+        SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+        SelectionMode="Single">
+        <TreeView.ItemTemplate>
+            <TreeDataTemplate ItemsSource="{Binding Children}">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="{Binding Name}" />
+                </StackPanel>
+            </TreeDataTemplate>
+        </TreeView.ItemTemplate>
+    </TreeView>
 </UserControl>
