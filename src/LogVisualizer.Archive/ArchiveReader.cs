@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace LogVisualizer.Decompress
 {
-    public abstract class CompressedPackageReader
+    public abstract class ArchiveReader
     {
         #region InnerClass
-        private class CompressedPackageReaderZip : CompressedPackageReader
+        private class ArchiveReaderZip : ArchiveReader
         {
             protected override string Extension => "zip";
 
@@ -36,7 +36,7 @@ namespace LogVisualizer.Decompress
                 }
             }
         }
-        private class CompressedPackageReader7Z : CompressedPackageReader
+        private class ArchiveReader7Z : ArchiveReader
         {
             protected override string Extension => "7z";
 
@@ -61,14 +61,14 @@ namespace LogVisualizer.Decompress
         }
         #endregion
 
-        private static CompressedPackageReader[] AllCompressedPackageReaders { get; }
-        static CompressedPackageReader()
+        private static ArchiveReader[] AllArchiveReaders { get; }
+        static ArchiveReader()
         {
-            AllCompressedPackageReaders = Assembly.GetExecutingAssembly()
+            AllArchiveReaders = Assembly.GetExecutingAssembly()
                 .GetTypes()
-                .Where(t => !t.IsAbstract && t.IsSubclassOf(typeof(CompressedPackageReader)))
-                .Select(x => Activator.CreateInstance(x) as CompressedPackageReader)
-                .OfType<CompressedPackageReader>()
+                .Where(t => !t.IsAbstract && t.IsSubclassOf(typeof(ArchiveReader)))
+                .Select(x => Activator.CreateInstance(x) as ArchiveReader)
+                .OfType<ArchiveReader>()
                 .ToArray();
         }
         public static Stream? ReadStream(string entryPath)
@@ -86,8 +86,8 @@ namespace LogVisualizer.Decompress
         private static Stream? ReadStream(string currentPath, Stream entryItemStream, string? lastPath)
         {
             var extension = Path.GetExtension(currentPath);
-            CompressedPackageReader? compressedPackageReader = AllCompressedPackageReaders.FirstOrDefault(x => $".{x.Extension}" == extension);
-            if (compressedPackageReader == null)
+            ArchiveReader? archiveReader = AllArchiveReaders.FirstOrDefault(x => $".{x.Extension}" == extension);
+            if (archiveReader == null)
             {
                 return entryItemStream;
             }
@@ -105,7 +105,7 @@ namespace LogVisualizer.Decompress
                     lastPath = lastPath.Substring(delimiterIndex + 1);
                 }
                 var entryItem = new EntryItem(currentPath, entryItemStream);
-                var stream = compressedPackageReader.ReadStreamInternal(entryItem);
+                var stream = archiveReader.ReadStreamInternal(entryItem);
                 if (stream == null)
                 {
                     return null;
@@ -117,7 +117,7 @@ namespace LogVisualizer.Decompress
                 return ReadStream(currentPath, stream, lastPath);
             }
         }
-        private CompressedPackageReader() { }
+        private ArchiveReader() { }
         protected abstract string Extension { get; }
         internal abstract Stream? ReadStreamInternal(EntryItem entryItem);
     }

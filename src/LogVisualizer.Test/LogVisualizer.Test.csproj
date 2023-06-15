@@ -24,8 +24,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LogVisualizer.Archive\LogVisualizer.Archive.csproj" />
     <ProjectReference Include="..\LogVisualizer.Commons\LogVisualizer.Commons.csproj" />
-    <ProjectReference Include="..\LogVisualizer.Decompress\LogVisualizer.Decompress.csproj" />
     <ProjectReference Include="..\LogVisualizer.I18N\LogVisualizer.I18N.csproj" />
     <ProjectReference Include="..\LogVisualizer.Scenarios\LogVisualizer.Scenarios.csproj" />
     <ProjectReference Include="..\LogVisualizer\LogVisualizer.csproj" />

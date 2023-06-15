@@ -1,5 +1,4 @@
-﻿using LogVisualizer.Decompress;
-using LogVisualizer.I18N;
+﻿using LogVisualizer.I18N;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

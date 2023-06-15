@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Messaging.Messages;
 using LogVisualizer.Models;
+using LogVisualizer.Scenarios.Contents;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace LogVisualizer.Messages
 {
-    public class LogFileItemSelectedChangedMessage : ValueChangedMessage<LogFileItem?>
+    public class LogContentSelectedChangedMessage : ValueChangedMessage<ILogContent?>
     {
-        public LogFileItemSelectedChangedMessage(LogFileItem? value) : base(value)
+        public LogContentSelectedChangedMessage(ILogContent? value) : base(value)
         {
 
         }

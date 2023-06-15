@@ -71,7 +71,7 @@ namespace LogVisualizer.Services
                 {
                 new(I18NKeys.OpenFileDialog_SupportedLogs.GetLocalizationRawValue())
                 {
-                    Patterns = SupportedLogExtension.Concat(CompressedPackageLoader.SupportedExtensions).ToArray()
+                    Patterns = SupportedLogExtension.Concat(ArchiveLoader.SupportedExtensions).ToArray()
                 }
                 };
                 var storageFiles = await GlobalStorageProvider.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions()
@@ -102,16 +102,16 @@ namespace LogVisualizer.Services
                 .Select(x =>
                 {
                     Loading.SetMessage(I18NKeys.Loading_LoadingFile.GetLocalizationString(x));
-                    if (CompressedPackageLoader.IsSupportedCompressedPackage(x))
+                    if (ArchiveLoader.IsSupportedArchive(x))
                     {
-                        var subItems = CompressedPackageLoader.GetEntryPaths(x).Select(i => new LogFileItem(Path.GetFileName(i), i, null, null)).ToArray();
+                        var subItems = ArchiveLoader.GetEntryPaths(x).Select(i => new LogFileItem(Path.GetFileName(i), i, null, null)).ToArray();
                         return new LogFileItem(Path.GetFileName(x), x, null, subItems);
                     }
                     else
                     {
                         return new LogFileItem(Path.GetFileName(x), x, null, null);
                     }
-                });
+                }).ToArray();
             if (!logFileItems.Any())
             {
                 return Array.Empty<LogFileItem>();
@@ -119,19 +119,20 @@ namespace LogVisualizer.Services
             return logFileItems;
         }
 
-        public void LoadLogFileItem(LogFileItem? logFileItem)
+        public async Task LoadLogFileItem(LogFileItem? logFileItem)
         {
             CurrentLogFileItem = logFileItem;
-            if (CurrentLogFileItem == null)
+            if (CurrentLogFileItem == null ||
+                CurrentLogFileItem.Path == null ||
+                CurrentScenario == null)
             {
                 return;
             }
-            if (CompressedPackageLoader.IsSupportedCompressedPackage(CurrentLogFileItem.Path))
+            await Task.Run(() =>
             {
-                var stream = CompressedPackageReader.ReadStream(CurrentLogFileItem.Path);
-                var logContent = ILogContent.LoadLogContent(stream, CurrentScenario.SchemaLogPath);
-            }
-            WeakReferenceMessenger.Default.Send(new LogFileItemSelectedChangedMessage(logFileItem));
+                var logContent = CurrentScenario.LoadLogContent(CurrentLogFileItem.Path);
+                WeakReferenceMessenger.Default.Send(new LogContentSelectedChangedMessage(logContent));
+            });
         }
     }
 }

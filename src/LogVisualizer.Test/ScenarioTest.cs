@@ -1,6 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Shapes;
 using LogVisualizer.Commons;
+using LogVisualizer.Decompress;
 using LogVisualizer.Scenarios;
 using LogVisualizer.Services;
 using System.Collections.Concurrent;
@@ -40,6 +41,31 @@ namespace LogVisualizer.Test
             }
             var result = scenario.SupportedExtensions;
             Assert.Equal(excepted, result);
+        }
+
+        [Theory]
+        [InlineData(@"Samples\Scenarios\1\", @"Samples\LogSourceFiles\line12.txt")]
+        [InlineData(@"Samples\Scenarios\1\", @"Samples\LogSourceFiles\line1.txt")]
+        [InlineData(@"Samples\Scenarios\1\", @"Samples\LogSourceFiles\line1.7z")]
+        public void ScenarioLoadLogContentTest(string scenariosFolder, string logSourceFile)
+        {
+            Scenario? scenario = Scenario.LoadFromFolder(scenariosFolder);
+            if (scenario == null)
+            {
+                Assert.Fail("scenario is null");
+            }
+            if (ArchiveLoader.IsArchiveEntry(logSourceFile))
+            {
+                foreach (var path in ArchiveLoader.GetEntryPaths(logSourceFile))
+                {
+                    var result = scenario.LoadLogContent(path);
+                }
+            }
+            else
+            {
+                var result = scenario.LoadLogContent(logSourceFile);
+            }
+            //Assert.Equal(excepted, result);
         }
 
         //[Theory]

@@ -1,0 +1,22 @@
+05/29/23 10:22:10.773 <xxxxlib> [10356] DEBUG <<<AsyncTask>>> async_task.cpp:97 glip_mobile::AsyncTask::execute ready to execute task, task name = DispatchRcvToSerial
+05/29/23 10:22:10.773 <xxxxlib> [10356] DEBUG <<<AsyncTask>>> async_task.cpp:99 glip_mobile::AsyncTask::execute task executed, task name = DispatchRcvToSerial
+05/29/23 10:22:10.802 <xxxxlib> [8376] DEBUG <<<AsyncTask>>> async_task.cpp:97 glip_mobile::AsyncTask::execute ready to execute task, task name = DispatchRcvToSerial
+05/29/23 10:22:10.803 <xxxxlib> [8376] DEBUG <<<AsyncTask>>> async_task.cpp:99 glip_mobile::AsyncTask::execute task executed, task name = DispatchRcvToSerial
+05/29/23 10:22:10.803 <xxxxlib> [8376] DEBUG <<<AsyncTask>>> async_task.cpp:97 glip_mobile::AsyncTask::execute ready to execute task, task name = DispatchRcvToSerial
+05/29/23 10:22:10.803 <xxxxlib> [8376] DEBUG <<<AsyncTask>>> async_task.cpp:99 glip_mobile::AsyncTask::execute task executed, task name = DispatchRcvToSerial
+123456789
+12345678
+1234567
+123456
+12345
+1234
+123
+12
+1
+05/29/23 10:22:10.900 <xxxxlib> [1852] DEBUG <<<AsyncTask>>> async_task.cpp:97 glip_mobile::AsyncTask::execute ready to execute task, task name = RCVStatsObserver::_getSenderStatsByTimer
+05/29/23 10:22:10.900 <xxxxlib> [1852] DEBUG <<<AsyncTask>>> async_task.cpp:99 glip_mobile::AsyncTask::execute task executed, task name = RCVStatsObserver::_getSenderStatsByTimer
+05/29/23 10:22:10.900 <corelib> [12300] DEBUG <<<AsyncTask>>> async_task.cpp:97 glip_mobile::AsyncTask::execute ready to execute task, task name = DispatchRcvToSerial
+05/29/23 10:22:10.903 <corelib> [12300] DEBUG <<<AsyncTask>>> async_task.cpp:99 glip_mobile::AsyncTask::execute task executed, task name = DispatchRcvToSerial
+05/29/23 10:22:10.904 <webrtc> [2256] INFO  [1583:572][2256] (red_opt_util_v2.cc:181): Adaption:0,state:0,loss state:0,decrease_update:0,decrease_update_ms:0[4465611,0,0,0,0,1,128000,20],low_bitrate_red:0,share_mode:1,stable_target_bitrate:137600,available_bitrate_bps:128000,overhead_bps:9600
+
+05/29/23 10:22:10.904 <webrtc> [2256] INFO  [1583:572][2256] (red_opt_util.cc:146): adaption:0,state:0,action:0,decrease_update:0,decrease_update_ms:0,[collection: now_ms,frloss,avg_frloss,max_frloss,distance,fec,target_bitrate,ptime]:[4465611,0,0,0,0,1,64000,20]is_voip_call:0

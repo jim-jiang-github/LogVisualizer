@@ -32,7 +32,7 @@ namespace LogVisualizer.ViewModels
             {
                 return;
             }
-            _scenarioService.LoadLogFileItem(value);
+            _ = _scenarioService.LoadLogFileItem(value).WithLoadingMask();
         }
 
         public LogSelectorViewModel(ScenarioService scenarioService)

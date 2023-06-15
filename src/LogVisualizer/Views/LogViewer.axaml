@@ -25,15 +25,7 @@
                     <TextBlock
                         Height="15"
                         FontSize="12"
-                        Text="{Binding Index}" />
-                    <TextBlock
-                        Height="15"
-                        FontSize="12"
-                        Text=": " />
-                    <TextBlock
-                        Height="15"
-                        FontSize="12"
-                        Text="{Binding Name}" />
+                        Text="{Binding}" />
                 </StackPanel>
             </DataTemplate>
         </ListBox.ItemTemplate>

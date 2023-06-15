@@ -4,10 +4,10 @@ using System.Reflection;
 
 namespace LogVisualizer.Decompress
 {
-    public abstract class CompressedPackageLoader
+    public abstract class ArchiveLoader
     {
         #region InnerClass
-        private class CompressedPackageLoaderZip : CompressedPackageLoader
+        private class ArchiveLoaderZip : ArchiveLoader
         {
             protected override string Extension => "zip";
 
@@ -32,7 +32,7 @@ namespace LogVisualizer.Decompress
                 }
             }
         }
-        private class CompressedPackageLoader7Z : CompressedPackageLoader
+        private class ArchiveLoader7Z : ArchiveLoader
         {
             protected override string Extension => "7z";
 
@@ -58,29 +58,29 @@ namespace LogVisualizer.Decompress
         }
         #endregion
 
-        private static CompressedPackageLoader[] AllCompressedPackageLoaders { get; }
-        public static string[] SupportedExtensions => AllCompressedPackageLoaders.Select(x => $"*.{x.Extension}").ToArray();
-        static CompressedPackageLoader()
+        private static ArchiveLoader[] AllArchiveLoaders { get; }
+        public static string[] SupportedExtensions => AllArchiveLoaders.Select(x => $"*.{x.Extension}").ToArray();
+        static ArchiveLoader()
         {
-            AllCompressedPackageLoaders = Assembly.GetExecutingAssembly()
+            AllArchiveLoaders = Assembly.GetExecutingAssembly()
                 .GetTypes()
-                .Where(t => !t.IsAbstract && t.IsSubclassOf(typeof(CompressedPackageLoader)))
-                .Select(x => Activator.CreateInstance(x) as CompressedPackageLoader)
-                .OfType<CompressedPackageLoader>()
+                .Where(t => !t.IsAbstract && t.IsSubclassOf(typeof(ArchiveLoader)))
+                .Select(x => Activator.CreateInstance(x) as ArchiveLoader)
+                .OfType<ArchiveLoader>()
                 .ToArray();
         }
         private static IEnumerable<string> GetEntryPaths(EntryItem entryItem)
         {
             var extension = Path.GetExtension(entryItem.EntryPath);
 
-            CompressedPackageLoader? compressedPackageLoader = AllCompressedPackageLoaders.FirstOrDefault(x => $".{x.Extension}" == extension);
-            if (compressedPackageLoader == null)
+            ArchiveLoader? archiveLoader = AllArchiveLoaders.FirstOrDefault(x => $".{x.Extension}" == extension);
+            if (archiveLoader == null)
             {
                 yield return entryItem.EntryPath;
             }
             else
             {
-                var entryItems = compressedPackageLoader.GetEntryPathsInternal(entryItem).ToArray();
+                var entryItems = archiveLoader.GetEntryPathsInternal(entryItem).ToArray();
                 foreach (EntryItem item in entryItems)
                 {
                     foreach (var path in GetEntryPaths(item))
@@ -94,15 +94,15 @@ namespace LogVisualizer.Decompress
         {
             var extension = Path.GetExtension(entryPath);
 
-            CompressedPackageLoader? compressedPackageLoader = AllCompressedPackageLoaders.FirstOrDefault(x => $".{x.Extension}" == extension);
-            if (compressedPackageLoader == null)
+            ArchiveLoader? archiveLoader = AllArchiveLoaders.FirstOrDefault(x => $".{x.Extension}" == extension);
+            if (archiveLoader == null)
             {
                 yield return entryPath;
             }
             else
             {
                 using var entryItemStream = File.OpenRead(entryPath);
-                var entryItems = compressedPackageLoader.GetEntryPathsInternal(new EntryItem(entryPath, entryItemStream)).ToArray();
+                var entryItems = archiveLoader.GetEntryPathsInternal(new EntryItem(entryPath, entryItemStream)).ToArray();
                 foreach (var entryItem in entryItems)
                 {
                     foreach (var path in GetEntryPaths(entryItem))
@@ -112,19 +112,26 @@ namespace LogVisualizer.Decompress
                 }
             }
         }
-        public static bool IsSupportedCompressedPackage(string entryPath)
+        public static bool IsArchiveEntry(string entryPath)
         {
             int delimiterIndex = entryPath.IndexOf("|");
-            if (delimiterIndex != -1)
+            if (delimiterIndex == -1)
             {
-                entryPath = entryPath.Substring(0, delimiterIndex);
+                return false;
             }
+            entryPath = entryPath.Substring(0, delimiterIndex);
+            var extension = Path.GetExtension(entryPath);
+            bool isArchiveEntry = SupportedExtensions.Any(x => x == $"*{extension}");
+            return isArchiveEntry;
+        }
+        public static bool IsSupportedArchive(string entryPath)
+        {
             var extension = Path.GetExtension(entryPath);
             bool isSupported = SupportedExtensions.Any(x => x == $"*{extension}");
             return isSupported;
         }
 
-        private CompressedPackageLoader() { }
+        private ArchiveLoader() { }
         protected abstract string Extension { get; }
         internal abstract IEnumerable<EntryItem> GetEntryPathsInternal(EntryItem entryItem);
     }

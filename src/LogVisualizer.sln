@@ -27,7 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogVisualizer.Console", "Lo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessageBox.Avalonia", "..\3rd\MessageBox.Avalonia\src\MessageBox.Avalonia\MessageBox.Avalonia.csproj", "{0349E5D5-ECA0-4450-8740-E03DE06B622B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogVisualizer.Decompress", "LogVisualizer.Decompress\LogVisualizer.Decompress.csproj", "{0E3F4E82-3A6B-43B0-B5FD-38D9790FA150}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogVisualizer.Archive", "LogVisualizer.Archive\LogVisualizer.Archive.csproj", "{0E3F4E82-3A6B-43B0-B5FD-38D9790FA150}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

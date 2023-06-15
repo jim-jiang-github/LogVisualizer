@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LogVisualizer.Decompress\LogVisualizer.Decompress.csproj" />
+    <ProjectReference Include="..\LogVisualizer.Archive\LogVisualizer.Archive.csproj" />
   </ItemGroup>
 
 </Project>

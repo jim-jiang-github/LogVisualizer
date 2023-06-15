@@ -1,4 +1,6 @@
-﻿using LogVisualizer.Scenarios.Schemas;
+﻿using LogVisualizer.Decompress;
+using LogVisualizer.Scenarios.Contents;
+using LogVisualizer.Scenarios.Schemas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,25 +28,43 @@ namespace LogVisualizer.Scenarios
                 name = Path.GetFileName(folder);
             }
             var schemaLogPath = Path.Combine(folder, SCHEMA_FOLDER_NAME, SCHEMA_LOG_NAME);
-            var loader = SchemaLogLoader.GetSchemalogReaderFromJsonFile(schemaLogPath);
-            if (loader == null)
+            var schemaLogLoader = SchemaLogLoader.GetSchemalogReaderFromJsonFile(schemaLogPath);
+            if (schemaLogLoader == null)
             {
                 return null;
             }
-            var supportedExtension = loader.SupportedLoadTypes.Select(x => $"*.{x.SupportedExtension}").ToArray();
-            var scenario = new Scenario(name, schemaLogPath, supportedExtension);
+            var scenario = new Scenario(schemaLogLoader, name, schemaLogPath);
             return scenario;
         }
 
+        private SchemaLogLoader _schemaLogLoader;
+        private string _schemaLogPath;
+
         public string[] SupportedExtensions { get; } = Array.Empty<string>();
         public string Name { get; }
-        public string SchemaLogPath { get; }
 
-        private Scenario(string name, string schemaLogPath, string[] supportedExtensions)
+        private Scenario(SchemaLogLoader schemaLogLoader, string name, string schemaLogPath)
         {
+            _schemaLogLoader = schemaLogLoader;
             Name = name;
-            SchemaLogPath = schemaLogPath;
-            SupportedExtensions = supportedExtensions;
+            _schemaLogPath = schemaLogPath;
+            SupportedExtensions = schemaLogLoader.SupportedLoadTypes.Select(x => $"*.{x.SupportedExtension}").ToArray();
+        }
+
+        public ILogContent? LoadLogContent(string logSourcePath)
+        {
+            var extension = Path.GetExtension(logSourcePath);
+            if (ArchiveLoader.IsArchiveEntry(logSourcePath))
+            {
+                var stream = ArchiveReader.ReadStream(logSourcePath);
+                if (stream == null)
+                {
+                    return null;
+                }
+                var logContent = ILogContent.LoadLogContent(stream, _schemaLogPath);
+                return logContent;
+            }
+            return null;
         }
     }
 }

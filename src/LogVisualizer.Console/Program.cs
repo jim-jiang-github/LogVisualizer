@@ -147,14 +147,14 @@ int i = 1;
 //}
 //var value = GetLocalizationValue("errors_schemaValidationFailed_type", localizationMap);
 
-var qwe1 = CompressedPackageLoader.IsSupportedCompressedPackage(@"C:\Users\Jim.Jiang\Downloads\RoomsHost-20230531_152036478_pid-21544.init.log.zip");
-var qwe = CompressedPackageLoader.IsSupportedCompressedPackage("");
-var asd = CompressedPackageLoader.GetEntryPaths(@"C:\Users\Jim.Jiang\Downloads\RoomsHost-20230531_152036478_pid-21544.init.log.zip").ToArray();
+var qwe1 = ArchiveLoader.IsArchiveEntry(@"C:\Users\Jim.Jiang\Downloads\RoomsHost-20230531_152036478_pid-21544.init.log.zip");
+var qwe = ArchiveLoader.IsArchiveEntry("");
+var asd = ArchiveLoader.GetEntryPaths(@"C:\Users\Jim.Jiang\Downloads\RoomsHost-20230531_152036478_pid-21544.init.log.zip").ToArray();
 //var asd1 = CompressedPackageLoader.GetEntryPaths(@"C:\Users\Jim.Jiang\Downloads\7zTest1.zip").ToArray();
 //C:\Users\Jim.Jiang\Downloads\7zTest1.zip|7zTest1/Folder1.7z|Folder1\Folder11.zip|Folder11/Folder111.7z|Folder111\Folder1111.zip|Folder1111/Folder11111.7z|Folder11111\1.zip|1.txt
 foreach (var path in asd)
 {
-    var s = CompressedPackageReader.ReadStream(path);
+    var s = ArchiveReader.ReadStream(path);
     StreamReader sReader = new StreamReader(s, Encoding.UTF8);
     var asaaaaad = sReader.ReadToEnd();
 }

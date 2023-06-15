@@ -15,10 +15,13 @@ using System.Threading.Tasks;
 using System.Collections.Specialized;
 using CommunityToolkit.Mvvm.Messaging;
 using LogVisualizer.Messages;
+using CommunityToolkit.Mvvm.ComponentModel;
+using LogVisualizer.Models;
+using LogVisualizer.Scenarios.Contents;
 
 namespace LogVisualizer.ViewModels
 {
-    public class LogViewerViewModel : ViewModelBase
+    public partial class LogViewerViewModel : ViewModelBase
     {
         public struct Item
         {
@@ -111,12 +114,21 @@ namespace LogVisualizer.ViewModels
             {
             }
         }
-        public IList Items { get; }
+        [ObservableProperty]
+        private RangeObservableCollection<LogRow> _items;
         public LogViewerViewModel()
         {
-            Items = new ItemCollection(this);
-            WeakReferenceMessenger.Default.Register<LogFileItemSelectedChangedMessage>(this, (r, m) =>
+            Items = new RangeObservableCollection<LogRow>();
+            WeakReferenceMessenger.Default.Register<LogContentSelectedChangedMessage>(this, (r, m) =>
             {
+                var logContent = m.Value;
+                if (logContent == null)
+                {
+                    Items.Clear();
+                    return;
+                }
+                Items.Clear();
+                Items.AddRange(logContent.Rows);
             });
         }
     }

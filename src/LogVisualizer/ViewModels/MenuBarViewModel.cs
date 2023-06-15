@@ -12,8 +12,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static LogVisualizer.ViewModels.LogViewerViewModel;
-using LogVisualizer.Decompress;
 using LogVisualizer.Models;
 using System.IO;
 
