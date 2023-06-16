@@ -68,7 +68,7 @@
             <views:BottomBar DataContext="{Binding BottomBar}" DockPanel.Dock="Bottom" />
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="250" MinWidth="50"/>
+                    <ColumnDefinition Width="250" MinWidth="50" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
@@ -80,13 +80,13 @@
                     Grid.Column="1"
                     Width="1"
                     Background="Green" />
-                <Grid Grid.Column="2" RowDefinitions="*,Auto,100">
+                <Grid Grid.Column="2" RowDefinitions="*,Auto,250">
                     <views:LogViewer Grid.Row="0" DataContext="{Binding LogViewer}" />
                     <GridSplitter
                         Grid.Row="1"
                         Height="1"
                         Background="Red" />
-                    <Grid Grid.Row="2" Background="Gray" />
+                    <views:LogFilter Grid.Row="2" DataContext="{Binding LogFilter}" />
                 </Grid>
             </Grid>
         </DockPanel>

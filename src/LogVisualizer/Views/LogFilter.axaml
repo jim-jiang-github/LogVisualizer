@@ -1,0 +1,52 @@
+<UserControl
+    x:Class="LogVisualizer.Views.LogFilter"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i18n="clr-namespace:LogVisualizer.I18N;assembly=LogVisualizer.I18N"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:LogVisualizer.ViewModels;assembly=LogVisualizer;"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <Design.DataContext>
+        <vm:LogFilterViewModel />
+    </Design.DataContext>
+    <DataGrid
+        Name="dataGrid1"
+        AutoGenerateColumns="False"
+        CanUserReorderColumns="False"
+        CanUserResizeColumns="False"
+        CanUserSortColumns="False"
+        ColumnHeaderHeight="14"
+        HeadersVisibility="All"
+        IsReadOnly="True"
+        Items="{Binding LogFilterItems}"
+        RowBackground="#efefef"
+        RowHeight="18"
+        SelectionMode="Single">
+        <DataGrid.Columns>
+            <DataGridTemplateColumn Width="100" Header="{i18n:I18NKeyBinding Key=Filter_Modifiers}">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="*,*,*">
+                            <CheckBox Grid.Column="0" Background="Blue" />
+                            <CheckBox Grid.Column="1" Background="Blue" />
+                            <CheckBox Grid.Column="2" Background="Blue" />
+                        </Grid>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTextColumn
+                Width="*"
+                Binding="{Binding FilterKey}"
+                Header="{i18n:I18NKeyBinding Key=Filter_KeyWord}" />
+            <DataGridTextColumn Width="80" Header="{i18n:I18NKeyBinding Key=Filter_Hits}" />
+        </DataGrid.Columns>
+        <DataGrid.Styles>
+            <Style Selector="DataGridCell > Grid Rectangle">
+                <Setter Property="IsVisible" Value="False" />
+            </Style>
+        </DataGrid.Styles>
+    </DataGrid>
+</UserControl>

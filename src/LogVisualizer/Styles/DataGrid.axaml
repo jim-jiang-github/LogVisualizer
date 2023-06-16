@@ -8,31 +8,6 @@
 
   <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml" />
 
-  <Style Selector="DataGrid">
-    <Setter Property="ColumnHeaderHeight"
-            Value="14" />
-    <Setter Property="Foreground"
-            Value="White" />
-    <Setter Property="RowHeight"
-            Value="14" />
-    <Setter Property="SelectionMode"
-            Value="Single" />
-    <Setter Property="CanUserReorderColumns"
-            Value="False" />
-    <Setter Property="CanUserSortColumns"
-            Value="False" />
-    <Setter Property="CanUserResizeColumns"
-            Value="True" />
-    <Setter Property="AutoGenerateColumns"
-            Value="False" />
-    <Setter Property="IsReadOnly"
-            Value="True" />
-  </Style>
-
-  <Style Selector="DataGridCell > Grid Rectangle">
-    <Setter Property="IsVisible"
-            Value="False" />
-  </Style>
   <Style Selector="DataGridColumnHeader">
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -102,7 +77,6 @@
 
   <!-- Selected Row Background -->
   <Style Selector="DataGridRow:selected /template/ Rectangle#BackgroundRectangle">
-    <Setter Property="Fill" Value="Red" />
     <Setter Property="Opacity" Value="1" />
   </Style>
 

@@ -52,5 +52,10 @@
   "Loading": {
     "OpenFileStart": "Now loading...",
     "LoadingFile": "Loading {l_file}."
+  },
+  "Filter": {
+    "Modifiers": "Modifiers",
+    "KeyWord": "KeyWord",
+    "Hits": "Hits"
   }
 }

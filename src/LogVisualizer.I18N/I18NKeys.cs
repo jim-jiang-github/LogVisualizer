@@ -87,5 +87,11 @@ namespace LogVisualizer.I18N
         Loading_OpenFileStart,
         /// <summary>Loading {l_file}.</summary>
         Loading_LoadingFile,
+        /// <summary>Modifiers</summary>
+        Filter_Modifiers,
+        /// <summary>KeyWord</summary>
+        Filter_KeyWord,
+        /// <summary>Hits</summary>
+        Filter_Hits,
     }
 }

@@ -12,7 +12,6 @@
     <AvaloniaResource Include="Assets\*" />
     <AvaloniaResource Remove="Assets\Fonts.axaml" />
     <AvaloniaResource Remove="Assets\Images.axaml" />
-    <AvaloniaXaml Remove="Styles\DataGrid.axaml" />
     <AvaloniaXaml Remove="Styles\TreeDataGrid.axaml" />
     <None Remove=".gitignore" />
     <None Remove="Assets\logo.ico" />
@@ -21,6 +20,7 @@
 
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="11.0.0-preview4" />
+    <PackageReference Include="Avalonia.Controls.DataGrid" Version="11.0.0-preview4" />
     <PackageReference Include="Avalonia.Desktop" Version="11.0.0-preview4" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.0-preview4" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
