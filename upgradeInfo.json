@@ -1,7 +1,7 @@
 {
   "TipVersion": "0.0.6",
   "NotifyVersion": "0.0.5",
-  "ForceVersion": "0.0.3",
+  "ForceVersion": "0.0.0",
   "SilentVersion": "0.0.0",
   "Executable": "LogVisualizer.exe",
   "ExecuteArgs": ""
