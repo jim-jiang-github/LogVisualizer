@@ -1,9 +1,12 @@
-﻿using LogVisualizer.Services;
+﻿using GithubReleaseUpgrader;
+using LogVisualizer.Platforms.Windows;
+using LogVisualizer.Services;
 using LogVisualizer.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,7 +18,7 @@ namespace LogVisualizer
 
         public static void Init()
         {
-            _serviceProvider = new ServiceCollection()
+            var serviceCollection = new ServiceCollection()
                 .AddSingleton<ScenarioService>()
                 .AddSingleton<UpgradeService>()
                 .AddSingleton<GitService>()
@@ -27,8 +30,17 @@ namespace LogVisualizer
                 .AddScoped<SideBarViewModel>()
                 .AddScoped<BottomBarViewModel>()
                 .AddSingleton<ScenarioConfigViewModel>()
-                .AddSingleton<SplashWindowViewModel>()
-                .BuildServiceProvider();
+                .AddSingleton<SplashWindowViewModel>();
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) == true)
+            {
+                serviceCollection.AddSingleton<UpgradeProgress, UpgradeProgressWindows>();
+            }
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX) == true)
+            {
+                serviceCollection.AddSingleton<UpgradeProgress, UpgradeProgressOSX>();
+            }
+            _serviceProvider = serviceCollection.BuildServiceProvider();
             Log.Information("DependencyInjectionProvider inited!");
         }
 

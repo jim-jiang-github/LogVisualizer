@@ -16,6 +16,7 @@
     <AvaloniaXaml Remove="Styles\TreeDataGrid.axaml" />
     <None Remove=".gitignore" />
     <None Remove="Assets\logo.ico" />
+    <None Remove="Platforms\MacOS\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -64,5 +65,8 @@
     <Compile Update="Views\ScenarioConfigPanel.axaml.cs">
       <DependentUpon>ScenarioConfigPanel.axaml</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Platforms\MacOS\" />
   </ItemGroup>
 </Project>
