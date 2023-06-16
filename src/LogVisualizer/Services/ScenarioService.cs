@@ -62,28 +62,12 @@ namespace LogVisualizer.Services
             }
         }
 
-        public Task OpenAndSelectLogFileItems()
+        public Task OpenLogFileItems(IReadOnlyList<IStorageFile> storageFiles)
         {
-            return Task.Run(async () =>
+            return Task.Run(() =>
             {
                 Loading.SetMessage(I18NKeys.Loading_OpenFileStart.GetLocalizationRawValue());
-                var supportedFileTypes = new FilePickerFileType[]
-                {
-                new(I18NKeys.OpenFileDialog_SupportedLogs.GetLocalizationRawValue())
-                {
-                    Patterns = SupportedLogExtension.Concat(ArchiveLoader.SupportedExtensions).ToArray()
-                }
-                };
-                var storageFiles = await GlobalStorageProvider.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions()
-                {
-                    Title = I18NKeys.OpenFileDialog_PickLog.GetLocalizationRawValue(),
-                    FileTypeFilter = supportedFileTypes,
-                    AllowMultiple = true
-                });
-                if (storageFiles.Count == 0)
-                {
-                    return;
-                }
+       
                 IEnumerable<string> filePaths = storageFiles
                     .Where(x => x.CanBookmark).Select(async x => await x.SaveBookmarkAsync())
                     .Select(x => x.Result)

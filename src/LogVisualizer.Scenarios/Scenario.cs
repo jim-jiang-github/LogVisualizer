@@ -3,6 +3,7 @@ using LogVisualizer.Scenarios.Contents;
 using LogVisualizer.Scenarios.Schemas;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -53,18 +54,30 @@ namespace LogVisualizer.Scenarios
 
         public ILogContent? LoadLogContent(string logSourcePath)
         {
-            var extension = Path.GetExtension(logSourcePath);
+            Stream? stream;
             if (ArchiveLoader.IsArchiveEntry(logSourcePath))
             {
-                var stream = ArchiveReader.ReadStream(logSourcePath);
+                stream = ArchiveReader.ReadStream(logSourcePath);
                 if (stream == null)
                 {
                     return null;
                 }
-                var logContent = ILogContent.LoadLogContent(stream, _schemaLogPath);
-                return logContent;
             }
-            return null;
+            else
+            {
+                var reader = LogReader.GetReader(LogReaderType.Text);
+                if (reader == null)
+                {
+                    return null;
+                }
+                stream = reader.Read(logSourcePath);
+                if (stream == null)
+                {
+                    return null;
+                }
+            }
+            var logContent = ILogContent.LoadLogContent(stream, _schemaLogPath);
+            return logContent;
         }
     }
 }

@@ -14,6 +14,8 @@ using System.Text;
 using System.Threading.Tasks;
 using LogVisualizer.Models;
 using System.IO;
+using System.Threading;
+using LogVisualizer.Decompress;
 
 namespace LogVisualizer.ViewModels
 {
@@ -45,7 +47,24 @@ namespace LogVisualizer.ViewModels
         [RelayCommand]
         public async Task Open()
         {
-            await _scenarioService.OpenAndSelectLogFileItems().WithLoadingMask();
+            var supportedFileTypes = new FilePickerFileType[]
+            {
+                new(I18NKeys.OpenFileDialog_SupportedLogs.GetLocalizationRawValue())
+                {
+                    Patterns = _scenarioService.SupportedLogExtension.Concat(ArchiveLoader.SupportedExtensions).ToArray()
+                }
+            };
+            var storageFiles = await GlobalStorageProvider.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions()
+            {
+                Title = I18NKeys.OpenFileDialog_PickLog.GetLocalizationRawValue(),
+                FileTypeFilter = supportedFileTypes,
+                AllowMultiple = true
+            });
+            if (storageFiles.Count == 0)
+            {
+                return;
+            }
+            await _scenarioService.OpenLogFileItems(storageFiles).WithLoadingMask();
         }
 
         [RelayCommand]
