@@ -15,8 +15,8 @@ namespace LogVisualizer.Test
         }
 
         [Theory]
-        [InlineData(@"..\..\..\..\..\LogVisualizer.I18N\I18NResources\en.json")]
-        [InlineData(@"..\..\..\..\..\LogVisualizer.I18N\I18NResources\non-localized.json")]
+        [InlineData(@"../../../../../LogVisualizer.I18N/I18NResources/en.json")]
+        [InlineData(@"../../../../../LogVisualizer.I18N/I18NResources/non-localized.json")]
         public void I18NKeysTest(string i18nJsonPath)
         {
             var i18nJsonContent = File.ReadAllText(i18nJsonPath);

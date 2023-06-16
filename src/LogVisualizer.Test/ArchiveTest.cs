@@ -14,10 +14,11 @@ namespace LogVisualizer.Test
         }
 
         [Theory]
-        [InlineData(@"Samples\Archives\7zTest.7z", 12)]
-        [InlineData(@"Samples\Archives\7zTest.zip", 12)]
-        [InlineData(@"Samples\Archives\7zTest1.7z", 2)]
-        [InlineData(@"Samples\Archives\7zTest1.zip", 2)]
+        
+        [InlineData(@"Samples/Archives/7zTest.7z", 12)]
+        [InlineData(@"Samples/Archives/7zTest.zip", 12)]
+        [InlineData(@"Samples/Archives/7zTest1.7z", 2)]
+        [InlineData(@"Samples/Archives/7zTest1.zip", 2)]
         public async Task LoadArchives(string archivePath, int expected)
         {
             var paths = ArchiveLoader.GetEntryPaths(archivePath);
@@ -26,10 +27,10 @@ namespace LogVisualizer.Test
         }
 
         [Theory]
-        [InlineData(@"Samples\Archives\7zTest.7z")]
-        [InlineData(@"Samples\Archives\7zTest.zip")]
-        [InlineData(@"Samples\Archives\7zTest1.7z")]
-        [InlineData(@"Samples\Archives\7zTest1.zip")]
+        [InlineData(@"Samples/Archives/7zTest.7z")]
+        [InlineData(@"Samples/Archives/7zTest.zip")]
+        [InlineData(@"Samples/Archives/7zTest1.7z")]
+        [InlineData(@"Samples/Archives/7zTest1.zip")]
         public async Task ReadArchives(string archivePath)
         {
             var paths = ArchiveLoader.GetEntryPaths(archivePath);
@@ -50,9 +51,9 @@ namespace LogVisualizer.Test
         }
 
         [Theory]
-        [InlineData(@"Samples\Archives\7zTest.7z", false)]
-        [InlineData(@"Samples\Archives\7zTest.zip", false)]
-        [InlineData(@"Samples\Archives\7zTest.zip|7zTest/Folder1/1.txt", true)]
+        [InlineData(@"Samples/Archives/7zTest.7z", false)]
+        [InlineData(@"Samples/Archives/7zTest.zip", false)]
+        [InlineData(@"Samples/Archives/7zTest.zip|7zTest/Folder1/1.txt", true)]
         public void IsArchivesEntry(string archivePath, bool expected)
         {
             var result = ArchiveLoader.IsArchiveEntry(archivePath);

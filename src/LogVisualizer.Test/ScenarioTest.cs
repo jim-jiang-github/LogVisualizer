@@ -19,10 +19,10 @@ namespace LogVisualizer.Test
         }
 
         [Theory]
-        [InlineData(@"Samples\Scenarios\x", false)]
-        [InlineData(@"Samples\Scenarios\1", true)]
-        [InlineData(@"Samples\Scenarios\x\", false)]
-        [InlineData(@"Samples\Scenarios\1\", true)]
+        [InlineData(@"Samples/Scenarios/x", false)]
+        [InlineData(@"Samples/Scenarios/1", true)]
+        [InlineData(@"Samples/Scenarios/x/", false)]
+        [InlineData(@"Samples/Scenarios/1/", true)]
         public void ScenarioLoadTest(string scenariosFolder, bool excepted)
         {
             Scenario? scenario = Scenario.LoadFromFolder(scenariosFolder);
@@ -31,7 +31,7 @@ namespace LogVisualizer.Test
         }
 
         [Theory]
-        [InlineData(@"Samples\Scenarios\1\", new[] { "*.log", "*.txt" })]
+        [InlineData(@"Samples/Scenarios/1/", new[] { "*.log", "*.txt" })]
         public void ScenarioSupportedExtensionsTest(string scenariosFolder, string[] excepted)
         {
             Scenario? scenario = Scenario.LoadFromFolder(scenariosFolder);
@@ -44,9 +44,9 @@ namespace LogVisualizer.Test
         }
 
         [Theory]
-        [InlineData(@"Samples\Scenarios\1\", @"Samples\LogSourceFiles\line12.txt")]
-        [InlineData(@"Samples\Scenarios\1\", @"Samples\LogSourceFiles\line1.txt")]
-        [InlineData(@"Samples\Scenarios\1\", @"Samples\LogSourceFiles\line1.7z")]
+        [InlineData(@"Samples/Scenarios/1/", @"Samples/LogSourceFiles/line12.txt")]
+        [InlineData(@"Samples/Scenarios/1/", @"Samples/LogSourceFiles/line1.txt")]
+        [InlineData(@"Samples/Scenarios/1/", @"Samples/LogSourceFiles/line1.7z")]
         public void ScenarioLoadLogContentTest(string scenariosFolder, string logSourceFile)
         {
             Scenario? scenario = Scenario.LoadFromFolder(scenariosFolder);
@@ -69,7 +69,7 @@ namespace LogVisualizer.Test
         }
 
         //[Theory]
-        //[InlineData(@"Samples\Scenarios\1\1.log", @"Samples\Scenarios\1", 12)]
+        //[InlineData(@"Samples/Scenarios/1/1.log", @"Samples/Scenarios/1", 12)]
         //public void ScenarioLoadTest(string logFilePath, string scenariosFolder, int rowCount)
         //{
         //    Scenario? scenario = Scenario.LoadFromFolder(scenariosFolder);
@@ -80,7 +80,7 @@ namespace LogVisualizer.Test
         //}
 
         //[Theory]
-        //[InlineData(@"Samples\2\1.log", @"Samples\2\Scenarios", 999999)]
+        //[InlineData(@"Samples/2/1.log", @"Samples/2/Scenarios", 999999)]
         //public void Pull(string logFilePath, string scenariosFolder, int rowCount)
         //{
         //    var line = File.ReadAllText(logFilePath);
