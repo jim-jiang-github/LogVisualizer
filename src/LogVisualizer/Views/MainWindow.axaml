@@ -11,7 +11,7 @@
     xmlns:titlebars="clr-namespace:LogVisualizer.Platforms.Windows;assembly=LogVisualizer"
     xmlns:views="clr-namespace:LogVisualizer.Views"
     xmlns:vm="using:LogVisualizer.ViewModels"
-    Title="LogVisualizer"
+    Title="{Binding Title}"
     d:DesignHeight="1080"
     d:DesignWidth="1920"
     Icon="/Assets/logo.ico"

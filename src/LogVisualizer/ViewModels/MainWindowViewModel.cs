@@ -10,11 +10,18 @@ using System.Collections;
 using LogVisualizer.Services;
 using LogVisualizer.Views;
 using Avalonia.Controls.Chrome;
+using System.Diagnostics;
+using Avalonia.OpenGL;
+using System.Reflection;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace LogVisualizer.ViewModels
 {
-    public class MainWindowViewModel : ViewModelBase
+    public partial class MainWindowViewModel : ViewModelBase
     {
+        [ObservableProperty]
+        private string _title = $"LogVisualizer({Assembly.GetEntryAssembly()?.GetName()?.Version})";
+
         public TitleBarViewModel TitleBar { get; }
         public MenuBarViewModel MenuBar { get; }
         public SideBarViewModel SideBar { get; }

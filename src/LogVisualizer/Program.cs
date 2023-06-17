@@ -29,7 +29,6 @@ namespace LogVisualizer
                 BuildAvaloniaApp()
                     .StartWithClassicDesktopLifetime(args);
             }
-
             Log.Information("Program Main end!");
             upgradeService?.PerformUpgradeIfNeeded();
         }
