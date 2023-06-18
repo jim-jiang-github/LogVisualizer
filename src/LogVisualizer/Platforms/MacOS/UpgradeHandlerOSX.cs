@@ -14,7 +14,7 @@ namespace LogVisualizer.Platforms.Windows
 {
     public class UpgradeHandlerOSX : UpgradeHandlerPlatform
     {
-        public override string UpgradeResourceName { get; } = "windows-x64.zip";
+        public override string UpgradeResourceName { get; } = "osx-x64.zip";
 
         public override string ExecutableName { get; } = $"{Global.APP_NAME}";
 
