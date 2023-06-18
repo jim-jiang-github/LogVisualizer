@@ -29,6 +29,8 @@
     <None Remove=".gitignore" />
     <None Remove="Assets\logo.ico" />
     <None Remove="Platforms\MacOS\" />
+    <None Remove="Platforms\Windows\upgrader.bat" />
+    <None Remove="Platforms\MacOS\upgrader.bat" />
   </ItemGroup>
 
   <ItemGroup>
@@ -81,6 +83,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Platforms\MacOS\" />
+    <EmbeddedResource Include="Platforms\Windows\upgrader.bat" />
+    <EmbeddedResource Include="Platforms\MacOS\upgrader.sh" />
   </ItemGroup>
 </Project>

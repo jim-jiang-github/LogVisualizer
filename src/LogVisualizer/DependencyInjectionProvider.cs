@@ -35,11 +35,11 @@ namespace LogVisualizer
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) == true)
             {
-                serviceCollection.AddSingleton<UpgradeProgress, UpgradeProgressWindows>();
+                serviceCollection.AddSingleton<UpgradeHandler, UpgradeHandlerWindows>();
             }
             if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX) == true)
             {
-                serviceCollection.AddSingleton<UpgradeProgress, UpgradeProgressOSX>();
+                serviceCollection.AddSingleton<UpgradeHandler, UpgradeHandlerOSX>();
             }
             _serviceProvider = serviceCollection.BuildServiceProvider();
             Log.Information("DependencyInjectionProvider inited!");

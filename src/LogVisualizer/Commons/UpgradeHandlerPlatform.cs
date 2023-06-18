@@ -10,7 +10,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 
 namespace LogVisualizer.Commons
 {
-    public abstract class UpgradeProgressPlatform : UpgradeProgress
+    public abstract class UpgradeHandlerPlatform : UpgradeHandler
     {
         public override string UpgradeTempFolder { get; } = Global.UpgradeResourcesFolder;
 

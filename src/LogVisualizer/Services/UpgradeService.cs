@@ -18,16 +18,16 @@ namespace LogVisualizer.Services
 {
     public class UpgradeService
     {
-        private UpgradeProgress _upgradeProgress;
+        private UpgradeHandler _upgradeHandler;
 
-        public UpgradeService(UpgradeProgress upgradeProgress)
+        public UpgradeService(UpgradeHandler upgradeHandler)
         {
-            _upgradeProgress = upgradeProgress;
+            _upgradeHandler = upgradeHandler;
         }
 
         public bool CheckForUpgrade(bool forceCheck = false)
         {
-            var isNeedUpgrade = Upgrader.CheckForUpgrade(_upgradeProgress, forceCheck);
+            var isNeedUpgrade = Upgrader.CheckForUpgrade(_upgradeHandler, forceCheck);
             return isNeedUpgrade;
         }
 
