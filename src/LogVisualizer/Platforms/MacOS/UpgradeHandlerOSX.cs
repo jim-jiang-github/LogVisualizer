@@ -16,7 +16,7 @@ namespace LogVisualizer.Platforms.Windows
     {
         public override string UpgradeResourceName { get; } = "osx-x64.zip";
 
-        public override string ExecutableName { get; } = $"{Global.APP_NAME}";
+        public override string ExecutableName { get; } = $"{Global.APP_NAME}.app";
 
         public override string UpgradeScriptName => "upgrader.sh";
 

@@ -9,16 +9,19 @@ on:
 
 env:
     DOTNETVERSION: 7.0.x
-    SLN_DIR: src\
-    CSPROJ_DIR: src\LogVisualizer\
-    BUILD_DIR: src\LogVisualizer\bin\Release\net6.0\win-x64\publish\
+    OSX_SCRIPTS_DIR: scripts/macos/
+    OSX_APP_DIR: src/LogVisualizer/bin/Release/net6.0/osx-x64/
+    OSX_APP_Name: LogVisualizer.app
+    OSX_APP_ZIP_Name: osx-x64.zip
+    WIN_SCRIPTS_DIR: scripts/windows/
+    WIN_APP_DIR: src/LogVisualizer/bin/Release/net6.0/win-x64/publish/
+    WIN_APP_Name: LogVisualizer.exe
+    WIN_APP_ZIP_Name: win-x64.zip
     UPGRADE_INFO_PATH: upgradeInfo.json
 
 jobs:
-  build:
-
+  build-windows:
     runs-on: windows-latest
-
     steps:
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v1.9.0
@@ -54,63 +57,96 @@ jobs:
 
       - name: Extract version from tag
         uses: damienaicheh/extract-version-from-tag-action@v1.1.0
-
-      - name: Install dependencies
-        run: dotnet restore ${{env.SLN_DIR}}\LogVisualizer.sln
-
+      
       - name: Build win-x64
-        run: dotnet publish ${{env.CSPROJ_DIR}}\LogVisualizer.csproj -r win-x64 -p:Configuration=Release -p:PublishSingleFile=true -p:PublishReadyToRun=true -p:IncludeNativeLibrariesForSelfExtract=true --self-contained true -p:PublishTrimmed=True -p:TrimMode=CopyUsed -property:Version='${{ env.MAJOR }}.${{ env.MINOR }}.${{ env.PATCH }}.${{ env.NUMBER_OF_COMMITS }}'
+        run: |
+          chmod +x ${{env.WIN_SCRIPTS_DIR}}build.sh
+          sh ${{env.WIN_SCRIPTS_DIR}}build.sh '${{ env.MAJOR }}.${{ env.MINOR }}.${{ env.PATCH }}.${{ env.NUMBER_OF_COMMITS }}'
 
       - name: Zip win-x64 build
         shell: powershell
-        run: Compress-7Zip ${{ env.BUILD_DIR }} -ArchiveFileName windows-x64.zip -Format Zip
-
-      - name: Collect win-x64 artifacts
-        uses: actions/upload-artifact@v2.3.1
+        run: Compress-7Zip ${{ env.WIN_APP_DIR }}${{ env.WIN_APP_Name }} -ArchiveFileName ./${{env.WIN_APP_ZIP_Name}} -Format Zip
+      
+      - name: Upload windows artifact
+        uses: actions/upload-artifact@v2
         with:
-          name: windows-x64
-          path: ${{ env.BUILD_DIR }}
+          name: windows-Build
+          path: ./${{env.WIN_APP_ZIP_Name}}
 
-      #- name: Build osx-x64
-      #  run: dotnet publish ${{env.CSPROJ_DIR}}\LogVisualizer.csproj -r osx-x64 -p:Configuration=Release -p:PublishReadyToRun=true -p:IncludeNativeLibrariesForSelfExtract=true -p:IncludeAllContentForSelfExtract=true --self-contained true -property:Version='${{ env.MAJOR }}.${{ env.MINOR }}.${{ env.PATCH }}.${{ env.NUMBER_OF_COMMITS }}'
-
-      #- name: Zip osx-x64 build
-      #  shell: powershell
-      #  run: Compress-7Zip ${{ env.BUILD_DIR }} -ArchiveFileName macOS-x64.zip -Format Zip
-
-      #- name: Collect osx-x64 artifacts
-      #  uses: actions/upload-artifact@v2.3.1
-      #  with:
-      #    name: macOS-x64
-      #    path: ${{ env.BUILD_DIR }}
-
-      #- name: Build osx-arm64
-      #  run: dotnet publish ${{env.CSPROJ_DIR}}\LogVisualizer.csproj -r osx-arm64 -p:Configuration=Release -p:PublishReadyToRun=true -p:IncludeNativeLibrariesForSelfExtract=true -p:IncludeAllContentForSelfExtract=true --self-contained true -property:Version='${{ env.MAJOR }}.${{ env.MINOR }}.${{ env.PATCH }}.${{ env.NUMBER_OF_COMMITS }}'
-
-      #- name: Zip osx-arm64 build
-      #  shell: powershell
-      #  run: Compress-7Zip ${{ env.BUILD_DIR }} -ArchiveFileName macOS-arm64.zip -Format Zip
-
-      #- name: Collect osx-arm64 artifacts
-      #  uses: actions/upload-artifact@v2.3.1
-      #  with:
-      #    name: macOS-arm64
-      #    path: ${{ env.BUILD_DIR }}
-
-      # upgradeInfo
-      - name: Collect upgradeInfo artifacts
-        uses: actions/upload-artifact@v2.3.1
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v1.9.0
         with:
-          name: upgradeInfo
-          path: ${{ env.UPGRADE_INFO_PATH }}
+          dotnet-version: ${{env.DOTNETVERSION}}
 
-      # Release Management
-      - name: Delete release drafts
-        uses: hugo19941994/delete-draft-releases@v1.0.0
+      - name: Import certificate
+        uses: apple-actions/import-codesign-certs@v2
+        with: 
+          p12-file-base64: ${{ secrets.CERTIFICATE_BASE64_P12 }}
+          p12-password: ${{ secrets.CERTIFICATE_PASSWORD }}
+
+      - name: Checkout Code
+        uses: actions/checkout@v3
         with:
-          threshold: 1s
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          fetch-depth: 1
+
+      - name: Initialize submodules
+        run: git submodule update --init --recursive
+
+      - name: Install localization package
+        run: npm install -g i18n-auto-translation-msnyder
+
+      - name: Translate files
+        id: translate
+        uses: msnyder-msft/i18n-auto-translation-action@v1.0.1
+        with:
+            provider: 'azure-official'
+            subscriptionKey: '${{ secrets.AZURE_TRANSLATION_API_KEY }}'
+            location: 'westus2'
+            filePath: './src/LogVisualizer.I18N/I18NResources/en.json'
+            from: 'en'
+            to: 'zh'
+            debug: false
+
+      - name: Extract version from tag
+        uses: damienaicheh/extract-version-from-tag-action@v1.1.0
+      
+      - name: Build osx-x64
+        run: |
+          chmod +x ${{env.OSX_SCRIPTS_DIR}}build.sh
+          sh ${{env.OSX_SCRIPTS_DIR}}build.sh
+
+      - name: Zip osx-x64 build
+        run: cd ${{ env.OSX_APP_DIR }} && zip -r ../../../../../../${{env.OSX_APP_ZIP_Name}} ${{env.OSX_APP_Name}}
+      
+      - name: Upload macos artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: macos-Build
+          path: ./${{env.OSX_APP_ZIP_Name}}
+
+  create-release:
+    name: Create Release
+    needs: [build-macos, build-windows]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Download macos artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: macos-Build
+          path: ./${{env.OSX_APP_ZIP_Name}}
+
+      - name: Download windows artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: windows-Build
+          path: ./${{ env.WIN_APP_ZIP_Name }}
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
@@ -119,5 +155,6 @@ jobs:
           draft: false
           title: Release ${{ github.ref_name }}
           files: |
-            ./windows-x64.zip
-            ./upgradeInfo.json
+            ./${{env.OSX_APP_ZIP_Name}}
+            ./${{env.WIN_APP_ZIP_Name}}
+            ./${{env.UPGRADE_INFO_PATH}}
