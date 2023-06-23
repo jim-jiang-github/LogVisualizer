@@ -2,7 +2,9 @@
 using Avalonia.Controls.Documents;
 using Avalonia.Input;
 using Avalonia.Threading;
+using CommunityToolkit.Mvvm.Messaging;
 using LogVisualizer.Commons;
+using LogVisualizer.Messages;
 using LogVisualizer.ViewModels;
 using MessageBox.Avalonia.DTO;
 using MessageBox.Avalonia.Models;
@@ -23,6 +25,14 @@ namespace LogVisualizer.Views
         {
             base.OnLoaded();
             Notify.Init(this);
+            WeakReferenceMessenger.Default.Register<LogFilterItemDetailSelectedChangedMessage>(this, (r, m) =>
+            {
+                Window window = new Window()
+                {
+                    WindowStartupLocation = WindowStartupLocation.CenterOwner
+                };
+                window.ShowDialog(this);
+            });
         }
     }
 }

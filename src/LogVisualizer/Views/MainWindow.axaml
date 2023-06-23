@@ -79,13 +79,13 @@
                 <GridSplitter
                     Grid.Column="1"
                     Width="1"
-                    Background="Green" />
+                    Background="#8f8f8f" />
                 <Grid Grid.Column="2" RowDefinitions="*,Auto,250">
                     <views:LogViewer Grid.Row="0" DataContext="{Binding LogViewer}" />
                     <GridSplitter
                         Grid.Row="1"
                         Height="1"
-                        Background="Red" />
+                        Background="#8f8f8f" />
                     <views:LogFilter Grid.Row="2" DataContext="{Binding LogFilter}" />
                 </Grid>
             </Grid>

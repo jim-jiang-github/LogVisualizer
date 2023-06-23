@@ -3,7 +3,10 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
     xmlns:i18n="clr-namespace:LogVisualizer.I18N;assembly=LogVisualizer.I18N"
+    xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
+    xmlns:icon="clr-namespace:Projektanker.Icons.Avalonia;assembly=Projektanker.Icons.Avalonia"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:LogVisualizer.ViewModels;assembly=LogVisualizer;"
     d:DesignHeight="450"
@@ -13,26 +16,54 @@
         <vm:LogFilterViewModel />
     </Design.DataContext>
     <DataGrid
-        Name="dataGrid1"
+        Name="LogFilterDataGrid"
+        AlternatingRowBackground="#1f1f1f"
         AutoGenerateColumns="False"
         CanUserReorderColumns="False"
         CanUserResizeColumns="False"
         CanUserSortColumns="False"
         ColumnHeaderHeight="14"
         HeadersVisibility="All"
+        SelectedItem="{Binding SelectedItem}"
         IsReadOnly="True"
         Items="{Binding LogFilterItems}"
-        RowBackground="#efefef"
-        RowHeight="18"
+        RowBackground="#1f1f1f"
+        RowHeight="22"
         SelectionMode="Single">
+        <i:Interaction.Behaviors>
+            <ia:EventTriggerBehavior EventName="DoubleTapped" SourceObject="LogFilterDataGrid">
+                <ia:InvokeCommandAction Command="{Binding EditLogFilterItemCommand}" />
+            </ia:EventTriggerBehavior>
+        </i:Interaction.Behaviors>
         <DataGrid.Columns>
+            <DataGridTemplateColumn Width="30" Header="">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <CheckBox IsChecked="{Binding Enabled}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
             <DataGridTemplateColumn Width="100" Header="{i18n:I18NKeyBinding Key=Filter_Modifiers}">
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
                         <Grid ColumnDefinitions="*,*,*">
-                            <CheckBox Grid.Column="0" Background="Blue" />
-                            <CheckBox Grid.Column="1" Background="Blue" />
-                            <CheckBox Grid.Column="2" Background="Blue" />
+                            <icon:Icon
+                                Grid.Column="0"
+                                Margin="5,0,0,0"
+                                Foreground="White"
+                                IsVisible="{Binding IsMatchCase}"
+                                Value="mdi format-letter-case" />
+                            <icon:Icon
+                                Grid.Column="1"
+                                Foreground="White"
+                                IsVisible="{Binding IsMatchWholeWord}"
+                                Value="mdi format-letter-case-lower" />
+                            <icon:Icon
+                                Grid.Column="2"
+                                Margin="0,0,5,0"
+                                Foreground="White"
+                                IsVisible="{Binding IsUseRegularExpression}"
+                                Value="mdi regex" />
                         </Grid>
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
@@ -41,7 +72,10 @@
                 Width="*"
                 Binding="{Binding FilterKey}"
                 Header="{i18n:I18NKeyBinding Key=Filter_KeyWord}" />
-            <DataGridTextColumn Width="80" Header="{i18n:I18NKeyBinding Key=Filter_Hits}" />
+            <DataGridTextColumn
+                Width="80"
+                Binding="{Binding Hits}"
+                Header="{i18n:I18NKeyBinding Key=Filter_Hits}" />
         </DataGrid.Columns>
         <DataGrid.Styles>
             <Style Selector="DataGridCell > Grid Rectangle">

@@ -10,6 +10,11 @@ using LogVisualizer.Models;
 using CommunityToolkit.Mvvm.Messaging;
 using LogVisualizer.Messages;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using LogVisualizer.Commons.Attributes;
+using LogVisualizer.Commons;
+using System.Threading;
+using Newtonsoft.Json.Linq;
 
 namespace LogVisualizer.ViewModels
 {
@@ -22,12 +27,14 @@ namespace LogVisualizer.ViewModels
         [ObservableProperty]
         private ObservableCollection<LogFilterItemViewModel> _logFilterItems;
 
-        partial void OnSelectedItemChanged(LogFilterItemViewModel? value)
+        [RelayCommand]
+        private void EditLogFilterItem()
         {
-            if (value == null)
+            if (SelectedItem == null)
             {
                 return;
             }
+            WeakReferenceMessenger.Default.Send(new LogFilterItemDetailSelectedChangedMessage(SelectedItem));
         }
 
         public LogFilterViewModel(ScenarioService scenarioService)
@@ -38,7 +45,10 @@ namespace LogVisualizer.ViewModels
             {
                 _logFilterItems.Add(new LogFilterItemViewModel()
                 {
-                    FilterKey = $"asdasd{i}"
+                    FilterKey = $"asdasd{i}",
+                    IsMatchCase = true,
+                    IsMatchWholeWord = true,
+                    Hits = i
                 });
             }
         }
