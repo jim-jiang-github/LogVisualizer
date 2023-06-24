@@ -5,4 +5,8 @@
     <converters:NameToResourceConverter x:Key="NameToResourceConverter" />
     <converters:ObjectToStringConverter x:Key="ObjectToStringConverter" />
     <converters:HasValueConverter x:Key="HasValueConverter" />
+    <converters:MathExpressionConverter x:Key="MathExpressionConverter" />
+    <converters:HexColorConverter x:Key="HexColorConverter" />
+    <converters:HexBrushConverter x:Key="HexBrushConverter" />
+    <converters:HexInvertBrushConverter x:Key="HexInvertBrushConverter" />
 </ResourceDictionary>

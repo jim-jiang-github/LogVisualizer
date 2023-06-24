@@ -4,6 +4,7 @@ using Avalonia.Input;
 using Avalonia.Threading;
 using CommunityToolkit.Mvvm.Messaging;
 using LogVisualizer.Commons;
+using LogVisualizer.CustomControls;
 using LogVisualizer.Messages;
 using LogVisualizer.ViewModels;
 using MessageBox.Avalonia.DTO;
@@ -27,11 +28,19 @@ namespace LogVisualizer.Views
             Notify.Init(this);
             WeakReferenceMessenger.Default.Register<LogFilterItemDetailSelectedChangedMessage>(this, (r, m) =>
             {
-                Window window = new Window()
+                LogFilterItemEditor logFilterItemEditor = new LogFilterItemEditor();
+                var logFilterItemEditorViewModel = logFilterItemEditor.DataContext as LogFilterItemEditorViewModel;
+                if (logFilterItemEditorViewModel == null)
                 {
-                    WindowStartupLocation = WindowStartupLocation.CenterOwner
+                    Log.Warning("LogFilterItemEditor.DataContext is not LogFilterItemEditorViewModel or is null.");
+                    return;
+                }
+                logFilterItemEditorViewModel.LogFilterItem = m.Value;
+                SubDialogWindow subDialogWindow = new SubDialogWindow()
+                {
+                    Content = logFilterItemEditor
                 };
-                window.ShowDialog(this);
+                subDialogWindow.ShowDialog(this);
             });
         }
     }

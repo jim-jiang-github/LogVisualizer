@@ -55,7 +55,7 @@
   },
   "Filter": {
     "Modifiers": "Modifiers",
-    "KeyWord": "KeyWord",
+    "KeyWord": "Filter KeyWord",
     "Hits": "Hits"
   }
 }

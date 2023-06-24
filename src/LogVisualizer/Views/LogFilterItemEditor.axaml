@@ -1,0 +1,121 @@
+<UserControl
+    x:Class="LogVisualizer.Views.LogFilterItemEditor"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviours="clr-namespace:LogVisualizer.Behaviours;assembly=LogVisualizer"
+    xmlns:controls="using:Avalonia.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+    xmlns:i18n="clr-namespace:LogVisualizer.I18N;assembly=LogVisualizer.I18N"
+    xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
+    xmlns:icon="clr-namespace:Projektanker.Icons.Avalonia;assembly=Projektanker.Icons.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="600"
+    Height="150"
+    Background="#1f1f1f"
+    mc:Ignorable="d">
+    <Grid Height="130" RowDefinitions="*,*,*">
+        <Grid
+            Grid.Row="0"
+            Margin="8,0,8,0"
+            ColumnDefinitions="100,*">
+            <TextBlock
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Text="KeyWord" />
+            <AutoCompleteBox
+                Grid.Column="1"
+                Height="32"
+                VerticalAlignment="Center"
+                Background="{Binding LogFilterItem.HexColor, Converter={StaticResource HexBrushConverter}}"
+                CornerRadius="0"
+                FilterMode="Contains"
+                Foreground="{Binding LogFilterItem.HexColor, Converter={StaticResource HexInvertBrushConverter}}"
+                Items="{Binding KeyWords}"
+                Text="{Binding LogFilterItem.FilterKey}">
+                <i:Interaction.Behaviors>
+                    <behaviours:AutoCompleteZeroMinimumPrefixLengthDropdownBehaviour />
+                </i:Interaction.Behaviors>
+            </AutoCompleteBox>
+        </Grid>
+        <Grid
+            Grid.Row="1"
+            Margin="8,0,8,0"
+            ColumnDefinitions="100,*">
+            <Grid ColumnDefinitions="40,40,40,*">
+                <CheckBox
+                    Grid.Column="0"
+                    Width="33"
+                    Height="30"
+                    Classes="filter"
+                    IsChecked="{Binding LogFilterItem.IsMatchCase}"
+                    Tag="mdi format-letter-case" />
+                <CheckBox
+                    Grid.Column="1"
+                    Width="33"
+                    Height="30"
+                    Classes="filter"
+                    IsChecked="{Binding LogFilterItem.IsMatchWholeWord}"
+                    Tag="mdi format-letter-case-lower" />
+                <CheckBox
+                    Grid.Column="2"
+                    Width="33"
+                    Height="30"
+                    Classes="filter"
+                    IsChecked="{Binding LogFilterItem.IsUseRegularExpression}"
+                    Tag="mdi regex" />
+                <ColorPicker
+                    Grid.Column="3"
+                    Margin="50,0,0,0"
+                    Color="{Binding LogFilterItem.HexColor, Converter={StaticResource HexColorConverter}}">
+                    <ColorPicker.Palette>
+                        <controls:FlatHalfColorPalette />
+                    </ColorPicker.Palette>
+                </ColorPicker>
+                <Grid.Styles>
+                    <Style Selector="CheckBox.filter">
+                        <Setter Property="Background" Value="Transparent" />
+                    </Style>
+                    <Style Selector="CheckBox.filter:pointerover">
+                        <Setter Property="Background" Value="#80FFFFFF" />
+                    </Style>
+                    <Style Selector="CheckBox.filter[IsChecked=true]:pointerover">
+                        <Setter Property="Background" Value="#80FFFFFF" />
+                    </Style>
+                    <Style Selector="CheckBox.filter[IsChecked=true]">
+                        <Setter Property="BorderBrush" Value="#efefef" />
+                        <Setter Property="BorderThickness" Value="2" />
+                    </Style>
+                    <Style Selector="CheckBox.filter">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <Border
+                                        Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="0">
+                                        <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
+                                            <Grid Width="30" Height="30">
+                                                <icon:Icon Foreground="White" Value="{TemplateBinding Tag}" />
+                                            </Grid>
+                                        </StackPanel>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Grid.Styles>
+            </Grid>
+        </Grid>
+        <StackPanel
+            Grid.Row="2"
+            Margin="8,0,8,0"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+            <Button Content="{i18n:I18NKeyBinding Key=Common_Cancel}" />
+            <Button Content="{i18n:I18NKeyBinding Key=Common_Confirm}" />
+        </StackPanel>
+    </Grid>
+</UserControl>

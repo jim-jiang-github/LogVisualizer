@@ -15,6 +15,15 @@
     <Design.DataContext>
         <vm:LogFilterViewModel />
     </Design.DataContext>
+    <UserControl.Resources>
+        <ControlTheme
+            x:Key="FilterKeyWordCell"
+            BasedOn="{StaticResource {x:Type DataGridCell}}"
+            TargetType="DataGridCell">
+            <Setter Property="Background" Value="{Binding Path=HexColor, Converter={StaticResource HexBrushConverter}}" />
+            <Setter Property="Foreground" Value="{Binding Path=HexColor, Converter={StaticResource HexInvertBrushConverter}}" />
+        </ControlTheme>
+    </UserControl.Resources>
     <DataGrid
         Name="LogFilterDataGrid"
         AlternatingRowBackground="#1f1f1f"
@@ -24,11 +33,11 @@
         CanUserSortColumns="False"
         ColumnHeaderHeight="14"
         HeadersVisibility="All"
-        SelectedItem="{Binding SelectedItem}"
         IsReadOnly="True"
         Items="{Binding LogFilterItems}"
         RowBackground="#1f1f1f"
-        RowHeight="22"
+        RowHeight="32"
+        SelectedItem="{Binding SelectedItem}"
         SelectionMode="Single">
         <i:Interaction.Behaviors>
             <ia:EventTriggerBehavior EventName="DoubleTapped" SourceObject="LogFilterDataGrid">
@@ -71,6 +80,7 @@
             <DataGridTextColumn
                 Width="*"
                 Binding="{Binding FilterKey}"
+                CellTheme="{StaticResource FilterKeyWordCell}"
                 Header="{i18n:I18NKeyBinding Key=Filter_KeyWord}" />
             <DataGridTextColumn
                 Width="80"

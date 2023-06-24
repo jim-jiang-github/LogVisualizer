@@ -8,7 +8,6 @@ using LogVisualizer.Models;
 using LogVisualizer.Scenarios;
 using LogVisualizer.Scenarios.Contents;
 using LogVisualizer.Scenarios.Schemas;
-using Metalama.Framework.Code.Collections;
 using Serilog.Context;
 using SkiaSharp;
 using System;
@@ -72,7 +71,7 @@ namespace LogVisualizer.Services
                     .Where(x => x.CanBookmark).Select(async x => await x.SaveBookmarkAsync())
                     .Select(x => x.Result)
                     .Where(x => !string.IsNullOrEmpty(x))
-                    .WhereNotNull();
+                    .OfType<string>();
                 var logFileItems = LoadLogFileItems(filePaths);
                 LogFileItems = logFileItems;
                 WeakReferenceMessenger.Default.Send(new LogFileItemsChangedMessage(LogFileItems));

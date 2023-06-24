@@ -15,6 +15,7 @@ using LogVisualizer.Commons.Attributes;
 using LogVisualizer.Commons;
 using System.Threading;
 using Newtonsoft.Json.Linq;
+using Avalonia.Media;
 
 namespace LogVisualizer.ViewModels
 {
@@ -41,16 +42,29 @@ namespace LogVisualizer.ViewModels
         {
             _scenarioService = scenarioService;
             _logFilterItems = new ObservableCollection<LogFilterItemViewModel>();
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 30; i++)
             {
                 _logFilterItems.Add(new LogFilterItemViewModel()
                 {
                     FilterKey = $"asdasd{i}",
-                    IsMatchCase = true,
-                    IsMatchWholeWord = true,
+                    IsMatchCase = i % 2 == 0,
+                    HexColor = GetRandomHexColor(),
+                    IsMatchWholeWord = i % 3 == 0,
+                    IsUseRegularExpression = i % 5 == 0,
                     Hits = i
                 });
             }
+        }
+        Random random = new Random();
+        private string GetRandomHexColor()
+        {
+            Color randomColor = Color.FromRgb((byte)random.Next(0, 255), (byte)random.Next(0, 255), (byte)random.Next(0, 255));
+            return $"#{ToUInt32(randomColor):x8}";
+        }
+
+        private uint ToUInt32(Color color)
+        {
+            return ((uint)color.A << 24) | ((uint)color.R << 16) | ((uint)color.G << 8) | (uint)color.B;
         }
     }
 }

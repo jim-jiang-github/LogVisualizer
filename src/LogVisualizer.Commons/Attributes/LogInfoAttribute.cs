@@ -1,4 +1,4 @@
-﻿using Metalama.Framework.Aspects;
+﻿//using Metalama.Framework.Aspects;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace LogVisualizer.Commons.Attributes
 {
-    public class LogInfoAttribute : OverrideMethodAspect
+    public class LogInfoAttribute : Attribute
     {
-        public override dynamic? OverrideMethod()
-        {
-            Log.Information(meta.Target.Method.ToDisplayString() + " Enter.");
-            var result = meta.Proceed();
-            Log.Information(meta.Target.Method.ToDisplayString() + " Leave.");
-            return result;
-        }
+        //public override dynamic? OverrideMethod()
+        //{
+        //    Log.Information(meta.Target.Method.ToDisplayString() + " Enter.");
+        //    var result = meta.Proceed();
+        //    Log.Information(meta.Target.Method.ToDisplayString() + " Leave.");
+        //    return result;
+        //}
     }
 }

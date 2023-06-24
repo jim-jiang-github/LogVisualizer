@@ -22,7 +22,6 @@ using Avalonia.Threading;
 using LogVisualizer.Commons.Attributes;
 using FluentValidation;
 using System.Text.RegularExpressions;
-using Metalama.Framework.Validation;
 
 namespace LogVisualizer.ViewModels
 {
