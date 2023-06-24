@@ -16,6 +16,7 @@ using LogVisualizer.Commons;
 using System.Threading;
 using Newtonsoft.Json.Linq;
 using Avalonia.Media;
+using LogVisualizer.I18N;
 
 namespace LogVisualizer.ViewModels
 {
@@ -65,6 +66,15 @@ namespace LogVisualizer.ViewModels
         private uint ToUInt32(Color color)
         {
             return ((uint)color.A << 24) | ((uint)color.R << 16) | ((uint)color.G << 8) | (uint)color.B;
+        }
+        [RelayCommand]
+        private async void DeleteLogFilterItem(LogFilterItemViewModel logFilterItemViewModel)
+        {
+            var content = I18NKeys.Common_ConfirmDelete.GetLocalizationString(logFilterItemViewModel.FilterKey);
+            if (await Notify.ShowComfirmMessageBox(content))
+            {
+                LogFilterItems.Remove(logFilterItemViewModel);
+            }
         }
     }
 }

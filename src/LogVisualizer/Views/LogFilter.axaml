@@ -36,7 +36,7 @@
         IsReadOnly="True"
         Items="{Binding LogFilterItems}"
         RowBackground="#1f1f1f"
-        RowHeight="32"
+        RowHeight="25"
         SelectedItem="{Binding SelectedItem}"
         SelectionMode="Single">
         <i:Interaction.Behaviors>
@@ -45,10 +45,13 @@
             </ia:EventTriggerBehavior>
         </i:Interaction.Behaviors>
         <DataGrid.Columns>
-            <DataGridTemplateColumn Width="30" Header="">
+            <DataGridTemplateColumn Width="40" Header="">
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
-                        <CheckBox IsChecked="{Binding Enabled}" />
+                        <CheckBox
+                            HorizontalAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            IsChecked="{Binding Enabled}" />
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
@@ -86,9 +89,50 @@
                 Width="80"
                 Binding="{Binding Hits}"
                 Header="{i18n:I18NKeyBinding Key=Filter_Hits}" />
+            <DataGridTemplateColumn Width="50" Header="">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <Button
+                            Width="30"
+                            Height="30"
+                            HorizontalAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            Command="{Binding DataContext.DeleteLogFilterItemCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                            CommandParameter="{Binding}">
+                            <Button.Styles>
+                                <Style Selector="Button">
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="Foreground" Value="White" />
+                                </Style>
+                                <Style Selector="Button:pointerover">
+                                    <Setter Property="Background" Value="#88FFFFFF" />
+                                    <Setter Property="Foreground" Value="#88FF0000" />
+                                </Style>
+                                <Style Selector="Button">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate>
+                                                <Border
+                                                    Padding="4"
+                                                    Background="{TemplateBinding Background}"
+                                                    CornerRadius="2">
+                                                    <icon:Icon
+                                                        FontSize="20"
+                                                        Foreground="{TemplateBinding Foreground}"
+                                                        Value="fa-solid fa-trash" />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Button.Styles>
+                        </Button>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
         </DataGrid.Columns>
         <DataGrid.Styles>
-            <Style Selector="DataGridCell > Grid Rectangle">
+            <Style Selector="DataGridCell Rectangle">
                 <Setter Property="IsVisible" Value="False" />
             </Style>
         </DataGrid.Styles>
