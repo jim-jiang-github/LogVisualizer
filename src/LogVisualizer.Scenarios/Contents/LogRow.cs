@@ -19,7 +19,7 @@ namespace LogVisualizer.Scenarios.Contents
             }
         }
 
-        internal LogRow(int index, object?[] cells)
+        public LogRow(int index, object?[] cells)
         {
             Index = index;
             Cells = cells;

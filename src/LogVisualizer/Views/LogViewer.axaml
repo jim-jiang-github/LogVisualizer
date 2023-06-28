@@ -15,8 +15,8 @@
             <Style Selector="ListBoxItem">
                 <Setter Property="Height" Value="15" />
                 <Setter Property="FontSize" Value="12" />
-                <Setter Property="Background" Value="Yellow" />
-                <Setter Property="Foreground" Value="Red" />
+                <Setter Property="Background" Value="#1f1f1f" />
+                <Setter Property="Foreground" Value="White" />
             </Style>
         </ListBox.Styles>
         <ListBox.ItemTemplate>

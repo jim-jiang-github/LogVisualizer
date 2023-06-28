@@ -56,6 +56,9 @@
   "Filter": {
     "Modifiers": "Modifiers",
     "KeyWord": "Filter KeyWord",
-    "Hits": "Hits"
+    "Hits": "Hits",
+    "AddFilter": "Add new filter",
+    "EditFilter": "Edit",
+    "RemoveFilter": "Remove"
   }
 }

@@ -28,9 +28,11 @@
         Name="LogFilterDataGrid"
         AlternatingRowBackground="#1f1f1f"
         AutoGenerateColumns="False"
+        Background="#1f1f1f"
         CanUserReorderColumns="False"
         CanUserResizeColumns="False"
         CanUserSortColumns="False"
+        Classes="logFilterDataGrid"
         ColumnHeaderHeight="14"
         HeadersVisibility="All"
         IsReadOnly="True"
@@ -39,6 +41,27 @@
         RowHeight="25"
         SelectedItem="{Binding SelectedItem}"
         SelectionMode="Single">
+        <DataGrid.ContextMenu>
+            <ContextMenu>
+                <MenuItem Command="{Binding AddLogFilterItemCommand}" Header="{i18n:I18NKeyBinding Key=Filter_AddFilter}">
+                    <MenuItem.Icon>
+                        <icon:Icon FontSize="16" Value="fa-solid fa-plus" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator />
+                <MenuItem Command="{Binding EditLogFilterItemCommand}" Header="{i18n:I18NKeyBinding Key=Filter_EditFilter}">
+                    <MenuItem.Icon>
+                        <icon:Icon FontSize="16" Value="fa-solid fa-filter" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator />
+                <MenuItem Command="{Binding DeleteSelectedLogFilterItemCommand}" Header="{i18n:I18NKeyBinding Key=Filter_RemoveFilter}">
+                    <MenuItem.Icon>
+                        <icon:Icon FontSize="16" Value="fa-solid fa-trash" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </ContextMenu>
+        </DataGrid.ContextMenu>
         <i:Interaction.Behaviors>
             <ia:EventTriggerBehavior EventName="DoubleTapped" SourceObject="LogFilterDataGrid">
                 <ia:InvokeCommandAction Command="{Binding EditLogFilterItemCommand}" />
@@ -132,6 +155,10 @@
             </DataGridTemplateColumn>
         </DataGrid.Columns>
         <DataGrid.Styles>
+            <Style Selector="DataGridRow">
+                <Setter Property="BorderBrush" Value="#2f2f2f" />
+                <Setter Property="BorderThickness" Value="0,0,0,0.5" />
+            </Style>
             <Style Selector="DataGridCell Rectangle">
                 <Setter Property="IsVisible" Value="False" />
             </Style>

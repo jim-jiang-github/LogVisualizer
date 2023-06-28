@@ -89,9 +89,15 @@ namespace LogVisualizer.I18N
         Loading_LoadingFile,
         /// <summary>Modifiers</summary>
         Filter_Modifiers,
-        /// <summary>KeyWord</summary>
+        /// <summary>Filter KeyWord</summary>
         Filter_KeyWord,
         /// <summary>Hits</summary>
         Filter_Hits,
+        /// <summary>Add new filter</summary>
+        Filter_AddFilter,
+        /// <summary>Edit</summary>
+        Filter_EditFilter,
+        /// <summary>Remove</summary>
+        Filter_RemoveFilter,
     }
 }

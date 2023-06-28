@@ -66,7 +66,7 @@ namespace LogVisualizer.Services
             return Task.Run(() =>
             {
                 Loading.SetMessage(I18NKeys.Loading_OpenFileStart.GetLocalizationRawValue());
-       
+
                 IEnumerable<string> filePaths = storageFiles
                     .Where(x => x.CanBookmark).Select(async x => await x.SaveBookmarkAsync())
                     .Select(x => x.Result)

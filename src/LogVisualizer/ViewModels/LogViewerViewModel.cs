@@ -30,6 +30,7 @@ namespace LogVisualizer.ViewModels
         public LogViewerViewModel(LogFilterViewModel logFilterViewModel)
         {
             _logFilterViewModel = logFilterViewModel;
+            _logFilterViewModel.LogFilterItems.CollectionChanged += LogFilterItems_CollectionChanged;
             Items = new RangeObservableCollection<LogRow>();
             WeakReferenceMessenger.Default.Register<LogContentSelectedChangedMessage>(this, (r, m) =>
             {
@@ -42,6 +43,13 @@ namespace LogVisualizer.ViewModels
                 Items.Clear();
                 Items.AddRange(logContent.Rows);
             });
+            WeakReferenceMessenger.Default.Register<LogFilterItemsChangedMessage>(this, (r, m) =>
+            {
+            });
+        }
+
+        private void LogFilterItems_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        {
         }
     }
 

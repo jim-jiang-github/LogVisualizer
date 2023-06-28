@@ -17,6 +17,8 @@ using System.Threading;
 using Newtonsoft.Json.Linq;
 using Avalonia.Media;
 using LogVisualizer.I18N;
+using System.Threading.Tasks;
+using Avalonia.Controls;
 
 namespace LogVisualizer.ViewModels
 {
@@ -29,33 +31,45 @@ namespace LogVisualizer.ViewModels
         [ObservableProperty]
         private ObservableCollection<LogFilterItemViewModel> _logFilterItems;
 
-        [RelayCommand]
-        private void EditLogFilterItem()
-        {
-            if (SelectedItem == null)
-            {
-                return;
-            }
-            WeakReferenceMessenger.Default.Send(new LogFilterItemDetailSelectedChangedMessage(SelectedItem));
-        }
-
         public LogFilterViewModel(ScenarioService scenarioService)
         {
             _scenarioService = scenarioService;
-            _logFilterItems = new ObservableCollection<LogFilterItemViewModel>();
-            for (int i = 0; i < 30; i++)
+            LogFilterItems = new ObservableCollection<LogFilterItemViewModel>();
+            //for (int i = 0; i < 12; i++)
+            //{
+            //    LogFilterItems.Add(new LogFilterItemViewModel()
+            //    {
+            //        FilterKey = $"asdasd{i}",
+            //        IsMatchCase = i % 2 == 0,
+            //        HexColor = GetRandomHexColor(),
+            //        IsMatchWholeWord = i % 3 == 0,
+            //        IsUseRegularExpression = i % 5 == 0,
+            //        Hits = i
+            //    });
+            //}
+            LogFilterItems.CollectionChanged += LogFilterItems_CollectionChanged;
+        }
+
+        partial void OnSelectedItemChanged(LogFilterItemViewModel? oldValue, LogFilterItemViewModel? newValue)
+        {
+            if (oldValue != null)
             {
-                _logFilterItems.Add(new LogFilterItemViewModel()
-                {
-                    FilterKey = $"asdasd{i}",
-                    IsMatchCase = i % 2 == 0,
-                    HexColor = GetRandomHexColor(),
-                    IsMatchWholeWord = i % 3 == 0,
-                    IsUseRegularExpression = i % 5 == 0,
-                    Hits = i
-                });
+                oldValue.PropertyChanged -= Value_PropertyChanged;
+            }
+            if (newValue != null)
+            {
+                newValue.PropertyChanged += Value_PropertyChanged;
             }
         }
+
+        private void Value_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+        }
+
+        private void LogFilterItems_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+        }
+
         Random random = new Random();
         private string GetRandomHexColor()
         {
@@ -67,8 +81,43 @@ namespace LogVisualizer.ViewModels
         {
             return ((uint)color.A << 24) | ((uint)color.R << 16) | ((uint)color.G << 8) | (uint)color.B;
         }
+
         [RelayCommand]
-        private async void DeleteLogFilterItem(LogFilterItemViewModel logFilterItemViewModel)
+        private async Task AddLogFilterItem()
+        {
+            LogFilterItemViewModel logFilterItemViewModel = new LogFilterItemViewModel();
+            LogFilterItems.Add(logFilterItemViewModel);
+            LogFilterItemDetailSelectedChangedMessage logFilterItemDetailSelectedChangedMessage = new LogFilterItemDetailSelectedChangedMessage(logFilterItemViewModel);
+            WeakReferenceMessenger.Default.Send(logFilterItemDetailSelectedChangedMessage);
+            bool success = await logFilterItemDetailSelectedChangedMessage.Response;
+            if (!success)
+            {
+                LogFilterItems.Remove(logFilterItemViewModel);
+            }
+        }
+
+        [RelayCommand]
+        private void EditLogFilterItem()
+        {
+            if (SelectedItem == null)
+            {
+                return;
+            }
+            WeakReferenceMessenger.Default.Send(new LogFilterItemDetailSelectedChangedMessage(SelectedItem));
+        }
+
+        [RelayCommand]
+        private async Task DeleteSelectedLogFilterItem()
+        {
+            if (SelectedItem == null)
+            {
+                return;
+            }
+            await DeleteLogFilterItem(SelectedItem);
+        }
+
+        [RelayCommand]
+        private async Task DeleteLogFilterItem(LogFilterItemViewModel logFilterItemViewModel)
         {
             var content = I18NKeys.Common_ConfirmDelete.GetLocalizationString(logFilterItemViewModel.FilterKey);
             if (await Notify.ShowComfirmMessageBox(content))

@@ -10,7 +10,7 @@
     xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
     xmlns:icon="clr-namespace:Projektanker.Icons.Avalonia;assembly=Projektanker.Icons.Avalonia"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Width="600"
+    Width="800"
     Height="150"
     Background="#1f1f1f"
     mc:Ignorable="d">

@@ -1,0 +1,67 @@
+<UserControl
+    x:Class="LogVisualizer.Views.LogRowDetail"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:customControls="clr-namespace:LogVisualizer.CustomControls;assembly=LogVisualizer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="800"
+    Height="450"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <ListBox Items="{Binding LogRowDetailProperties, Mode=OneWay}">
+        <ListBox.ItemTemplate>
+            <DataTemplate>
+                <customControls:AutoGridPanel>
+                    <TextBlock
+                        Margin="0,0,20,8"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Bottom"
+                        Text="{Binding PropertyName, Mode=OneWay}" />
+                    <TextBox
+                        MinWidth="300"
+                        MaxHeight="300"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        AcceptsReturn="True"
+                        Classes="logRowDetail"
+                        IsReadOnly="True"
+                        Text="{Binding PropertyValue, Mode=OneWay}"
+                        TextWrapping="Wrap">
+                        <TextBox.Styles>
+                            <Style Selector="TextBox.logRowDetail Border#PART_BorderElement">
+                                <Setter Property="CornerRadius" Value="0" />
+                            </Style>
+                        </TextBox.Styles>
+                    </TextBox>
+                </customControls:AutoGridPanel>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+        <ListBox.Styles>
+            <Style Selector="ListBoxItem /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Foreground" Value="White" />
+            </Style>
+            <Style Selector="ListBoxItem:selected /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Foreground" Value="White" />
+            </Style>
+
+            <Style Selector="ListBoxItem:not(:focus) /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Foreground" Value="White" />
+            </Style>
+
+            <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Foreground" Value="White" />
+            </Style>
+
+            <Style Selector="ListBoxItem:pressed /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Foreground" Value="White" />
+            </Style>
+        </ListBox.Styles>
+    </ListBox>
+</UserControl>

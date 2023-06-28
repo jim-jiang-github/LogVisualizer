@@ -10,6 +10,7 @@ using LogVisualizer.Models;
 using CommunityToolkit.Mvvm.Messaging;
 using LogVisualizer.Messages;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Newtonsoft.Json.Linq;
 
 namespace LogVisualizer.ViewModels
 {
@@ -47,7 +48,8 @@ namespace LogVisualizer.ViewModels
                 }
                 if (LogFileItems.Count == 1)
                 {
-                    SelectedItem = LogFileItems[0];
+                    _selectedItem = LogFileItems[0];
+                    _scenarioService.LoadLogFileItem(_selectedItem).Wait();
                 }
             });
         }

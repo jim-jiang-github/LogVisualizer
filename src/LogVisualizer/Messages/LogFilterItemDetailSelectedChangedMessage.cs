@@ -11,9 +11,20 @@ namespace LogVisualizer.Messages
 {
     public class LogFilterItemDetailSelectedChangedMessage : ValueChangedMessage<LogFilterItemViewModel>
     {
-        public LogFilterItemDetailSelectedChangedMessage(LogFilterItemViewModel value) : base(value)
-        {
+        private readonly TaskCompletionSource<bool> _completionSource = new TaskCompletionSource<bool>();
 
+        public Task<bool> Response => _completionSource.Task;
+
+        public bool AddNew { get; }
+
+        public void SetResponse(bool response)
+        {
+            _completionSource.SetResult(response);
+        }
+
+        public LogFilterItemDetailSelectedChangedMessage(LogFilterItemViewModel value, bool addNew = false) : base(value)
+        {
+            AddNew = addNew;
         }
     }
 }

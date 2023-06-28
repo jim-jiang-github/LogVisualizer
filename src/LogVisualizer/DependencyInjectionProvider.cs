@@ -29,6 +29,7 @@ namespace LogVisualizer
                 .AddSingleton<LogFilterViewModel>()
                 .AddSingleton<TitleBarViewModel>()
                 .AddSingleton<SideBarViewModel>()
+                .AddSingleton<LogRowDetailViewModel>()
                 .AddScoped<LogFilterItemEditorViewModel>()
                 .AddSingleton<BottomBarViewModel>()
                 .AddSingleton<ScenarioConfigViewModel>()
