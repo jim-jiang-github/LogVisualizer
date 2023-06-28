@@ -10,11 +10,11 @@ on:
 env:
     DOTNETVERSION: 7.0.x
     OSX_SCRIPTS_DIR: scripts/macos/
-    OSX_APP_DIR: src/LogVisualizer/bin/Release/net6.0/osx-x64/
+    OSX_APP_DIR: src/LogVisualizer/bin/Release/net7.0/osx-x64/
     OSX_APP_Name: LogVisualizer.app
     OSX_APP_ZIP_Name: osx-x64.zip
     WIN_SCRIPTS_DIR: scripts/windows/
-    WIN_APP_DIR: src/LogVisualizer/bin/Release/net6.0/win-x64/publish/
+    WIN_APP_DIR: src/LogVisualizer/bin/Release/net7.0/win-x64/publish/
     WIN_APP_Name: LogVisualizer.exe
     WIN_APP_ZIP_Name: win-x64.zip
     UPGRADE_INFO_PATH: upgradeInfo.json
