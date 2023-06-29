@@ -18,19 +18,21 @@ using LogVisualizer.Messages;
 using CommunityToolkit.Mvvm.ComponentModel;
 using LogVisualizer.Models;
 using LogVisualizer.Scenarios.Contents;
+using System.Text.RegularExpressions;
+using Serilog.Context;
 
 namespace LogVisualizer.ViewModels
 {
     public partial class LogViewerViewModel : ViewModelBase
     {
         private LogFilterViewModel _logFilterViewModel;
+        private IEnumerable<LogRow> currentRows;
         [ObservableProperty]
         private RangeObservableCollection<LogRow> _items;
 
         public LogViewerViewModel(LogFilterViewModel logFilterViewModel)
         {
             _logFilterViewModel = logFilterViewModel;
-            _logFilterViewModel.LogFilterItems.CollectionChanged += LogFilterItems_CollectionChanged;
             Items = new RangeObservableCollection<LogRow>();
             WeakReferenceMessenger.Default.Register<LogContentSelectedChangedMessage>(this, (r, m) =>
             {
@@ -40,16 +42,31 @@ namespace LogVisualizer.ViewModels
                     Items.Clear();
                     return;
                 }
+                currentRows = logContent.Rows;
                 Items.Clear();
-                Items.AddRange(logContent.Rows);
+                Items.AddRange(currentRows);
             });
             WeakReferenceMessenger.Default.Register<LogFilterItemsChangedMessage>(this, (r, m) =>
             {
+                Items.Clear();
+                var result = currentRows.Where(row =>
+                {
+                    bool matched = m.Value.Where(f => f.Enabled).All(f => Search(row.Cells[4].ToString(), f.FilterKey, f.IsMatchCase, f.IsMatchWholeWord, f.IsUseRegularExpression));
+                    return matched;
+                });
+                Items.AddRange(result);
             });
         }
 
-        private void LogFilterItems_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        private bool Search(string text, string keyword, bool matchCase, bool matchWholeWord, bool useRegex)
         {
+            string pattern = keyword;
+            if (!useRegex)
+            {
+                pattern = matchWholeWord ? $@"\b{Regex.Escape(keyword)}\b" : Regex.Escape(keyword);
+            }
+
+            return Regex.IsMatch(text, pattern, (matchCase | useRegex) ? RegexOptions.None : RegexOptions.IgnoreCase);
         }
     }
 

@@ -8,6 +8,7 @@ using LogVisualizer.Models;
 using LogVisualizer.Scenarios;
 using LogVisualizer.Scenarios.Contents;
 using LogVisualizer.Scenarios.Schemas;
+using LogVisualizer.ViewModels;
 using Serilog.Context;
 using SkiaSharp;
 using System;
@@ -116,6 +117,11 @@ namespace LogVisualizer.Services
                 var logContent = CurrentScenario.LoadLogContent(CurrentLogFileItem.Path);
                 WeakReferenceMessenger.Default.Send(new LogContentSelectedChangedMessage(logContent));
             });
+        }
+
+        public void UpdateFilters(IEnumerable<LogFilterItem> logFilterItems) 
+        {
+        
         }
     }
 }

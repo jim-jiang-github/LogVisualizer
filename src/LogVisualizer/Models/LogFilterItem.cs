@@ -1,13 +1,14 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using LogVisualizer.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogVisualizer.ViewModels
+namespace LogVisualizer.Models
 {
-    public partial class LogFilterItemViewModel : ViewModelBase
+    public partial class LogFilterItem : ModelBase
     {
         [ObservableProperty]
         private bool _enabled;

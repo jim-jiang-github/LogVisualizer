@@ -60,5 +60,12 @@
     "AddFilter": "Add new filter",
     "EditFilter": "Edit",
     "RemoveFilter": "Remove"
+  },
+  "LogViewer": {
+    "ContextMenu": {
+      "AddToFilter": "Add to filter",
+      "ShowDetail": "Show detail"
+    },
+    "RemoveFilter": "Remove"
   }
 }

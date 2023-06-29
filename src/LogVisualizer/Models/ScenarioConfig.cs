@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LogVisualizer.Models
 {
-    public partial class ScenarioConfig : ObservableObject
+    public partial class ScenarioConfig : ModelBase
     {
         [ObservableProperty]
         private string? _scenarioName = string.Empty;

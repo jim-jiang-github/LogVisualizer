@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using LogVisualizer.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,7 +12,7 @@ namespace LogVisualizer.ViewModels
     public partial class LogFilterItemEditorViewModel : ViewModelBase
     {
         [ObservableProperty]
-        private LogFilterItemViewModel _logFilterItem;
+        private LogFilterItem _logFilterItem;
         [ObservableProperty]
         private ObservableCollection<string> _keyWords = new ObservableCollection<string>();
 

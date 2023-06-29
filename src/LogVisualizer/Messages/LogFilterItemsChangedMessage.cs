@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace LogVisualizer.Messages
 {
-    public class LogFilterItemsChangedMessage : ValueChangedMessage<IEnumerable<LogFilterItemViewModel>>
+    public class LogFilterItemsChangedMessage : ValueChangedMessage<IEnumerable<LogFilterItem>>
     {
-        public LogFilterItemsChangedMessage(IEnumerable<LogFilterItemViewModel> value) : base(value)
+        public LogFilterItemsChangedMessage(IEnumerable<LogFilterItem> value) : base(value)
         {
 
         }

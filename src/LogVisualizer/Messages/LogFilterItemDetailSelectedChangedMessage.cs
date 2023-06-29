@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LogVisualizer.Messages
 {
-    public class LogFilterItemDetailSelectedChangedMessage : ValueChangedMessage<LogFilterItemViewModel>
+    public class LogFilterItemDetailSelectedChangedMessage : ValueChangedMessage<LogFilterItem>
     {
         private readonly TaskCompletionSource<bool> _completionSource = new TaskCompletionSource<bool>();
 
@@ -22,7 +22,7 @@ namespace LogVisualizer.Messages
             _completionSource.SetResult(response);
         }
 
-        public LogFilterItemDetailSelectedChangedMessage(LogFilterItemViewModel value, bool addNew = false) : base(value)
+        public LogFilterItemDetailSelectedChangedMessage(LogFilterItem value, bool addNew = false) : base(value)
         {
             AddNew = addNew;
         }
