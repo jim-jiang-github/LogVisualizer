@@ -10,7 +10,7 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <ListBox Items="{Binding LogRowDetailProperties, Mode=OneWay}">
+    <ListBox ItemsSource="{Binding LogRowDetailProperties, Mode=OneWay}">
         <ListBox.ItemTemplate>
             <DataTemplate>
                 <customControls:AutoGridPanel>

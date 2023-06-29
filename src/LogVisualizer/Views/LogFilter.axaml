@@ -26,7 +26,6 @@
     </UserControl.Resources>
     <DataGrid
         Name="LogFilterDataGrid"
-        AlternatingRowBackground="#1f1f1f"
         AutoGenerateColumns="False"
         Background="#1f1f1f"
         CanUserReorderColumns="False"
@@ -36,7 +35,7 @@
         ColumnHeaderHeight="14"
         HeadersVisibility="All"
         IsReadOnly="True"
-        Items="{Binding LogFilterItems}"
+        ItemsSource="{Binding LogFilterItems}"
         RowBackground="#1f1f1f"
         RowHeight="25"
         SelectedItem="{Binding SelectedItem}"

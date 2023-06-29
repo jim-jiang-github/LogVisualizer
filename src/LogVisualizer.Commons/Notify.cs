@@ -40,17 +40,17 @@ namespace LogVisualizer.Commons
             };
         }
 
-        public static Task NotifyError(string title, string content)
+        public static void NotifyError(string title, string content)
         {
-            return Dispatcher.UIThread.InvokeAsync(() =>
+            Dispatcher.UIThread.Invoke(() =>
             {
                 NotificationManager?.Show(new Notification(title, content, NotificationType.Error));
             });
         }
 
-        public static Task NotifyCustom(object viewModel)
+        public static void NotifyCustom(object viewModel)
         {
-            return Dispatcher.UIThread.InvokeAsync(() =>
+            Dispatcher.UIThread.InvokeAsync(() =>
             {
                 NotificationManager?.Show(viewModel);
             });

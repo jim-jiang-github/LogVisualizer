@@ -9,7 +9,7 @@
     mc:Ignorable="d">
     <ListBox
         Grid.Row="0"
-        Items="{Binding Items}"
+        ItemsSource="{Binding Items}"
         SelectedItem="{Binding SelectedItem}">
         <ListBox.Styles>
             <Style Selector="ListBoxItem">

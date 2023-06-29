@@ -51,6 +51,11 @@ namespace LogVisualizer.Commons
             {
                 return Task.FromResult<IStorageFolder?>(null);
             }
+
+            public Task<IStorageFolder?> TryGetWellKnownFolderAsync(WellKnownFolder wellKnownFolder)
+            {
+                return Task.FromResult<IStorageFolder?>(null);
+            }
         }
 
         public static IStorageProvider StorageProvider { get; set; } = new IStorageProviderDefault();

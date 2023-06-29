@@ -32,7 +32,7 @@
                 CornerRadius="0"
                 FilterMode="Contains"
                 Foreground="{Binding LogFilterItem.HexColor, Converter={StaticResource HexInvertBrushConverter}}"
-                Items="{Binding KeyWords}"
+                ItemsSource="{Binding KeyWords}"
                 Text="{Binding LogFilterItem.FilterKey}">
                 <i:Interaction.Behaviors>
                     <behaviours:AutoCompleteZeroMinimumPrefixLengthDropdownBehaviour />

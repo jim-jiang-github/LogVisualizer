@@ -24,9 +24,6 @@ namespace LogVisualizer
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                // Line below is needed to remove Avalonia data validation.
-                // Without this line you will get duplicate validations from both Avalonia and CT
-                ExpressionObserver.DataValidators.RemoveAll(x => x is DataAnnotationsValidationPlugin);
                 var splashWindowViewModel = DependencyInjectionProvider.GetService<SplashWindowViewModel>();
                 SplashWindow splashWindow = new()
                 {

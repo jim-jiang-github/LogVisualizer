@@ -63,7 +63,7 @@
                             </Style>
                         </Border.Styles>
                         <ToolTip.Tip>
-                            <ItemsControl Items="{Binding}" />
+                            <ItemsControl ItemsSource="{Binding}" />
                         </ToolTip.Tip>
                     </Border>
                 </DataTemplate>
@@ -107,7 +107,7 @@
                     </Style>
                 </Expander.Styles>
                 <Expander.Header>
-                    <ComboBox Height="30" Items="{Binding SelectedScenarioConfig.FilterBranches}">
+                    <ComboBox Height="30" ItemsSource="{Binding SelectedScenarioConfig.FilterBranches}">
                         <ComboBox.IsVisible>
                             <MultiBinding Converter="{x:Static BoolConverters.And}">
                                 <Binding ElementName="ExpanderScenario" Path="!IsExpanded" />
@@ -179,7 +179,7 @@
                                 Margin="10,0,0,0"
                                 FilterMode="Contains"
                                 IsEnabled="{Binding !!Creator.AllBranches.Count}"
-                                Items="{Binding Creator.AllBranches}"
+                                ItemsSource="{Binding Creator.AllBranches}"
                                 Text="{Binding Creator.ScenarioBranch}"
                                 Watermark="{i18n:I18NKeyBinding Key=Scenario_Creator_ScenarioBranchWatermark}">
                                 <i:Interaction.Behaviors>
@@ -214,7 +214,7 @@
         <ListBox
             MaxHeight="400"
             IsVisible="{Binding ElementName=ExpanderScenario, Path=!IsExpanded}"
-            Items="{Binding ScenarioConfigs}"
+            ItemsSource="{Binding ScenarioConfigs}"
             SelectedItem="{Binding SelectedScenarioConfig}">
             <ListBox.ItemTemplate>
                 <DataTemplate>

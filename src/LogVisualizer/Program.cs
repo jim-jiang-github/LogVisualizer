@@ -35,11 +35,13 @@ namespace LogVisualizer
 
         // Avalonia configuration, don't remove; also used by visual designer.
         public static AppBuilder BuildAvaloniaApp()
-            => AppBuilder.Configure<App>()
-            .UsePlatformDetect()
-            .WithIcons(container => container
-            .Register<FontAwesomeIconProvider>()
-            .Register<MaterialDesignIconProvider>()
-            .Register<CustomIconProvider>());
+        {
+            IconProvider.Current
+                .Register<FontAwesomeIconProvider>()
+                .Register<MaterialDesignIconProvider>()
+                .Register<CustomIconProvider>();
+            return AppBuilder.Configure<App>()
+                .UsePlatformDetect();
+        }
     }
 }

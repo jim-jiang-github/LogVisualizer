@@ -22,48 +22,27 @@
         <TabItem Classes="sidebar" Header="mdi google-analytics">
             <Border Background="Green" />
         </TabItem>
-        <TabControl.ContentTemplate>
-            <DataTemplate>
-                <StackPanel Orientation="Vertical" Spacing="8">
-                    <TextBlock />
-                </StackPanel>
-            </DataTemplate>
-        </TabControl.ContentTemplate>
         <TabControl.Styles>
             <Style Selector="TabControl.sidebar">
                 <Setter Property="Padding" Value="0" />
                 <Setter Property="TabStripPlacement" Value="Left" />
                 <Setter Property="Template">
                     <ControlTemplate>
-                        <Border
-                            HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                            VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{TemplateBinding CornerRadius}">
-                            <DockPanel>
-                                <Border
-                                    Width="50"
-                                    BorderBrush="#525252"
-                                    BorderThickness="0,0,1,0">
-                                    <ItemsPresenter
-                                        Name="PART_ItemsPresenter"
-                                        DockPanel.Dock="{TemplateBinding TabStripPlacement}"
-                                        ItemTemplate="{TemplateBinding ItemTemplate}"
-                                        Items="{TemplateBinding Items}"
-                                        ItemsPanel="{TemplateBinding ItemsPanel}" />
-                                </Border>
-                                <ContentPresenter
-                                    Name="PART_SelectedContentHost"
-                                    Margin="{TemplateBinding Padding}"
-                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                    Background="#1f1f1f"
-                                    Content="{TemplateBinding SelectedContent}"
-                                    ContentTemplate="{TemplateBinding SelectedContentTemplate}" />
-                            </DockPanel>
-                        </Border>
+                        <DockPanel>
+                            <ScrollViewer>
+                                <ItemsPresenter
+                                    Name="PART_ItemsPresenter"
+                                    DockPanel.Dock="{TemplateBinding TabStripPlacement}"
+                                    ItemsPanel="{TemplateBinding ItemsPanel}" />
+                            </ScrollViewer>
+                            <ContentPresenter
+                                Name="PART_SelectedContentHost"
+                                Margin="{TemplateBinding Padding}"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{TemplateBinding SelectedContent}"
+                                ContentTemplate="{TemplateBinding SelectedContentTemplate}" />
+                        </DockPanel>
                     </ControlTemplate>
                 </Setter>
             </Style>

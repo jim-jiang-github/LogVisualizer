@@ -34,22 +34,22 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="11.0.0-preview4" />
-    <PackageReference Include="Avalonia.Controls.ColorPicker" Version="11.0.0-preview4" />
-    <PackageReference Include="Avalonia.Controls.DataGrid" Version="11.0.0-preview4" />
-    <PackageReference Include="Avalonia.Desktop" Version="11.0.0-preview4" />
-    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.0-preview4" />
+    <PackageReference Include="Avalonia" Version="11.0.0-rc1.1" />
+    <PackageReference Include="Avalonia.Controls.ColorPicker" Version="11.0.0-rc1.1" />
+    <PackageReference Include="Avalonia.Controls.DataGrid" Version="11.0.0-rc1.1" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.0.0-rc1.1" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.0-rc1.1" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.0-preview4" />
-    <PackageReference Include="Avalonia.Xaml.Interactions" Version="11.0.0-preview4" />
-    <PackageReference Include="Avalonia.Xaml.Interactivity" Version="11.0.0-preview4" />
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.0-rc1.1" />
+    <PackageReference Include="Avalonia.Xaml.Interactions" Version="11.0.0-rc1.1" />
+    <PackageReference Include="Avalonia.Xaml.Interactivity" Version="11.0.0-rc1.1" />
     <PackageReference Include="Ben.Demystifier" Version="0.4.1" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
     <PackageReference Include="FluentValidation" Version="11.5.2" />
+    <PackageReference Include="MessageBox.Avalonia" Version="2.3.1-rc1-1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
-    <PackageReference Include="Projektanker.Icons.Avalonia.FontAwesome" Version="6.3.0-preview4" />
-    <PackageReference Include="Projektanker.Icons.Avalonia.MaterialDesign" Version="6.3.0-preview4" />
-    <PackageReference Include="XamlNameReferenceGenerator" Version="1.5.1" />
+    <PackageReference Include="Projektanker.Icons.Avalonia.FontAwesome" Version="6.6.0-rc1.1" />
+    <PackageReference Include="Projektanker.Icons.Avalonia.MaterialDesign" Version="6.6.0-rc1.1" />
 
     <PackageReference Include="Serilog" Version="3.0.1" />
     <PackageReference Include="Dotnet.Bundle" Version="0.9.13" />
