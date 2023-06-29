@@ -12,4 +12,4 @@ echo "[INFO] restore."
 dotnet restore $SLN_PATH
 dotnet restore $PROJECT_DIRECTORY -r win-x64
 echo "[INFO] publish $PROJECT_DIRECTORY ."
-dotnet publish "$PROJECT_DIRECTORY" -r win-x64 --configuration Release -p:PublishSingleFile=true -p:PublishReadyToRun=true --self-contained -p:PublishTrimmed=True -p:TrimMode=CopyUsed -property:Version=$VERSION
+dotnet publish "$PROJECT_DIRECTORY" -r win-x64 --configuration Release -p:PublishSingleFile=true -p:PublishReadyToRun=true --self-contained -property:Version=$VERSION
