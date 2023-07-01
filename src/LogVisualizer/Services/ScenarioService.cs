@@ -22,14 +22,20 @@ namespace LogVisualizer.Services
 {
     public class ScenarioService
     {
+        private readonly DebounceDispatcher _debounceDispatcher;
+
+        private List<LogFilterItem> _logFilterItems = new List<LogFilterItem>();
+
         public string[] SupportedLogExtension => CurrentScenario?.SupportedExtensions ?? new[] { "*.txt", "*.log" };
         public IEnumerable<Scenario> Scenarios { get; private set; } = Array.Empty<Scenario>();
         public Scenario? CurrentScenario { get; private set; }
         public IEnumerable<LogFileItem> LogFileItems { get; private set; }
+        public IEnumerable<LogFilterItem> LogFilterItems => _logFilterItems;
         public LogFileItem? CurrentLogFileItem { get; private set; }
 
         public ScenarioService()
         {
+            _debounceDispatcher = new DebounceDispatcher();
             ReloadScenarios();
         }
 
@@ -119,9 +125,54 @@ namespace LogVisualizer.Services
             });
         }
 
-        public void UpdateFilters(IEnumerable<LogFilterItem> logFilterItems) 
+        public async Task<LogFilterItem?> CreateFilterItem(string filterKey)
         {
-        
+            LogFilterItem logFilterItem = new()
+            {
+                FilterKey = filterKey,
+            };
+            LogFilterItemDetailSelectedChangedMessage logFilterItemDetailSelectedChangedMessage = new LogFilterItemDetailSelectedChangedMessage(logFilterItem);
+            WeakReferenceMessenger.Default.Send(logFilterItemDetailSelectedChangedMessage);
+            bool success = await logFilterItemDetailSelectedChangedMessage.Response;
+            if (success)
+            {
+                return logFilterItem;
+            }
+            return null;
+        }
+
+        public void AddFilterItem(LogFilterItem logFilterItem)
+        {
+            _logFilterItems.Add(logFilterItem);
+            WeakReferenceMessenger.Default.Send(new LogFilterItemsChangedMessage(_logFilterItems));
+        }
+
+        public void EditFilterItem(LogFilterItem logFilterItem)
+        {
+            LogFilterItemDetailSelectedChangedMessage logFilterItemDetailSelectedChangedMessage = new LogFilterItemDetailSelectedChangedMessage(logFilterItem);
+            WeakReferenceMessenger.Default.Send(logFilterItemDetailSelectedChangedMessage);
+        }
+
+        public void RemoveFilterItem(LogFilterItem logFilterItem)
+        {
+            _logFilterItems.Remove(logFilterItem);
+            WeakReferenceMessenger.Default.Send(new LogFilterItemsChangedMessage(_logFilterItems));
+        }
+
+        public void FilterChanged(IEnumerable<LogFilterItem> logFilterItems)
+        {
+            _debounceDispatcher.Debounce(200, async (x) =>
+            {
+                _ = Task.Run(() =>
+                {
+                    WeakReferenceMessenger.Default.Send(new LogFilterItemsChangedMessage(logFilterItems));
+                });
+            });
+        }
+
+        public void UpdateFilters(IEnumerable<LogFilterItem> logFilterItems)
+        {
+
         }
     }
 }

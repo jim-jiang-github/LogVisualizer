@@ -12,10 +12,10 @@
     <ListBox
         Grid.Row="0"
         ItemsSource="{Binding Items}"
-        SelectedItem="{Binding SelectedItem}">
+        SelectedItem="{Binding SelectedRow}">
         <ListBox.ContextMenu>
             <ContextMenu>
-                <MenuItem Command="{Binding AddLogFilterItemCommand}" Header="{i18n:I18NKeyBinding Key=Filter_AddFilter}">
+                <MenuItem Command="{Binding AddLogFilterItemCommand}" Header="{i18n:I18NKeyBinding Key=LogViewer_ContextMenu_AddToFilter}">
                     <MenuItem.Icon>
                         <icon:Icon FontSize="16" Value="fa-solid fa-plus" />
                     </MenuItem.Icon>

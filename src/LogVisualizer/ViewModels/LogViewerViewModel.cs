@@ -20,19 +20,26 @@ using LogVisualizer.Models;
 using LogVisualizer.Scenarios.Contents;
 using System.Text.RegularExpressions;
 using Serilog.Context;
+using CommunityToolkit.Mvvm.Input;
 
 namespace LogVisualizer.ViewModels
 {
     public partial class LogViewerViewModel : ViewModelBase
     {
         private LogFilterViewModel _logFilterViewModel;
+        private ScenarioService _scenarioService;
         private IEnumerable<LogRow> currentRows;
+
+        [ObservableProperty]
+        private LogRow? _selectedRow = null;
+
         [ObservableProperty]
         private RangeObservableCollection<LogRow> _items;
 
-        public LogViewerViewModel(LogFilterViewModel logFilterViewModel)
+        public LogViewerViewModel(LogFilterViewModel logFilterViewModel, ScenarioService scenarioService)
         {
             _logFilterViewModel = logFilterViewModel;
+            _scenarioService = scenarioService;
             Items = new RangeObservableCollection<LogRow>();
             WeakReferenceMessenger.Default.Register<LogContentSelectedChangedMessage>(this, (r, m) =>
             {
@@ -48,6 +55,10 @@ namespace LogVisualizer.ViewModels
             });
             WeakReferenceMessenger.Default.Register<LogFilterItemsChangedMessage>(this, (r, m) =>
             {
+                if (currentRows == null)
+                {
+                    return;
+                }
                 Items.Clear();
                 var result = currentRows.Where(row =>
                 {
@@ -68,6 +79,19 @@ namespace LogVisualizer.ViewModels
 
             return Regex.IsMatch(text, pattern, (matchCase | useRegex) ? RegexOptions.None : RegexOptions.IgnoreCase);
         }
-    }
 
+        [RelayCommand]
+        private async Task AddLogFilterItem()
+        {
+            if (SelectedRow == null)
+            {
+                return;
+            }
+            LogFilterItem? logFilterItem = new()
+            {
+                FilterKey = SelectedRow.ToString()
+            };
+            //await _scenarioService.AddFilterItem(logFilterItem);
+        }
+    }
 }

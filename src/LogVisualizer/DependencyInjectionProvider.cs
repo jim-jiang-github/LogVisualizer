@@ -1,4 +1,5 @@
 ﻿using GithubReleaseUpgrader;
+using LogVisualizer.Models;
 using LogVisualizer.Platforms.Windows;
 using LogVisualizer.Services;
 using LogVisualizer.ViewModels;
@@ -22,6 +23,7 @@ namespace LogVisualizer
                 .AddSingleton<ScenarioService>()
                 .AddSingleton<UpgradeService>()
                 .AddSingleton<GitService>()
+                .AddSingleton<FinderService>()
                 .AddSingleton<MenuBarViewModel>()
                 .AddSingleton<LogSelectorViewModel>()
                 .AddSingleton<MainWindowViewModel>()

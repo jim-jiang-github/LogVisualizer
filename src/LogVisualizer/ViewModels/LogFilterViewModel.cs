@@ -19,25 +19,28 @@ using Avalonia.Media;
 using LogVisualizer.I18N;
 using System.Threading.Tasks;
 using Avalonia.Controls;
+using Avalonia.Threading;
 
 namespace LogVisualizer.ViewModels
 {
     public partial class LogFilterViewModel : ViewModelBase
     {
-        private readonly DebounceDispatcher _debounceDispatcher;
         private ScenarioService _scenarioService;
 
         [ObservableProperty]
         private LogFilterItem? _selectedItem = null;
-        [ObservableProperty]
-        private ObservableCollection<LogFilterItem> _logFilterItems;
+        private IEnumerable<LogFilterItem> LogFilterItems => _scenarioService.LogFilterItems;
 
         public LogFilterViewModel(ScenarioService scenarioService)
         {
             _scenarioService = scenarioService;
-            _debounceDispatcher = new DebounceDispatcher();
-            LogFilterItems = new ObservableCollection<LogFilterItem>();
-            LogFilterItems.CollectionChanged += LogFilterItems_CollectionChanged;
+            WeakReferenceMessenger.Default.Register<LogFilterItemsChangedMessage>(this, (r, m) =>
+            {
+                Dispatcher.UIThread.Invoke(() =>
+                {
+                    OnPropertyChanged(nameof(LogFilterItems));
+                });
+            });
         }
 
         partial void OnSelectedItemChanged(LogFilterItem? oldValue, LogFilterItem? newValue)
@@ -54,34 +57,24 @@ namespace LogVisualizer.ViewModels
 
         private void Value_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
-            NotifyAnyLogFilterChanged();
+            _scenarioService.FilterChanged(LogFilterItems);
         }
 
         private void LogFilterItems_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            NotifyAnyLogFilterChanged();
-        }
-
-        private void NotifyAnyLogFilterChanged() 
-        {
-            _debounceDispatcher.Debounce(400, async (x) =>
-            {
-                WeakReferenceMessenger.Default.Send(new LogFilterItemsChangedMessage(LogFilterItems));
-            });
+            _scenarioService.FilterChanged(LogFilterItems);
         }
 
         [RelayCommand]
-        private async Task AddLogFilterItem()
+        private async Task CreateLogFilterItem()
         {
-            LogFilterItem logFilterItem = new LogFilterItem();
-            LogFilterItems.Add(logFilterItem);
-            LogFilterItemDetailSelectedChangedMessage logFilterItemDetailSelectedChangedMessage = new LogFilterItemDetailSelectedChangedMessage(logFilterItem);
-            WeakReferenceMessenger.Default.Send(logFilterItemDetailSelectedChangedMessage);
-            bool success = await logFilterItemDetailSelectedChangedMessage.Response;
-            if (!success)
+            LogFilterItem? logFilterItem = await _scenarioService.CreateFilterItem(string.Empty);
+            if (logFilterItem == null)
             {
-                LogFilterItems.Remove(logFilterItem);
+                return;
             }
+            _scenarioService.AddFilterItem(logFilterItem);
+            SelectedItem = logFilterItem;
         }
 
         [RelayCommand]
@@ -91,26 +84,26 @@ namespace LogVisualizer.ViewModels
             {
                 return;
             }
-            WeakReferenceMessenger.Default.Send(new LogFilterItemDetailSelectedChangedMessage(SelectedItem));
+            _scenarioService.EditFilterItem(SelectedItem);
         }
 
         [RelayCommand]
-        private async Task DeleteSelectedLogFilterItem()
+        private async Task RemoveSelectedLogFilterItem()
         {
             if (SelectedItem == null)
             {
                 return;
             }
-            await DeleteLogFilterItem(SelectedItem);
+            await RemoveLogFilterItem(SelectedItem);
         }
 
         [RelayCommand]
-        private async Task DeleteLogFilterItem(LogFilterItem logFilterItem)
+        private async Task RemoveLogFilterItem(LogFilterItem logFilterItem)
         {
             var content = I18NKeys.Common_ConfirmDelete.GetLocalizationString(logFilterItem.FilterKey);
             if (await Notify.ShowComfirmMessageBox(content))
             {
-                LogFilterItems.Remove(logFilterItem);
+                _scenarioService.RemoveFilterItem(logFilterItem);
             }
         }
     }

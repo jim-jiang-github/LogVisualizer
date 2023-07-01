@@ -19,6 +19,10 @@
     "OpenAppDataFolder": "Open App data folder",
     "About": "About"
   },
+  "Titlebar": {
+    "Github": "Accessing my GitHub.",
+    "Share": "Share current log and filters."
+  },
   "OpenFileDialog": {
     "PickLog": "Pick logs",
     "SupportedLogs": "Supported Logs"

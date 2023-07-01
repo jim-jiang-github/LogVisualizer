@@ -39,7 +39,7 @@
         SelectionMode="Single">
         <DataGrid.ContextMenu>
             <ContextMenu>
-                <MenuItem Command="{Binding AddLogFilterItemCommand}" Header="{i18n:I18NKeyBinding Key=Filter_AddFilter}">
+                <MenuItem Command="{Binding CreateLogFilterItemCommand}" Header="{i18n:I18NKeyBinding Key=Filter_AddFilter}">
                     <MenuItem.Icon>
                         <icon:Icon FontSize="16" Value="fa-solid fa-plus" />
                     </MenuItem.Icon>
@@ -51,7 +51,7 @@
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator />
-                <MenuItem Command="{Binding DeleteSelectedLogFilterItemCommand}" Header="{i18n:I18NKeyBinding Key=Filter_RemoveFilter}">
+                <MenuItem Command="{Binding RemoveSelectedLogFilterItemCommand}" Header="{i18n:I18NKeyBinding Key=Filter_RemoveFilter}">
                     <MenuItem.Icon>
                         <icon:Icon FontSize="16" Value="fa-solid fa-trash" />
                     </MenuItem.Icon>
@@ -116,7 +116,7 @@
                             Height="30"
                             HorizontalAlignment="Center"
                             HorizontalContentAlignment="Center"
-                            Command="{Binding DataContext.DeleteLogFilterItemCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                            Command="{Binding DataContext.RemoveLogFilterItemCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
                             CommandParameter="{Binding}">
                             <Button.Styles>
                                 <Style Selector="Button">

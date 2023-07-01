@@ -5,8 +5,12 @@ namespace LogVisualizer.I18N
     // This is an auto-generated file. Do not modify this file manually, if you need to modify the contents, Please motify the I18NKeys.tt file.
     public enum I18NKeys
     {
+        /// <summary>[NonLocalized] LogVisualizer (V{l_version number})</summary>
+        NonLocalized_TitleBar_Title,
+        /// <summary>[NonLocalized] Enable pseudo</summary>
+        NonLocalized_TitleBar_EnablePseudo,
         /// <summary>[NonLocalized] {    "One": "This is {l_participant_number} participant",    "Few": "There are {l_participant_number} participants"  }</summary>
-        TestPlurals,
+        NonLocalized_TestPlurals,
         /// <summary>Version ({l_version number}).</summary>
         Common_Version,
         /// <summary>Cancel</summary>
@@ -39,6 +43,10 @@ namespace LogVisualizer.I18N
         Menu_OpenAppDataFolder,
         /// <summary>About</summary>
         Menu_About,
+        /// <summary>Accessing my GitHub.</summary>
+        Titlebar_Github,
+        /// <summary>Share current log and filters.</summary>
+        Titlebar_Share,
         /// <summary>Pick logs</summary>
         OpenFileDialog_PickLog,
         /// <summary>Supported Logs</summary>
@@ -99,5 +107,11 @@ namespace LogVisualizer.I18N
         Filter_EditFilter,
         /// <summary>Remove</summary>
         Filter_RemoveFilter,
+        /// <summary>Add to filter</summary>
+        LogViewer_ContextMenu_AddToFilter,
+        /// <summary>Show detail</summary>
+        LogViewer_ContextMenu_ShowDetail,
+        /// <summary>Remove</summary>
+        LogViewer_RemoveFilter,
     }
 }

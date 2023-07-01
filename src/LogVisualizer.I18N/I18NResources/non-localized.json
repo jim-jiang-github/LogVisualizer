@@ -1,4 +1,8 @@
 {
+  "TitleBar": {
+    "Title": "LogVisualizer (V{l_version number})",
+    "EnablePseudo": "Enable pseudo"
+  },
   "TestPlurals": {
     "Plurals": {
       "One": "This is {l_participant_number} participant",

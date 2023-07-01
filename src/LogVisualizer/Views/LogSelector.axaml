@@ -10,6 +10,7 @@
     x:DataType="viewModels:LogSelectorViewModel"
     mc:Ignorable="d">
     <TreeView
+        Background="#1f1f1f"
         ItemsSource="{Binding LogFileItems}"
         SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
         SelectionMode="Single">

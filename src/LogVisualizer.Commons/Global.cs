@@ -19,9 +19,14 @@ namespace LogVisualizer.Commons
 #endif
             }
         }
+
         public const string APP_NAME = "LogVisualizer";
 
         public const string GITHUB_URL = "https://github.com/jim-jiang-github/LogVisualizer";
+
+        public static string CurrentVersionStr => CurrentVersion.ToString(3);
+
+        public static Version CurrentVersion { get; } = typeof(Global).Assembly.GetName().Version ?? Version.Parse("1.0.0.0");
 
         public static string AppTempDirectory { get; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Templates), APP_NAME);
 

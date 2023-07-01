@@ -23,6 +23,7 @@ namespace LogVisualizer.ViewModels
     {
         private readonly UpgradeService _upgradeService;
         private readonly ScenarioService _scenarioService;
+        private readonly FinderService _finderService;
 
         private IReadOnlyList<FilePickerFileType>? SupportedFileType
         {
@@ -38,14 +39,17 @@ namespace LogVisualizer.ViewModels
             }
         }
 
-        public MenuBarViewModel(UpgradeService upgradeService, ScenarioService scenarioService)
+        public MenuBarViewModel(UpgradeService upgradeService,
+            ScenarioService scenarioService,
+            FinderService finderService)
         {
             _upgradeService = upgradeService;
             _scenarioService = scenarioService;
+            _finderService = finderService;
         }
 
         [RelayCommand]
-        public async Task Open()
+        private async Task Open()
         {
             var supportedFileTypes = new FilePickerFileType[]
             {
@@ -68,12 +72,12 @@ namespace LogVisualizer.ViewModels
         }
 
         [RelayCommand]
-        public async Task FromUrl()
+        private async Task FromUrl()
         {
         }
         private bool flag;
         [RelayCommand]
-        public void Exit()
+        private void Exit()
         {
             if (flag)
             {
@@ -87,43 +91,31 @@ namespace LogVisualizer.ViewModels
         }
 
         [RelayCommand]
-        public void ShowOnlyFiltered()
+        private void ShowOnlyFiltered()
         {
         }
 
         [RelayCommand]
-        public void AddNewFilter()
+        private void AddNewFilter()
         {
         }
 
         [RelayCommand]
-        public void OpenAppDataFolder()
+        private void OpenAppDataFolder()
         {
-            Process process = new Process();
-            process.StartInfo = new ProcessStartInfo
-            {
-                FileName = Global.AppDataDirectory,
-                UseShellExecute = true
-            };
-            process.Start();
+            _finderService.OpenAppDataFolder();
         }
 
         [RelayCommand]
-        public void CheckForUpgrade()
+        private void CheckForUpgrade()
         {
             _upgradeService?.CheckForUpgrade(true);
         }
 
         [RelayCommand]
-        public void About()
+        private void About()
         {
-            Process process = new Process();
-            process.StartInfo = new ProcessStartInfo
-            {
-                FileName = Global.GITHUB_URL,
-                UseShellExecute = true
-            };
-            process.Start();
+            _finderService.AccessGithub();
         }
     }
 }

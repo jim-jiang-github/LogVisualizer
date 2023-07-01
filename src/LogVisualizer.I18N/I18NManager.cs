@@ -130,7 +130,7 @@ namespace LogVisualizer.I18N
                 Log.Information($"Load from json culture [nonLocalized:{nonLocalizedJsonDictionary.Count()}|defaultCulture:{defaultCultureJsonDictionary.Count()}|culture:{cultureJsonDictionary.Count()}]");
                 foreach (var property in nonLocalizedJsonDictionary)
                 {
-                    var key = property.Key;
+                    var key = $"NonLocalized_{property.Key}";
                     if (Enum.TryParse(key, out I18NKeys i18NKey) && I18NValue.CreateI18NValue(property) is I18NValue value)
                     {
                         nonLocalizedMap.Add(i18NKey, value);

@@ -56,7 +56,7 @@ namespace LogVisualizer.I18N
     foreach (var item in localizationKeyNonLocalized)
     {
         WriteLine($"        /// <summary>[NonLocalized] {item.Value}</summary>");
-        WriteLine($"        {item.Key},");
+        WriteLine($"        NonLocalized_{item.Key},");
     }
     foreach (var item in localizationKeyEn)
     {

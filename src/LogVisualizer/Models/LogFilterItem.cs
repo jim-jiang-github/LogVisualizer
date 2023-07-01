@@ -11,7 +11,7 @@ namespace LogVisualizer.Models
     public partial class LogFilterItem : ModelBase
     {
         [ObservableProperty]
-        private bool _enabled;
+        private bool _enabled = true;
         [ObservableProperty]
         private int _id;
         [ObservableProperty]
