@@ -1,8 +1,10 @@
 ﻿using GithubReleaseUpgrader;
+using LogVisualizer.Commons;
 using LogVisualizer.Models;
 using LogVisualizer.Platforms.Windows;
 using LogVisualizer.Services;
 using LogVisualizer.ViewModels;
+using LogVisualizer.Views;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -35,7 +37,8 @@ namespace LogVisualizer
                 .AddScoped<LogFilterItemEditorViewModel>()
                 .AddSingleton<BottomBarViewModel>()
                 .AddSingleton<ScenarioConfigViewModel>()
-                .AddSingleton<SplashWindowViewModel>();
+                .AddSingleton<SplashWindowViewModel>()
+                .AddSingleton<INotify, NotifyImpl>();
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) == true)
             {

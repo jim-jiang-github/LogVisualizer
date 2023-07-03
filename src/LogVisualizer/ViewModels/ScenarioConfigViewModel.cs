@@ -201,6 +201,7 @@ namespace LogVisualizer.ViewModels
             #endregion
         }
 
+        private readonly INotify _notify;
         private GitService _gitService;
         private CancellationTokenSource? _filterBranchesCancellationTokenSource;
         private readonly DebounceDispatcher _debounceDispatcher;
@@ -220,8 +221,9 @@ namespace LogVisualizer.ViewModels
         [ObservableProperty]
         private ScenarioCreatorViewModel _creator;
 
-        public ScenarioConfigViewModel(GitService gitService)
+        public ScenarioConfigViewModel(INotify notify, GitService gitService)
         {
+            _notify = notify;
             Creator = new ScenarioCreatorViewModel(this, gitService);
             _gitService = gitService;
             _filterBranches = new ObservableCollection<string>();
@@ -282,7 +284,7 @@ namespace LogVisualizer.ViewModels
         private async Task DeleteScenarioConfig(ScenarioConfig scenarioConfig)
         {
             var content = I18NKeys.Common_ConfirmDelete.GetLocalizationString(scenarioConfig.ScenarioName);
-            if (await Notify.ShowComfirmMessageBox(content))
+            if (await _notify.ShowComfirmMessageBox(content))
             {
                 string folder = System.IO.Path.Combine(Global.ScenarioConfigFolderRoot, scenarioConfig.ScenarioName);
                 if (FileOperationsHelper.SafeDeleteDirectory(folder))

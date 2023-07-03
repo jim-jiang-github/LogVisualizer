@@ -25,44 +25,21 @@ namespace LogVisualizer.ViewModels
 {
     public partial class LogFilterViewModel : ViewModelBase
     {
-        private ScenarioService _scenarioService;
+        private readonly ScenarioService _scenarioService;
 
         [ObservableProperty]
         private LogFilterItem? _selectedItem = null;
-        private IEnumerable<LogFilterItem> LogFilterItems => _scenarioService.LogFilterItems;
+        [ObservableProperty]
+        private ObservableCollection<LogFilterItem> _logFilterItems;
 
         public LogFilterViewModel(ScenarioService scenarioService)
         {
             _scenarioService = scenarioService;
+            _logFilterItems = new ObservableCollection<LogFilterItem>();
             WeakReferenceMessenger.Default.Register<LogFilterItemsChangedMessage>(this, (r, m) =>
             {
-                Dispatcher.UIThread.Invoke(() =>
-                {
-                    OnPropertyChanged(nameof(LogFilterItems));
-                });
+                LogFilterItems = new ObservableCollection<LogFilterItem>(_scenarioService.LogFilterItems);
             });
-        }
-
-        partial void OnSelectedItemChanged(LogFilterItem? oldValue, LogFilterItem? newValue)
-        {
-            if (oldValue != null)
-            {
-                oldValue.PropertyChanged -= Value_PropertyChanged;
-            }
-            if (newValue != null)
-            {
-                newValue.PropertyChanged += Value_PropertyChanged;
-            }
-        }
-
-        private void Value_PropertyChanged(object? sender, PropertyChangedEventArgs e)
-        {
-            _scenarioService.FilterChanged(LogFilterItems);
-        }
-
-        private void LogFilterItems_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            _scenarioService.FilterChanged(LogFilterItems);
         }
 
         [RelayCommand]
@@ -74,17 +51,16 @@ namespace LogVisualizer.ViewModels
                 return;
             }
             _scenarioService.AddFilterItem(logFilterItem);
-            SelectedItem = logFilterItem;
         }
 
         [RelayCommand]
-        private void EditLogFilterItem()
+        private async Task EditLogFilterItem()
         {
             if (SelectedItem == null)
             {
                 return;
             }
-            _scenarioService.EditFilterItem(SelectedItem);
+            await _scenarioService.EditFilterItem(SelectedItem);
         }
 
         [RelayCommand]
@@ -100,11 +76,7 @@ namespace LogVisualizer.ViewModels
         [RelayCommand]
         private async Task RemoveLogFilterItem(LogFilterItem logFilterItem)
         {
-            var content = I18NKeys.Common_ConfirmDelete.GetLocalizationString(logFilterItem.FilterKey);
-            if (await Notify.ShowComfirmMessageBox(content))
-            {
-                _scenarioService.RemoveFilterItem(logFilterItem);
-            }
+            await _scenarioService.RemoveFilterItem(logFilterItem);
         }
     }
 }

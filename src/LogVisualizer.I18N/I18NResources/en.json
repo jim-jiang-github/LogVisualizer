@@ -63,7 +63,11 @@
     "Hits": "Hits",
     "AddFilter": "Add new filter",
     "EditFilter": "Edit",
-    "RemoveFilter": "Remove"
+    "RemoveFilter": "Remove",
+    "Dialog": {
+      "Create": "Create new filter",
+      "Edit": "Edit filter"
+    }
   },
   "LogViewer": {
     "ContextMenu": {

@@ -15,23 +15,12 @@
         SelectedItem="{Binding SelectedRow}">
         <ListBox.ContextMenu>
             <ContextMenu>
-                <MenuItem Command="{Binding AddLogFilterItemCommand}" Header="{i18n:I18NKeyBinding Key=LogViewer_ContextMenu_AddToFilter}">
+                <MenuItem Command="{Binding CreateLogFilterItemCommand}" Header="{i18n:I18NKeyBinding Key=LogViewer_ContextMenu_AddToFilter}">
                     <MenuItem.Icon>
                         <icon:Icon FontSize="16" Value="fa-solid fa-plus" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator />
-                <MenuItem Command="{Binding EditLogFilterItemCommand}" Header="{i18n:I18NKeyBinding Key=Filter_EditFilter}">
-                    <MenuItem.Icon>
-                        <icon:Icon FontSize="16" Value="fa-solid fa-filter" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <Separator />
-                <MenuItem Command="{Binding DeleteSelectedLogFilterItemCommand}" Header="{i18n:I18NKeyBinding Key=Filter_RemoveFilter}">
-                    <MenuItem.Icon>
-                        <icon:Icon FontSize="16" Value="fa-solid fa-trash" />
-                    </MenuItem.Icon>
-                </MenuItem>
             </ContextMenu>
         </ListBox.ContextMenu>
         <ListBox.Styles>

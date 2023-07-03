@@ -50,23 +50,27 @@ namespace LogVisualizer.ViewModels
                     return;
                 }
                 currentRows = logContent.Rows;
-                Items.Clear();
-                Items.AddRange(currentRows);
+                ApplyFilter();
             });
             WeakReferenceMessenger.Default.Register<LogFilterItemsChangedMessage>(this, (r, m) =>
             {
-                if (currentRows == null)
-                {
-                    return;
-                }
-                Items.Clear();
-                var result = currentRows.Where(row =>
-                {
-                    bool matched = m.Value.Where(f => f.Enabled).All(f => Search(row.Cells[4].ToString(), f.FilterKey, f.IsMatchCase, f.IsMatchWholeWord, f.IsUseRegularExpression));
-                    return matched;
-                });
-                Items.AddRange(result);
+                ApplyFilter();
             });
+        }
+
+        private void ApplyFilter()
+        {
+            if (currentRows == null)
+            {
+                return;
+            }
+            Items.Clear();
+            var result = currentRows.Where(row =>
+            {
+                bool matched = _scenarioService.LogFilterItems.Where(f => f.Enabled).All(f => Search(row.Cells[4].ToString(), f.FilterKey, f.IsMatchCase, f.IsMatchWholeWord, f.IsUseRegularExpression));
+                return matched;
+            });
+            Items.AddRange(result);
         }
 
         private bool Search(string text, string keyword, bool matchCase, bool matchWholeWord, bool useRegex)
@@ -81,17 +85,18 @@ namespace LogVisualizer.ViewModels
         }
 
         [RelayCommand]
-        private async Task AddLogFilterItem()
+        private async Task CreateLogFilterItem()
         {
             if (SelectedRow == null)
             {
                 return;
             }
-            LogFilterItem? logFilterItem = new()
+            LogFilterItem? logFilterItem = await _scenarioService.CreateFilterItem(SelectedRow.ToString());
+            if (logFilterItem == null)
             {
-                FilterKey = SelectedRow.ToString()
-            };
-            //await _scenarioService.AddFilterItem(logFilterItem);
+                return;
+            }
+            _scenarioService.AddFilterItem(logFilterItem);
         }
     }
 }

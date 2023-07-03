@@ -107,6 +107,10 @@ namespace LogVisualizer.I18N
         Filter_EditFilter,
         /// <summary>Remove</summary>
         Filter_RemoveFilter,
+        /// <summary>Create new filter</summary>
+        Filter_Dialog_Create,
+        /// <summary>Edit filter</summary>
+        Filter_Dialog_Edit,
         /// <summary>Add to filter</summary>
         LogViewer_ContextMenu_AddToFilter,
         /// <summary>Show detail</summary>

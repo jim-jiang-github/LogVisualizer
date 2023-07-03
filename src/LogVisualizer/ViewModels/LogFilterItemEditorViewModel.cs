@@ -18,6 +18,10 @@ namespace LogVisualizer.ViewModels
 
         public LogFilterItemEditorViewModel()
         {
+            //for (int i = 0; i < 999999; i++)
+            //{
+            //    KeyWords.Add(i.ToString());
+            //}
         }
     }
 }

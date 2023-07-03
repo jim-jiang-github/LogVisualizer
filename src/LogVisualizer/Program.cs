@@ -18,10 +18,10 @@ namespace LogVisualizer
         [STAThread]
         public static void Main(string[] args)
         {
-            LogConfiguration.Init();
-            Log.Information("Program Main start!");
             Configuration.CreateInstance();
             DependencyInjectionProvider.Init();
+            LogConfiguration.Init(DependencyInjectionProvider.GetService<INotify>());
+            Log.Information("Program Main start!");
             var upgradeService = DependencyInjectionProvider.GetService<UpgradeService>();
             var isNeedUpgrade = upgradeService?.CheckForUpgrade() ?? false;
             if (!isNeedUpgrade)

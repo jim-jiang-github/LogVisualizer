@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using LogVisualizer.CustomControls;
 using LogVisualizer.ViewModels;
 
 namespace LogVisualizer.Views

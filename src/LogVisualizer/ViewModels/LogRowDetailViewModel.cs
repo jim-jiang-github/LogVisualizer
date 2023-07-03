@@ -17,7 +17,7 @@ namespace LogVisualizer.ViewModels
 
         public LogRowDetailViewModel()
         {
-            LogRowDetailProperties = new ObservableCollection<LogRowDetailProperty>();
+            _logRowDetailProperties = new ObservableCollection<LogRowDetailProperty>();
         }
 
         public void SetLogRow(string[] header, LogRow logRow)

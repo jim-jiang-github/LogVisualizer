@@ -11,13 +11,13 @@
     xmlns:icon="clr-namespace:Projektanker.Icons.Avalonia;assembly=Projektanker.Icons.Avalonia"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Width="800"
-    Height="150"
+    Height="100"
     Background="#1f1f1f"
     mc:Ignorable="d">
-    <Grid Height="130" RowDefinitions="*,*,*">
+    <Grid RowDefinitions="*,*">
         <Grid
             Grid.Row="0"
-            Margin="8,0,8,0"
+            Margin="8,8,8,0"
             ColumnDefinitions="100,*">
             <TextBlock
                 Grid.Column="0"
@@ -41,7 +41,7 @@
         </Grid>
         <Grid
             Grid.Row="1"
-            Margin="8,0,8,0"
+            Margin="8,8,8,8"
             ColumnDefinitions="100,*">
             <Grid ColumnDefinitions="40,40,40,*">
                 <CheckBox
@@ -109,13 +109,5 @@
                 </Grid.Styles>
             </Grid>
         </Grid>
-        <StackPanel
-            Grid.Row="2"
-            Margin="8,0,8,0"
-            HorizontalAlignment="Right"
-            Orientation="Horizontal">
-            <Button Content="{i18n:I18NKeyBinding Key=Common_Cancel}" />
-            <Button Content="{i18n:I18NKeyBinding Key=Common_Confirm}" />
-        </StackPanel>
     </Grid>
 </UserControl>

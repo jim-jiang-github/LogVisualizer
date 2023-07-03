@@ -88,15 +88,22 @@ namespace LogVisualizer
         }
         private class LogEventSink : ILogEventSink
         {
+            private readonly INotify? _notify;
+
+            public LogEventSink(INotify? notify) 
+            {
+                _notify = notify;
+            }
+
             public void Emit(LogEvent logEvent)
             {
                 if (logEvent.Level >= Serilog.Events.LogEventLevel.Error)
                 {
-                    Notify.NotifyError("Error", logEvent.MessageTemplate.Text);
+                    _notify?.NotifyError("Error", logEvent.MessageTemplate.Text);
                 }
             }
         }
-        public static void Init()
+        public static void Init(INotify? notify)
         {
             var outputTemplate = "[{Timestamp:yyyy-MM-dd HH:mm:ss}] [{Level:u3}] [{Thread}] [{Caller}] {Message}" + Environment.NewLine;
             Log.Logger = new LoggerConfiguration()
@@ -111,7 +118,7 @@ namespace LogVisualizer
                 rollingInterval: RollingInterval.Day,
                 rollOnFileSizeLimit: true,
                 outputTemplate: outputTemplate)
-                .WriteTo.Sink(new LogEventSink())
+                .WriteTo.Sink(new LogEventSink(notify))
                 .CreateLogger();
             Log.Information("Serilog is inited");
         }

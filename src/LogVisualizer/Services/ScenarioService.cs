@@ -22,6 +22,7 @@ namespace LogVisualizer.Services
 {
     public class ScenarioService
     {
+        private readonly INotify _notify;
         private readonly DebounceDispatcher _debounceDispatcher;
 
         private List<LogFilterItem> _logFilterItems = new List<LogFilterItem>();
@@ -33,8 +34,9 @@ namespace LogVisualizer.Services
         public IEnumerable<LogFilterItem> LogFilterItems => _logFilterItems;
         public LogFileItem? CurrentLogFileItem { get; private set; }
 
-        public ScenarioService()
+        public ScenarioService(INotify notify)
         {
+            _notify = notify;
             _debounceDispatcher = new DebounceDispatcher();
             ReloadScenarios();
         }
@@ -131,48 +133,77 @@ namespace LogVisualizer.Services
             {
                 FilterKey = filterKey,
             };
-            LogFilterItemDetailSelectedChangedMessage logFilterItemDetailSelectedChangedMessage = new LogFilterItemDetailSelectedChangedMessage(logFilterItem);
-            WeakReferenceMessenger.Default.Send(logFilterItemDetailSelectedChangedMessage);
-            bool success = await logFilterItemDetailSelectedChangedMessage.Response;
-            if (success)
+            var confirmButtonText = I18NKeys.Common_Confirm.GetLocalizationRawValue();
+            var clickedButtonTest = await _notify.ShowSubWindow(
+                I18NKeys.Filter_Dialog_Create.GetLocalizationRawValue(),
+                new LogFilterItemEditorViewModel()
+                {
+                    LogFilterItem = logFilterItem
+                },
+                new[]
+                {
+                    new MessageBoxButton(confirmButtonText, true)
+                });
+            if (clickedButtonTest != confirmButtonText)
             {
-                return logFilterItem;
+                return null;
             }
-            return null;
+            return logFilterItem;
         }
 
         public void AddFilterItem(LogFilterItem logFilterItem)
         {
             _logFilterItems.Add(logFilterItem);
-            WeakReferenceMessenger.Default.Send(new LogFilterItemsChangedMessage(_logFilterItems));
+            logFilterItem.PropertyChanged += LogFilterItem_PropertyChanged;
+            FilterChanged();
         }
 
-        public void EditFilterItem(LogFilterItem logFilterItem)
+        public Task EditFilterItem(LogFilterItem logFilterItem)
         {
-            LogFilterItemDetailSelectedChangedMessage logFilterItemDetailSelectedChangedMessage = new LogFilterItemDetailSelectedChangedMessage(logFilterItem);
-            WeakReferenceMessenger.Default.Send(logFilterItemDetailSelectedChangedMessage);
+            return _notify.ShowSubWindow(
+                I18NKeys.Filter_Dialog_Edit.GetLocalizationRawValue(),
+                new LogFilterItemEditorViewModel()
+                {
+                    LogFilterItem = logFilterItem
+                });
         }
 
-        public void RemoveFilterItem(LogFilterItem logFilterItem)
+        public async Task<bool> RemoveFilterItem(LogFilterItem logFilterItem)
         {
-            _logFilterItems.Remove(logFilterItem);
-            WeakReferenceMessenger.Default.Send(new LogFilterItemsChangedMessage(_logFilterItems));
+            var content = I18NKeys.Common_ConfirmDelete.GetLocalizationString(logFilterItem.FilterKey);
+            if (await _notify.ShowComfirmMessageBox(content))
+            {
+                _logFilterItems.Remove(logFilterItem);
+                logFilterItem.PropertyChanged -= LogFilterItem_PropertyChanged;
+                WeakReferenceMessenger.Default.Send(new LogFilterItemsChangedMessage(_logFilterItems));
+                return true;
+            }
+            return false;
         }
 
-        public void FilterChanged(IEnumerable<LogFilterItem> logFilterItems)
+        private void LogFilterItem_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(LogFilterItem.Id) ||
+                e.PropertyName == nameof(LogFilterItem.HexColor) ||
+                e.PropertyName == nameof(LogFilterItem.Hits))
+            {
+
+            }
+            else
+            {
+                FilterChanged();
+            }
+        }
+
+        private void FilterChanged()
         {
             _debounceDispatcher.Debounce(200, async (x) =>
             {
                 _ = Task.Run(() =>
                 {
-                    WeakReferenceMessenger.Default.Send(new LogFilterItemsChangedMessage(logFilterItems));
+                    WeakReferenceMessenger.Default.Send(new LogFilterItemsChangedMessage(LogFilterItems));
                 });
             });
-        }
-
-        public void UpdateFilters(IEnumerable<LogFilterItem> logFilterItems)
-        {
-
         }
     }
 }
