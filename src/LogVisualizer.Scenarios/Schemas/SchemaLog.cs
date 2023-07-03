@@ -52,6 +52,7 @@ namespace LogVisualizer.Scenarios.Schemas
         }
         public class SchemaColumnHead
         {
+            public int MainColumnIndex { get; set; }
             public SchemaColumn[] Columns { get; set; } = Array.Empty<SchemaColumn>();
         }
         public class SchemaColumn

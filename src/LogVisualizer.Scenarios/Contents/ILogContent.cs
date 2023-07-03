@@ -61,6 +61,7 @@ namespace LogVisualizer.Scenarios.Contents
         #endregion
 
         string[] ColumnNames { get; }
+        int MainColumnIndex { get; }
         LogRow[] Rows { get; }
         int RowsCount { get; }
         IEnumerable<string> EnumerateWords { get; }

@@ -63,30 +63,31 @@ namespace LogVisualizer.Scenarios.Schemas
             {
                 RegexStart = @"^(\d{2}\/\d{2}\/\d{2} \d{2}:\d{2}:\d{2}.\d{3})",
                 RegexContent = @"^(\d{2}\/\d{2}\/\d{2} \d{2}:\d{2}:\d{2}.\d{3}) \<(.*?)\> \[(.*?)\] (.*?) (.*)",
+                MainColumnIndex = 4,
                 Columns = new SchemaColumn[]
                 {
                     new SchemaColumn
                     {
-                        Cell = new SchemaCellText{Name = "Time", Index = 1, ConvertorName = "Time"},
+                        Cell = new SchemaCellText{Name = "Time", Index = 0, ConvertorName = "Time"},
                     },
                     new SchemaColumn
                     {
-                        Cell = new SchemaCellText{Name = "Module", Index = 2},
+                        Cell = new SchemaCellText{Name = "Module", Index = 1},
                         Filterable=true
                     },
                     new SchemaColumn
                     {
-                        Cell = new SchemaCellText{Name = "Thread", Index = 3},
+                        Cell = new SchemaCellText{Name = "Thread", Index = 2},
                         Filterable=true
                     },
                     new SchemaColumn
                     {
-                        Cell = new SchemaCellText{Name = "Level", Index = 4},
+                        Cell = new SchemaCellText{Name = "Level", Index = 3},
                         Filterable=true
                     },
                     new SchemaColumn
                     {
-                        Cell = new SchemaCellText{Name = "Msg", Index = 5},
+                        Cell = new SchemaCellText{Name = "Msg", Index = 4},
                         Enumeratable=true
                     }
                 }
@@ -103,11 +104,11 @@ namespace LogVisualizer.Scenarios.Schemas
                 RegexContent = @"app: (RoomsController)/(.*?)/(SHA\(.*\))[\r|\n]*os: (.*?)/(.*?)[\r|\n]",
                 Cells = new SchemaCellText[]
                 {
-                    new SchemaCellText{Name = "Type", Index=1},
-                    new SchemaCellText{Name = "Version", Index=2},
-                    new SchemaCellText{Name = "EncryptKey", Index=3},
-                    new SchemaCellText{Name = "OS", Index=4},
-                    new SchemaCellText{Name = "OSVersion", Index=5},
+                    new SchemaCellText{Name = "Type", Index=0},
+                    new SchemaCellText{Name = "Version", Index=1},
+                    new SchemaCellText{Name = "EncryptKey", Index=2},
+                    new SchemaCellText{Name = "OS", Index=3},
+                    new SchemaCellText{Name = "OSVersion", Index=4},
                 }
             };
             Blocks.Add(header);
@@ -128,30 +129,31 @@ namespace LogVisualizer.Scenarios.Schemas
             {
                 RegexStart = @"^(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d{3} [A-Z]{3})",
                 RegexContent = @"(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d{3} [A-Z]{3}) : (.*?) : \[(.*?)\] \[(.*?)\] (.*)",
+                MainColumnIndex = 4,
                 Columns = new SchemaColumn[]
                 {
                     new SchemaColumn
                     {
-                        Cell=new SchemaCellText{Name = "Time", Index=1, ConvertorName="Time"},
+                        Cell=new SchemaCellText{Name = "Time", Index=0, ConvertorName="Time"},
                     },
                     new SchemaColumn
                     {
-                        Cell=new SchemaCellText{Name = "Module", Index=2},
+                        Cell=new SchemaCellText{Name = "Module", Index=1},
                         Filterable=true
                     },
                     new SchemaColumn
                     {
-                        Cell=new SchemaCellText{Name = "Thread", Index=3},
+                        Cell=new SchemaCellText{Name = "Thread", Index=2},
                         Filterable=true
                     },
                     new SchemaColumn
                     {
-                        Cell=new SchemaCellText{Name = "Level", Index=4},
+                        Cell=new SchemaCellText{Name = "Level", Index=3},
                         Filterable=true
                     },
                     new SchemaColumn
                     {
-                        Cell=new SchemaCellText{Name = "Msg", Index=5},
+                        Cell=new SchemaCellText{Name = "Msg", Index=4},
                         Enumeratable=true
                     }
                 }

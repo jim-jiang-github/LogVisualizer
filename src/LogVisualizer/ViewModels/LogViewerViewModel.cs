@@ -28,7 +28,8 @@ namespace LogVisualizer.ViewModels
     {
         private LogFilterViewModel _logFilterViewModel;
         private ScenarioService _scenarioService;
-        private IEnumerable<LogRow> currentRows;
+        private IEnumerable<LogRow> _currentRows;
+        private int _mainColumnIndex = 0;
 
         [ObservableProperty]
         private LogRow? _selectedRow = null;
@@ -49,7 +50,8 @@ namespace LogVisualizer.ViewModels
                     Items.Clear();
                     return;
                 }
-                currentRows = logContent.Rows;
+                _currentRows = logContent.Rows;
+                _mainColumnIndex = logContent.MainColumnIndex;
                 ApplyFilter();
             });
             WeakReferenceMessenger.Default.Register<LogFilterItemsChangedMessage>(this, (r, m) =>
@@ -60,12 +62,12 @@ namespace LogVisualizer.ViewModels
 
         private void ApplyFilter()
         {
-            if (currentRows == null)
+            if (_currentRows == null)
             {
                 return;
             }
             Items.Clear();
-            var result = currentRows.Where(row =>
+            var result = _currentRows.Where(row =>
             {
                 bool matched = _scenarioService.LogFilterItems.Where(f => f.Enabled).All(f => Search(row.Cells[4].ToString(), f.FilterKey, f.IsMatchCase, f.IsMatchWholeWord, f.IsUseRegularExpression));
                 return matched;
@@ -91,7 +93,13 @@ namespace LogVisualizer.ViewModels
             {
                 return;
             }
-            LogFilterItem? logFilterItem = await _scenarioService.CreateFilterItem(SelectedRow.ToString());
+            LogRow selectedRiow = SelectedRow.Value;
+            var mainCell = selectedRiow.Cells[_mainColumnIndex];
+            if (mainCell?.ToString() is not string mainCellStr)
+            {
+                return;
+            }
+            LogFilterItem? logFilterItem = await _scenarioService.CreateFilterItem(mainCellStr);
             if (logFilterItem == null)
             {
                 return;

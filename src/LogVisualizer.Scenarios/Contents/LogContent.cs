@@ -106,6 +106,7 @@ namespace LogVisualizer.Scenarios.Contents
         #endregion
         #region ILogContent
         public string[] ColumnNames { get; protected set; }
+        public int MainColumnIndex { get; protected set; }
         public LogRow[] Rows { get; protected set; }
         public int RowsCount { get; protected set; }
         public IEnumerable<string> EnumerateWords => _wordsCollection.Words;

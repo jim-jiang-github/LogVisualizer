@@ -53,7 +53,7 @@ namespace LogVisualizer.Scenarios.Contents
             {
                 var cell = block.Cells[i];
                 var cellConvertor = _convertorProvider.GetConvertor(cell.ConvertorName);
-                var captureCell = match.Groups[cell.Index].Value;
+                var captureCell = match.Groups[cell.Index + 1].Value;
                 blockCells[i] = new LogHeadCell(cell.Name, cellConvertor?.Convert(captureCell) ?? "");
             }
             return new LogHead(block.Name, blockCells);
@@ -116,6 +116,7 @@ namespace LogVisualizer.Scenarios.Contents
                     });
                     return new LogRow(i, cells.ToArray());
                 }).ToArray();
+            MainColumnIndex = _schemaLog.ColumnHeadTemplate.MainColumnIndex;
             ColumnNames = _schemaLog.ColumnHeadTemplate.Columns.Select(t => t.Cell.Name).ToArray();
             Rows = rows;
             RowsCount = rows.Length;
