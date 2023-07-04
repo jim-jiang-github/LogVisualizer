@@ -17,28 +17,46 @@ namespace LogVisualizer.Services
         private readonly FilterService _filterService;
         private string[] _columnNames;
         private int _mainColumnIndex = 0;
+        private bool _showOnlyFilteredLines = true;
         private IEnumerable<LogRow> _totalRows = Array.Empty<LogRow>();
+
+        public bool ShowOnlyFilteredLines
+        {
+            get => _showOnlyFilteredLines;
+            set
+            {
+                _showOnlyFilteredLines = value;
+                NotifyDisplayRowsChanged();
+            }
+        }
 
         public IEnumerable<LogRow> DisplayRows
         {
             get
             {
-                return _totalRows.Where(row =>
+                if (ShowOnlyFilteredLines)
                 {
-                    var mainCell = row.Cells[_mainColumnIndex];
-                    if (mainCell?.ToString() is not string mainCellStr)
+                    return _totalRows.Where(row =>
                     {
-                        return true;
-                    }
-                    if (!_filterService.LogFilterItems.Any(x => x.Enabled))
-                    {
-                        return true;
-                    }
-                    bool matched = _filterService.LogFilterItems
-                    .Where(f => f.Enabled)
-                    .Any(f => _filterService.Search(mainCellStr, f.FilterKey, f.IsMatchCase, f.IsMatchWholeWord, f.IsUseRegularExpression));
-                    return matched;
-                });
+                        var mainCell = row.Cells[_mainColumnIndex];
+                        if (mainCell?.ToString() is not string mainCellStr)
+                        {
+                            return true;
+                        }
+                        if (!_filterService.LogFilterItems.Any(x => x.Enabled))
+                        {
+                            return true;
+                        }
+                        bool matched = _filterService.LogFilterItems
+                        .Where(f => f.Enabled)
+                        .Any(f => _filterService.Search(mainCellStr, f.FilterKey, f.IsMatchCase, f.IsMatchWholeWord, f.IsUseRegularExpression));
+                        return matched;
+                    });
+                }
+                else
+                {
+                    return _totalRows;
+                }
             }
         }
 
@@ -69,7 +87,7 @@ namespace LogVisualizer.Services
             {
                 ColumnNames = _columnNames,
                 MainColumnIndex = _mainColumnIndex
-            }); 
+            });
         }
     }
 }

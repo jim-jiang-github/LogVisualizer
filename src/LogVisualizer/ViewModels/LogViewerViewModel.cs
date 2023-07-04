@@ -38,12 +38,15 @@ namespace LogVisualizer.ViewModels
         private LogRow? _selectedRow = null;
         [ObservableProperty]
         private ObservableCollection<LogRow> _displayRows;
+        [ObservableProperty]
+        private bool _showOnlyFilteredLines;
 
         public LogViewerViewModel(INotify notify, FilterService filterService, LogProcessorService logProcessorService)
         {
             _notify = notify;
             _filterService = filterService;
             _logProcessorService = logProcessorService;
+            _showOnlyFilteredLines = _logProcessorService.ShowOnlyFilteredLines;
             WeakReferenceMessenger.Default.Register<LogDisplayRowsChangedMessage>(this, (r, m) =>
             {
                 _columnNames = m.ColumnNames;
@@ -51,6 +54,17 @@ namespace LogVisualizer.ViewModels
                 var displayRows = m.Value;
                 DisplayRows = new ObservableCollection<LogRow>(displayRows);
             });
+        }
+
+        partial void OnShowOnlyFilteredLinesChanged(bool value)
+        {
+            _logProcessorService.ShowOnlyFilteredLines = value;
+        }
+
+        [RelayCommand]
+        private void DisplayModeChanged()
+        {
+            ShowOnlyFilteredLines = !ShowOnlyFilteredLines;
         }
 
         [RelayCommand]

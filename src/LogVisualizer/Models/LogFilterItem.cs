@@ -15,7 +15,7 @@ namespace LogVisualizer.Models
         [ObservableProperty]
         private int _id;
         [ObservableProperty]
-        private string _hexColor = "#FFFFFFFF";
+        private string _hexColor = "#00000000";
         [ObservableProperty]
         private int _hits;
         [ObservableProperty]

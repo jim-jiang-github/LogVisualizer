@@ -14,6 +14,7 @@
     <ListBox
         Name="LogViewerListBox"
         Grid.Row="0"
+        AutoScrollToSelectedItem="True"
         ItemsSource="{Binding DisplayRows}"
         SelectedItem="{Binding SelectedRow}">
         <i:Interaction.Behaviors>
@@ -28,7 +29,17 @@
                         <icon:Icon FontSize="16" Value="fa-solid fa-plus" />
                     </MenuItem.Icon>
                 </MenuItem>
+                <MenuItem Command="{Binding CreateLogFilterItemCommand}" Header="{i18n:I18NKeyBinding Key=LogViewer_ContextMenu_ShowRowDetail}">
+                    <MenuItem.Icon>
+                        <icon:Icon FontSize="16" Value="fa-solid fa-circle-info" />
+                    </MenuItem.Icon>
+                </MenuItem>
                 <Separator />
+                <MenuItem Command="{Binding DisplayModeChangedCommand}" Header="{i18n:I18NKeyBinding Key=LogViewer_ContextMenu_ShowOnlyFilteredLines}">
+                    <MenuItem.Icon>
+                        <CheckBox Margin="0,-3,-3,-3" IsChecked="{Binding ShowOnlyFilteredLines}" />
+                    </MenuItem.Icon>
+                </MenuItem>
             </ContextMenu>
         </ListBox.ContextMenu>
         <ListBox.Styles>

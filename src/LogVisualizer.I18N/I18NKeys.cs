@@ -29,8 +29,6 @@ namespace LogVisualizer.I18N
         Menu_Exit,
         /// <summary>Views</summary>
         Menu_Views,
-        /// <summary>Show only filtered line</summary>
-        Menu_ShowOnlyFiltered,
         /// <summary>Filter</summary>
         Menu_Filter,
         /// <summary>Add new filter</summary>
@@ -117,8 +115,10 @@ namespace LogVisualizer.I18N
         LogViewer_Dialog_Title,
         /// <summary>Add to filter</summary>
         LogViewer_ContextMenu_AddToFilter,
-        /// <summary>Show detail</summary>
-        LogViewer_ContextMenu_ShowDetail,
+        /// <summary>Show only filtered lines</summary>
+        LogViewer_ContextMenu_ShowOnlyFilteredLines,
+        /// <summary>Show row detail</summary>
+        LogViewer_ContextMenu_ShowRowDetail,
         /// <summary>Remove</summary>
         LogViewer_RemoveFilter,
     }

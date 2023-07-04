@@ -11,7 +11,6 @@
     "FromUrl": "From Url",
     "Exit": "Exit",
     "Views": "Views",
-    "ShowOnlyFiltered": "Show only filtered line",
     "Filter": "Filter",
     "AddNewFilter": "Add new filter",
     "Help": "Help",
@@ -76,7 +75,8 @@
     },
     "ContextMenu": {
       "AddToFilter": "Add to filter",
-      "ShowDetail": "Show detail"
+      "ShowOnlyFilteredLines": "Show only filtered lines",
+      "ShowRowDetail": "Show row detail"
     },
     "RemoveFilter": "Remove"
   }

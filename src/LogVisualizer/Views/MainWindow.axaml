@@ -30,11 +30,6 @@
                 </NativeMenuItem.Menu>
             </NativeMenuItem>
             <NativeMenuItem Header="{i18n:I18NKeyBinding Key=Menu_Views}">
-                <NativeMenuItem.Menu>
-                    <NativeMenu>
-                        <NativeMenuItem Command="{Binding MenuBar.ShowOnlyFilteredCommand}" Header="{i18n:I18NKeyBinding Key=Menu_ShowOnlyFiltered}" />
-                    </NativeMenu>
-                </NativeMenuItem.Menu>
             </NativeMenuItem>
             <NativeMenuItem Header="{i18n:I18NKeyBinding Key=Menu_Filter}">
                 <NativeMenuItem.Menu>

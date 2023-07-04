@@ -37,6 +37,20 @@
                 <i:Interaction.Behaviors>
                     <behaviours:AutoCompleteZeroMinimumPrefixLengthDropdownBehaviour />
                 </i:Interaction.Behaviors>
+                <AutoCompleteBox.Styles>
+                    <Style Selector="AutoCompleteBox:pointerover /template/ TextBox#PART_TextBox /template/ Border#PART_BorderElement">
+                        <Setter Property="Background" Value="{Binding LogFilterItem.HexColor, Converter={StaticResource HexBrushConverter}}" />
+                    </Style>
+                    <Style Selector="AutoCompleteBox:not(:focus) /template/ TextBox#PART_TextBox /template/ Border#PART_BorderElement">
+                        <Setter Property="Background" Value="{Binding LogFilterItem.HexColor, Converter={StaticResource HexBrushConverter}}" />
+                    </Style>
+                    <Style Selector="AutoCompleteBox:pointerover /template/ TextBox#PART_TextBox">
+                        <Setter Property="Foreground" Value="{Binding LogFilterItem.HexColor, Converter={StaticResource HexInvertBrushConverter}}" />
+                    </Style>
+                    <Style Selector="AutoCompleteBox:not(:focus) /template/ TextBox#PART_TextBox">
+                        <Setter Property="Foreground" Value="{Binding LogFilterItem.HexColor, Converter={StaticResource HexInvertBrushConverter}}" />
+                    </Style>
+                </AutoCompleteBox.Styles>
             </AutoCompleteBox>
         </Grid>
         <Grid
@@ -73,41 +87,41 @@
                         <controls:FlatHalfColorPalette />
                     </ColorPicker.Palette>
                 </ColorPicker>
-                <Grid.Styles>
-                    <Style Selector="CheckBox.filter">
-                        <Setter Property="Background" Value="Transparent" />
-                    </Style>
-                    <Style Selector="CheckBox.filter:pointerover">
-                        <Setter Property="Background" Value="#80FFFFFF" />
-                    </Style>
-                    <Style Selector="CheckBox.filter[IsChecked=true]:pointerover">
-                        <Setter Property="Background" Value="#80FFFFFF" />
-                    </Style>
-                    <Style Selector="CheckBox.filter[IsChecked=true]">
-                        <Setter Property="BorderBrush" Value="#efefef" />
-                        <Setter Property="BorderThickness" Value="2" />
-                    </Style>
-                    <Style Selector="CheckBox.filter">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate>
-                                    <Border
-                                        Background="{TemplateBinding Background}"
-                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                        CornerRadius="0">
-                                        <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
-                                            <Grid Width="30" Height="30">
-                                                <icon:Icon Foreground="White" Value="{TemplateBinding Tag}" />
-                                            </Grid>
-                                        </StackPanel>
-                                    </Border>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </Grid.Styles>
             </Grid>
         </Grid>
+        <Grid.Styles>
+            <Style Selector="CheckBox.filter">
+                <Setter Property="Background" Value="Transparent" />
+            </Style>
+            <Style Selector="CheckBox.filter:pointerover">
+                <Setter Property="Background" Value="#80FFFFFF" />
+            </Style>
+            <Style Selector="CheckBox.filter[IsChecked=true]:pointerover">
+                <Setter Property="Background" Value="#80FFFFFF" />
+            </Style>
+            <Style Selector="CheckBox.filter[IsChecked=true]">
+                <Setter Property="BorderBrush" Value="#efefef" />
+                <Setter Property="BorderThickness" Value="2" />
+            </Style>
+            <Style Selector="CheckBox.filter">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Border
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="0">
+                                <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
+                                    <Grid Width="30" Height="30">
+                                        <icon:Icon Foreground="White" Value="{TemplateBinding Tag}" />
+                                    </Grid>
+                                </StackPanel>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Grid.Styles>
     </Grid>
 </UserControl>
