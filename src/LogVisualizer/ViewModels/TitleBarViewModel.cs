@@ -30,6 +30,11 @@ namespace LogVisualizer.ViewModels
         }
 
         [RelayCommand]
+        private void SelectLanguage()
+        {
+        }
+
+        [RelayCommand]
         private void AccessGithub()
         {
             _finderService.AccessGithub();

@@ -3,16 +3,24 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
     xmlns:i18n="clr-namespace:LogVisualizer.I18N;assembly=LogVisualizer.I18N"
+    xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
     xmlns:icon="clr-namespace:Projektanker.Icons.Avalonia;assembly=Projektanker.Icons.Avalonia"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
     <ListBox
+        Name="LogViewerListBox"
         Grid.Row="0"
-        ItemsSource="{Binding Items}"
+        ItemsSource="{Binding DisplayRows}"
         SelectedItem="{Binding SelectedRow}">
+        <i:Interaction.Behaviors>
+            <ia:EventTriggerBehavior EventName="DoubleTapped" SourceObject="LogViewerListBox">
+                <ia:InvokeCommandAction Command="{Binding ShowLogRowDetailCommand}" />
+            </ia:EventTriggerBehavior>
+        </i:Interaction.Behaviors>
         <ListBox.ContextMenu>
             <ContextMenu>
                 <MenuItem Command="{Binding CreateLogFilterItemCommand}" Header="{i18n:I18NKeyBinding Key=LogViewer_ContextMenu_AddToFilter}">
@@ -27,8 +35,8 @@
             <Style Selector="ListBoxItem">
                 <Setter Property="Height" Value="15" />
                 <Setter Property="FontSize" Value="12" />
-                <Setter Property="Background" Value="#1f1f1f" />
-                <Setter Property="Foreground" Value="White" />
+                <Setter Property="Background" Value="{Binding Converter={StaticResource FilterRowBackgroundConverter}}" />
+                <Setter Property="Foreground" Value="{Binding Converter={StaticResource FilterRowForegroundConverter}}" />
             </Style>
         </ListBox.Styles>
         <ListBox.ItemTemplate>

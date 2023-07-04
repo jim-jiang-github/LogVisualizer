@@ -24,6 +24,8 @@ namespace LogVisualizer
             var serviceCollection = new ServiceCollection()
                 .AddSingleton<ScenarioService>()
                 .AddSingleton<UpgradeService>()
+                .AddSingleton<LogProcessorService>()
+                .AddSingleton<FilterService>()
                 .AddSingleton<GitService>()
                 .AddSingleton<FinderService>()
                 .AddSingleton<MenuBarViewModel>()
@@ -36,6 +38,7 @@ namespace LogVisualizer
                 .AddSingleton<LogRowDetailViewModel>()
                 .AddScoped<LogFilterItemEditorViewModel>()
                 .AddSingleton<BottomBarViewModel>()
+                .AddSingleton<LanguageSelectorViewModel>()
                 .AddSingleton<ScenarioConfigViewModel>()
                 .AddSingleton<SplashWindowViewModel>()
                 .AddSingleton<INotify, NotifyImpl>();

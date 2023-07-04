@@ -7,11 +7,12 @@
     mc:Ignorable="d">
     <UserControl.Template>
         <ControlTemplate TargetType="UserControl">
-            <DockPanel Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PanelWidth}">
+            <DockPanel>
                 <Border
                     Height="30"
                     Background="#0f0f0f"
-                    DockPanel.Dock="Top">
+                    DockPanel.Dock="Top"
+                    IsVisible="{Binding $parent[UserControl].Title, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
                     <TextBlock
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
@@ -19,7 +20,6 @@
                         Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Title}"
                         TextAlignment="Center" />
                 </Border>
-                <Border Height="5" Background="#4f4f4f" DockPanel.Dock="Bottom" />
                 <Border>
                     <ContentPresenter Content="{TemplateBinding Content}" />
                 </Border>

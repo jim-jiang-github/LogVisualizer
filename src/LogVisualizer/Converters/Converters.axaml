@@ -9,4 +9,6 @@
     <converters:HexColorConverter x:Key="HexColorConverter" />
     <converters:HexBrushConverter x:Key="HexBrushConverter" />
     <converters:HexInvertBrushConverter x:Key="HexInvertBrushConverter" />
+    <converters:FilterRowBackgroundConverter x:Key="FilterRowBackgroundConverter" />
+    <converters:FilterRowForegroundConverter x:Key="FilterRowForegroundConverter" />
 </ResourceDictionary>

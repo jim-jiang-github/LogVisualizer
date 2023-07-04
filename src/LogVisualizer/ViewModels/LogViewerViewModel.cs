@@ -21,69 +21,52 @@ using LogVisualizer.Scenarios.Contents;
 using System.Text.RegularExpressions;
 using Serilog.Context;
 using CommunityToolkit.Mvvm.Input;
+using LogVisualizer.Commons;
+using LogVisualizer.I18N;
 
 namespace LogVisualizer.ViewModels
 {
     public partial class LogViewerViewModel : ViewModelBase
     {
-        private LogFilterViewModel _logFilterViewModel;
-        private ScenarioService _scenarioService;
-        private IEnumerable<LogRow> _currentRows;
+        private INotify _notify;
+        private readonly FilterService _filterService;
+        private LogProcessorService _logProcessorService;
+        private string[] _columnNames;
         private int _mainColumnIndex = 0;
 
         [ObservableProperty]
         private LogRow? _selectedRow = null;
-
         [ObservableProperty]
-        private RangeObservableCollection<LogRow> _items;
+        private ObservableCollection<LogRow> _displayRows;
 
-        public LogViewerViewModel(LogFilterViewModel logFilterViewModel, ScenarioService scenarioService)
+        public LogViewerViewModel(INotify notify, FilterService filterService, LogProcessorService logProcessorService)
         {
-            _logFilterViewModel = logFilterViewModel;
-            _scenarioService = scenarioService;
-            Items = new RangeObservableCollection<LogRow>();
-            WeakReferenceMessenger.Default.Register<LogContentSelectedChangedMessage>(this, (r, m) =>
+            _notify = notify;
+            _filterService = filterService;
+            _logProcessorService = logProcessorService;
+            WeakReferenceMessenger.Default.Register<LogDisplayRowsChangedMessage>(this, (r, m) =>
             {
-                var logContent = m.Value;
-                if (logContent == null)
-                {
-                    Items.Clear();
-                    return;
-                }
-                _currentRows = logContent.Rows;
-                _mainColumnIndex = logContent.MainColumnIndex;
-                ApplyFilter();
-            });
-            WeakReferenceMessenger.Default.Register<LogFilterItemsChangedMessage>(this, (r, m) =>
-            {
-                ApplyFilter();
+                _columnNames = m.ColumnNames;
+                _mainColumnIndex = m.MainColumnIndex;
+                var displayRows = m.Value;
+                DisplayRows = new ObservableCollection<LogRow>(displayRows);
             });
         }
 
-        private void ApplyFilter()
+        [RelayCommand]
+        private async Task ShowLogRowDetail()
         {
-            if (_currentRows == null)
+            if (SelectedRow == null)
             {
                 return;
             }
-            Items.Clear();
-            var result = _currentRows.Where(row =>
+            var logRowDetailViewModel = DependencyInjectionProvider.GetService<LogRowDetailViewModel>();
+            if (logRowDetailViewModel == null)
             {
-                bool matched = _scenarioService.LogFilterItems.Where(f => f.Enabled).All(f => Search(row.Cells[4].ToString(), f.FilterKey, f.IsMatchCase, f.IsMatchWholeWord, f.IsUseRegularExpression));
-                return matched;
-            });
-            Items.AddRange(result);
-        }
-
-        private bool Search(string text, string keyword, bool matchCase, bool matchWholeWord, bool useRegex)
-        {
-            string pattern = keyword;
-            if (!useRegex)
-            {
-                pattern = matchWholeWord ? $@"\b{Regex.Escape(keyword)}\b" : Regex.Escape(keyword);
+                return;
             }
-
-            return Regex.IsMatch(text, pattern, (matchCase | useRegex) ? RegexOptions.None : RegexOptions.IgnoreCase);
+            logRowDetailViewModel.SetLogRow(_columnNames.Select(c => $"{c}:").ToArray(), SelectedRow.Value);
+            await _notify.ShowSubWindow(I18NKeys.LogViewer_Dialog_Title.GetLocalizationRawValue(), logRowDetailViewModel);
         }
 
         [RelayCommand]
@@ -99,12 +82,7 @@ namespace LogVisualizer.ViewModels
             {
                 return;
             }
-            LogFilterItem? logFilterItem = await _scenarioService.CreateFilterItem(mainCellStr);
-            if (logFilterItem == null)
-            {
-                return;
-            }
-            _scenarioService.AddFilterItem(logFilterItem);
+            await _filterService.CreateFilterItem(mainCellStr);
         }
     }
 }

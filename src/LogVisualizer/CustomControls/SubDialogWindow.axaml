@@ -2,6 +2,7 @@
     x:Class="LogVisualizer.CustomControls.SubDialogWindow"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:customControls="clr-namespace:LogVisualizer.CustomControls;assembly=LogVisualizer"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:i18n="clr-namespace:LogVisualizer.I18N;assembly=LogVisualizer.I18N"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -18,6 +19,9 @@
         <DataTemplate DataType="vm:LogFilterItemEditorViewModel">
             <views:LogFilterItemEditor />
         </DataTemplate>
+        <DataTemplate DataType="vm:LogRowDetailViewModel">
+            <views:LogRowDetail />
+        </DataTemplate>
     </Window.DataTemplates>
     <Window.Styles>
         <Style Selector="Window.toolWindow Button#PART_MinimiseButton">
@@ -30,12 +34,12 @@
             <Setter Property="ContentTemplate">
                 <DataTemplate>
                     <StackPanel Orientation="Vertical">
-                        <Border Height="30" Background="Transparent">
+                        <Border Height="30">
                             <TextBlock
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
-                                Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=Title}"
-                                TextAlignment="Center" />
+                                Foreground="White"
+                                Text="{Binding $parent[Window].Title}" />
                         </Border>
                         <ContentPresenter Content="{Binding}" />
                         <Border Height="45" IsVisible="{Binding !!$parent[Window].Buttons.Count}">
@@ -57,7 +61,7 @@
                                             HorizontalAlignment="Center"
                                             VerticalAlignment="Center"
                                             HorizontalContentAlignment="Center"
-                                            Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=ClickButtonCommand}"
+                                            Command="{Binding $parent[Window].ClickButtonCommand}"
                                             CommandParameter="{Binding}"
                                             Content="{Binding ButtonText}"
                                             FlowDirection="LeftToRight" />

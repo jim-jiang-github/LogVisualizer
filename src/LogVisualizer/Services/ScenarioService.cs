@@ -22,22 +22,14 @@ namespace LogVisualizer.Services
 {
     public class ScenarioService
     {
-        private readonly INotify _notify;
-        private readonly DebounceDispatcher _debounceDispatcher;
-
-        private List<LogFilterItem> _logFilterItems = new List<LogFilterItem>();
-
         public string[] SupportedLogExtension => CurrentScenario?.SupportedExtensions ?? new[] { "*.txt", "*.log" };
         public IEnumerable<Scenario> Scenarios { get; private set; } = Array.Empty<Scenario>();
         public Scenario? CurrentScenario { get; private set; }
         public IEnumerable<LogFileItem> LogFileItems { get; private set; }
-        public IEnumerable<LogFilterItem> LogFilterItems => _logFilterItems;
         public LogFileItem? CurrentLogFileItem { get; private set; }
 
-        public ScenarioService(INotify notify)
+        public ScenarioService()
         {
-            _notify = notify;
-            _debounceDispatcher = new DebounceDispatcher();
             ReloadScenarios();
         }
 
@@ -124,85 +116,6 @@ namespace LogVisualizer.Services
             {
                 var logContent = CurrentScenario.LoadLogContent(CurrentLogFileItem.Path);
                 WeakReferenceMessenger.Default.Send(new LogContentSelectedChangedMessage(logContent));
-            });
-        }
-
-        public async Task<LogFilterItem?> CreateFilterItem(string filterKey)
-        {
-            LogFilterItem logFilterItem = new()
-            {
-                FilterKey = filterKey,
-            };
-            var confirmButtonText = I18NKeys.Common_Confirm.GetLocalizationRawValue();
-            var clickedButtonTest = await _notify.ShowSubWindow(
-                I18NKeys.Filter_Dialog_Create.GetLocalizationRawValue(),
-                new LogFilterItemEditorViewModel()
-                {
-                    LogFilterItem = logFilterItem
-                },
-                new[]
-                {
-                    new MessageBoxButton(confirmButtonText, true)
-                });
-            if (clickedButtonTest != confirmButtonText)
-            {
-                return null;
-            }
-            return logFilterItem;
-        }
-
-        public void AddFilterItem(LogFilterItem logFilterItem)
-        {
-            _logFilterItems.Add(logFilterItem);
-            logFilterItem.PropertyChanged += LogFilterItem_PropertyChanged;
-            FilterChanged();
-        }
-
-        public Task EditFilterItem(LogFilterItem logFilterItem)
-        {
-            return _notify.ShowSubWindow(
-                I18NKeys.Filter_Dialog_Edit.GetLocalizationRawValue(),
-                new LogFilterItemEditorViewModel()
-                {
-                    LogFilterItem = logFilterItem
-                });
-        }
-
-        public async Task<bool> RemoveFilterItem(LogFilterItem logFilterItem)
-        {
-            var content = I18NKeys.Common_ConfirmDelete.GetLocalizationString(logFilterItem.FilterKey);
-            if (await _notify.ShowComfirmMessageBox(content))
-            {
-                _logFilterItems.Remove(logFilterItem);
-                logFilterItem.PropertyChanged -= LogFilterItem_PropertyChanged;
-                WeakReferenceMessenger.Default.Send(new LogFilterItemsChangedMessage(_logFilterItems));
-                return true;
-            }
-            return false;
-        }
-
-        private void LogFilterItem_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(LogFilterItem.Id) ||
-                e.PropertyName == nameof(LogFilterItem.HexColor) ||
-                e.PropertyName == nameof(LogFilterItem.Hits))
-            {
-
-            }
-            else
-            {
-                FilterChanged();
-            }
-        }
-
-        private void FilterChanged()
-        {
-            _debounceDispatcher.Debounce(200, async (x) =>
-            {
-                _ = Task.Run(() =>
-                {
-                    WeakReferenceMessenger.Default.Send(new LogFilterItemsChangedMessage(LogFilterItems));
-                });
             });
         }
     }

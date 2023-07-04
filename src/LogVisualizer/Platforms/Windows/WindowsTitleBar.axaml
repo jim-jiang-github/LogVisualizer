@@ -3,10 +3,12 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:commons="clr-namespace:LogVisualizer.Commons;assembly=LogVisualizer.Commons"
+    xmlns:customControls="clr-namespace:LogVisualizer.CustomControls;assembly=LogVisualizer"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:i18n="clr-namespace:LogVisualizer.I18N;assembly=LogVisualizer.I18N"
     xmlns:icon="clr-namespace:Projektanker.Icons.Avalonia;assembly=Projektanker.Icons.Avalonia"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="clr-namespace:LogVisualizer.Views"
     d:DesignHeight="30"
     d:DesignWidth="800"
     IsVisible="False"
@@ -15,6 +17,7 @@
         <TextBlock
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
+            IsHitTestVisible="False"
             Text="{i18n:I18NKeyBinding {x:Static commons:Global.CurrentVersionStr} Key=NonLocalized_TitleBar_Title}"
             TextAlignment="Center" />
         <DockPanel Height="30">
@@ -41,6 +44,20 @@
                     IsVisible="{Binding Source={x:Static commons:Global.IsDebug}}"
                     Tag="fa-solid fa-text-width"
                     ToolTip.Tip="{i18n:I18NKeyBinding Key=NonLocalized_TitleBar_EnablePseudo}" />
+                <Button
+                    Classes="titlebar"
+                    Command="{Binding SelectLanguageCommand}"
+                    Content="mdi-translate-variant"
+                    FlowDirection="LeftToRight"
+                    ToolTip.Tip="{i18n:I18NKeyBinding Key=Titlebar_Language}">
+                    <Button.Flyout>
+                        <Flyout Placement="Bottom">
+                            <customControls:FlyoutPanel>
+                                <views:LanguageSelector />
+                            </customControls:FlyoutPanel>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
                 <Button
                     Classes="titlebar"
                     Command="{Binding AccessGithubCommand}"

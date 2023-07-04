@@ -21,6 +21,7 @@
   },
   "Titlebar": {
     "Github": "Accessing my GitHub.",
+    "Language": "Select language.",
     "Share": "Share current log and filters."
   },
   "OpenFileDialog": {
@@ -70,6 +71,9 @@
     }
   },
   "LogViewer": {
+    "Dialog": {
+      "Title": "Log row detail"
+    },
     "ContextMenu": {
       "AddToFilter": "Add to filter",
       "ShowDetail": "Show detail"

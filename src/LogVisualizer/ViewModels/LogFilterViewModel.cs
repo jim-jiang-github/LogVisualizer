@@ -25,32 +25,27 @@ namespace LogVisualizer.ViewModels
 {
     public partial class LogFilterViewModel : ViewModelBase
     {
-        private readonly ScenarioService _scenarioService;
+        private readonly FilterService _filterService;
 
         [ObservableProperty]
         private LogFilterItem? _selectedItem = null;
         [ObservableProperty]
         private ObservableCollection<LogFilterItem> _logFilterItems;
 
-        public LogFilterViewModel(ScenarioService scenarioService)
+        public LogFilterViewModel(FilterService filterService)
         {
-            _scenarioService = scenarioService;
+            _filterService = filterService;
             _logFilterItems = new ObservableCollection<LogFilterItem>();
             WeakReferenceMessenger.Default.Register<LogFilterItemsChangedMessage>(this, (r, m) =>
             {
-                LogFilterItems = new ObservableCollection<LogFilterItem>(_scenarioService.LogFilterItems);
+                LogFilterItems = new ObservableCollection<LogFilterItem>(_filterService.LogFilterItems);
             });
         }
 
         [RelayCommand]
         private async Task CreateLogFilterItem()
         {
-            LogFilterItem? logFilterItem = await _scenarioService.CreateFilterItem(string.Empty);
-            if (logFilterItem == null)
-            {
-                return;
-            }
-            _scenarioService.AddFilterItem(logFilterItem);
+            await _filterService.CreateFilterItem(string.Empty);
         }
 
         [RelayCommand]
@@ -60,7 +55,7 @@ namespace LogVisualizer.ViewModels
             {
                 return;
             }
-            await _scenarioService.EditFilterItem(SelectedItem);
+            await _filterService.EditFilterItem(SelectedItem);
         }
 
         [RelayCommand]
@@ -76,7 +71,7 @@ namespace LogVisualizer.ViewModels
         [RelayCommand]
         private async Task RemoveLogFilterItem(LogFilterItem logFilterItem)
         {
-            await _scenarioService.RemoveFilterItem(logFilterItem);
+            await _filterService.RemoveFilterItem(logFilterItem);
         }
     }
 }

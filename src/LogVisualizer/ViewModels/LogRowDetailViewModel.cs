@@ -20,19 +20,19 @@ namespace LogVisualizer.ViewModels
             _logRowDetailProperties = new ObservableCollection<LogRowDetailProperty>();
         }
 
-        public void SetLogRow(string[] header, LogRow logRow)
+        public void SetLogRow(string[] columnNames, LogRow logRow)
         {
-            if (header.Length != logRow.Cells.Length)
+            if (columnNames.Length != logRow.Cells.Length)
             {
-                Log.Error($"Header is [{string.Join(",", header)}] but LogRow is [{string.Join(",", logRow.Cells)}]");
+                Log.Error($"ColumnNames is [{string.Join(",", columnNames)}] but LogRow is [{string.Join(",", logRow.Cells)}]");
                 return;
             }
             LogRowDetailProperties.Clear();
-            for (int i = 0; i < header.Length; i++)
+            for (int i = 0; i < columnNames.Length; i++)
             {
                 LogRowDetailProperties.Add(new LogRowDetailProperty()
                 {
-                    PropertyName = header[i],
+                    PropertyName = columnNames[i],
                     PropertyValue = logRow.Cells[i]?.ToString()
                 });
             }

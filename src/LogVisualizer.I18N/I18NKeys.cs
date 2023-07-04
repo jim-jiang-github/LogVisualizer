@@ -45,6 +45,8 @@ namespace LogVisualizer.I18N
         Menu_About,
         /// <summary>Accessing my GitHub.</summary>
         Titlebar_Github,
+        /// <summary>Select language.</summary>
+        Titlebar_Language,
         /// <summary>Share current log and filters.</summary>
         Titlebar_Share,
         /// <summary>Pick logs</summary>
@@ -111,6 +113,8 @@ namespace LogVisualizer.I18N
         Filter_Dialog_Create,
         /// <summary>Edit filter</summary>
         Filter_Dialog_Edit,
+        /// <summary>Log row detail</summary>
+        LogViewer_Dialog_Title,
         /// <summary>Add to filter</summary>
         LogViewer_ContextMenu_AddToFilter,
         /// <summary>Show detail</summary>

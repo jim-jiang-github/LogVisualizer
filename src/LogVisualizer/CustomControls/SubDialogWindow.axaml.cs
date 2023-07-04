@@ -17,7 +17,7 @@ namespace LogVisualizer.CustomControls
 {
     public partial class SubDialogWindow : Window
     {
-        public static readonly StyledProperty<ObservableCollection<MessageBoxButton>> ButtonsProperty = AvaloniaProperty.Register<SubDialogWindow, ObservableCollection<MessageBoxButton>>(nameof(Buttons));
+        public static readonly StyledProperty<ObservableCollection<MessageBoxButton>> ButtonsProperty = AvaloniaProperty.Register<SubDialogWindow, ObservableCollection<MessageBoxButton>>(nameof(Buttons), new ObservableCollection<MessageBoxButton>());
 
         public ObservableCollection<MessageBoxButton> Buttons
         {
@@ -60,6 +60,6 @@ namespace LogVisualizer.CustomControls
             }
             child.Measure(availableSize);
             return base.MeasureOverride(child.DesiredSize);
-        }       
+        }
     }
 }
