@@ -10,6 +10,7 @@
     xmlns:icon="clr-namespace:Projektanker.Icons.Avalonia;assembly=Projektanker.Icons.Avalonia"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="clr-namespace:LogVisualizer.Views"
+    Height="400"
     mc:Ignorable="d">
     <UserControl.Styles>
         <Style Selector="TextBox">
