@@ -18,7 +18,7 @@ namespace LogVisualizer.Platforms.Windows
         {
         }
 
-        public override string UpgradeResourceName { get; } = "windows-x64.zip";
+        public override string UpgradeResourceName { get; } = "win-x64.zip";
 
         public override string ExecutableName { get; } = $"{Global.APP_NAME}.exe";
 
