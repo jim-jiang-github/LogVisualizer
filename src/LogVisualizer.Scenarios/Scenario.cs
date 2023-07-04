@@ -55,6 +55,10 @@ namespace LogVisualizer.Scenarios
         public ILogContent? LoadLogContent(string logSourcePath)
         {
             Stream? stream;
+            if (ArchiveLoader.IsSupportedArchive(logSourcePath))
+            {
+                return null;
+            }
             if (ArchiveLoader.IsArchiveEntry(logSourcePath))
             {
                 stream = ArchiveReader.ReadStream(logSourcePath);
