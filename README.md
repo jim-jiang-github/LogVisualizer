@@ -1,4 +1,5 @@
 # LogVisualizer
+[![](https://img.shields.io/github/release-date-pre/jim-jiang-github/LogVisualizer?style=flat)](https://github.com/jim-jiang-github/LogVisualizer/releases/tag/2.0.22.423) ![](https://img.shields.io/github/downloads/jim-jiang-github/LogVisualizer/total) [![](https://img.shields.io/github/last-commit/jim-jiang-github/LogVisualizer?style=flat)](https://github.com/jim-jiang-github/LogVisualizer/commits/master) [![](https://img.shields.io/github/license/jim-jiang-github/LogVisualizer?style=flat)](https://github.com/jim-jiang-github/LogVisualizer/blob/master/LICENSE)
 
 ## 📥 Download
 [![](https://img.shields.io/badge/Windows-x64-blue?style=flat-square&logo=windows&logoColor=fff)](https://github.com/jim-jiang-github/LogVisualizer/releases/latest/download/win-x64.zip)
