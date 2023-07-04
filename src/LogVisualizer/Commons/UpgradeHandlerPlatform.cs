@@ -2,7 +2,6 @@
 using Avalonia.Threading;
 using GithubReleaseUpgrader;
 using LogVisualizer.I18N;
-using LogVisualizer.Services;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
@@ -12,6 +11,8 @@ namespace LogVisualizer.Commons
     public abstract class UpgradeHandlerPlatform : UpgradeHandler
     {
         private readonly INotify _notify;
+
+        public override Version CurrentVersion { get; } = Global.CurrentVersion;
 
         public override string UpgradeTempFolder { get; } = Global.UpgradeResourcesFolder;
 
