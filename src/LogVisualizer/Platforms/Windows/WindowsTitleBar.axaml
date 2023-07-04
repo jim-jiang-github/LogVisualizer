@@ -70,61 +70,61 @@
                     Content="fa-solid fa-share-from-square"
                     FlowDirection="LeftToRight"
                     ToolTip.Tip="{i18n:I18NKeyBinding Key=Titlebar_Share}" />
+                <StackPanel.Styles>
+                    <Style Selector="CheckBox.titlebar">
+                        <Setter Property="Background" Value="Transparent" />
+                    </Style>
+                    <Style Selector="CheckBox.titlebar:pointerover">
+                        <Setter Property="Background" Value="#80FFFFFF" />
+                    </Style>
+                    <Style Selector="CheckBox.titlebar[IsChecked=true]:pointerover">
+                        <Setter Property="Background" Value="#80FFFFFF" />
+                    </Style>
+                    <Style Selector="CheckBox.titlebar[IsChecked=true]">
+                        <Setter Property="Background" Value="#80FF0000" />
+                    </Style>
+                    <Style Selector="CheckBox.titlebar">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <Border Background="{TemplateBinding Background}" CornerRadius="0">
+                                        <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
+                                            <Grid Width="30" Height="30">
+                                                <icon:Icon Foreground="White" Value="{TemplateBinding Tag}" />
+                                            </Grid>
+                                        </StackPanel>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                    <Style Selector="Button.titlebar">
+                        <Setter Property="Background" Value="Transparent" />
+                    </Style>
+                    <Style Selector="Button.titlebar:pointerover">
+                        <Setter Property="Background" Value="#80FFFFFF" />
+                    </Style>
+                    <Style Selector="Button.titlebar">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <Border Background="{TemplateBinding Background}" CornerRadius="0">
+                                        <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
+                                            <Grid Width="30" Height="30">
+                                                <icon:Icon Foreground="White" Value="{TemplateBinding Content}" />
+                                            </Grid>
+                                        </StackPanel>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </StackPanel.Styles>
             </StackPanel>
             <NativeMenuBar
                 Width="270"
                 Height="30"
                 HorizontalAlignment="Left" />
-            <DockPanel.Styles>
-                <Style Selector="CheckBox.titlebar">
-                    <Setter Property="Background" Value="Transparent" />
-                </Style>
-                <Style Selector="CheckBox.titlebar:pointerover">
-                    <Setter Property="Background" Value="#80FFFFFF" />
-                </Style>
-                <Style Selector="CheckBox.titlebar[IsChecked=true]:pointerover">
-                    <Setter Property="Background" Value="#80FFFFFF" />
-                </Style>
-                <Style Selector="CheckBox.titlebar[IsChecked=true]">
-                    <Setter Property="Background" Value="#80FF0000" />
-                </Style>
-                <Style Selector="CheckBox.titlebar">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate>
-                                <Border Background="{TemplateBinding Background}" CornerRadius="0">
-                                    <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
-                                        <Grid Width="30" Height="30">
-                                            <icon:Icon Foreground="White" Value="{TemplateBinding Tag}" />
-                                        </Grid>
-                                    </StackPanel>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-                <Style Selector="Button.titlebar">
-                    <Setter Property="Background" Value="Transparent" />
-                </Style>
-                <Style Selector="Button.titlebar:pointerover">
-                    <Setter Property="Background" Value="#80FFFFFF" />
-                </Style>
-                <Style Selector="Button.titlebar">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate>
-                                <Border Background="{TemplateBinding Background}" CornerRadius="0">
-                                    <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
-                                        <Grid Width="30" Height="30">
-                                            <icon:Icon Foreground="White" Value="{TemplateBinding Content}" />
-                                        </Grid>
-                                    </StackPanel>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </DockPanel.Styles>
         </DockPanel>
     </Grid>
 </UserControl>

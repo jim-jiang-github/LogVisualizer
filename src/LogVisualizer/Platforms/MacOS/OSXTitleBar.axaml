@@ -2,73 +2,128 @@
     x:Class="LogVisualizer.Platforms.Windows.OSXTitleBar"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:icon="clr-namespace:Projektanker.Icons.Avalonia;assembly=Projektanker.Icons.Avalonia"
     xmlns:commons="clr-namespace:LogVisualizer.Commons;assembly=LogVisualizer.Commons"
+    xmlns:customControls="clr-namespace:LogVisualizer.CustomControls;assembly=LogVisualizer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i18n="clr-namespace:LogVisualizer.I18N;assembly=LogVisualizer.I18N"
+    xmlns:icon="clr-namespace:Projektanker.Icons.Avalonia;assembly=Projektanker.Icons.Avalonia"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="clr-namespace:LogVisualizer.Views"
     d:DesignHeight="30"
     d:DesignWidth="800"
     IsVisible="False"
     mc:Ignorable="d">
-    <Grid Height="30">
-        <DockPanel
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center">            
+    <Grid>
+        <StackPanel
+            Height="30"
+            HorizontalAlignment="Center"
+            Orientation="Horizontal">
             <Image
                 Name="WindowIcon"
                 Width="20"
                 Height="20"
                 Margin="15,6,15,4"
-                Source="/Assets/logo.ico"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                DockPanel.Dock="Left"
-                />
-            <TextBlock Text="xxxxxxxxx"
+                IsHitTestVisible="False"
+                Source="/Assets/logo.ico" />
+            <TextBlock
                 HorizontalAlignment="Center"
-                VerticalAlignment="Center"/>
-        </DockPanel>
-        <Border
+                VerticalAlignment="Center"
+                IsHitTestVisible="False"
+                Text="{i18n:I18NKeyBinding {x:Static commons:Global.CurrentVersionStr} Key=NonLocalized_TitleBar_Title}"
+                TextAlignment="Center" />
+        </StackPanel>
+        <StackPanel
             Width="300"
-            Margin="0,0,140,0"
-            HorizontalAlignment="Right">
+            HorizontalAlignment="Right"
+            DockPanel.Dock="Right"
+            FlowDirection="RightToLeft"
+            Orientation="Horizontal">
             <CheckBox
-                HorizontalAlignment="Right"
-                Classes="pseudo"
-                ToolTip.Tip="Enable pseudo"
+                Classes="titlebar"
+                FlowDirection="LeftToRight"
                 IsChecked="{Binding EnablePseudo}"
-                IsVisible="{Binding Source={x:Static commons:Global.IsDebug}}">
-                <CheckBox.Styles>
-                    <Style Selector="CheckBox.pseudo">
-                        <Setter Property="Background" Value="Transparent" />
-                    </Style>
-                    <Style Selector="CheckBox.pseudo:pointerover">
-                        <Setter Property="Background" Value="#80FFFFFF" />
-                    </Style>
-                    <Style Selector="CheckBox.pseudo[IsChecked=true]:pointerover">
-                        <Setter Property="Background" Value="#80FFFFFF" />
-                    </Style>
-                    <Style Selector="CheckBox.pseudo[IsChecked=true]">
-                        <Setter Property="Background" Value="#80FF0000" />
-                    </Style>
-                    <Style Selector="CheckBox.pseudo">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate>
-                                    <Border Background="{TemplateBinding Background}" CornerRadius="0">
-                                        <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
-                                            <Grid Width="30" Height="30">
-                                                <icon:Icon Foreground="White" Value="fa-solid fa-text-width" />
-                                            </Grid>
-                                        </StackPanel>
-                                    </Border>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </CheckBox.Styles>
-            </CheckBox>
-        </Border>
+                IsVisible="{Binding Source={x:Static commons:Global.IsDebug}}"
+                Tag="fa-solid fa-text-width"
+                ToolTip.Tip="{i18n:I18NKeyBinding Key=NonLocalized_TitleBar_EnablePseudo}" />
+            <Button
+                Classes="titlebar"
+                Command="{Binding SelectLanguageCommand}"
+                Content="mdi-translate-variant"
+                FlowDirection="LeftToRight"
+                ToolTip.Tip="{i18n:I18NKeyBinding Key=Titlebar_Language}">
+                <Button.Flyout>
+                    <Flyout Placement="Bottom">
+                        <customControls:FlyoutPanel>
+                            <views:LanguageSelector />
+                        </customControls:FlyoutPanel>
+                    </Flyout>
+                </Button.Flyout>
+            </Button>
+            <Button
+                Classes="titlebar"
+                Command="{Binding AccessGithubCommand}"
+                Content="fa-brands fa-github"
+                FlowDirection="LeftToRight"
+                ToolTip.Tip="{i18n:I18NKeyBinding Key=Titlebar_Github}" />
+            <Button
+                Classes="titlebar"
+                Command="{Binding ShareCommand}"
+                Content="fa-solid fa-share-from-square"
+                FlowDirection="LeftToRight"
+                ToolTip.Tip="{i18n:I18NKeyBinding Key=Titlebar_Share}" />
+            <StackPanel.Styles>
+                <Style Selector="CheckBox.titlebar">
+                    <Setter Property="Background" Value="Transparent" />
+                </Style>
+                <Style Selector="CheckBox.titlebar:pointerover">
+                    <Setter Property="Background" Value="#80FFFFFF" />
+                </Style>
+                <Style Selector="CheckBox.titlebar[IsChecked=true]:pointerover">
+                    <Setter Property="Background" Value="#80FFFFFF" />
+                </Style>
+                <Style Selector="CheckBox.titlebar[IsChecked=true]">
+                    <Setter Property="Background" Value="#80FF0000" />
+                </Style>
+                <Style Selector="CheckBox.titlebar">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <Border Background="{TemplateBinding Background}" CornerRadius="0">
+                                    <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
+                                        <Grid Width="30" Height="30">
+                                            <icon:Icon Foreground="White" Value="{TemplateBinding Tag}" />
+                                        </Grid>
+                                    </StackPanel>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+                <Style Selector="Button.titlebar">
+                    <Setter Property="Background" Value="Transparent" />
+                </Style>
+                <Style Selector="Button.titlebar:pointerover">
+                    <Setter Property="Background" Value="#80FFFFFF" />
+                </Style>
+                <Style Selector="Button.titlebar">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <Border Background="{TemplateBinding Background}" CornerRadius="0">
+                                    <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
+                                        <Grid Width="30" Height="30">
+                                            <icon:Icon Foreground="White" Value="{TemplateBinding Content}" />
+                                        </Grid>
+                                    </StackPanel>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </StackPanel.Styles>
+        </StackPanel>
         <NativeMenuBar
             Width="270"
             Height="30"
