@@ -9,6 +9,7 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using System.IO;
 using System.Reflection;
+using System.Diagnostics;
 
 namespace LogVisualizer.Platforms.Windows
 {
@@ -41,7 +42,28 @@ namespace LogVisualizer.Platforms.Windows
         }
         public override void DoUpgrade(string upgradeScriptPath, string originalFolder, string targetFolder, string executablePath, bool needRestart)
         {
-            throw new NotImplementedException();
+            var process = new Process()
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = upgradeScriptPath,
+                    Arguments = $"{originalFolder} {targetFolder} {executablePath} {needRestart}",
+                    RedirectStandardOutput = false,
+                    RedirectStandardError = false,
+                    UseShellExecute = false,
+                    CreateNoWindow = true
+                }
+            };
+            Log.Information($"process.StartInfo.Arguments is: {process.StartInfo.Arguments}");
+            try
+            {
+                process.Start();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.ToString());
+                FileOperationsHelper.SafeDeleteDirectory(originalFolder);
+            }
         }
     }
 }
