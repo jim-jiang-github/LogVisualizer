@@ -9,6 +9,7 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using System.IO;
 using System.Reflection;
+using System.Diagnostics;
 
 namespace LogVisualizer.Platforms.Windows
 {
@@ -19,6 +20,8 @@ namespace LogVisualizer.Platforms.Windows
         }
 
         public override string UpgradeResourceName { get; } = "osx-x64.zip";
+
+        public override string ExecutableFolder => AppDomain.CurrentDomain.BaseDirectory.Replace($"/{ExecutableName}/Contents/MacOS", string.Empty);
 
         public override string ExecutableName { get; } = $"{Global.APP_NAME}.app";
 
@@ -36,6 +39,32 @@ namespace LogVisualizer.Platforms.Windows
             using StreamReader reader = new StreamReader(stream);
             string content = reader.ReadToEnd();
             return content;
+        }
+
+        public override void DoUpgrade(string upgradeScriptPath, string originalFolder, string targetFolder, string executablePath, bool needRestart)
+        {
+            var process = new Process()
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = "bash",
+                    Arguments = $"{upgradeScriptPath} {originalFolder} {targetFolder} {executablePath} {needRestart}",
+                    RedirectStandardOutput = false,
+                    RedirectStandardError = false,
+                    UseShellExecute = true,
+                    CreateNoWindow = true
+                }
+            };
+            Log.Information($"process.StartInfo.Arguments is: {process.StartInfo.Arguments}");
+            try
+            {
+                process.Start();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.ToString());
+                FileOperationsHelper.SafeDeleteDirectory(originalFolder);
+            }
         }
     }
 }

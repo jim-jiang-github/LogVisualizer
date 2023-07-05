@@ -8,8 +8,7 @@ cpResult=1
 
 while [ $cpResult -eq 1 ]; do
   sleep 1
-  cp -R "$originalFolder"/* "$targetFolder" > error.log 2>&1
-  echo "cp -R $originalFolder to $targetFolder"
+  rsync -a --delete "$originalFolder/LogVisualizer.app" "$targetFolder"
   cpResult=$?
 done
 

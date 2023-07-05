@@ -20,6 +20,8 @@ namespace LogVisualizer.Platforms.Windows
 
         public override string UpgradeResourceName { get; } = "win-x64.zip";
 
+        public override string ExecutableFolder => AppDomain.CurrentDomain.BaseDirectory;
+
         public override string ExecutableName { get; } = $"{Global.APP_NAME}.exe";
 
         public override string UpgradeScriptName => "upgrader.bat";
@@ -36,6 +38,10 @@ namespace LogVisualizer.Platforms.Windows
             using StreamReader reader = new StreamReader(stream);
             string content = reader.ReadToEnd();
             return content;
+        }
+        public override void DoUpgrade(string upgradeScriptPath, string originalFolder, string targetFolder, string executablePath, bool needRestart)
+        {
+            throw new NotImplementedException();
         }
     }
 }

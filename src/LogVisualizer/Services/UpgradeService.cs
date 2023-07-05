@@ -13,6 +13,7 @@ using LogVisualizer.I18N;
 using MessageBox.Avalonia.DTO;
 using Avalonia.Controls;
 using MessageBox.Avalonia.Models;
+using System.Runtime.InteropServices;
 
 namespace LogVisualizer.Services
 {
@@ -27,12 +28,24 @@ namespace LogVisualizer.Services
 
         public bool CheckForUpgrade(bool forceCheck = false)
         {
+#if DEBUG
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX) == true)
+            {
+                return false;
+            }
+#endif
             var isNeedUpgrade = Upgrader.CheckForUpgrade(_upgradeHandler, forceCheck);
             return isNeedUpgrade;
         }
 
         public void PerformUpgradeIfNeeded()
         {
+#if DEBUG
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX) == true)
+            {
+                return;
+            }
+#endif
             Upgrader.PerformUpgradeIfNeeded();
         }
     }
