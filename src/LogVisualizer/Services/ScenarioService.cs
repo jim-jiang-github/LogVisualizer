@@ -22,14 +22,17 @@ namespace LogVisualizer.Services
 {
     public class ScenarioService
     {
-        public string[] SupportedLogExtension => CurrentScenario?.SupportedExtensions ?? new[] { "*.txt", "*.log" };
+        private readonly INotify _notify;
+
+        public string[] SupportedLogExtension => CurrentScenario?.SupportedLoadTypes?.Select(x => $"*.{x.SupportedExtension}")?.ToArray() ?? new[] { "*.txt", "*.log" };
         public IEnumerable<Scenario> Scenarios { get; private set; } = Array.Empty<Scenario>();
         public Scenario? CurrentScenario { get; private set; }
         public IEnumerable<LogFileItem> LogFileItems { get; private set; }
         public LogFileItem? CurrentLogFileItem { get; private set; }
 
-        public ScenarioService()
+        public ScenarioService(INotify notify)
         {
+            _notify = notify;
             ReloadScenarios();
         }
 
@@ -82,20 +85,66 @@ namespace LogVisualizer.Services
 
         private IEnumerable<LogFileItem> LoadLogFileItems(IEnumerable<string> filePaths)
         {
+            bool hasCanNotConveredFileName = false;
             var logFileItems = filePaths
                 .Select(x =>
                 {
                     Loading.SetMessage(I18NKeys.Loading_LoadingFile.GetLocalizationString(x));
                     if (ArchiveLoader.IsSupportedArchive(x))
                     {
-                        var subItems = ArchiveLoader.GetEntryPaths(x).Select(i => new LogFileItem(Path.GetFileName(i), i, null, null)).ToArray();
-                        return new LogFileItem(Path.GetFileName(x), x, null, subItems);
+                        var fileName = Path.GetFileName(x);
+                        if (fileName == null)
+                        {
+                            return null;
+                        }
+                        var converedFileName = CurrentScenario?.GetConvertedName(fileName);
+                        if (converedFileName == null)
+                        {
+                            hasCanNotConveredFileName = true;
+                            return null;
+                        }
+                        var entryPaths = ArchiveLoader.GetEntryPaths(x);
+                        var subItems = entryPaths.Select(i =>
+                        {
+                            var fileName = ArchiveLoader.GetArchiveEntryFileName(i);
+                            if (fileName == null)
+                            {
+                                return null;
+                            }
+                            var converedFileName = CurrentScenario?.GetConvertedName(fileName);
+                            if (converedFileName == null)
+                            {
+                                hasCanNotConveredFileName = true;
+                                return null;
+                            }
+                            return new LogFileItem(converedFileName, i, null, null);
+                        })
+                        .OfType<LogFileItem>()
+                        .ToArray();
+                        return new LogFileItem(converedFileName, x, null, subItems);
                     }
                     else
                     {
-                        return new LogFileItem(Path.GetFileName(x), x, null, null);
+                        var fileName = Path.GetFileName(x);
+                        if (fileName == null)
+                        {
+                            return null;
+                        }
+                        var converedFileName = CurrentScenario?.GetConvertedName(fileName);
+                        if (converedFileName == null)
+                        {
+                            hasCanNotConveredFileName = true;
+                            return null;
+                        }
+                        return new LogFileItem(converedFileName, x, null, null);
                     }
-                }).ToArray();
+                })
+                .OfType<LogFileItem>()
+                .ToArray();
+            if (hasCanNotConveredFileName)
+            {
+                _notify.NotifyError("asdasd", "asdasd");
+            }
             if (!logFileItems.Any())
             {
                 return Array.Empty<LogFileItem>();

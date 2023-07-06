@@ -13,15 +13,18 @@
     mc:Ignorable="d">
 
     <TabControl Classes="sidebar">
-        <TabItem Classes="sidebar" Header="mdi text-box-outline">
+        <TabItem
+            Classes="sidebar"
+            DataContext="{Binding LogSelector.LogFileItems}"
+            Header="mdi text-box-outline">
             <views:LogSelector DataContext="{Binding LogSelector}" />
         </TabItem>
-        <TabItem Classes="sidebar" Header="mdi text-box-edit-outline">
+        <!--<TabItem Classes="sidebar" Header="mdi text-box-edit-outline">
             <Border Background="Blue" />
         </TabItem>
         <TabItem Classes="sidebar" Header="mdi google-analytics">
             <Border Background="Green" />
-        </TabItem>
+        </TabItem>-->
         <TabControl.Styles>
             <Style Selector="TabControl.sidebar">
                 <Setter Property="Padding" Value="0" />
@@ -61,7 +64,7 @@
                                     BorderBrush="White"
                                     BorderThickness="1"
                                     CornerRadius="8"
-                                    IsVisible="{Binding SchemaConfig.HasSomeError}">
+                                    IsVisible="{Binding $parent[TabItem].DataContext.HasIssue, FallbackValue=False, TargetNullValue=False}">
                                     <icon:Icon
                                         FontSize="10"
                                         Foreground="White"
@@ -74,12 +77,12 @@
                                     BorderBrush="White"
                                     BorderThickness="1"
                                     CornerRadius="8"
-                                    IsVisible="{Binding SchemaConfig.HasSomeError}">
+                                    IsVisible="{Binding !!$parent[TabItem].DataContext.Count, FallbackValue=False, TargetNullValue=False}">
                                     <TextBlock
                                         Margin="0,1,0,0"
                                         FontSize="10"
                                         Foreground="White"
-                                        Text="99"
+                                        Text="{Binding $parent[TabItem].DataContext.Count}"
                                         TextAlignment="Center" />
                                 </Border>
                             </StackPanel>

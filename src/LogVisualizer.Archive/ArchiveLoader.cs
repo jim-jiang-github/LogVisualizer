@@ -112,6 +112,17 @@ namespace LogVisualizer.Decompress
                 }
             }
         }
+        public static string? GetArchiveEntryFileName(string entryPath)
+        {
+            int delimiterIndex = entryPath.IndexOf("|");
+            if (delimiterIndex == -1)
+            {
+                return null;
+            }
+            entryPath = entryPath.Substring(0, delimiterIndex);
+            var fileName = Path.GetFileName(entryPath);
+            return fileName;
+        }
         public static bool IsArchiveEntry(string entryPath)
         {
             int delimiterIndex = entryPath.IndexOf("|");

@@ -8,20 +8,20 @@ using System.Threading.Tasks;
 
 namespace LogVisualizer.Scenarios.Schemas
 {
-    internal class SchemaLogLoader
+    internal class SchemaLogPicker
     {
-        public static SchemaLogLoader? GetSchemaLogLoaderFromJsonFile(string jsonFilePath)
+        public static SchemaLogPicker? GetSchemaLogPickerFromJsonFile(string jsonFilePath)
         {
             var schemaLogContent = IJsonSerializable.LoadContentFromJsonFile(jsonFilePath);
             if (schemaLogContent == null)
             {
                 return null;
             }
-            var anonymousType = new { Loader = new SchemaLogLoader() };
-            var type = JsonConvert.DeserializeAnonymousType(schemaLogContent, anonymousType)?.Loader ?? null;
+            var anonymousType = new { Picker = new SchemaLogPicker() };
+            var type = JsonConvert.DeserializeAnonymousType(schemaLogContent, anonymousType)?.Picker ?? null;
             return type;
         }
 
-        public SchemaLogSupportedLoadType[] SupportedLoadTypes { get; set; } = Array.Empty<SchemaLogSupportedLoadType>();
+        public SchemaLogSupportedPickerType[] SupportedPickerTypes { get; set; } = Array.Empty<SchemaLogSupportedPickerType>();
     }
 }

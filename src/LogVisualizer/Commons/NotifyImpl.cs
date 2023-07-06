@@ -60,6 +60,10 @@ namespace LogVisualizer.Commons
 
         public void NotifyCustom(object viewModel)
         {
+            if (_host == null)
+            {
+                _host = Host;
+            }
             Dispatcher.UIThread.InvokeAsync(() =>
             {
                 NotificationManager?.Show(viewModel);
@@ -68,6 +72,10 @@ namespace LogVisualizer.Commons
 
         public void NotifyError(string title, string content)
         {
+            if (_host == null)
+            {
+                _host = Host;
+            }
             Dispatcher.UIThread.Invoke(() =>
             {
                 NotificationManager?.Show(new Notification(title, content, NotificationType.Error));

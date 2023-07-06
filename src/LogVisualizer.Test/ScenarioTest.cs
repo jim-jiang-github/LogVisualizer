@@ -39,7 +39,7 @@ namespace LogVisualizer.Test
             {
                 Assert.Fail("scenario is null");
             }
-            var result = scenario.SupportedExtensions;
+            var result = scenario.SupportedLoadTypes.Select(x => $"*.{x.SupportedExtension}").ToArray();
             Assert.Equal(excepted, result);
         }
 

@@ -2,20 +2,22 @@
   "Type": "LogText",
   "Blocks": [],
   "ColumnHeadTemplate": {
-    "RegexStart": "^\\d{2}\\/\\d{2}\\/\\d{2} \\d{2}:\\d{2}:\\d{2}.\\d{3}",
+    "RegexStart": "^(\\d{2}\\/\\d{2}\\/\\d{2} \\d{2}:\\d{2}:\\d{2}.\\d{3})",
     "RegexContent": "^(\\d{2}\\/\\d{2}\\/\\d{2} \\d{2}:\\d{2}:\\d{2}.\\d{3}) \\<(.*?)\\> \\[(.*?)\\] (.*?) (.*)",
+    "MainColumnIndex": 4,
     "Columns": [
       {
         "Cell": {
-          "Index": 1,
-          "Name": "Time"
+          "Index": 0,
+          "Name": "Time",
+          "ConvertorName": "Time"
         },
         "Enumeratable": false,
         "Filterable": false
       },
       {
         "Cell": {
-          "Index": 2,
+          "Index": 1,
           "Name": "Module"
         },
         "Enumeratable": false,
@@ -23,7 +25,7 @@
       },
       {
         "Cell": {
-          "Index": 3,
+          "Index": 2,
           "Name": "Thread"
         },
         "Enumeratable": false,
@@ -31,7 +33,7 @@
       },
       {
         "Cell": {
-          "Index": 4,
+          "Index": 3,
           "Name": "Level"
         },
         "Enumeratable": false,
@@ -39,7 +41,7 @@
       },
       {
         "Cell": {
-          "Index": 5,
+          "Index": 4,
           "Name": "Msg"
         },
         "Enumeratable": true,
@@ -47,18 +49,37 @@
       }
     ]
   },
-  "Name": "schema_log",
   "EncodingName": "utf-8",
-  "LogFileLoaderType": "Txt",
-  "SupportedExtensions": [
-    ".txt",
-    ".log"
-  ],
   "Convertors": [
     {
       "Name": "Time",
       "Type": "Time2Time",
       "Expression": "[MM/dd/yy HH:mm:ss.fff][yyyy-MM-dd HH:mm:ss,fff]"
     }
-  ]
+  ],
+  "Picker": {
+    "SupportedPickerTypes": [
+      {
+        "FileNameValidateRegex": "RoomsHost-\\d+_\\d+_pid-\\d+(\\.\\S+|)$",
+        "SupportedExtension": "log"
+      },
+      {
+        "FileNameValidateRegex": "RoomsHost-\\d+_\\d+_pid-\\d+(\\.\\S+|)$",
+        "SupportedExtension": "7z"
+      },
+      {
+        "FileNameValidateRegex": "RoomsHost-\\d+_\\d+_pid-\\d+(\\.\\S+|)$",
+        "SupportedExtension": "zip"
+      }
+    ]
+  },
+  "Loader": {
+    "SupportedLoadTypes": [
+      {
+        "FileNameValidateRegex": "RoomsHost-\\d+_\\d+_pid-\\d+(\\.\\S+|)$",
+        "SupportedExtension": "log",
+        "ReaderType": "Text"
+      }
+    ]
+  }
 }
